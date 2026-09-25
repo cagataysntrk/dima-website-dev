@@ -45,7 +45,7 @@ export const blogPage = {
       tr: "Yazıdaki problemi kendi şirketinizde nasıl görünür hale getirebileceğimizi konuşmak isterseniz, tek bir karar problemi ve onu açıklayan veriyle başlayabiliriz.",
       en: "If you want to see how the problem described here becomes visible in your own company, we can start with one decision problem and the data required to explain it.",
     },
-    serviceAction: { tr: "Pilot kapsamını konuşun", en: "Discuss a pilot scope" },
-    contactAction: { tr: "Canlı demo isteyin", en: "Request a live demo" },
+    serviceAction: { tr: "Deneme çalışmasını konuşun", en: "Discuss a pilot scope" },
+    contactAction: { tr: "Canlı gösterim isteyin", en: "Request a live demonstration" },
   },
 } as const;

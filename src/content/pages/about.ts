@@ -110,7 +110,7 @@ export const aboutPage = {
         { label: "Merkez", value: "Reşitpaşa Mah. Katar Cad. İTÜ Tasarım ve Prototip Merkezi Binası No: 2/41 İç Kapı No: 19, 34467 Sarıyer / İstanbul" },
         { label: "Ana pazar", value: "Türkiye" },
         { label: "Diller", value: "Türkçe ve İngilizce" },
-        { label: "Ürün odağı", value: "Dima — kurumsal karar zekâsı ve optimizasyon platformu" },
+        { label: "Ürün odağı", value: "Dima: kurumsal karar zekâsı ve optimizasyon platformu" },
         { label: "Tüzel yapı", value: "UpcyTech Teknoloji A.Ş." },
       ],
       en: [
@@ -128,7 +128,7 @@ export const aboutPage = {
       tr: "Bir karar problemini ve verinin bugün nerede yaşadığını anlatın; hangi veriyle başlayacağımızı ve canlı demoda neyi göstereceğimizi netleştirelim. Ekibe katılmak istiyorsanız kariyer sayfası açık.",
       en: "Tell us about one decision problem and where the relevant data lives today; we will define what to connect first and what to show in a live demo. If you want to join the team, the careers page is open.",
     },
-    primary: { tr: "Canlı demo isteyin", en: "Request a live demo" },
+    primary: { tr: "Canlı gösterim isteyin", en: "Request a live demo" },
     secondary: { tr: "Kariyer", en: "Careers" },
   },
 } as const;

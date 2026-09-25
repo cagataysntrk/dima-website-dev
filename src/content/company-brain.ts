@@ -20,13 +20,13 @@ export interface BrainLobe {
 }
 
 export const companyBrain = {
-  eyebrow: { tr: "Company Brain", en: "Company Brain" },
+  eyebrow: { tr: "Şirket Beyni", en: "Company Brain" },
   title: {
     tr: "Şirketin yaşayan haritası, karar yüzeyleriyle birlikte.",
     en: "A living map of the company, connected to decision surfaces.",
   },
   intro: {
-    tr: "Her lob gerçek bir iş alanını; her node müşteri, fatura, makine, sipariş veya başka bir şirket varlığını temsil eder. Dima ilişkileri ve zaman içindeki değişimleri birlikte izler; önemli bir sinyal oluştuğunda ilgili noktayı öne çıkarır ve araştırmayı aynı bağlamda derinleştirir.",
+    tr: "Her bölüm gerçek bir iş alanını, her düğüm müşteri, fatura, makine, sipariş veya başka bir şirket varlığını temsil eder. Dima ilişkileri ve zaman içindeki değişimleri birlikte izler. Önemli bir sinyal oluştuğunda ilgili noktayı öne çıkarır ve araştırmayı aynı bağlamda derinleştirir.",
     en: "Each lobe represents a real business domain, and each node represents a company entity such as a customer, invoice, machine or order. Dima watches relationships and change over time together; when an important signal appears, it surfaces the relevant point and deepens the investigation in the same context.",
   },
   sample: {
@@ -34,15 +34,15 @@ export const companyBrain = {
     en: "Representative company view · sample data",
   },
   today: {
-    label: { tr: "Dima Today", en: "Dima Today" },
+    label: { tr: "Dima Bugün", en: "Dima Today" },
     summary: { tr: "konu dikkat gerektiriyor", en: "items need attention" },
     helper: {
-      tr: "Today ayrı bir dashboard değil; Company Brain içindeki öncelikli finding'lerin odak katmanıdır.",
+      tr: "Dima Bugün ayrı bir gösterge paneli değildir. Şirket Beyni içindeki öncelikli bulguların odak katmanıdır.",
       en: "Today is not a separate dashboard; it is the focus layer for priority findings inside Company Brain.",
     },
   },
   heroAria: {
-    tr: "Dima ürün yüzeyi içinde Company Brain, Dima Today sinyalleri ve şirket haritası önizlemesi",
+    tr: "Dima ürün yüzeyinde Şirket Beyni, Dima Bugün sinyalleri ve şirket haritası önizlemesi",
     en: "Dima product surface preview with Company Brain, Dima Today signals and the company map",
   },
   dashboard: {
@@ -60,11 +60,11 @@ export const companyBrain = {
       tr: "Dima veriyi bağlar, ilişkileri izler ve karar gerektiren değişimleri aynı bağlamda öne çıkarır.",
       en: "Dima connects data, monitors relationships and surfaces changes that require a decision in the same context.",
     },
-    mapTitle: { tr: "Company Brain", en: "Company Brain" },
+    mapTitle: { tr: "Şirket Beyni", en: "Company Brain" },
     mapHelper: { tr: "İlişkiler, sinyaller ve etki", en: "Relationships, signals and impact" },
     todayTitle: { tr: "Öne çıkan sinyaller", en: "Priority signals" },
     contextTitle: { tr: "Seçili bağlam", en: "Selected context" },
-    evidenceTitle: { tr: "Evidence", en: "Evidence" },
+    evidenceTitle: { tr: "Kanıtlar", en: "Evidence" },
     nextTitle: { tr: "Sıradaki karar adımı", en: "Next decision step" },
     sourcesTitle: { tr: "Bağlı kaynaklar", en: "Connected sources" },
     sources: {
@@ -74,8 +74,8 @@ export const companyBrain = {
     layers: {
       tr: [
         { title: "Veri katmanı", body: "Kaynaklar · tablolar · akışlar" },
-        { title: "Bağlantı katmanı", body: "Entity'ler · ilişkiler · zaman" },
-        { title: "Analiz katmanı", body: "Finding · evidence · nedenler" },
+        { title: "Bağlantı katmanı", body: "Varlıklar · ilişkiler · zaman" },
+        { title: "Analiz katmanı", body: "Bulgular · kanıtlar · nedenler" },
         { title: "Karar katmanı", body: "Seçenekler · etkiler · aksiyon" },
       ],
       en: [
@@ -86,14 +86,14 @@ export const companyBrain = {
       ],
     },
     outputs: {
-      tr: ["Sinyaller", "Araştırmalar", "Kararlar", "Aksiyonlar"],
+      tr: ["Sinyaller", "Araştırmalar", "Kararlar", "Eylemler"],
       en: ["Signals", "Investigations", "Decisions", "Actions"],
     },
     metrics: {
       tr: [
         { label: "Aktif veri kaynağı", value: "12" },
-        { label: "Öncelikli finding", value: "4" },
-        { label: "Açık investigation", value: "3" },
+        { label: "Öncelikli bulgu", value: "4" },
+        { label: "Açık araştırma", value: "3" },
         { label: "Karar bekliyor", value: "2" },
       ],
       en: [
@@ -103,28 +103,28 @@ export const companyBrain = {
         { label: "Awaiting decision", value: "2" },
       ],
     },
-    sampleBadge: { tr: "Örnek şirket · seed veri", en: "Sample company · seeded data" },
+    sampleBadge: { tr: "Örnek şirket · örnek veri", en: "Sample company · seeded data" },
   },
-  lensLabel: { tr: "Company Brain görünümü", en: "Company Brain view" },
+  lensLabel: { tr: "Şirket Beyni görünümü", en: "Company Brain view" },
   lenses: {
-    brain: { tr: "Tam Beyin Formu", en: "Full Brain Form" },
-    map: { tr: "Company Brain Map", en: "Company Brain Map" },
+    brain: { tr: "Katmanlı Şirket Beyni", en: "Full Brain Form" },
+    map: { tr: "Şirket Haritası", en: "Company Brain Map" },
   },
   coreLabel: { tr: "Şirket", en: "Company" },
   detail: {
     domain: { tr: "Seçili alan", en: "Selected domain" },
-    entities: { tr: "Bağlı entity'ler", en: "Connected entities" },
-    finding: { tr: "Örnek finding", en: "Sample finding" },
+    entities: { tr: "Bağlı varlıklar", en: "Connected entities" },
+    finding: { tr: "Örnek bulgu", en: "Sample finding" },
     evidence: { tr: "Dima neye baktı?", en: "What did Dima inspect?" },
     next: { tr: "Karara giden sonraki adım", en: "Next step toward a decision" },
     chat: {
-      tr: "İsterseniz aynı finding, entity ve evidence bağlamını kaybetmeden Dima ile konuşabilirsiniz.",
+      tr: "İsterseniz aynı bulgu, varlık ve kanıt bağlamını kaybetmeden Dima ile konuşabilirsiniz.",
       en: "If needed, you can talk to Dima without losing the selected finding, entity and evidence context.",
     },
   },
-  flowLabel: { tr: "Tek UX kanunu", en: "One UX law" },
+  flowLabel: { tr: "Tek ürün akışı", en: "One UX law" },
   flow: {
-    tr: ["Şirket", "Lob", "Alt alan", "Entity", "İlişki", "Signal", "Finding", "Evidence / Investigation", "Karar", "Aksiyon", "Outcome / Memory"],
+    tr: ["Şirket", "İş alanı", "Alt alan", "Varlık", "İlişki", "Sinyal", "Bulgu", "Kanıt / Araştırma", "Karar", "Eylem", "Sonuç / Hafıza"],
     en: ["Company", "Lobe", "Subdomain", "Entity", "Relationship", "Signal", "Finding", "Evidence / Investigation", "Decision", "Action", "Outcome / Memory"],
   },
   relations: [
@@ -179,7 +179,7 @@ export const companyBrain = {
       finding: {
         title: { tr: "Bir üretim hattındaki kayıp belirli sipariş ve vardiyalarla birlikte kümeleniyor.", en: "Loss on one production line clusters around specific orders and shifts." },
         body: {
-          tr: "Dima hattı tek KPI olarak değerlendirmek yerine makine, sipariş, ürün, vardiya ve bakım kayıtları arasındaki bağlantıları inceliyor; aynı örüntünün geçmişte ne zaman oluştuğunu da karşılaştırıyor.",
+          tr: "Dima hattı tek bir gösterge olarak değerlendirmek yerine makine, sipariş, ürün, vardiya ve bakım kayıtları arasındaki bağlantıları inceliyor; aynı örüntünün geçmişte ne zaman oluştuğunu da karşılaştırıyor.",
           en: "Rather than treating the line as a single KPI, Dima examines links among machine, order, product, shift and maintenance records and compares when the same pattern appeared historically.",
         },
         evidence: {
@@ -254,7 +254,7 @@ export const companyBrain = {
         en: "Connects quality results, lots, machines, recipes, process conditions, rework and customer feedback to manufacturing context.",
       },
       entities: {
-        tr: ["Kalite kontrolü", "Lot", "Makine", "Rework", "Müşteri geri bildirimi"],
+        tr: ["Kalite kontrolü", "Lot", "Makine", "Yeniden işleme", "Müşteri geri bildirimi"],
         en: ["Quality check", "Lot", "Machine", "Rework", "Customer feedback"],
       },
       finding: {
@@ -264,10 +264,10 @@ export const companyBrain = {
           en: "A normal state is not an empty screen. Dima keeps comparing quality results with production conditions and historical patterns; when a meaningful change appears, it surfaces the relevant entity and connection.",
         },
         evidence: {
-          tr: ["Son kalite kontrolleri", "Lot ve makine ilişkileri", "Rework ve geri bildirim kayıtları"],
+          tr: ["Son kalite kontrolleri", "Lot ve makine ilişkileri", "Yeniden işleme ve geri bildirim kayıtları"],
           en: ["Recent quality checks", "Lot and machine relationships", "Rework and feedback records"],
         },
-        next: { tr: "İzlemeyi sürdür; eşik aşılırsa investigation başlat.", en: "Keep monitoring; start an investigation if the threshold is crossed." },
+        next: { tr: "İzlemeyi sürdür; eşik aşılırsa araştırma başlat.", en: "Keep monitoring; start an investigation if the threshold is crossed." },
       },
     },
   ] satisfies readonly BrainLobe[],

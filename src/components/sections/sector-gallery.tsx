@@ -45,8 +45,12 @@ export function SectorGallery({ items, linkLabel, missingLabel }: {
               <img src={item.image} alt={item.alt} loading="lazy" decoding="async"
                    className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.03] motion-reduce:transition-none" />
             ) : (
-              <div className="absolute inset-0 grid place-items-center border border-dashed border-outline font-mono text-micro uppercase text-muted">
-                {`[COPY NEEDED: ${item.name} — ${missingLabel}]`}
+              <div className="absolute inset-0 overflow-hidden bg-[radial-gradient(circle_at_70%_20%,color-mix(in_oklab,var(--color-text-brand)_24%,transparent),transparent_32%),linear-gradient(145deg,var(--color-bg-raised),var(--color-bg-canvas))]">
+                <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle,color-mix(in_oklab,var(--color-text-primary)_10%,transparent)_1px,transparent_1px)] bg-[length:18px_18px]" />
+                <div className="absolute right-5 top-5 flex size-14 items-center justify-center rounded-full border border-white/15 bg-black/20 font-title text-xl font-semibold text-white/80 backdrop-blur-sm">
+                  {item.name.slice(0, 1)}
+                </div>
+                <span className="sr-only">{missingLabel}</span>
               </div>
             )}
             {/* Scrim: photographs vary, the text on them must not — dense through the middle too,

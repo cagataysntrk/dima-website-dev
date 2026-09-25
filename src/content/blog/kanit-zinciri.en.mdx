@@ -1,25 +1,39 @@
 export const metadata = {
-  title: "How a carbon figure gets audited: the chain of evidence",
-  description: "The auditor never looks at the number. They look behind it: the activity record, the emission factor, the GWP set, and who did what, when.",
+  title: "How a business finding is proven: the evidence chain from number to decision",
+  description: "Why a trustworthy finding keeps source records, metric definition, period, entity relationships and change history together.",
   date: "2026-09-10",
+  updated: "2026-09-26",
   author: "member-1",
   category: "compliance",
-  related: { kind: "product", id: "carbon" },
-
-  draft: true,
+  related: { kind: "product", id: "analytics" },
 };
 
-You walk into verification with the record, not a spreadsheet. The auditor never asks "what is the number"; they ask "where did the number come from". If you can answer, you have a calculation. If you cannot, you have a claim. The difference between the two is called the chain of evidence.
+Saying "scrap increased by 12 percent" is easy. The harder part is making sure everyone can answer the same questions.
 
-## The four links
+Which period? Which products? Which machines? Which records produced the calculation? What changed later?
 
-- **The activity record.** Fuel, electricity, raw materials: how much, where, when. No record, no calculation.
-- **The emission factor, with its version.** Which factor, which version, multiplied with which GWP set? A number without a version is that year's fashion.
-- **Supplier data.** Scope 3 inputs live in a record that says whose they are and when they arrived, not in an inbox.
-- **The edit and export trail.** Who changed the figure, when, and what left the building in which format. The chain is kept around the number's history, not the number.
+A finding becomes defensible through the evidence chain behind the number.
 
-## Where the chain snaps
+## Five links in the evidence chain
 
-It usually snaps at a single link: the unversioned factor. A factor that was right three years ago is still in the maths today and nobody notices, because where the factor lives was never written down. Or supplier data: "it was in an email," and the email is gone.
+1. **Source record:** which system and record produced the result?
+2. **Metric definition:** how was the measure calculated, filtered and bounded in time?
+3. **Entity context:** which customer, product, machine, order, supplier or account is related?
+4. **Change history:** when did the change begin and has the pattern appeared before?
+5. **Decision record:** what was done, who approved it and what happened next?
 
-We build this chain on UpcyCarbon: each emission links to an activity record, a factor and a GWP set, and edits and exports are both recorded with who made them and when. Product footprints come out in an EPD-ready structure, aligned with openLCA. What opens in the audit is not a spreadsheet. It is the chain itself.
+If the evidence chain stops at the decision, the company remembers what it did but loses why it did it and whether it worked.
+
+## Why evidence belongs next to the finding
+
+A decision-maker should be able to inspect the source, period, related entities and calculation behind a result.
+
+This reduces persuasive-looking results with unclear grounding and repeated analyst-to-management loops asking where a number came from.
+
+## Where the language model belongs
+
+A language model can help explain an investigation, summarize context and understand follow-up questions. It should not be the authority for numeric results.
+
+Numbers come from the defined analytical layer. The model can explain them and propose the next investigation step.
+
+That separation is fundamental if Dima is to be an auditable decision system rather than merely a persuasive conversational tool.

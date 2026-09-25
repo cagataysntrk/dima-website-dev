@@ -20,7 +20,7 @@ export const contactPage = {
     title: { tr: "Dima'yı kendi şirketinizde görmek için başlayın.", en: "Start with your own company context." },
     lede: {
       tr: "Bir karar problemini, bugün hangi sistemlerden baktığınızı ve cevabı bulmanın neden zor olduğunu birkaç cümleyle anlatın. İlk görüşmenin amacı ürün sunumu yapmak değil, Dima'nın hangi veriyle gerçek değer gösterebileceğini netleştirmektir.",
-      en: "Describe one decision problem, which systems you look at today and why the answer is difficult to reach. The first conversation is not a generic product pitch; it is to identify which data would let Dima demonstrate real value.",
+      en: "Describe one decision problem, which systems you look at today and why the answer is difficult to reach. The first conversation is not a generic product pitch; it is to identify which data would let Dima canlı gösteriminstrate real value.",
     },
   },
   next: {
@@ -29,7 +29,7 @@ export const contactPage = {
       tr: [
         "Mesajınızı ürün veya teknik tarafta konuyla ilgilenecek kişi okur.",
         "Bir karar problemini ve onu açıklamak için gereken veri kaynaklarını birlikte sınırlarız.",
-        "Uygunsa canlı demo veya dar kapsamlı pilot için sonraki adımı netleştiririz.",
+        "Uygunsa canlı gösterim veya dar kapsamlı deneme çalışması için sonraki adımı netleştiririz.",
       ],
       en: [
         "Your message is read by the person on the product or technical side who would work on the topic.",
@@ -136,8 +136,8 @@ export const contactPage = {
       },
       openExternal: { tr: "OpenStreetMap'te aç", en: "Open in OpenStreetMap" },
       missing: {
-        tr: "[COPY NEEDED: office coordinates — the map appears once they are supplied]",
-        en: "[COPY NEEDED: office coordinates — the map appears once they are supplied]",
+        tr: "[COPY NEEDED: office coordinates Henüz yok the map appears once they are supplied]",
+        en: "[COPY NEEDED: office coordinates Henüz yok the map appears once they are supplied]",
       },
     },
   },

@@ -1,25 +1,64 @@
 export const metadata = {
-  title: "Bir karbon sayısı nasıl denetlenir: kanıt zinciri",
-  description: "Denetçi sayıya değil, sayının arkasındaki zincire bakar: faaliyet kaydı, emisyon faktörü, GWP seti ve kimin neyi ne zaman yaptığı.",
+  title: "Bir iş bulgusu nasıl kanıtlanır: sayıdan karara kanıt zinciri",
+  description: "Bir bulgunun güvenilir olabilmesi için kaynak kayıt, hesap tanımı, dönem, varlık ilişkisi ve değişiklik geçmişinin neden birlikte tutulması gerektiğini anlatıyoruz.",
   date: "2026-09-10",
+  updated: "2026-09-26",
   author: "member-1",
   category: "compliance",
-  related: { kind: "product", id: "carbon" },
-
-  draft: true,
+  related: { kind: "product", id: "analytics" },
 };
 
-Denetime bir tabloyla değil, bir kayıtla girilir. Denetçinin sorduğu soru hiçbir zaman "bu sayı kaç" değildir; soru "bu sayı nereden geliyor"dur. Cevap verilebiliyorsa ortada bir hesap vardır, verilemiyorsa bir iddia. İkisi arasındaki farka kanıt zinciri denir.
+Bir toplantıda "fire yüzde 12 arttı" demek kolaydır. Zor olan, masadaki herkesin aynı sorulara aynı cevabı verebilmesidir:
 
-## Zincirin dört halkası
+**Hangi döneme göre? Hangi ürünlerde? Hangi makinelerde? Hesap hangi kayıtlardan üretildi? Sonradan ne değişti?**
 
-- **Faaliyet kaydı.** Yakıt, elektrik, hammadde: ne kadar, nerede, ne zaman tüketildiği. Kayıt yoksa hesap yoktur.
-- **Emisyon faktörü, sürümüyle.** Hangi faktör, hangi sürüm, hangi GWP setiyle çarpıldı? Sürüm yazılmadıysa sayı, o yılın modasıdır.
-- **Tedarikçi verisi.** Kapsam 3'ün girdisi e-posta ekinde değil, kimden ve ne zaman geldiği belli bir kayıttadır.
-- **Değişiklik ve dışa aktarma kaydı.** Sayıyı kimin, ne zaman değiştirdiği ve çıktının kime, hangi biçimde verildiği. Zincir, sayının etrafında değil, sayının tarihinde tutulur.
+Bir bulguyu savunulabilir yapan şey yalnız sayının kendisi değildir. Sayının arkasındaki kanıt zinciridir.
 
-## Zincirin koptuğu yer
+## Kanıt zincirinin beş halkası
 
-Zincir genelde tek bir halkadan kopar: sürümsüz faktör. Üç yıl önce doğru olan faktörle bugün hesap yapılıyor ve kimse fark etmiyor, çünkü faktörün nerede durduğu hiçbir yerde yazmıyor. Ya da tedarikçi verisi: "mailde vardı" deniyor, mail bulunamıyor.
+### 1. Kaynak kayıt
 
-Biz bu zinciri UpcyCarbon'da kuruyoruz: her emisyon bir faaliyet kaydına, bir faktöre ve bir GWP setine bağlıdır; düzenlemeler de dışa aktarmalar da kimin, ne zaman yaptığıyla kayda geçer. Ürün ayak izleri EPD'ye hazır bir yapıda, openLCA ile hizalı hesaplanır. Denetimde açılan şey bir tablo değil, zincirin kendisidir.
+Sonuç hangi sistem ve hangi kayıt üzerinden üretildi? Üretim kaydı mı, banka hareketi mi, fatura mı, kalite kontrol sonucu mu?
+
+Kaynak belli değilse sonuç yeniden üretilemez.
+
+### 2. Hesap tanımı
+
+Ölçü nasıl hesaplandı? Pay ve payda nedir? Hangi filtreler kullanıldı? Dönem başlangıcı ve bitişi nedir?
+
+Aynı "marj" veya "fire" sözcüğü iki ekipte farklı hesaplanıyorsa şirket aynı sayı hakkında konuşmuyor olabilir.
+
+### 3. Varlık ve ilişki bağlamı
+
+Sonuç hangi müşteri, ürün, makine, sipariş, tedarikçi veya hesapla ilişkili?
+
+Bir sapmayı yalnız toplam sayı olarak görmek nedeni araştırmayı zorlaştırır.
+
+### 4. Zaman ve değişiklik geçmişi
+
+Normal kabul edilen dönem neydi? Değişim ne zaman başladı? Aynı örüntü geçmişte oluştu mu?
+
+Bir sayının yönü kadar değişimin zamanı da neden araştırmasında önemlidir.
+
+### 5. Karar kaydı
+
+Bulgu görüldükten sonra ne yapıldı? Kim onayladı? Hangi seçenek seçildi? Sonuç ne oldu?
+
+Kanıt zinciri kararda kesilirse şirket ne yaptığını hatırlar, fakat neden yaptığını ve işe yarayıp yaramadığını kaybeder.
+
+## Dima'da kanıt neden bulgunun yanındadır
+
+Yönetici bir sonuç gördüğünde kaynak, dönem, ilgili varlıklar ve kullanılan hesaplamaya ulaşabilmelidir.
+
+Bu iki sorunu azaltır:
+
+- Doğru görünen fakat dayanağı belirsiz sonuçların karar sürecine girmesi.
+- Analist ile yönetici arasındaki "bu sayı nereden geldi?" turu.
+
+## Dil modeli nerede durur
+
+Dil modeli araştırma sorusunu açıklamaya, metni özetlemeye ve takip sorularını anlamaya yardımcı olabilir. Sayısal sonucun otoritesi olmamalıdır.
+
+Rakam tanımlı analitik katmandan gelir. Model o rakamı açıklayabilir, bağlamını özetleyebilir ve yeni araştırma adımı önerebilir.
+
+Bu ayrım Dima'nın yalnız ikna edici konuşan bir araç değil, denetlenebilir bir karar sistemi olabilmesi için temeldir.

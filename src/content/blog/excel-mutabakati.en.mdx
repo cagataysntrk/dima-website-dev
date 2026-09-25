@@ -1,57 +1,41 @@
 export const metadata = {
-  title: "Why the spreadsheet never reconciles at month-end",
-  description: "Even when receivables, bank transactions and stock each look correct, month-end turns into an argument when the relationships between them are broken.",
+  title: "Why month-end Excel reconciliation fails",
+  description: "Why month-end reconciliation turns into a debate when receivables, bank and inventory records look correct in separate systems but their relationships are broken.",
   date: "2026-09-03",
-  updated: "2026-09-25",
+  updated: "2026-09-26",
   author: "member-5",
   category: "operations",
   related: { kind: "product", id: "analytics" },
 };
 
-At month-end three records disagree: customer balances say one thing, bank movements another, and stock on the floor something else. The problem is often not that one record is simply wrong. It is that **the traces left by the same business event across several systems cannot be connected reliably**.
+At month end, three records disagree: receivables show one balance, the bank another movement, and operational inventory tells a different story.
 
-## All three records can be correct
+The problem is often not that one record is simply wrong. The traces left by the same business event in different systems cannot be connected.
 
-Consider one sale:
+## All three records can look correct
 
-- The ERP records the order and shipment.
-- Accounting records the invoice and receivable.
-- The bank records the collection later.
-- Inventory records the stock movement.
+Consider one sale. The order and shipment exist in ERP, the invoice and receivable movement exist in accounting, collection appears later in the bank, and inventory changes elsewhere.
 
-These records belong to the same event, but they may be created at different times, under different identifiers and by different teams. Each screen can look correct in isolation while the company-level relationship is broken.
+They belong to the same event but may be created at different times and under different keys.
 
-So before asking “which number is right?”, reconciliation often needs a more basic question:
+The first reconciliation question is therefore not which number is correct. It is whether these records really belong to the same customer, order, invoice and payment chain.
 
-**Do these records actually belong to the same customer, order, invoice and payment chain?**
+## Why a fourth spreadsheet is not a durable fix
 
-## Why a fourth spreadsheet does not solve it
+Copying differences into another spreadsheet creates temporary visibility but does not preserve the relationship.
 
-Copying differences into another workbook can create short-term visibility, but it does not make the relationship durable. The matching exercise starts again next month.
-
-A stronger approach is to keep the source systems and establish the shared entities between them:
-
-- customer,
-- invoice,
-- order,
-- bank transaction,
-- inventory movement,
-- date and amount relationships.
-
-The system can then investigate not only that two figures differ, but where in the transaction chain the difference appeared.
+A stronger approach keeps existing systems in place and establishes shared relationships across customer, invoice, order, bank movement, inventory movement, date and amount.
 
 ## How Dima approaches the problem
 
-Dima is not designed to replace every system with one ERP. It connects existing sources inside the Company Brain context.
+Dima is not intended to replace every source system with one ERP. It connects existing sources inside the Company Brain.
 
-When a receivables discrepancy appears, for example:
+A representative investigation can identify relevant customers and invoices, compare due dates with payment history, separate matched and unmatched bank collections, inspect order and shipment relationships, and show which record chain explains the difference.
 
-1. The relevant customer and invoices are identified.
-2. Due dates and payment history are compared.
-3. Bank movements are searched for matched and unmatched collections.
-4. Order and shipment relationships are checked.
-5. The finding is presented together with evidence showing which records support it.
+When uncertainty remains, preserving it and showing what each source says is more valuable than forcing a false certainty.
 
-This turns reconciliation from “finding a difference in Excel” into an **entity and relationship investigation**.
+## The real output of reconciliation
 
-Dima does not need to declare one record correct automatically. When ambiguity remains, it is often more valuable to keep that ambiguity visible, show what each source says and leave the decision-maker with an investigation that can be checked.
+A strong process should also explain why the difference appeared, whether the cause recurs, which process needs correction, who owns the fix, and whether the issue can be detected earlier next month.
+
+That turns reconciliation into part of continuous financial control rather than month-end cleanup.

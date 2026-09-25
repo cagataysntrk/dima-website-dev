@@ -9,19 +9,15 @@ export interface Partner {
   dark: "white" | "swap" | "invert-light";
 }
 
-/**
- * Every string on the home page. The company is early-stage: no case study, reference,
- * or certification is written here until the company supplies it.
- */
 export const homePage = {
   meta: {
     title: {
-      tr: "Dima — Şirketinizin denetim, optimizasyon ve karar merkezi",
-      en: "Dima — Your company's monitoring, optimization and decision center",
+      tr: "Dima | Şirketinizin denetim, optimizasyon ve karar merkezi",
+      en: "Dima | Your company's monitoring, optimization and decision center",
     },
     description: {
-      tr: "Dima; finans, muhasebe, üretim ve diğer veri kaynaklarını birlikte anlamlandırır, şirketi sürekli izler, önemli sapma ve fırsatların nedenini kanıtlarıyla araştırıp karara hazırlar.",
-      en: "Dima connects finance, accounting, manufacturing and other company data, continuously monitors what matters, investigates the causes of risks and opportunities with evidence, and prepares decisions.",
+      tr: "Dima finans, muhasebe, üretim ve diğer veri kaynaklarını birlikte anlamlandırır. Şirketi sürekli izler, önemli sapma ve fırsatların nedenini kanıtlarıyla araştırır ve karara hazırlar.",
+      en: "Dima connects finance, accounting, manufacturing and other company data. It continuously monitors what matters, investigates the causes of risks and opportunities with evidence, and prepares decisions.",
     },
   },
   hero: {
@@ -33,27 +29,18 @@ export const homePage = {
       tr: "Şirketinizde ne oluyor, neden oluyor, ne yapılmalı?",
       en: "What is happening in your company, why, and what should happen next?",
     },
-    /** Accent only meaningful words; the sentence still carries the message without the effect. */
     accents: {
       tr: ["neden", "yapılmalı"],
       en: ["why", "next"],
     },
     lede: {
-      tr: "Dima şirketinizin veri kaynaklarını anlamlandırır, sürekli izler; önemli sapmaları ve fırsatları sizin sormanızı beklemeden fark eder, nedenini kanıtlarıyla araştırır ve ne yapılabileceğini karara hazır biçimde sunar.",
-      en: "Dima makes sense of your company's data sources and continuously monitors them; it detects important deviations and opportunities without waiting for you to ask, investigates why with evidence, and presents what can be done in a decision-ready form.",
+      tr: "Dima şirketinizin veri kaynaklarını birbirine bağlar ve sürekli izler. Önemli bir sapma, risk veya fırsat oluştuğunda sizin sormanızı beklemeden fark eder, nedenini kanıtlarıyla araştırır ve ne yapılabileceğini karar vermeye hazır biçimde sunar.",
+      en: "Dima connects and continuously monitors your company's data sources. When an important deviation, risk or opportunity appears, it detects it without waiting for a prompt, investigates why with evidence, and presents what can be done in a decision-ready form.",
     },
     primary: { tr: "Dima'yı deneyin", en: "Try Dima" },
     primaryFallback: { tr: "Dima nasıl çalışır?", en: "See how Dima works" },
-    secondary: { tr: "Canlı demo isteyin", en: "Request a live demo" },
+    secondary: { tr: "Canlı gösterim isteyin", en: "Request a live demo" },
   },
-  /**
-   * Institutions and programmes the company works with or is supported by — not customers,
-   * so the strip is never described as customer references. Existing artwork is preserved
-   * from the source site; publication permission must remain valid for this brand/domain.
-   *
-   * `dark`: how the artwork survives the dark theme — `white` turns it to a flat white mark,
-   * `swap` shows a separate white file, `invert-light` inverts a white-only file on light.
-   */
   references: {
     label: { tr: "Ortaklarımız ve destekçilerimiz", en: "Our partners and supporters" },
     partners: [
@@ -69,14 +56,12 @@ export const homePage = {
   industries: {
     title: { tr: "Sektör bağlamları", en: "Sector contexts" },
     intro: {
-      tr: "Dima'nın ortak Company Brain modeli farklı sektörlerde aynı karar döngüsünü korur; sektör paketleri tekstil, plastik ve genel imalattaki gerçek entity, süreç ve ilişkilerle bu modeli derinleştirir.",
-      en: "Dima keeps the same Company Brain decision loop across industries; sector packs deepen it with the real entities, processes and relationships of textile, plastics and general manufacturing.",
+      tr: "Dima'nın ortak Şirket Beyni modeli her sektörde aynı karar döngüsünü korur. Sektör bağlamları o işin gerçek varlıklarını, süreçlerini ve ilişkilerini ekleyerek modeli derinleştirir.",
+      en: "Dima keeps the same Company Brain decision loop across industries. Sector contexts deepen it with the real entities, processes and relationships of each business.",
     },
-    /** Inside a gallery panel with no photograph yet. */
-    missingPhoto: { tr: "fotoğraf", en: "photo" },
+    missingPhoto: { tr: "sektör görseli", en: "sector visual" },
     link: { tr: "Kullanım alanlarını inceleyin", en: "Explore use cases" },
   },
-  /** The full-width text loop between the sectors and the team: what the company does. */
   loop: {
     tr: "İzler ✦ Denetler ✦ Fark eder ✦ Karara taşır",
     en: "Monitors ✦ Checks ✦ Detects ✦ Moves to decision",
@@ -84,13 +69,17 @@ export const homePage = {
   team: {
     title: { tr: "Ekip", en: "Team" },
     intro: {
-      tr: "Beş kişiyiz. Sizinle konuşan kişi, işi yapan kişidir.",
-      en: "We are five people. The person you talk to is the person who does the work.",
+      tr: "Beş kişilik çekirdek ekip, ürünü gerçek işletme problemleri ve teknik altyapıyla birlikte geliştiriyor.",
+      en: "A five-person core team builds the product across real business problems and technical infrastructure.",
     },
     photo: { tr: "Fotoğraf", en: "Photo" },
   },
   blog: {
     title: { tr: "Kaynaklar", en: "Resources" },
+    intro: {
+      tr: "Şirket verisi, finans, üretim, denetim ve karar süreçlerini mekanizmasıyla anlatan uygulamalı içerikler.",
+      en: "Practical resources that explain company data, finance, manufacturing, control and decision processes through their mechanisms.",
+    },
     link: { tr: "Tüm kaynaklar", en: "All resources" },
   },
   cta: {
@@ -99,6 +88,6 @@ export const homePage = {
       tr: "Verinizin nerede yaşadığını ve bugün hangi kararları elle takip ettiğinizi anlatın. Canlı demoda Dima'nın veriyi nasıl bağladığını, neyi izlediğini ve bir bulguyu nasıl kanıtlarıyla karara taşıdığını gösterelim.",
       en: "Tell us where your data lives and which decisions your team still tracks manually. In a live demo, we will show how Dima connects that data, what it monitors, and how a finding is investigated with evidence and prepared for a decision.",
     },
-    action: { tr: "Canlı demo isteyin", en: "Request a live demo" },
+    action: { tr: "Canlı gösterim isteyin", en: "Request a live demo" },
   },
-};
+} as const;

@@ -1,27 +1,58 @@
 export const metadata = {
-  title: "CBAM kesin dönemi başladı: ihracatçının kontrol listesi",
-  description: "1 Ocak 2026'dan beri AB'ye demir-çelik, alüminyum, çimento, gübre, elektrik ve hidrojen satan ihracatçının gömülü emisyon verisini hazır etmesi gerekiyor.",
+  title: "CBAM verisi neden yalnız sürdürülebilirlik ekibinin işi değildir",
+  description: "Ürün, malzeme, tedarikçi, üretim, enerji ve sevkiyat kayıtları birbirine bağlı değilse gömülü emisyon verisinin neden zor doğrulandığını anlatıyoruz.",
   date: "2026-09-17",
+  updated: "2026-09-26",
   author: "member-1",
   category: "compliance",
-  related: { kind: "product", id: "carbon" },
-
-  draft: true,
+  related: { kind: "product", id: "analytics" },
 };
 
-Avrupalı alıcı gömülü emisyon verisi istiyor ve bir tarih veriyor: CBAM kesin dönemi 1 Ocak 2026'da başladı. Demir-çelik, alüminyum, çimento, gübre, elektrik ve hidrojende AB'ye yılda 50 tonun üstünde ithalat yapan taraf, yetkili beyan sahibi olup sertifika teslim ediyor. Zincirin bu ucundaki soru size düşüyor: ürününüzün gömülü emisyonu kaç?
+CBAM için gereken veri çoğu şirkette tek bir yerde yaşamaz. Ürünün ne olduğu ERP'de, hammadde tedarikçisi satın alma kayıtlarında, enerji tüketimi üretim sisteminde, sevkiyat bilgisi başka bir tabloda olabilir.
 
-## Kontrol listesi
+Bu yüzden asıl sorun yalnız bir emisyon hesabı yapmak değildir. **Hesabın hangi ürün, malzeme, tedarikçi, üretim dönemi ve sevkiyatla ilişkili olduğunu kanıtlayabilmektir.**
 
-- **Ürün gruplarınız ve gümrük tarife kodları.** Hangi ürünün hangi kodla gittiği belli olmadan hesap başlamaz.
-- **Tesis ve faaliyet verisi.** Yakıt, elektrik, hammadde: ölçüm noktasından kayda, tahminle değil.
-- **Emisyon faktörü ve GWP seti, sürümüyle.** Hangi sürümün kullanıldığı yazılmadıysa ertesi yıl aynı hesap yeniden üretilemez.
-- **Tedarikçi verisi.** Kapsam 3 verisi e-posta ekinde dolaşmaz; kimden, ne zaman geldiği kayıtlı toplanır.
-- **Doğrulamaya hazır kayıt.** Denetimde yeniden kurulmuş bir tablo değil, kaynağına bağlı bir hesap açılır.
-- **İthalat kayıtları.** Beyan dönemine giren miktarlar, ürün grubuyla eşleşmiş halde.
+## Önce veri zincirini kurun
 
-## Tablonun yetmediği yer
+Bir ürünün gömülü emisyonunu açıklamak için şu soruların cevaplanabilmesi gerekir:
 
-Danışmanla hazırlanan tablo bir kez üretiliyor. Ertesi yıl aynı hesap yeniden üretilemiyor: hangi faktör sürümünün kullanıldığı, verinin kimden geldiği ve kimin değiştirdiği hiçbir yerde kayıtlı değil.
+- Hangi ürün ve üretim dönemi inceleniyor?
+- Hangi hammaddeler kullanıldı?
+- Hammadde hangi tedarikçiden ve hangi kayıtla geldi?
+- İlgili üretimde ne kadar enerji veya yakıt tüketildi?
+- Hangi katsayı ve hesap yöntemi kullanıldı?
+- Sonuç hangi sevkiyat veya müşteri talebi için hazırlandı?
+- Kaynak veride değişiklik olduysa kim ve ne zaman değiştirdi?
 
-Biz bu hesabı UpcyCarbon üzerinde kuruyoruz: her emisyon bir faaliyet kaydına, bir faktöre ve bir GWP setine bağlı; düzenlemeler de dışa aktarmalar da kimin, ne zaman yaptığıyla kayda geçiyor. Çalışma bittiğinde size PDF değil, kendi sisteminizde çalışan bir hesap kalıyor.
+Bu zincir kurulmadığında sonuç bir tabloda görünür, fakat yeniden üretmek ve denetlemek zorlaşır.
+
+## İyi bir kontrol listesi neyi kontrol eder
+
+İyi bir kontrol listesi yalnız dosyanın varlığını sormaz. Kaynağın bağlamını da kontrol eder.
+
+1. Ürün ve sınıflandırması belli mi?
+2. Üretim dönemi ve tesis kapsamı açık mı?
+3. Hammadde ile tedarikçi kayıtları eşleşiyor mu?
+4. Enerji ve yakıt verisinin ölçüm kaynağı belli mi?
+5. Kullanılan katsayı ve sürüm kayıtlı mı?
+6. Sonuç ilgili ürün ve sevkiyatla ilişkilendirilebiliyor mu?
+7. Eksik veya tahmini veri açıkça işaretlenmiş mi?
+8. Sonuç yeniden üretildiğinde aynı kaynak zincirine ulaşılabiliyor mu?
+
+## Dima bu probleme nasıl yaklaşır
+
+Dima mevzuat hesabını kendi başına uydurmaz. Şirket içindeki kayıtları ilişkilendirerek hangi sonucun hangi veriye dayandığını görünür hale getirir, eksik bağı fark eder ve araştırılması gereken noktayı doğru kişiye taşır.
+
+Bir ürün için tedarikçi verisi eksikse yalnız "veri eksik" uyarısı vermek yerine ilgili malzemeyi, tedarikçiyi, satın alma kaydını ve etkilenen ürünleri aynı bağlamda gösterebilir.
+
+Böylece uyum işi yılda bir kez hazırlanan bir tablo olmaktan çıkar. Şirketin ürün ve üretim verisiyle birlikte yaşayan, gerektiğinde yeniden incelenebilen bir kayıt zincirine dönüşür.
+
+## Yöneticinin görmesi gereken üç şey
+
+Yönetici ayrıntılı hesabı her gün incelemek zorunda değildir. Fakat şu üç sorunun cevabını görebilmelidir:
+
+- Hangi ürünlerde veri kapsamı yetersiz?
+- Hangi tedarikçi veya kaynak kayıt zincirini kırıyor?
+- Hangi eksik bugün çözülmezse ileride raporlama veya müşteri talebi riske girer?
+
+Dima'nın karar zekâsı açısından değer burada başlar: ham veriyi yalnız saklamak değil, hangi eksikliğin iş açısından önemli olduğunu görünür hale getirmek.

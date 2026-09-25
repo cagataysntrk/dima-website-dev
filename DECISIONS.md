@@ -9,6 +9,42 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-066 · Public product proof is Turkish-first, evidence-led and navigable
+**Decided:** the Turkish customer-facing product language uses Turkish terms for the product
+model and workflow. "Company Brain" is "Şirket Beyni"; "Dima Today" is "Dima Bugün";
+finding/entity/evidence/investigation/action/outcome vocabulary becomes
+bulgu/varlık/kanıt/araştırma/eylem/sonuç. Long dash characters are not used in public copy.
+Technical abbreviations and proper nouns such as ERP, CRM, API, OEE, MES, Excel, LinkedIn and
+GitHub may remain where they identify an actual system, protocol, metric or service.
+
+Product proof must appear immediately after the home hero and as the first substantive surface
+on the Product page. The representative flow is navigable and keeps one seeded sample-company
+case across Şirket Beyni -> sinyal -> araştırma -> kanıt -> karar -> eylem. The numeric
+authority, source records, cause candidates and approval state remain visible so the experience
+demonstrates mechanism rather than a decorative dashboard.
+
+The Brand House's general, accounting/finance and manufacturing UX inventory is represented as
+three depths of the same product, not as 70 separate modules. Each depth explains what Dima
+watches, what it investigates and a concrete management question.
+
+Initial sector contexts expand to textile/dyeing, plastics/injection, machinery/metal,
+automotive supply, food/beverage, chemicals, wholesale/distribution and logistics. Sector
+contexts remain overlays on the same company model.
+
+The five existing resource articles are retained and substantively rewritten for the current
+Dima product. None remain draft solely because they originated in the old portfolio. Their
+subjects are reframed around evidence chains, connected business events, reconciliation,
+analytical numeric authority and cross-system decision context.
+
+Temporary dashboard concepts supplied by the product owner are published only as labelled
+product concepts with sample data. They are not represented as shipped product screenshots or
+customer evidence and will be replaced by real product screens later.
+
+**Reason:** a company owner should understand what Dima does, see a believable end-to-end
+product flow, learn something useful from the site and find enough domain depth to imagine the
+product inside their own company without confusing old brands, untranslated product jargon or
+decorative mockups.
+
 ### D-065 · Company Brain is a product dashboard, not an anatomical illustration
 **Decided:** remove the hand-built anatomical/oval "brain" visualization from both the hero
 and the full Company Brain section. The marketing proof now uses a product-surface composition

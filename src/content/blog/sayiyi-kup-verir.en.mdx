@@ -1,67 +1,50 @@
 export const metadata = {
-  title: "How to verify a business finding: the analytical layer supplies the number",
-  description: "How a Dima finding is formed, why numeric results should not come from LLM guesswork, and how evidence stays attached through the decision flow.",
+  title: "How a business finding is verified: the analytical layer produces the number",
+  description: "How a finding is formed in Dima, why numeric results should not be language-model guesses, and how evidence stays connected through the decision flow.",
   date: "2026-08-20",
-  updated: "2026-09-25",
+  updated: "2026-09-26",
   author: "member-4",
   category: "data",
   related: { kind: "product", id: "analytics" },
 };
 
-When a manager asks “why did scrap increase last month?”, a verified answer can take days. But there is a more basic problem: the company often waits for someone to formulate the right question before an important change is investigated at all.
+When a manager asks why scrap rose last month, reaching the answer can take days.
 
-Dima is designed to reverse that loop. The system monitors company data, creates a finding when a meaningful deviation or opportunity appears, and lets the user investigate why it happened and what can be done next.
+There is a deeper problem: the company often depends on someone asking the right question before an important change is noticed.
 
-For that to be trustworthy, one distinction is essential:
+Dima is designed to reverse that loop. It monitors company data and creates a finding when a meaningful deviation or opportunity appears.
 
-**A model can help with the investigation. It should not invent the number.**
+For this to be trustworthy, one distinction is fundamental:
+
+**The language model can help the investigation. It should not invent the number.**
 
 ## Where the numeric result comes from
 
-A language model can write a useful explanation and translate a complex question into business terms. But the difference between 82.4 and 84.1 is not a matter of producing a plausible sentence.
+Numeric authority stays in the defined analytical layer:
 
-In Dima, numeric authority should remain in the semantic and analytical layer:
+1. the business measure is tied to an explicit definition;
+2. the query is planned and bounded before execution;
+3. it runs against the real data source;
+4. the result travels with source, period and entity context.
 
-1. The business metric is mapped to a defined measure.
-2. The query is planned and bounded before execution.
-3. It runs against the real data source.
-4. The result travels with its source, period and entity context.
-
-The LLM can explain that result; it should not fabricate it.
+The language model may explain the result. It should not fabricate it.
 
 ## A finding is more than a number
 
-“Scrap increased” is not enough to make a decision.
+A useful finding should investigate when the change started, which products or machines concentrate it, what normal behavior was, whether the pattern occurred before, and what financial or operational impact it creates.
 
-A useful finding needs to answer questions such as:
+Dima therefore does not stop at the KPI. It investigates cause candidates through related entities and relationships.
 
-- When did the change begin?
-- Which products, machines, shifts or orders concentrate it?
-- What behavior was considered normal?
-- Did the same pattern appear before?
-- What is the financial or operational impact?
-- Which explanations are supported, and which have been eliminated?
+## Where conversation enters
 
-That is why Dima's investigation layer does not leave a KPI on a result screen. It follows the relevant entities and relationships to examine root-cause candidates.
+Conversation does not have to be the starting point.
 
-## Where chat enters the flow
+When a user opens a finding, the business domain, entities, period, evidence and active investigation are already known. Follow-up questions continue the same investigation.
 
-Chat does not have to be the starting point.
+## Why evidence belongs inside the product
 
-When a user opens a finding, the context is already known: selected lobe, entities, period, evidence and investigation. If the user asks “what happens if we exclude this customer?” or “how does this option affect delivery?”, the conversation continues the same investigation.
+A correct result is hard to defend if nobody can see where it came from.
 
-That distinction matters. The user does not need to explain the company to the model again in every prompt.
+Evidence should stay inside the finding: data source, period, related entities, calculation result and relationships used in the investigation.
 
-## Why evidence is part of the product
-
-Even a correct result is difficult to defend in a meeting if nobody can see where it came from.
-
-Evidence therefore should not live only in a technical log. The finding should expose:
-
-- data source,
-- period used,
-- relevant entities,
-- calculation or query result,
-- relationships used in the investigation.
-
-Dima's goal is not to say “AI answered”. It is to answer: **why should this finding be taken seriously, and what data supports it?**
+Dima's goal is not to say that AI answered. The goal is to show why a finding deserves attention and which data supports it.

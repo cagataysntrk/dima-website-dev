@@ -340,7 +340,7 @@ export const legalChrome = {
   updated: { tr: "Son güncelleme", en: "Last updated" },
   // Unreachable while every document carries an `updated` date above; kept because
   // the layout renders it in the no-date branch.
-  notYet: { tr: "—", en: "—" },
+  notYet: { tr: "Henüz yok", en: "Not yet" },
   contents: { tr: "İçindekiler", en: "Contents" },
   drafter: {
     title: { tr: "Metni yazacak kişi için: sitenin gerçekte yaptıkları", en: "For whoever drafts this text: what the site actually does" },

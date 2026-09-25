@@ -1,39 +1,41 @@
 export const metadata = {
-  title: "Bir iş bulgusu nasıl doğrulanır: sayıyı model değil analitik katman üretir",
-  description: "Dima'da bir finding'in nasıl oluştuğunu, sayısal sonucun neden LLM tahmininden gelmemesi gerektiğini ve evidence'ın karar akışında nasıl korunduğunu anlatıyoruz.",
+  title: "Bir iş bulgusu nasıl doğrulanır: sayıyı dil modeli değil analitik katman üretir",
+  description: "Dima'da bir bulgunun nasıl oluştuğunu, sayısal sonucun neden dil modeli tahmini olmaması gerektiğini ve kanıtın karar akışında nasıl korunduğunu anlatıyoruz.",
   date: "2026-08-20",
-  updated: "2026-09-25",
+  updated: "2026-09-26",
   author: "member-4",
   category: "data",
   related: { kind: "product", id: "analytics" },
 };
 
-Bir yönetici “geçen ay fire neden arttı?” diye sorduğunda cevap günler sürebilir. Fakat daha temel problem şudur: şirketin önemli bir değişikliği fark etmesi için her seferinde birinin doğru soruyu sorması gerekir.
+Bir yönetici "geçen ay fire neden arttı?" diye sorduğunda cevap günler sürebilir.
 
-Dima'nın hedefi bu döngüyü tersine çevirmektir. Sistem şirket verisini izler, anlamlı bir sapma veya fırsat gördüğünde finding oluşturur; kullanıcı daha sonra bu finding'in nedenini ve ne yapılabileceğini inceler.
+Fakat daha temel bir sorun vardır: şirketin önemli bir değişikliği fark etmesi için her seferinde birinin doğru soruyu sorması gerekir.
 
-Ama bunun güvenilir olması için kritik bir ayrım gerekir:
+Dima'nın hedefi bu döngüyü tersine çevirmektir. Sistem şirket verisini izler, anlamlı bir sapma veya fırsat gördüğünde bulgu oluşturur. Kullanıcı daha sonra bu bulgunun nedenini ve ne yapılabileceğini inceler.
 
-**Model araştırmaya yardım edebilir. Sayıyı model uydurmamalıdır.**
+Bunun güvenilir olması için kritik bir ayrım gerekir:
+
+**Dil modeli araştırmaya yardım edebilir. Sayıyı uydurmamalıdır.**
 
 ## Sayısal sonuç nereden gelir
 
-Bir dil modeli iyi bir açıklama yazabilir ve karmaşık bir soruyu iş terimlerine çevirebilir. Fakat 82,4 ile 84,1 arasındaki fark “makul görünen” bir cümle meselesi değildir.
+Bir dil modeli iyi bir açıklama yazabilir ve karmaşık bir soruyu iş terimlerine çevirebilir. Fakat 82,4 ile 84,1 arasındaki fark makul görünen bir cümle meselesi değildir.
 
-Dima'da sayısal otoritenin semantik ve analitik katmanda kalması gerekir:
+Dima'da sayısal otorite tanımlı analitik katmanda kalır:
 
-1. İş metriği tanımlı bir ölçüye bağlanır.
-2. Sorgu çalışmadan önce planlanır ve sınırları kontrol edilir.
+1. İş ölçüsü açık bir tanıma bağlanır.
+2. Sorgu çalışmadan önce planlanır ve sınırları denetlenir.
 3. Gerçek veri kaynağında çalıştırılır.
-4. Sonuç hangi kaynak, dönem ve entity bağlamından geldiğiyle birlikte taşınır.
+4. Sonuç kaynak, dönem ve varlık bağlamıyla birlikte taşınır.
 
-LLM bu sonucu açıklayabilir; sonucu kendisi icat etmemelidir.
+Dil modeli sonucu açıklayabilir. Sonucu kendisi icat etmemelidir.
 
-## Finding yalnız bir sayı değildir
+## Bulgu yalnız bir sayı değildir
 
-“Fire oranı yükseldi” tek başına karar için yeterli değildir.
+"Fire oranı yükseldi" tek başına karar için yeterli değildir.
 
-Bir finding'in anlamlı olabilmesi için en az şu soruların cevaplanması gerekir:
+Anlamlı bir bulgu şu sorulara cevap aramalıdır:
 
 - Değişim ne zaman başladı?
 - Hangi ürün, makine, vardiya veya siparişlerde yoğunlaşıyor?
@@ -42,28 +44,22 @@ Bir finding'in anlamlı olabilmesi için en az şu soruların cevaplanması gere
 - Finansal veya operasyonel etkisi nedir?
 - Hangi nedenler destekleniyor, hangileri eleniyor?
 
-Bu nedenle Dima'nın investigation katmanı KPI'ı bir sonuç ekranında bırakmaz; ilgili entity ve ilişkiler üzerinden kök neden adaylarını araştırır.
+Bu yüzden Dima göstergede durmaz. İlgili varlık ve ilişkiler üzerinden neden adaylarını araştırır.
 
-## Chat nerede devreye girer
+## Sohbet nerede devreye girer
 
-Chat bu sistemin başlangıç noktası olmak zorunda değildir.
+Sohbet sistemin başlangıç noktası olmak zorunda değildir.
 
-Kullanıcı bir finding'e tıkladığında bağlam zaten bellidir: seçili lob, entity'ler, dönem, evidence ve investigation. Kullanıcı “bu müşteriyi hariç tutarsak ne olur?” veya “bu seçenek termini nasıl etkiler?” dediğinde konuşma aynı araştırmanın devamı olur.
+Kullanıcı bir bulguya tıkladığında bağlam zaten bellidir: iş alanı, ilgili varlıklar, dönem, kanıtlar ve açık araştırma.
 
-Bu fark önemlidir. Kullanıcı her soruda şirketi modele yeniden anlatmaz.
+Kullanıcı "bu müşteriyi hariç tutarsak ne olur?" veya "bu seçenek teslim tarihini nasıl etkiler?" dediğinde sohbet aynı araştırmanın devamı olur.
 
-## Evidence neden ürünün parçasıdır
+## Kanıt neden ürünün parçasıdır
 
 Bir sonuç doğru olsa bile nereden geldiği görülemiyorsa toplantıda savunmak zordur.
 
-Bu yüzden evidence ayrı bir teknik log olarak saklanmamalıdır. Finding'in içinde:
+Bu yüzden bulgunun içinde veri kaynağı, kullanılan dönem, ilgili varlıklar, hesaplama sonucu ve araştırmada kullanılan ilişkiler görülebilmelidir.
 
-- veri kaynağı,
-- kullanılan dönem,
-- ilgili entity'ler,
-- hesaplama veya sorgu sonucu,
-- araştırmada kullanılan bağlantılar
+Dima'nın amacı "yapay zekâ cevap verdi" demek değildir.
 
-görülebilmelidir.
-
-Dima'nın amacı “AI cevap verdi” demek değil; **bu bulgu neden dikkate alınmalı ve hangi veriye dayanıyor?** sorusunu cevaplayabilmektir.
+Amaç, **bu bulgu neden dikkate alınmalı ve hangi veriye dayanıyor?** sorusunu cevaplayabilmektir.

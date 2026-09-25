@@ -14,9 +14,9 @@ export const careersPage = {
   },
   breadcrumb: { home: { tr: "Ana sayfa", en: "Home" }, self: { tr: "Kariyer", en: "Careers" } },
   hero: {
-    title: { tr: "Şirket beynini inşa eden küçük bir ekipte çalışmak.", en: "Working in a small team building a company brain." },
+    title: { tr: "Şirket Beyni'ni inşa eden küçük bir ekipte çalışmak.", en: "Working in a small team building a company brain." },
     lede: {
-      tr: "Dima'da şirket verisini bağlayan, önemli değişimleri izleyen, nedenlerini kanıtlarıyla araştıran ve karar akışına taşıyan bir ürün geliştiriyoruz. Küçük ekipte ürün, veri, backend, frontend ve müşteri problemi birbirinden uzak katmanlar değil.",
+      tr: "Dima'da şirket verisini bağlayan, önemli değişimleri izleyen, nedenlerini kanıtlarıyla araştıran ve karar akışına taşıyan bir ürün geliştiriyoruz. Küçük ekipte ürün, veri, arka uç, ön yüz ve müşteri problemi birbirinden uzak katmanlar değil.",
       en: "At Dima we are building a product that connects company data, monitors important change, investigates causes with evidence and moves work into the decision flow. In a small team, product, data, backend, frontend and the customer problem are not distant layers.",
     },
   },
@@ -30,7 +30,7 @@ export const careersPage = {
       tr: [
         {
           title: "İşin kendisi",
-          body: "Dağınık şirket verisini anlamlandıran, finding ve evidence üreten, finans ve üretim gibi gerçek iş alanlarında kullanılan bir karar ürünü üzerinde çalışırsınız. Yaptığınız değişiklik ürün davranışına doğrudan dokunur.",
+          body: "Dağınık şirket verisini anlamlandıran, bulgu ve kanıt üreten, finans ve üretim gibi gerçek iş alanlarında kullanılan bir karar ürünü üzerinde çalışırsınız. Yaptığınız değişiklik ürün davranışına doğrudan dokunur.",
         },
         {
           title: "Küçük ekibin avantajı",
@@ -60,7 +60,7 @@ export const careersPage = {
         },
         {
           title: "Who does well here",
-          body: "People who can break down ambiguous problems, look for root causes, care about documentation and tests, and follow the technical consequences of product decisions.",
+          body: "People who can break down ambiguous problems, look for kök nedens, care about belgelendirme and tests, and follow the technical consequences of product decisions.",
         },
       ],
     } satisfies L<Point[]>,
@@ -68,22 +68,22 @@ export const careersPage = {
   how: {
     title: { tr: "Nasıl çalışıyoruz", en: "How we work" },
     intro: {
-      tr: "Dima'yı ürün olarak geliştiriyor ve işletiyoruz. Teknoloji yığını zamanla değişebilir; değişmeyen beklenti, problemi kök neden seviyesinde çözmek ve değişikliği test edilebilir bırakmak.",
+      tr: "Dima'yı ürün olarak geliştiriyor ve işletiyoruz. Teknoloji yığını zamanla değişebilir. Değişmeyen beklenti, problemi kök neden seviyesinde çözmek ve değişikliği test edilebilir bırakmak.",
       en: "We build and operate Dima as a product. The technology stack can evolve; the constant expectation is to solve problems at root-cause level and leave changes testable.",
     },
     facts: {
       tr: [
-        { label: "Ürün", value: "Dima — kurumsal karar zekâsı ve optimizasyon platformu" },
-        { label: "Çalışma alanları", value: "Ürün, frontend, backend, veri/semantik katman, AI/agentic akışlar ve platform mühendisliği" },
+        { label: "Ürün", value: "Dima: kurumsal karar zekâsı ve optimizasyon platformu" },
+        { label: "Çalışma alanları", value: "Ürün, ön yüz, arka uç, veri ve anlamsal katman, yapay zekâ, denetimli ajan akışları ve platform mühendisliği" },
         { label: "Diller", value: "Türkçe ve İngilizce" },
-        { label: "Mühendislik ilkesi", value: "Prompt/regex yaması yerine kök neden; değişiklikle birlikte test ve dokümantasyon" },
+        { label: "Mühendislik ilkesi", value: "İstem veya düzenli ifade yaması yerine kök neden; değişiklikle birlikte test ve belgelendirme" },
         { label: "Çalışma düzeni", value: "Pozisyona göre çalışma düzeni görüşmede netleşir." },
       ],
       en: [
         { label: "Product", value: "Dima — enterprise decision intelligence and optimization platform" },
         { label: "Areas of work", value: "Product, frontend, backend, data/semantic layer, AI/agentic flows and platform engineering" },
         { label: "Languages", value: "Turkish and English" },
-        { label: "Engineering principle", value: "Root-cause fixes instead of prompt/regex patches, with tests and documentation alongside the change" },
+        { label: "Engineering principle", value: "Root-cause fixes instead of prompt/regex patches, with tests and belgelendirme alongside the change" },
         { label: "Working arrangement", value: "The working arrangement is clarified for each role during the interview." },
       ],
     },

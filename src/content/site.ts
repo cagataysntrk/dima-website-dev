@@ -20,7 +20,7 @@ export const site = {
   ] satisfies SiteLink[],
   /** Brand House V1.6 CTA hierarchy. The self-serve target is enabled only by a verified env URL. */
   trialAction: { label: { tr: "Dima'yı deneyin", en: "Try Dima" } },
-  navAction: { href: "/contact", label: { tr: "Canlı demo isteyin", en: "Request a live demo" } } satisfies SiteLink,
+  navAction: { href: "/contact", label: { tr: "Canlı gösterim isteyin", en: "Request a live demonstration" } } satisfies SiteLink,
   footer: {
     groups: [
       {
