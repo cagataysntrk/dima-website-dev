@@ -25,13 +25,27 @@ bun run dev        # re-validates the design-system link, then starts http://loc
 
 A different location: `UPCYTECH_DESIGN_SYSTEM=/path/to/design-system bun install`.
 
+If `typecheck` or `build` reports that `@upcytech/ui` / `@upcytech/tokens/native`
+cannot be resolved, do not patch imports. Rebuild and relink the sibling authority:
+
+```bash
+(cd ../design-system && bun install --frozen-lockfile && bun run tokens)
+bun install --frozen-lockfile
+bun run typecheck
+bun run build
+```
+
+The commands now run the link guard themselves. If the sibling checkout is missing or its
+tokens are unbuilt, they stop immediately with that root cause instead of emitting dozens of
+downstream module-resolution errors.
+
 Why a symlink rather than a dependency is explained at the top of
 `scripts/link-design-system.ts`. Builds use webpack (`--webpack`), because Turbopack only
 reads files under its own root. `postinstall` also copies the MapLibre worker into
 `public/maplibre`, so the contact map loads nothing from a CDN.
 
 ```bash
-bun test           # content in both languages, voice rules, guards
+bun test           # Brand House V1.6 contract + content/voice/guard/unit checks
 bun run typecheck  # re-validates the design-system link first
 bun run build      # re-validates the design-system link first
 bun run check      # test + typecheck

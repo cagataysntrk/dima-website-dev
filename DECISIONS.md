@@ -9,6 +9,19 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-061 · Brand House contract is part of the default test command
+**Decided:** include `tests/brand-house.test.ts` in `bun run test`. A governance test that is
+not part of the default verification path is not a guardrail.
+
+Local troubleshooting now explicitly treats unresolved `@upcytech/ui` and
+`@upcytech/tokens/native` as a sibling design-system link/build problem. The documented
+recovery is to build tokens in `../design-system`, reinstall/relink the website, then run
+typecheck/build. Do not "fix" those errors by rewriting application imports or duplicating
+design-system code into this repo.
+
+**Reason:** keep the master-brand contract executable and prevent dependency setup failures
+from being misdiagnosed as dozens of source-code defects.
+
 ### D-060 · Restore compile integrity after the V1.6 content-model refactor
 **Decided:** keep the active `products[]` registry Dima-only, but restore `BrandKey` as the
 design-system token union rather than treating it as an active-product union. Historical/test
