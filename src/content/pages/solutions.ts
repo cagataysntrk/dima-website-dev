@@ -1,91 +1,163 @@
-import type { L } from "../types";
-
 export const solutionsPage = {
   meta: {
     title: {
-      tr: "Çözümler: imalat, optimizasyon ve sürdürülebilirlik çözümleri",
-      en: "Solutions: manufacturing, optimization and sustainability solutions",
+      tr: "Dima nasıl çalışır? Company Brain, araştırma ve karar akışı",
+      en: "How Dima works: Company Brain, investigation and decision flow",
     },
     description: {
-      tr: "UpcyTech çözümleri: veri analitiği, kök neden analizi, modüler üretim ERP, kurumsal karbon ve sürdürülebilirlik platformu, dış ticaret ve mühendislik çözümleri.",
-      en: "UpcyTech solutions: data analytics, root-cause analysis, modular manufacturing ERP, enterprise carbon and sustainability platform, trade operations and engineering solutions.",
+      tr: "Dima'nın şirket verisini nasıl bağladığını, Company Brain ile nasıl izlediğini, finding'leri nasıl kanıtlarıyla araştırıp karar ve aksiyona taşıdığını görün.",
+      en: "See how Dima connects company data, monitors it through Company Brain, investigates findings with evidence, and moves them toward decisions and actions.",
     },
   },
-  breadcrumb: { home: { tr: "Ana sayfa", en: "Home" }, self: { tr: "Çözümler", en: "Solutions" } },
+  breadcrumb: {
+    home: { tr: "Ana sayfa", en: "Home" },
+    self: { tr: "Ürün", en: "Product" },
+  },
   hero: {
     title: {
-      tr: "İmalat, üretim süreçleri optimizasyonu ve verimlilik çözümleri.",
-      en: "Manufacturing process optimization and efficiency solutions.",
+      tr: "Dima şirketi nasıl izler ve karara taşır?",
+      en: "How does Dima monitor a company and move work toward decisions?",
     },
     lede: {
-      tr: "Ürün ve hizmetlerimiz tek sayfada: veri analitiği, modüler ERP, kurumsal sürdürülebilirlik ve operasyon çözümleri.",
-      en: "Our products and services in one place: data analytics, modular ERP, enterprise sustainability and operations solutions.",
+      tr: "Dima bir soru kutusu veya rapor ekranı olarak başlamaz. Şirketin finans, muhasebe, üretim ve diğer veri kaynaklarını ortak bir bağlamda anlamlandırır; güncel veri akışına göre izler, önemli değişimleri bulur, nedenini araştırır ve karar için gereken kanıtı aynı akışta tutar.",
+      en: "Dima does not begin as a question box or reporting screen. It connects finance, accounting, manufacturing and other company data into one context, monitors changes as data updates, surfaces what matters, investigates why it happened, and keeps the evidence needed for a decision in the same flow.",
     },
-    action: { tr: "Görüşme planlayın", en: "Book a consultation" },
-  },
-  categories: {
-    all: { tr: "Tüm Çözümler", en: "All Solutions" },
-    sustainability: { tr: "Sürdürülebilirlik", en: "Sustainability" },
-    manufacturing: { tr: "İmalat, Veri & Verimlilik", en: "Manufacturing, Data & Efficiency" },
-    sectionsLabel: { tr: "Bölümler", en: "Sections" },
-    productsLabel: { tr: "Ürünler", en: "Products" },
-    sustainabilityIntro: {
-      title: { tr: "Sürdürülebilirlik Alanındaki Ürün ve Hizmetlerimiz", en: "Our Sustainability Products and Solutions" },
-      lede: {
-        tr: "Kurumsal karbon ayak izi, CBAM uyumu, su, atık ve döngüsellik yönetimi için yazılım platformu ve uygulama altyapısı bir arada.",
-        en: "Software platform and implementation infrastructure together for corporate carbon footprints, CBAM compliance, water, waste and circularity.",
-      },
-    },
-    manufacturingIntro: {
-      title: { tr: "İmalat, Veri ve Verimlilik Çözümlerimiz", en: "Our Manufacturing, Data and Efficiency Solutions" },
-      lede: {
-        tr: "Sahanın, kasanın ve verinin tek kayıtta buluştuğu; kök neden analizi ve karar destek mekanizmalarıyla süreçleri optimize eden çözümler.",
-        en: "Solutions where the floor, accounts and data meet in one record; optimizing operations through root-cause analysis and decision support.",
-      },
-    },
-  },
-  matrix: {
-    title: { tr: "Hangi çözüm, hangi sorun, kimin için", en: "Which solution, which problem, for whom" },
-    caption: {
-      tr: "Her çözümün cevap verdiği sorun ve kimin için olduğu. Çözüm adı ilgili bölüme götürür.",
-      en: "The problem each solution answers and who it is for. Each solution name links to its section.",
-    },
-    columns: {
-      product: { tr: "Çözüm", en: "Solution" },
-      problem: { tr: "Çözdüğü sorun", en: "The problem it answers" },
-      audience: { tr: "Kimin için", en: "Who it is for" },
-    },
+    action: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
   section: {
-    problem: { tr: "Sorun", en: "The problem" },
-    capabilities: { tr: "Ne yapar", en: "What it does" },
-    audience: { tr: "Kimin için", en: "Who it is for" },
-    ownSiteNote: { tr: "Ayrıntılar ürünün kendi sitesinde.", en: "The full story is on the product's own site." },
+    problem: { tr: "Neden gerekli", en: "Why it is needed" },
+    capabilities: { tr: "Nasıl çalışır", en: "How it works" },
+    audience: { tr: "Kimler için", en: "Who it is for" },
+    ownSiteNote: {
+      tr: "Dima'nın ana ürün sitesi usedima.com'dur.",
+      en: "Dima's primary product site is usedima.com.",
+    },
     domainNeeded: {
       tr: "[COPY NEEDED: product domain URL]",
       en: "[COPY NEEDED: product domain URL]",
     },
   },
-  serviceSection: {
-    scope: { tr: "Ne yapıyoruz", en: "What we do" },
-    typical: { tr: "Tipik işler", en: "Typical projects" },
-    offers: { tr: "Paketler", en: "Packages" },
-    offersCaption: { tr: "Sabit kapsamlı paketler: kapsam ve elinizde kalan", en: "Fixed-scope packages: scope and what you keep" },
-    offerColumns: {
-      name: { tr: "Paket", en: "Package" },
-      scope: { tr: "Kapsam", en: "Scope" },
-      keep: { tr: "Elinizde kalan", en: "What you keep" },
+  loop: {
+    title: {
+      tr: "Bir finding nasıl karara dönüşür?",
+      en: "How does a finding become a decision?",
     },
-    keep: { tr: "Elinizde kalan", en: "What you keep" },
-    why: { tr: "Neden bu ekip", en: "Why this team" },
-    action: { tr: "Görüşme planlayın", en: "Book a consultation" },
+    intro: {
+      tr: "Dima'nın farkı yalnız bir sinyal üretmesi değildir. Aynı şirket, entity ve ilişki bağlamı araştırma boyunca korunur; böylece kullanıcı her adımda yeniden veri toplamak veya hikâyeyi baştan kurmak zorunda kalmaz.",
+      en: "Dima's difference is not simply producing a signal. The same company, entity and relationship context stays intact through the investigation, so the user does not have to rebuild the data or the story at every step.",
+    },
+    steps: {
+      tr: [
+        {
+          title: "Bağla ve şirket haritasını kur",
+          body: "Veritabanı, ERP, Excel/CSV ve diğer kaynaklardan gelen tabloları yalnız aynı yerde toplamaz; müşteri, fatura, sipariş, makine, ürün ve metrik gibi entity'leri ve aralarındaki ilişkileri Company Brain bağlamına yerleştirir.",
+        },
+        {
+          title: "Normal davranışı ve değişimi izle",
+          body: "Bugünkü değeri tek başına okumaz. Geçmiş örüntüleri, planları, ilişkileri ve veri tazeliğini birlikte izleyerek şirketin hangi noktalarının normal, hangilerinin dikkat gerektirdiğini belirler.",
+        },
+        {
+          title: "Önemli sinyali finding'e dönüştür",
+          body: "Her değişim alarm değildir. Dima iş etkisi taşıyan sapma, risk veya fırsatı ilgili lob, entity ve ilişkilere bağlayarak incelenebilir bir finding olarak öne çıkarır.",
+        },
+        {
+          title: "Nedeni kanıtlarıyla araştır",
+          body: "Finding'in arkasındaki entity ve zaman ilişkilerini inceler; kök neden adaylarını karşılaştırır, elenen ihtimalleri ayırır ve sonucun dayandığı veri kaynaklarını görünür tutar.",
+        },
+        {
+          title: "Karar seçeneklerini karşılaştır",
+          body: "Tek bir öneriyi mutlak doğru gibi sunmak yerine uygulanabilir seçenekleri, maliyet, nakit, kapasite, termin veya diğer ilgili etkileriyle birlikte değerlendirmeye hazırlar.",
+        },
+        {
+          title: "Aksiyonu ve sonucu aynı hafızaya bağla",
+          body: "Onaylanan karar görev, bildirim, e-posta veya sistem taslağı gibi kontrollü bir aksiyona dönüşebilir. Sonuç daha sonra aynı entity ve finding'e bağlanarak karar hafızasını besler.",
+        },
+      ],
+      en: [
+        {
+          title: "Connect data and build the company map",
+          body: "Databases, ERP, Excel/CSV and other sources are not merely collected in one place. Entities such as customers, invoices, orders, machines, products and metrics, together with their relationships, are placed into the Company Brain context.",
+        },
+        {
+          title: "Monitor normal behavior and change",
+          body: "A current value is not read in isolation. Historical patterns, plans, relationships and data freshness are monitored together to distinguish what is normal from what needs attention.",
+        },
+        {
+          title: "Turn an important signal into a finding",
+          body: "Not every change is an alert. Dima ties a deviation, risk or opportunity with business impact to the relevant lobe, entities and relationships and surfaces it as an investigable finding.",
+        },
+        {
+          title: "Investigate the cause with evidence",
+          body: "It examines entity and time relationships behind the finding, compares root-cause candidates, separates eliminated explanations and keeps the supporting data sources visible.",
+        },
+        {
+          title: "Compare decision options",
+          body: "Rather than presenting one recommendation as absolute truth, Dima prepares viable options for comparison with their relevant cost, cash, capacity, delivery or other business effects.",
+        },
+        {
+          title: "Connect action and outcome back to memory",
+          body: "An approved decision can become a governed task, notification, email or system draft. The outcome can then be linked back to the same entity and finding to build decision memory.",
+        },
+      ],
+    },
+  },
+  trust: {
+    title: {
+      tr: "Bir bulgunun güvenilir olması ne demek?",
+      en: "What makes a finding trustworthy?",
+    },
+    intro: {
+      tr: "Dima'nın amacı yalnız hızlı cevap vermek değil; karar veren kişinin sonucun nereden geldiğini, hangi bağlamda üretildiğini ve hangi sınırlar içinde kullanılabileceğini anlayabilmesidir.",
+      en: "Dima's goal is not merely to answer quickly. The decision-maker should be able to understand where a result came from, the context in which it was produced, and the boundaries within which it can be used.",
+    },
+    points: {
+      tr: [
+        {
+          title: "Rakamın otoritesi analitik katmandır",
+          body: "Sayısal sonuç modelin tahmininden gelmemelidir. Tanımlı semantik ve analitik katman sorguyu planlar, çalıştırır ve hesaplanan değerin kaynağını korur.",
+        },
+        {
+          title: "Evidence finding'in parçasıdır",
+          body: "Kaynak, dönem, entity, ilişki ve kullanılan hesaplar araştırmadan kopuk ayrı bir dipnot değildir; finding'in neden dikkate alınması gerektiğinin parçasıdır.",
+        },
+        {
+          title: "Bağlam konuşma boyunca kaybolmaz",
+          body: "Chat kullanıldığında kullanıcı sıfırdan soru sormaz. Konuşma seçili finding, entity ve investigation bağlamının üzerinde devam eder; bu yüzden takip soruları aynı araştırmanın devamıdır.",
+        },
+        {
+          title: "Aksiyon yetki ve onayla sınırlıdır",
+          body: "Dima'nın gelecekte daha fazla işi yürütmesi hedeflense de bugünkü marka vaadi sınırsız otonomi değildir. Aksiyonlar açık yetki, onay ve denetlenebilir kayıt ilkeleriyle tasarlanır.",
+        },
+      ],
+      en: [
+        {
+          title: "The analytical layer is the authority for numbers",
+          body: "Numeric results should not come from model guesswork. The defined semantic and analytical layer plans and executes the query and preserves the source of the calculated value.",
+        },
+        {
+          title: "Evidence is part of the finding",
+          body: "Source, period, entity, relationship and calculations are not a detached footnote. They are part of why the finding deserves attention.",
+        },
+        {
+          title: "Context survives the conversation",
+          body: "When chat is used, the user does not start from zero. The conversation continues on the selected finding, entity and investigation context, so follow-up questions remain part of the same investigation.",
+        },
+        {
+          title: "Actions are bounded by permission and approval",
+          body: "Dima is intended to carry more work over time, but today's brand promise is not unlimited autonomy. Actions are designed around explicit permissions, approvals and auditable records.",
+        },
+      ],
+    },
   },
   consult: {
-    title: { tr: "Hangi çözümün size uyduğundan emin değil misiniz?", en: "Not sure which solution fits?" },
-    body: {
-      tr: "Bugün nasıl çalıştığınızı anlatın: hangi kayıt nerede tutuluyor, hangi veriye ihtiyaç var. Hangi çözümün uyduğunu birlikte belirleyelim.",
-      en: "Tell us how you work today: which records live where, and what data you need. We will work out together which solution fits.",
+    title: {
+      tr: "Önce gerçek bir karar problemini seçin.",
+      en: "Start with one real decision problem.",
     },
-    action: { tr: "Görüşme planlayın", en: "Book a consultation" },
+    body: {
+      tr: "Pilot için bütün şirketi bir günde bağlamak gerekmez. Finans, muhasebe veya üretimde bugün geç fark edilen, farklı ekranlardan takip edilen ya da nedenini bulmak zaman alan bir problemi seçin; gerekli veriyi bağlayıp Dima'nın aynı döngüyü gerçek şirket bağlamında nasıl çalıştırdığını gösterelim.",
+      en: "A pilot does not require connecting the whole company on day one. Choose one finance, accounting or manufacturing problem that is detected late, tracked across several screens or takes too long to explain; connect the data it needs and see the same Dima loop operate in your real company context.",
+    },
+    action: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
-};
+} as const;

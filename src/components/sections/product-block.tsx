@@ -24,11 +24,13 @@ interface Labels {
  * name. `data-brand` scopes the accent to this block, where it appears as the brand dot and
  * the block's single primary action — never as a fill or a surface (D-029).
  */
-export function ProductBlock({ product, locale, labels, children }: {
+export function ProductBlock({ product, locale, labels, children, action, showScreens = true }: {
   product: Product;
   locale: Locale;
   labels: Labels;
   children?: React.ReactNode;
+  action?: React.ReactNode;
+  showScreens?: boolean;
 }) {
   const titleId = `${product.slug}-title`;
 
@@ -45,11 +47,11 @@ export function ProductBlock({ product, locale, labels, children }: {
             <span>{product.category[locale]}</span>
           </Text>
           <Heading level={2} variant="title" id={titleId}>{product.title[locale]}</Heading>
-          <ProductAction product={product} locale={locale} labels={labels} />
+          {action ?? <ProductAction product={product} locale={locale} labels={labels} />}
         </Stack>
 
         <Stack gap="loose" className="lg:col-span-7">
-          {(product.screens?.desktop || product.screens?.mobile) && (
+          {showScreens && (product.screens?.desktop || product.screens?.mobile) && (
             // The product's real interface, static and lazy: the surrounding copy says
             // everything, so assistive technology skips the mockups.
             <div aria-hidden="true" data-brand={product.brandKey} className="relative mx-auto w-full max-w-[22rem] sm:max-w-md lg:max-w-none pb-[9%] pr-[16%]">

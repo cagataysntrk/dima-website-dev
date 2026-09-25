@@ -9,6 +9,26 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-045 · /solutions becomes the single-product Dima explanation, not a portfolio router
+**Decided:** keep the existing localized `/solutions` route for continuity, but change its
+public meaning to the product page behind the nav label "Product / Ürün". The old category
+jumper, problem matcher, sustainability section, multi-product matrix, service catalogue and
+chat-first demo no longer render on this route.
+
+The refactor reuses `PageHero`, `CompanyBrainExperience`, `ProductBlock`,
+`WorkflowFlow`, `PointList`, `CtaBand` and the existing breadcrumb/metadata utilities.
+`ProductBlock` gains two narrow controls — an optional action override and `showScreens` —
+so the current chat-era screenshots can be suppressed without forking or replacing the
+component.
+
+The page now explains, in order: the Company Brain model; the concrete product problem and
+capabilities; how a finding moves from connected data through monitoring, investigation,
+evidence and decision to governed action/outcome memory; and what makes a finding trustworthy.
+Content is explanatory rather than slogan-led and does not claim unlimited autonomy.
+
+**Reason:** the master brand now has one product. A portfolio chooser on the primary product
+route would contradict both the Brand House and the website's new navigation.
+
 ### D-044 · Company Brain replaces the globe and single-product wheel as the home product model
 **Decided:** the home hero keeps its proven layout and background field, but the Stripe-style
 globe is no longer the product visual. The right-hand hero slot becomes a lightweight Company
