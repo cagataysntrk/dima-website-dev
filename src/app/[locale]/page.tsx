@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]">): Prom
   const locale = (await params).locale as Locale;
   return {
     ...pageMetadata({ href: "/", locale, title: copy.meta.title[locale], description: copy.meta.description[locale] }),
-    // The home title is the brand line itself; skip the "| UpcyTech" template.
+    // The home title is the brand line itself; skip the global title template.
     title: { absolute: copy.meta.title[locale] },
   };
 }

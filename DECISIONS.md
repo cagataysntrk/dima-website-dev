@@ -9,6 +9,23 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-052 · Remove dead portfolio copy and unverified legacy social links
+**Decided:** remove the no-longer-rendered home `whatWeDo` and product-wheel copy rather than
+leave the retired multi-product/services story in active typed content. Existing reusable
+components stay in the codebase; only stale home content is removed.
+
+The footer no longer links to the old company Instagram/X/Facebook accounts while the
+customer-facing master brand is Dima. The social registry stays typed but empty until verified
+Dima social URLs are supplied. The confirmed company LinkedIn/email remain available through
+company/contact identity and are not silently rewritten.
+
+Also restore the product-name content boundary: global metadata reads `site.name` rather than
+hardcoding the product name in an app file, and JobPosting structured data uses the actual
+legal company name from `site.company.legalName`.
+
+**Reason:** avoid both invisible stale source-of-truth copy and public links that imply
+unverified brand accounts, while preserving legal/company facts and repo guardrails.
+
 ### D-051 · Sign-in is environment-gated until a real product deployment is approved
 **Decided:** add an optional public `NEXT_PUBLIC_APP_URL` boundary. When it is empty, the
 marketing site renders no sign-in link. When an approved product application origin is

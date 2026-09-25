@@ -8,7 +8,7 @@ import { SocialIcon } from "./social-icon";
 
 /**
  * The "giant wordmark" footer: the company logo and its social profiles on a slim top row,
- * the sitemap, the legal bar, and "UpcyTech" set very large across the full width in the home
+ * the sitemap, the legal bar, and the current customer-facing wordmark set very large across the full width in the home
  * headline's face (Geist). The parent brand does not endorse itself, so no endorsement line.
  */
 export function SiteFooter({ locale }: { locale: Locale }) {

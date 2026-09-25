@@ -132,7 +132,7 @@ export const jobPostingJsonLd = (locale: Locale, role: {
   datePosted: role.datePosted,
   ...(role.validThrough ? { validThrough: role.validThrough } : {}),
   employmentType: role.employmentType,
-  hiringOrganization: { "@type": "Organization", name: "UpcyTech", sameAs: SITE_URL },
+  hiringOrganization: { "@type": "Organization", name: site.company.legalName.tr, sameAs: SITE_URL },
   jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressLocality: role.location[locale], addressCountry: "TR" } },
 });
 

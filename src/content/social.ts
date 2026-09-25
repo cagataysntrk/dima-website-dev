@@ -1,12 +1,8 @@
 /**
- * The company's social accounts, as listed on upcyman.com's footer (UpcyMan repo,
- * MarketingFooter.tsx). [CONFIRM] each is live and still the company's. `id` picks the icon;
- * the label is the network's own name, the same in both languages.
+ * Customer-facing social accounts are intentionally empty during the master-brand migration.
+ * Add only verified public product-brand accounts here. The legal/company LinkedIn remains in
+ * site.company for direct-contact/company identity until an approved product account exists.
  */
-export const social = [
-  { id: "instagram", label: "Instagram", href: "https://instagram.com/upcytech" },
-  { id: "x", label: "X (Twitter)", href: "https://x.com/upcytech" },
-  { id: "facebook", label: "Facebook", href: "https://facebook.com/upcytech" },
-] as const;
+export type SocialId = "instagram" | "x" | "facebook";
 
-export type SocialId = (typeof social)[number]["id"];
+export const social: readonly { id: SocialId; label: string; href: string }[] = [];

@@ -42,7 +42,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { template: "%s | Dima", default: "Dima" },
+  title: { template: `%s | ${site.name}`, default: site.name },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

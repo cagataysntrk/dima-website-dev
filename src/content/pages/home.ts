@@ -42,11 +42,9 @@ export const homePage = {
     secondary: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
   /**
-   * The partner strip, as on upcyman.com: institutions and programmes the company works with
-   * or is supported by — not customers, so it is not labelled "references", and UpcyMan's
-   * subtitle ("chosen by the sector's leaders") is left out: these names cannot carry it.
-   * Logos from the UpcyMan repo, trimmed and sized in public/partners. [CONFIRM] that the
-   * permission to show them covers upcytech.com as well as upcyman.com.
+   * Institutions and programmes the company works with or is supported by — not customers,
+   * so the strip is never described as customer references. Existing artwork is preserved
+   * from the source site; publication permission must remain valid for this brand/domain.
    *
    * `dark`: how the artwork survives the dark theme — `white` turns it to a flat white mark,
    * `swap` shows a separate white file, `invert-light` inverts a white-only file on light.
@@ -62,39 +60,6 @@ export const homePage = {
       { name: "İTÜ ARI 1773 Teknopark", src: "/partners/teknopark-white.png", width: 253, height: 80, dark: "invert-light" },
       { name: "Güçlü Geri Dönüşüm", src: "/partners/guclu.png", width: 240, height: 51, dark: "white" },
     ] satisfies readonly Partner[],
-  },
-  whatWeDo: {
-    title: { tr: "Ne yapıyoruz", en: "What we do" },
-    products: {
-      title: { tr: "Ürünler", en: "Products" },
-      body: {
-        tr: "Üretim verimliliği, süreç optimizasyonu, kurumsal kaynak yönetimi ve sürdürülebilirlik için dört ürün.",
-        en: "Four products for manufacturing efficiency, process optimization, enterprise resource planning, and sustainability.",
-      },
-      link: { tr: "Çözümlere bakın", en: "See solutions" },
-    },
-    services: {
-      title: { tr: "Hizmetler", en: "Services" },
-      body: {
-        tr: "Hazır ürün yetmediğinde özel yazılım, karar öncesi mimari inceleme ve kendi sisteminizde kalan sürdürülebilirlik altyapısı.",
-        en: "Custom software when no off-the-shelf product fits, architecture review before you decide, and sustainability infrastructure that stays in your own system.",
-      },
-      link: { tr: "Çözümlere bakın", en: "See solutions" },
-    },
-    /** The link on each service-line card in the bento grid. */
-    lineLink: { tr: "Ayrıntılar", en: "Details" },
-  },
-  productIndex: {
-    title: { tr: "Dima'yı ürünün içinde görün", en: "See Dima in the product" },
-    /** Kept on the existing showcase component while the Company Brain visual replaces it. */
-    wheel: { tr: "Dima ürün görünümü", en: "Dima product view" },
-    link: { tr: "Ürünü inceleyin", en: "Explore the product" },
-    missingDesktop: { tr: "masaüstü ekran görüntüsü", en: "desktop screenshot" },
-    missingMobile: { tr: "mobil ekran görüntüsü", en: "mobile screenshot" },
-    intro: {
-      tr: "Dima tek bir dashboard veya chatbot değildir; şirketin verisini, ilişkilerini, sinyallerini ve araştırmalarını aynı karar döngüsünde birleştirir.",
-      en: "Dima is not a single dashboard or chatbot; it brings company data, relationships, signals and investigations into one decision loop.",
-    },
   },
   industries: {
     title: { tr: "Sektörler", en: "Industries" },
