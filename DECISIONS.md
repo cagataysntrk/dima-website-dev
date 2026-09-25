@@ -9,6 +9,30 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-065 · Company Brain is a product dashboard, not an anatomical illustration
+**Decided:** remove the hand-built anatomical/oval "brain" visualization from both the hero
+and the full Company Brain section. The marketing proof now uses a product-surface composition
+inspired by the actual Dima application grammar: sidebar/navigation, search/topbar, live state,
+Company Map, Dima Today priority signals, evidence/decision context and compact operational
+metrics.
+
+The two Brand House lenses remain one state model. "Full Brain Form" is implemented as a
+layered intelligence view (data → relationships → analysis → decision), not a literal brain
+silhouette. "Company Brain Map" is an entity/domain relationship surface. Selecting a domain
+continues to persist across lenses.
+
+The hero uses a compact, non-interactive version of the same product surface. It is explicitly
+sample/seeded data and does not impersonate a live customer backend. The larger section keeps
+the interactive domain/lens behavior.
+
+Dark-mode Dima marks use a single `.dima-logo-mark` treatment that converts the dark-ink PNG
+to a readable light mark on dark surfaces; nav, footer and product-proof surfaces all use the
+same rule.
+
+**Reason:** the Company Brain metaphor must read as a credible enterprise product and company
+operating model, not as a decorative hand-drawn brain. Product proof should resemble a real
+dashboard/workspace while preserving the underlying Brand House semantics.
+
 ### D-064 · OG Turkish glyph fallback stays fully local
 **Decided:** Open Graph generation must not depend on Satori's dynamic network font fallback.
 Fontsource `latin` and `latin-ext` WOFF subsets are registered as distinct font-family
