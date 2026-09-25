@@ -1,0 +1,26 @@
+export const metadata = {
+  title: "Excel mutabakatı neden ay sonunda tutmaz",
+  description: "Çek defteri, cari bakiye ve sahadaki stok üç ayrı yerde tutulunca ay sonu mutabakat değil, müzakere olur.",
+  date: "2026-09-03",
+  author: "member-5",
+  category: "operations",
+  related: { kind: "product", id: "erp" },
+};
+
+Ay sonunda üç kayıt birbirini tutmuyor: çek defteri, cari bakiye ve sahadaki stok. Excel, bir defter ve bir mesaj grubuyla yürüyen iş mutabakatta tıkanıyor; hangi rakamın doğru olduğu belirlenemiyor.
+
+## Üç defterin hikâyesi
+
+- **Çek defteri** muhasebede durur; vade, tutar ve imza oradadır.
+- **Cari bakiye** ayrı bir tabloda yaşar; kimin ne kadar borcu olduğu oraya yazılır.
+- **Sahadaki stok** ise sahadadır: giren mal, çıkan ürün ve fire gözün gördüğü yerdedir.
+
+Üçü de doğru olabilir ve üçü birden yanlış toplanabilir. Sorun kayıtlarda değil, aralarındaki boşluktadır: bir çek yazıldığında stoktan ne düştüğünü, bir mal çıktığında cariye ne yazıldığını söyleyen bağ yoktur.
+
+## Mutabakat değil, müzakere
+
+Bağ olmayınca ay sonu toplantısı mutabakat değil müzakere olur. Herkes kendi defterini savunur, rakamlar pazarlıkla uzlaşır ve uzlaşılan rakam bir dahaki aya kadar yaşar. Kayıt, tartışmayı bitirmesi gerekirken tartışmanın konusu olur.
+
+Çözüm dördüncü bir defter değildir; ikinci sistemin kaldırılmasıdır. Saha ile kasa aynı kayıtta durur: stok, makine, personel ve atık kabulü; cari hesap, kasa, banka ve çek ile aynı sistemde. Her finansal işlem tek parça tamamlanır, her stok hareketi nedenini saklar, her belgenin takip edilebilir bir numarası olur. Tartışmayı kayıt bitirir.
+
+Biz bunu UpcyMan'de böyle kuruyoruz: operasyon ve muhasebe tek kayıtta, her hareket iz bırakır. Birden fazla tesis tek kurulumda çalışır, veriler birbirine karışmaz.

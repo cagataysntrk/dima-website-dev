@@ -1,0 +1,26 @@
+export const metadata = {
+  title: "Why the spreadsheet never reconciles at month-end",
+  description: "When the cheque book, the customer balances and the stock on the floor live in three different places, month-end is a negotiation, not a reconciliation.",
+  date: "2026-09-03",
+  author: "member-5",
+  category: "operations",
+  related: { kind: "product", id: "erp" },
+};
+
+At month-end three records disagree: the cheque book, the customer balances and the stock on the floor. Work that runs on spreadsheets, a notebook and a messaging group stalls at reconciliation, and nobody can say which figure is right.
+
+## The story of the three ledgers
+
+- **The cheque book** sits in accounting; maturities, amounts and signatures live there.
+- **The customer balances** live in a separate table; who owes what is written there.
+- **The stock on the floor** is on the floor: goods in, product out, and scrap, all where the eye can see them.
+
+All three can be correct and still add up wrong together. The problem is not in the records but in the gaps between them: nothing says what left stock when a cheque was written, or what was booked to the account when goods shipped.
+
+## A negotiation, not a reconciliation
+
+Without those links, the month-end meeting is a negotiation, not a reconciliation. Everyone defends their own ledger, the figures settle by bargaining, and the settlement lasts until next month. The record, which should end the argument, becomes its subject.
+
+The fix is not a fourth ledger. It is removing the second system. Operations and accounts share one record: stock, machines, personnel and waste intake sit in the same system as receivables, cash, bank and cheques. Each financial operation completes as a whole, each stock movement keeps its reason, and each document carries a traceable number. The record settles the argument.
+
+That is how we build it in UpcyMan: operations and accounts in one record, where every movement leaves a trail. Several facilities run on one installation without their data mixing.

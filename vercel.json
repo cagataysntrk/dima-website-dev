@@ -1,0 +1,7 @@
+{
+  "env": {
+    "UPCYTECH_DESIGN_SYSTEM": ".design-system"
+  },
+  "installCommand": "UPCYTECH_DESIGN_SYSTEM=.design-system bun scripts/fetch-design-system.ts && UPCYTECH_DESIGN_SYSTEM=.design-system bun install",
+  "buildCommand": "bun run build"
+}

@@ -1,0 +1,294 @@
+/* Every colour, space, radius and type value comes from the design system. This file
+   wires it in and adds nothing of its own. */
+@import "@upcytech/tailwind-config/theme.css";
+
+@source "../../node_modules/@upcytech/ui/src";
+
+/**
+ * Page-load entrance for the hero (Emil Kowalski's rules). CSS rather than Motion on purpose:
+ * it starts at first paint instead of waiting for hydration, and runs off the main thread
+ * exactly while the main thread is busiest — so LCP is not held back, and it plays even if
+ * JavaScript never loads. A short rise out of a slight blur, never from nothing; exponential
+ * ease-out; staggered by --enter-delay. The design system's reduced-motion rule makes it instant.
+ */
+/* No opacity: Chrome does not count an element at opacity 0 as painted, so a faded-in,
+   staggered hero held LCP back by ~0.5s. A rise and a sharpening blur are painted — and
+   counted — from the first frame. */
+@keyframes upcy-enter {
+  from { transform: translateY(10px); filter: blur(4px); }
+}
+@utility animate-enter {
+  animation: upcy-enter 700ms var(--motion-ease-default) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+/*
+ * D-032, this site only: buttons are capsules, like the floating nav and the CTA.
+ * Inputs keep the control radius.
+ *
+ * D-039: the floating nav is fixed, --nav-top below the viewport's top edge. --nav-height is
+ * its closed bar: 44px controls + 2 × 12px padding + 2 × 1px border — the same at every
+ * breakpoint (e2e/responsive asserts it). --nav-offset is its whole footprint: content starts
+ * below it, sticky bars stick below it, and the home hero pulls up underneath it so its
+ * background runs behind the glass.
+ */
+@theme {
+  --radius-button: 9999px;
+}
+
+:root {
+  --nav-top: 1rem;
+  --nav-height: 4.375rem;
+  --nav-offset: calc(var(--nav-top) + var(--nav-height));
+  scroll-padding-top: calc(var(--nav-offset) + 1rem);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+/* The corporate site opts into a shorter reading rhythm on phones and tablets. The
+   design-system defaults remain unchanged for product applications and Storybook. */
+@media (max-width: 63.99rem) {
+  body.site-responsive section.py-section,
+  body.site-responsive section.pt-section {
+    padding-block: calc(var(--space-section) * 0.66);
+  }
+}
+@media (max-width: 39.99rem) {
+  body.site-responsive section.py-section,
+  body.site-responsive section.pt-section {
+    padding-block: calc(var(--space-section) * 0.5);
+  }
+}
+
+/* Content must wrap at the boundary that owns it; page-wide overflow clipping is only
+   a last guard against decorative effects escaping the viewport. */
+body.site-responsive main p,
+body.site-responsive main a,
+body.site-responsive main h1,
+body.site-responsive main h2,
+body.site-responsive main h3,
+body.site-responsive main td,
+body.site-responsive main th {
+  overflow-wrap: anywhere;
+}
+body.site-responsive main .grid > *,
+body.site-responsive main .flex > * {
+  min-width: 0;
+}
+
+/*
+ * The company logo comes as two artworks: ink wordmark for light grounds, white for dark.
+ * The design system's `dark:` variant only sees an explicit data-theme, so the swap follows
+ * the same rule as the tokens: an explicit choice wins, otherwise the OS preference.
+ */
+.logo-on-dark { display: none; }
+[data-theme="dark"] .logo-on-light { display: none; }
+[data-theme="dark"] .logo-on-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-on-light { display: none; }
+  :root:not([data-theme="light"]) .logo-on-dark { display: block; }
+}
+
+/*
+ * Partner logos in the dark theme, after upcyman.com: full-colour artwork becomes a flat white
+ * mark, and a white-only file is inverted to ink on the light theme. Same theme rule as above.
+ */
+[data-theme="dark"] .partner-white-on-dark { filter: brightness(0) invert(1); }
+:root:not([data-theme="dark"]) .partner-invert-on-light { filter: invert(1); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .partner-white-on-dark { filter: brightness(0) invert(1); }
+  :root:not([data-theme="light"]) .partner-invert-on-light { filter: none; }
+}
+
+/*
+ * The partner marquee (components/sections/home.tsx), after upcyman.com's: two identical
+ * tracks, each shifted by its own width plus the gap, linear, so the loop has no seam.
+ * Transform only, so it runs on the compositor. Hover pauses it, so a name can be read.
+ * Reduced motion: no scroll — one still, wrapped, centred row, and no edge fades.
+ */
+@keyframes upcy-marquee {
+  to { transform: translateX(calc(-100% - var(--marquee-gap))); }
+}
+.marquee-track {
+  animation: upcy-marquee var(--marquee-duration) linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-rail { justify-content: center; }
+  /* Still, the track must fit the width and wrap — the marquee's no-shrink would clip it. */
+  .marquee-track { animation: none; flex: 1 1 100%; min-width: 0; flex-wrap: wrap; justify-content: center; row-gap: 0.5rem; }
+  .marquee-track[aria-hidden="true"], .marquee-fade { display: none; }
+}
+
+/*
+ * Magic UI keyframes, `inline` as upstream: values that use a var() the element sets itself
+ * (--speed) would turn invalid on :root under a plain @theme, and compute to `animation: none`.
+ */
+@theme inline {
+  /* Magic UI animated-shiny-text (vendor/magicui/animated-shiny-text.tsx). */
+  --animate-shiny-text: shiny-text 8s infinite;
+  @keyframes shiny-text {
+    0%, 90%, 100% { background-position: calc(-100% - var(--shiny-width)) 0; }
+    30%, 60% { background-position: calc(100% + var(--shiny-width)) 0; }
+  }
+  /* Magic UI rainbow-button (vendor/magicui/rainbow-button.tsx). */
+  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+  @keyframes rainbow {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+  }
+}
+
+/*
+ * The home headline is revealed by a colour sweep (components/home/hero-title.tsx). The server
+ * sends the real text; it is held transparent only while JavaScript is known to be running
+ * (data-js, set in <head>) and motion is welcome — and never for more than 1.2s: if the
+ * script has not taken over by then, the failsafe shows it and the sweep is skipped.
+ * Transparent text is still painted, so LCP is not held back.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-js] [data-dia="pending"] {
+    color: transparent;
+    animation: upcy-dia-failsafe 0s linear 1.2s forwards;
+  }
+}
+@keyframes upcy-dia-failsafe {
+  to { color: var(--color-text-primary); }
+}
+
+/* The pre-footer CTA's painting (sections/cta-band.tsx), dimmed so it sits back on the dark theme. */
+[data-theme="dark"] .cta-art { filter: brightness(0.6) saturate(0.9); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cta-art { filter: brightness(0.6) saturate(0.9); }
+}
+
+/* The home headline's accent words: the spectrum drifting across them (hero-title.tsx). */
+@keyframes upcy-spectrum-drift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* MapLibre's own controls, from mapcn's registry CSS, on the design system's tokens. */
+@layer base {
+  .maplibregl-popup-content { @apply bg-transparent! shadow-none! p-0! rounded-none!; }
+  .maplibregl-popup-tip { @apply hidden!; }
+  .maplibregl-ctrl-attrib { @apply bg-canvas! text-muted! border-hairline! rounded-tag! border! shadow-sm!; }
+  .maplibregl-ctrl-attrib a { @apply text-muted!; }
+  .maplibregl-ctrl-attrib a:hover { @apply text-ink!; }
+  .maplibregl-ctrl-attrib-button { @apply bg-transparent! dark:invert; }
+}
+
+/* The design system's reduced-motion rule shortens durations but not delays, which left the
+   staggered parts invisible for up to 180ms. Reduced motion gets no entrance at all. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-enter { animation: none; }
+}
+
+/*
+ * Wide tables scroll inside their container on phones (see positioning-matrix.tsx). A tape
+ * at the trailing edge says there is more to the side. Static CSS: nothing to reduce, and
+ * it never intercepts the pointer.
+ */
+@media (max-width: 42rem) {
+  .table-scroll { position: relative; }
+  .table-scroll::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    width: 2.5rem;
+    pointer-events: none;
+    background: linear-gradient(to left, var(--color-bg-canvas), transparent);
+  }
+  [dir="rtl"] .table-scroll::after {
+    background: linear-gradient(to right, var(--color-bg-canvas), transparent);
+  }
+}
+
+/*
+ * Floating nav responsiveness:
+ * When the mobile menu opens, transition border radius from capsule to panel so the open
+ * menu reads as an intentional floating card instead of an over-stretched pill.
+ */
+nav[aria-label="Ana menü"]:has([aria-expanded="true"]),
+nav[aria-label="Main"]:has([aria-expanded="true"]) {
+  border-radius: var(--radius-panel) !important;
+  /* Opaque while open: through the glass, the hero's headline showed behind the menu links. */
+  background-color: var(--color-bg-surface);
+}
+
+/* MapLibre's attribution toggle is 24px; on touch it takes the 44px target (DS DESIGN.md §13). */
+@media (pointer: coarse) {
+  .maplibregl-ctrl-attrib-button {
+    min-width: 44px;
+    min-height: 44px;
+    background-position: center;
+  }
+}
+
+/*
+ * The chat demo's app chrome, after the analytics product PoC's own surface system (its
+ * packages/ui/src/styles.css, "Surfaces"): the same edges, radii and shadows, drawn from this
+ * site's tokens instead of the PoC's literals. Shadows mix a near-black that stays near-black in
+ * both themes (ink on light, canvas on dark), as the PoC's pure black did.
+ */
+.dima-app {
+  --dima-shadow-ink: light-dark(var(--color-text-primary), var(--color-bg-canvas));
+  --dima-edge: color-mix(in oklch, var(--color-text-primary) 8%, transparent);
+  --dima-edge-strong: color-mix(in oklch, var(--color-text-primary) 15%, transparent);
+  --dima-shadow: 0 1px 2px color-mix(in oklab, var(--dima-shadow-ink) 4%, transparent),
+    0 8px 24px -12px color-mix(in oklab, var(--dima-shadow-ink) 14%, transparent);
+  --dima-shadow-raised: 0 1px 2px color-mix(in oklab, var(--dima-shadow-ink) 5%, transparent),
+    0 16px 36px -14px color-mix(in oklab, var(--dima-shadow-ink) 20%, transparent);
+  /* The PoC's sidebar, secondary and muted tones: a little ink into the page ground. */
+  --dima-sidebar: color-mix(in oklab, var(--color-text-primary) 3%, var(--color-bg-canvas));
+  --dima-secondary: color-mix(in oklab, var(--color-text-primary) 7%, var(--color-bg-canvas));
+  --dima-muted: color-mix(in oklab, var(--color-text-primary) 5%, var(--color-bg-canvas));
+  /* The PoC's chart-1: the site's info blue is the nearest token in both themes. */
+  --dima-chart: var(--color-text-info);
+}
+.dima-surface, .dima-surface-sm {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--dima-edge);
+  border-radius: 1.25rem;
+  box-shadow: var(--dima-shadow);
+}
+.dima-surface-sm { border-radius: 0.875rem; }
+.dima-interactive {
+  transition: border-color 150ms ease-out, box-shadow 200ms ease-out;
+}
+@media (hover: hover) {
+  .dima-interactive:hover { border-color: var(--dima-edge-strong); box-shadow: var(--dima-shadow-raised); }
+}
+.dima-inset {
+  background: color-mix(in oklch, var(--dima-muted) 45%, transparent);
+  border: 1px solid var(--dima-edge);
+  border-radius: 0.75rem;
+}
+/* The PoC's .dima-shimmer: an indeterminate wait, the text itself sweeping muted → ink → muted. */
+.dima-shimmer {
+  background: linear-gradient(90deg, var(--color-text-muted) 0%, var(--color-text-muted) 35%, var(--color-text-primary) 50%, var(--color-text-muted) 65%, var(--color-text-muted) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: dima-shimmer 2s linear infinite;
+}
+@keyframes dima-shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .dima-shimmer { animation: none; color: var(--color-text-muted); background: none; }
+}

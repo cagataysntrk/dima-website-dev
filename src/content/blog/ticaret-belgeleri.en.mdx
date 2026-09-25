@@ -1,0 +1,24 @@
+export const metadata = {
+  title: "How a commodity trade's paperwork gets completed",
+  description: "Eighteen document types, from bill of lading to certificate of origin, tracked from upload to approval; a missing document holds the trade.",
+  date: "2026-08-27",
+  author: "member-3",
+  category: "compliance",
+  related: { kind: "product", id: "trade-ops" },
+};
+
+While the vessel is at sea, someone asks "are the documents complete". If the answer takes days, the problem is not the documents but the list: which papers are required, which version counts, and who approved them were never written down in one place.
+
+## The eighteen on the list
+
+- **Carriage documents.** Bill of lading, air waybill, CMR: the papers that say whose hands the goods are in.
+- **Origin and quality.** Certificate of origin, SGS or Bureau Veritas quality certificate, weight certificate, fumigation certificate.
+- **Insurance and customs.** Marine cargo policy, export and import customs entries.
+- **The money side.** SWIFT transfer proof, letter-of-credit copy and its amendments: whatever the payment hangs on.
+- **Proforma and packing.** Commercial invoice, proforma invoice, packing list: the number's paper counterpart.
+
+## From upload to approval
+
+The work starts, not ends, at upload: the file passes mime, virus and checksum checks, then goes to a manager for approval. A rejection returns with its reason; the corrected file uploads again. Approved documents replicate to the account's Google Drive folder. A missing document or late payment holds the trade, with the reason visible to everyone.
+
+That is how we keep the list in UpcyOps: when a trade opens, its required documents generate automatically, each tracked from upload to approval, and receivables and payables hang off the same record's milestones.

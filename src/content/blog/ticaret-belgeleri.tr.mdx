@@ -1,0 +1,24 @@
+export const metadata = {
+  title: "Bir emtia ticaretinin belgesi nasıl tamamlanır",
+  description: "Konşimentodan menşe şahadetnamesine 18 belge türü, yüklemeden onaya izlenir; eksik belge işi beklemeye alır.",
+  date: "2026-08-27",
+  author: "member-3",
+  category: "compliance",
+  related: { kind: "product", id: "trade-ops" },
+};
+
+Gemi yoldayken birisi "evrak tamam mı" diye sorar. Cevap günler sürüyorsa sorun belgelerde değil, listededir: hangi belgenin gerektiği, hangi sürümünün geçerli olduğu ve kimin onayladığı hiçbir yerde tek parça yazmıyordur.
+
+## Listedeki 18 tür
+
+- **Taşıma belgeleri.** Konşimento, havayolu taşıma senedi, CMR: malın kimin elinde olduğunu söyleyen kâğıtlar.
+- **Menşe ve kalite.** Menşe şahadetnamesi, SGS ya da Bureau Veritas kalite sertifikası, ağırlık sertifikası, fümigasyon belgesi.
+- **Sigorta ve gümrük.** Navlun sigorta poliçesi, ihracat ve ithalat gümrük beyannameleri.
+- **Para tarafı.** SWIFT dekontu, akreditif kopyası ve akreditif tadilleri: ödemenin hangi şarta bağlı olduğunu gösterenler.
+- **Proforma ve çeki listesi.** Ticari fatura, proforma fatura, çeki listesi: sayının kâğıt üstündeki karşılığı.
+
+## Yüklemeden onaya
+
+Belge yüklenince iş bitmez, başlar: dosya türü, virüs ve sağlama denetiminden geçer, yönetici onayına sunulur. Ret, gerekçesiyle birlikte iade edilir; düzeltilen belge yeniden yüklenir. Onaylanan belge hesabın Google Drive klasörüne yedeklenir. Eksik belge ya da geciken ödeme işi beklemeye aldığında, bekleme sebebi herkesçe açıkça görünür.
+
+Biz bu listeyi UpcyOps'ta böyle tutuyoruz: ticaret açıldığında gerekli belgeler otomatik listelenir, her biri yüklemeden onaya izlenir, alacak ve borçlar aynı kaydın kilometre taşlarına bağlanır.

@@ -1,0 +1,23 @@
+export const metadata = {
+  title: "Bir karbon sayısı nasıl denetlenir: kanıt zinciri",
+  description: "Denetçi sayıya değil, sayının arkasındaki zincire bakar: faaliyet kaydı, emisyon faktörü, GWP seti ve kimin neyi ne zaman yaptığı.",
+  date: "2026-09-10",
+  author: "member-1",
+  category: "compliance",
+  related: { kind: "product", id: "carbon" },
+};
+
+Denetime bir tabloyla değil, bir kayıtla girilir. Denetçinin sorduğu soru hiçbir zaman "bu sayı kaç" değildir; soru "bu sayı nereden geliyor"dur. Cevap verilebiliyorsa ortada bir hesap vardır, verilemiyorsa bir iddia. İkisi arasındaki farka kanıt zinciri denir.
+
+## Zincirin dört halkası
+
+- **Faaliyet kaydı.** Yakıt, elektrik, hammadde: ne kadar, nerede, ne zaman tüketildiği. Kayıt yoksa hesap yoktur.
+- **Emisyon faktörü, sürümüyle.** Hangi faktör, hangi sürüm, hangi GWP setiyle çarpıldı? Sürüm yazılmadıysa sayı, o yılın modasıdır.
+- **Tedarikçi verisi.** Kapsam 3'ün girdisi e-posta ekinde değil, kimden ve ne zaman geldiği belli bir kayıttadır.
+- **Değişiklik ve dışa aktarma kaydı.** Sayıyı kimin, ne zaman değiştirdiği ve çıktının kime, hangi biçimde verildiği. Zincir, sayının etrafında değil, sayının tarihinde tutulur.
+
+## Zincirin koptuğu yer
+
+Zincir genelde tek bir halkadan kopar: sürümsüz faktör. Üç yıl önce doğru olan faktörle bugün hesap yapılıyor ve kimse fark etmiyor, çünkü faktörün nerede durduğu hiçbir yerde yazmıyor. Ya da tedarikçi verisi: "mailde vardı" deniyor, mail bulunamıyor.
+
+Biz bu zinciri UpcyCarbon'da kuruyoruz: her emisyon bir faaliyet kaydına, bir faktöre ve bir GWP setine bağlıdır; düzenlemeler de dışa aktarmalar da kimin, ne zaman yaptığıyla kayda geçer. Ürün ayak izleri EPD'ye hazır bir yapıda, openLCA ile hizalı hesaplanır. Denetimde açılan şey bir tablo değil, zincirin kendisidir.

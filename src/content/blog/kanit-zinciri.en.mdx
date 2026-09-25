@@ -1,0 +1,23 @@
+export const metadata = {
+  title: "How a carbon figure gets audited: the chain of evidence",
+  description: "The auditor never looks at the number. They look behind it: the activity record, the emission factor, the GWP set, and who did what, when.",
+  date: "2026-09-10",
+  author: "member-1",
+  category: "compliance",
+  related: { kind: "product", id: "carbon" },
+};
+
+You walk into verification with the record, not a spreadsheet. The auditor never asks "what is the number"; they ask "where did the number come from". If you can answer, you have a calculation. If you cannot, you have a claim. The difference between the two is called the chain of evidence.
+
+## The four links
+
+- **The activity record.** Fuel, electricity, raw materials: how much, where, when. No record, no calculation.
+- **The emission factor, with its version.** Which factor, which version, multiplied with which GWP set? A number without a version is that year's fashion.
+- **Supplier data.** Scope 3 inputs live in a record that says whose they are and when they arrived, not in an inbox.
+- **The edit and export trail.** Who changed the figure, when, and what left the building in which format. The chain is kept around the number's history, not the number.
+
+## Where the chain snaps
+
+It usually snaps at a single link: the unversioned factor. A factor that was right three years ago is still in the maths today and nobody notices, because where the factor lives was never written down. Or supplier data: "it was in an email," and the email is gone.
+
+We build this chain on UpcyCarbon: each emission links to an activity record, a factor and a GWP set, and edits and exports are both recorded with who made them and when. Product footprints come out in an EPD-ready structure, aligned with openLCA. What opens in the audit is not a spreadsheet. It is the chain itself.
