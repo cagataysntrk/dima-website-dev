@@ -2,9 +2,7 @@ import type { L } from "@/content/types";
 import type { StaticPathname } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 import { homePage } from "@/content/pages/home";
-import { productsPage } from "@/content/pages/products";
 import { industriesPage } from "@/content/pages/industries";
-import { servicesPage } from "@/content/pages/services";
 import { aboutPage } from "@/content/pages/about";
 import { contactPage } from "@/content/pages/contact";
 import { careersPage } from "@/content/pages/careers";
@@ -21,9 +19,7 @@ type Meta = { title: L<string>; description: L<string> };
  */
 const pages: [StaticPathname, Meta][] = [
   ["/", homePage.meta],
-  ["/products", productsPage.meta],
   ["/industries", industriesPage.meta],
-  ["/services", servicesPage.meta],
   ["/about", aboutPage.meta],
   ["/contact", contactPage.meta],
   ["/careers", careersPage.meta],

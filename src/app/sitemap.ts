@@ -5,7 +5,7 @@ import { absoluteUrl, postUrl } from "@/lib/seo";
 
 /** Every page in the site map (brief §4), in both locales, each with its hreflang alternates. */
 const PAGES: StaticPathname[] = [
-  "/", "/products", "/industries", "/services", "/about", "/contact", "/careers", "/blog",
+  "/", "/solutions", "/industries", "/about", "/contact", "/careers", "/blog",
   "/legal/kvkk", "/legal/cerez-politikasi", "/legal/kullanim-kosullari",
 ];
 

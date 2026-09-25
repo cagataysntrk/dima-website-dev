@@ -9,6 +9,19 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-049 · Legacy product/service URLs redirect permanently and leave discovery surfaces
+**Decided:** keep the existing localized `/products` and `/services` route files so old
+bookmarks and external links do not break, but make both routes issue a permanent redirect to
+the canonical Product route (`/solutions`, localized through `getPathname`).
+
+The legacy routes are removed from the sitemap and OG-entry generator. The canonical Product
+route is explicitly present in the sitemap. Route definitions stay in next-intl routing only
+for backwards-compatible URL resolution; they are no longer independent discoverable
+marketing surfaces.
+
+**Reason:** one customer-facing product should have one canonical product story. Compatibility
+routes must not create parallel indexable remnants of the old portfolio.
+
 ### D-048 · Resources publish Dima-relevant knowledge; legacy portfolio posts stay archived
 **Decided:** keep the existing MDX blog engine and post URLs, but change the public surface to
 "Resources / Kaynaklar" and apply the Brand House content standard: every published item must
