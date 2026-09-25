@@ -43,7 +43,7 @@ export const homePage = {
       en: "Dima makes sense of your company's data sources and continuously monitors them; it detects important deviations and opportunities without waiting for you to ask, investigates why with evidence, and presents what can be done in a decision-ready form.",
     },
     primary: { tr: "Dima'yı deneyin", en: "Try Dima" },
-    primaryFallback: { tr: "Dima'yı keşfedin", en: "Explore Dima" },
+    primaryFallback: { tr: "Dima nasıl çalışır?", en: "See how Dima works" },
     secondary: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
   /**

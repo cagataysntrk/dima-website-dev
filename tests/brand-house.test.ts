@@ -35,6 +35,7 @@ test("Brand House V1.6 keeps a single active product", () => {
   expect(products[0]?.name).toBe("Dima");
   expect(products[0]?.domain).toBe(site.domain);
   expect(products[0]?.category.tr).toBe("Kurumsal Karar Zekâsı ve Optimizasyon Platformu");
+  expect(products[0]?.category.en).toBe("Decision Intelligence & Optimization Platform");
 });
 
 test("Company Brain keeps one state model across two lenses and chat stays contextual", () => {

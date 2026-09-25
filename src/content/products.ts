@@ -61,7 +61,7 @@ export const products: readonly Product[] = [
     hasOwnSite: true,
     domain: "https://usedima.com",
     depth: "standalone",
-    category: { tr: "Kurumsal Karar Zekâsı ve Optimizasyon Platformu", en: "Enterprise Decision Intelligence and Optimization Platform" },
+    category: { tr: "Kurumsal Karar Zekâsı ve Optimizasyon Platformu", en: "Decision Intelligence & Optimization Platform" },
     oneLiner: {
       tr: "Şirket verisini bir araya getirir; olan biteni sürekli izler, önemli sapma ve fırsatları fark eder, nedenini kanıtlarıyla araştırır ve karara hazırlar.",
       en: "Connects company data, continuously monitors what is happening, detects important deviations and opportunities, investigates why with evidence, and prepares decisions.",
