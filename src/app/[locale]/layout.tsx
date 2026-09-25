@@ -42,7 +42,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { template: "%s | UpcyTech", default: "UpcyTech" },
+  title: { template: "%s | Dima", default: "Dima" },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -73,7 +73,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} data-brand="upcytech" data-density="comfortable" className={`${GeistSans.variable} ${geistItalic.variable}`}
+    <html lang={locale} data-brand="dima" data-density="comfortable" className={`${GeistSans.variable} ${geistItalic.variable}`}
           suppressHydrationWarning>
       <head>
         {/* A plain <script> here never runs on client navigation, so Next flags it. next/script

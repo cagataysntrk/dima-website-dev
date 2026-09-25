@@ -9,6 +9,22 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-050 · Root brand, Careers and legal site references align to Dima
+**Decided:** the locale root now renders the Dima design-system brand scope and uses Dima in
+the global metadata title template. Careers is rewritten around the actual single-product
+work — decision intelligence, Company Brain, semantic/data/AI/platform engineering — rather
+than the retired ERP/carbon/trade portfolio.
+
+Legal ownership is **not** renamed: UpcyTech Teknoloji A.Ş. remains the data controller and
+legal operator, and the existing confirmed company email/address/MERSİS details remain.
+Only site-facing facts that became inaccurate are updated: usedima.com replaces upcytech.com
+as the website domain, the terms identify Dima as the operated site, and the obsolete list of
+legacy product domains is removed from the external-links clause. Legal texts remain subject
+to counsel review as already stated in the file.
+
+**Reason:** customer-facing brand and discoverability must be internally consistent without
+falsifying or prematurely changing the legal entity.
+
 ### D-049 · Legacy product/service URLs redirect permanently and leave discovery surfaces
 **Decided:** keep the existing localized `/products` and `/services` route files so old
 bookmarks and external links do not break, but make both routes issue a permanent redirect to

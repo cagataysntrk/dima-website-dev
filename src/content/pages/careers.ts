@@ -1,83 +1,106 @@
-import { copyNeeded, needed, type L, type Point } from "../types";
+import type { L, Point } from "../types";
 
 /**
- * /careers. The design system's corporate house leaves the employer brand blank on purpose
- * ("none of this may be inferred") and names the question that makes the rest believable:
- * what you honestly do not offer. So each of its four questions is a visible slot.
+ * /careers. Employer copy follows the current single-product focus without inventing
+ * benefits, working conditions or open roles that the company has not confirmed.
  */
 export const careersPage = {
   meta: {
-    title: { tr: "Kariyer: beş kişilik bir ekipte çalışmak", en: "Careers: working in a team of five" },
+    title: { tr: "Kariyer: Dima'yı geliştiren ekibe katılın", en: "Careers: join the team building Dima" },
     description: {
-      tr: "UpcyTech'te çalışmak: beş kişilik bir ekip, üreticiler için yazılım, açık pozisyonlar ve işe alım süreci. Neyi sunduğumuzu ve neyi sunmadığımızı açıkça yazıyoruz.",
-      en: "Working at UpcyTech: a team of five building software for manufacturers, open roles and the hiring process. We say plainly what we offer and what we do not.",
+      tr: "Dima'yı geliştiren beş kişilik ürün ve teknoloji ekibinin çalışma biçimi, açık pozisyonları ve işe alım süreci.",
+      en: "How the five-person product and technology team building Dima works, current openings and the hiring process.",
     },
   },
   breadcrumb: { home: { tr: "Ana sayfa", en: "Home" }, self: { tr: "Kariyer", en: "Careers" } },
   hero: {
-    title: { tr: "Beş kişilik bir ekipte çalışmak.", en: "Working in a team of five." },
+    title: { tr: "Şirket beynini inşa eden küçük bir ekipte çalışmak.", en: "Working in a small team building a company brain." },
     lede: {
-      tr: "Üreticiler için ERP, karbon raporlaması, veri analizi ve dış ticaret yazılımı geliştiriyoruz. Aşağıda burada çalışmanın nasıl bir şey olduğunu, neyi sunduğumuzu ve neyi sunmadığımızı açıkça yazıyoruz.",
-      en: "We build ERP, carbon reporting, analytics and trade software for manufacturers. Below is what working here is like, what we offer, and what we do not.",
+      tr: "Dima'da şirket verisini bağlayan, önemli değişimleri izleyen, nedenlerini kanıtlarıyla araştıran ve karar akışına taşıyan bir ürün geliştiriyoruz. Küçük ekipte ürün, veri, backend, frontend ve müşteri problemi birbirinden uzak katmanlar değil.",
+      en: "At Dima we are building a product that connects company data, monitors important change, investigates causes with evidence and moves work into the decision flow. In a small team, product, data, backend, frontend and the customer problem are not distant layers.",
     },
   },
   why: {
     title: { tr: "Neden burada çalışmalısınız, neden çalışmamalısınız", en: "Why work here, and why not" },
     intro: {
-      tr: "Beş kişilik bir şirket herkese uymaz. Karar vermeden önce ikisini de bilin.",
-      en: "A five-person company does not suit everyone. Know both sides before you decide.",
+      tr: "Beş kişilik bir ürün şirketi herkese uymaz. Karar vermeden önce işin iki tarafını da bilin.",
+      en: "A five-person product company does not suit everyone. Know both sides before you decide.",
     },
     items: {
-      // Employer voice, drafted for the founders to correct: nothing here may promise
-      // what a five-person company cannot keep.
       tr: [
-        { title: "İşin kendisi", body: "Üreticinin sahasıyla kasası arasına giren yazılımı yazıyoruz: ERP, karbon hesabı, veri analizi, dış ticaret. Yazdığınız kod, denetime girecek bir hesabın parçası olur." },
-        { title: "Büyük bir şirketin veremediği", body: "Beş kişide unvan değil iş vardır: müşteriyle konuşanla kodu yazan aynı kişidir, kararlar katmanlarda değil işin başında alınır." },
-        { title: "Sunmadıklarımız", body: "Kurumsal merdiveni, hazır süreçleri ve kalabalıkta kaybolma konforunu sunmuyoruz. Küçük ekipte iş de görünür, eksik de." },
-        { title: "Burada kimler iyi iş çıkarır", body: "Belirsizlikte yolunu bulan, sahaya girmekten çekinmeyen ve yazdığı kodun denetime gireceğini bilen kişiler; unvan değil, yapılan iş konuşur." },
+        {
+          title: "İşin kendisi",
+          body: "Dağınık şirket verisini anlamlandıran, finding ve evidence üreten, finans ve üretim gibi gerçek iş alanlarında kullanılan bir karar ürünü üzerinde çalışırsınız. Yaptığınız değişiklik ürün davranışına doğrudan dokunur.",
+        },
+        {
+          title: "Küçük ekibin avantajı",
+          body: "Ürün kararının neden alındığını görebilir, teknik sonucu müşteri problemiyle doğrudan ilişkilendirebilirsiniz. Sorumluluk katmanlar arasında kaybolmaz.",
+        },
+        {
+          title: "Sunmadıklarımız",
+          body: "Büyük şirketin hazır süreçlerini, dar görev sınırlarını veya kalabalık bir organizasyonun tamponunu sunmuyoruz. Küçük ekipte yapılan iş de eksik kalan iş de görünür.",
+        },
+        {
+          title: "Burada kimler iyi iş çıkarır",
+          body: "Belirsiz bir problemi parçalayabilen, kök nedeni arayan, dokümantasyon ve test disiplinini önemseyen ve ürün kararının teknik etkisini takip eden kişiler.",
+        },
       ],
       en: [
-        { title: "The work itself", body: "We write the software between a manufacturer's floor and its books: ERP, carbon accounting, analytics, trade. The code you write becomes part of a calculation that walks into audits." },
-        { title: "What a large company cannot offer", body: "In five people there are jobs, not titles: whoever talks to the customer writes the code, and decisions are made where the work starts, not three layers up." },
-        { title: "What we do not offer", body: "No corporate ladder, no ready-made processes, no comfort of disappearing into a crowd. In a small team the work is visible, and so is what's missing." },
-        { title: "Who does well here", body: "People who find their way in ambiguity, don't shy from the shop floor, and know their code walks into audits. The work talks, not the title." },
+        {
+          title: "The work itself",
+          body: "You work on a decision product that connects fragmented company data, produces findings and evidence, and operates in real domains such as finance and manufacturing. Your changes touch product behavior directly.",
+        },
+        {
+          title: "What a small team gives you",
+          body: "You can see why a product decision was made and connect the technical result directly to the customer problem. Responsibility does not disappear between layers.",
+        },
+        {
+          title: "What we do not offer",
+          body: "We do not offer the ready-made processes, narrow role boundaries or organisational buffers of a large company. In a small team, both finished work and missing work are visible.",
+        },
+        {
+          title: "Who does well here",
+          body: "People who can break down ambiguous problems, look for root causes, care about documentation and tests, and follow the technical consequences of product decisions.",
+        },
       ],
     } satisfies L<Point[]>,
   },
   how: {
     title: { tr: "Nasıl çalışıyoruz", en: "How we work" },
     intro: {
-      tr: "Kendi ürünlerimizi yazıyor ve işletiyoruz. Kullandığımız araçlar ve çalışma düzenimiz.",
-      en: "We write and run our own products. The tools we use, and how we organise the work.",
+      tr: "Dima'yı ürün olarak geliştiriyor ve işletiyoruz. Teknoloji yığını zamanla değişebilir; değişmeyen beklenti, problemi kök neden seviyesinde çözmek ve değişikliği test edilebilir bırakmak.",
+      en: "We build and operate Dima as a product. The technology stack can evolve; the constant expectation is to solve problems at root-cause level and leave changes testable.",
     },
     facts: {
       tr: [
-        { label: "Teknoloji", value: "TypeScript, Next.js, NestJS, Prisma ve PostgreSQL; Docker ile dağıtım; paket yöneticisi Bun" },
+        { label: "Ürün", value: "Dima — kurumsal karar zekâsı ve optimizasyon platformu" },
+        { label: "Çalışma alanları", value: "Ürün, frontend, backend, veri/semantik katman, AI/agentic akışlar ve platform mühendisliği" },
         { label: "Diller", value: "Türkçe ve İngilizce" },
-        { label: "Çalışma düzeni", value: "Çalışma düzeni görüşmede netleşir; saha işleri sahada yapılır." },
-        { label: "Beklentiler", value: "Sahiplenme ve hızlı karar bekliyoruz; saatler ve karar düzeni görüşmede netleşir." },
+        { label: "Mühendislik ilkesi", value: "Prompt/regex yaması yerine kök neden; değişiklikle birlikte test ve dokümantasyon" },
+        { label: "Çalışma düzeni", value: "Pozisyona göre çalışma düzeni görüşmede netleşir." },
       ],
       en: [
-        { label: "Technology", value: "TypeScript, Next.js, NestJS, Prisma and PostgreSQL; Docker for deployment; Bun as the package manager" },
+        { label: "Product", value: "Dima — enterprise decision intelligence and optimization platform" },
+        { label: "Areas of work", value: "Product, frontend, backend, data/semantic layer, AI/agentic flows and platform engineering" },
         { label: "Languages", value: "Turkish and English" },
-        { label: "Working arrangement", value: "Working arrangements are settled in the interview; site work happens on site." },
-        { label: "Expectations", value: "We expect ownership and fast decisions; hours and how decisions run are settled in the interview." },
+        { label: "Engineering principle", value: "Root-cause fixes instead of prompt/regex patches, with tests and documentation alongside the change" },
+        { label: "Working arrangement", value: "The working arrangement is clarified for each role during the interview." },
       ],
     },
   },
   teamwork: {
     title: { tr: "Kiminle çalışacaksınız", en: "Who you'd work with" },
     intro: {
-      tr: "Beş kişiyiz. Sizinle konuşan kişi, işi yapan kişidir; hem başvuruda hem işte.",
-      en: "We are five people. The person you talk to is the person who does the work, in hiring as well as on the job.",
+      tr: "Beş kişilik çekirdek ekipte ürün, finans, iş geliştirme, teknoloji ve yazılım sorumlulukları doğrudan ekip içinde.",
+      en: "In the five-person core team, product, finance, business development, technology and software responsibilities sit directly inside the team.",
     },
     photo: { tr: "Fotoğraf", en: "Photo" },
   },
   roles: {
     title: { tr: "Açık pozisyonlar", en: "Open roles" },
     none: {
-      tr: "Şu anda ilan ettiğimiz açık bir pozisyon yok. Yine de birlikte çalışmak istiyorsanız, özgeçmişinizi gönderin.",
-      en: "We have no advertised openings right now. If you would still like to work with us, send your CV.",
+      tr: "Şu anda ilan ettiğimiz açık bir pozisyon yok. Yine de birlikte çalışmak istiyorsanız iletişim formunda Kariyer konusunu seçip kendinizi ve yaptığınız işi paylaşabilirsiniz.",
+      en: "We have no advertised openings right now. If you would still like to work with us, choose Careers in the contact form and share a short introduction and your work.",
     },
     labels: {
       responsibilities: { tr: "Ne yapacaksınız", en: "What you will do" },
@@ -88,21 +111,21 @@ export const careersPage = {
   hiring: {
     title: { tr: "İşe alım süreci", en: "How we hire" },
     intro: {
-      tr: "Adımlar ve her birinin yaklaşık süresi.",
-      en: "The steps, and roughly how long each takes.",
+      tr: "Mevcut süreçte kullandığımız adımlar ve yaklaşık süreleri.",
+      en: "The steps in the current process and their approximate duration.",
     },
     duration: { tr: "Süre", en: "Duration" },
   },
   cta: {
-    title: { tr: "Özgeçmişinizi gönderin", en: "Send us your CV" },
+    title: { tr: "Yaptığınız işi bize gösterin.", en: "Show us the work you do." },
     body: {
-      tr: "İletişim formunda konu olarak Kariyer'i seçin, kendinizi birkaç cümleyle anlatın ve özgeçmişinizin bağlantısını (LinkedIn, GitHub ya da kişisel siteniz) ekleyin.",
-      en: "Choose Careers as the topic on the contact form, tell us about yourself in a few sentences, and add a link to your CV (LinkedIn, GitHub or your own site).",
+      tr: "İletişim formunda Kariyer'i seçin; kendinizi birkaç cümleyle anlatın ve LinkedIn, GitHub, portföy ya da özgeçmiş bağlantınızı ekleyin.",
+      en: "Choose Careers in the contact form, introduce yourself briefly, and add a LinkedIn, GitHub, portfolio or CV link.",
     },
-    action: { tr: "Özgeçmiş gönderin", en: "Send your CV" },
+    action: { tr: "Kariyer için yazın", en: "Write to us about careers" },
     kvkk: {
       tr: "Başvurular, KVKK aydınlatma metnindeki esaslara göre işlenir; adaylara özel ayrı bir metin yayımlanmamıştır.",
       en: "Applications are processed under our privacy notice (KVKK); no separate candidate notice is published.",
     },
   },
-};
+} as const;

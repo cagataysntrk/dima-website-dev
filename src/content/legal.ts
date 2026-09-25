@@ -30,7 +30,7 @@ export const legalDocs = {
       tr: "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında UpcyTech'in kişisel verileri nasıl işlediğine dair aydınlatma metni.",
       en: "How UpcyTech processes personal data, under Türkiye's Personal Data Protection Law No. 6698 (KVKK).",
     },
-    updated: "2026-09-17",
+    updated: "2026-09-25",
     sections: [
       {
         id: "veri-sorumlusu",
@@ -138,10 +138,10 @@ export const legalDocs = {
     href: "/legal/cerez-politikasi",
     title: { tr: "Çerez politikası", en: "Cookie policy" },
     description: {
-      tr: "upcytech.com'un kullandığı çerezler ve benzeri teknolojiler, ve tercihlerinizi nasıl değiştirebileceğiniz.",
-      en: "The cookies and similar technologies upcytech.com uses, and how to change your choices.",
+      tr: "usedima.com'un kullandığı çerezler ve benzeri teknolojiler, ve tercihlerinizi nasıl değiştirebileceğiniz.",
+      en: "The cookies and similar technologies usedima.com uses, and how to change your choices.",
     },
-    updated: "2026-09-17",
+    updated: "2026-09-25",
     sections: [
       {
         id: "cerez-nedir",
@@ -213,22 +213,22 @@ export const legalDocs = {
     href: "/legal/kullanim-kosullari",
     title: { tr: "Kullanım koşulları", en: "Terms of use" },
     description: {
-      tr: "upcytech.com'un kullanım koşulları.",
-      en: "The terms of use for upcytech.com.",
+      tr: "usedima.com'un kullanım koşulları.",
+      en: "The terms of use for usedima.com.",
     },
-    updated: "2026-09-17",
+    updated: "2026-09-25",
     sections: [
       {
         id: "kapsam",
         title: { tr: "Kapsam", en: "Scope" },
         body: {
           tr: [
-            "UpcyTech web sitesini kullanarak bu Kullanım Koşullarını kabul etmiş olursunuz. Kabul etmiyorsanız siteyi kullanmayın.",
+            "UpcyTech Teknoloji A.Ş. tarafından işletilen Dima web sitesini (usedima.com) kullanarak bu Kullanım Koşullarını kabul etmiş olursunuz. Kabul etmiyorsanız siteyi kullanmayın.",
             "Siteyi kullanırken geçerli yasalara uyarsınız; başkalarının haklarını ihlal etmez, platformu kötüye kullanmaz, sistemlere zarar vermezsiniz. Siteyi yasa dışı veya yetkisiz amaçlarla kullanamazsınız.",
             "Siteyi ve içeriğini değiştirme, askıya alma veya sonlandırma hakkımız saklıdır; önemli değişikliklerde önceden bildirmeye çalışırız.",
           ],
           en: [
-            "By using the UpcyTech website you accept these Terms of Use. If you do not accept them, do not use the site.",
+            "By using the Dima website (usedima.com), operated by UpcyTech Teknoloji A.Ş., you accept these Terms of Use. If you do not accept them, do not use the site.",
             "On this site you comply with applicable laws; you do not infringe the rights of others, misuse the platform, or harm its systems. You may not use the site for illegal or unauthorised purposes.",
             "We reserve the right to change, suspend or discontinue the site and its content, and we try to give prior notice of significant changes.",
           ],
@@ -239,10 +239,10 @@ export const legalDocs = {
         title: { tr: "Fikri mülkiyet", en: "Intellectual property" },
         body: {
           tr: [
-            "Sitedeki tüm içerik, logolar, ticari markalar ve diğer fikri mülkiyet hakları UpcyTech'e veya lisans verenlere aittir. Önceden yazılı izin almadan kopyalayamaz, değiştiremez, dağıtamaz veya ticari amaçla kullanamazsınız.",
+            "Sitedeki tüm içerik, Dima markasına ilişkin materyaller, logolar ve diğer fikri mülkiyet hakları UpcyTech Teknoloji A.Ş.'ye veya ilgili lisans verenlere aittir. Önceden yazılı izin almadan kopyalayamaz, değiştiremez, dağıtamaz veya ticari amaçla kullanamazsınız.",
           ],
           en: [
-            "All content, logos, trademarks and other intellectual property rights on this site belong to UpcyTech or its licensors. You may not copy, modify, distribute or use them commercially without prior written permission.",
+            "All content, Dima brand materials, logos and other intellectual property rights on this site belong to UpcyTech Teknoloji A.Ş. or the relevant licensors. You may not copy, modify, distribute or use them commercially without prior written permission.",
           ],
         },
       },
@@ -263,10 +263,10 @@ export const legalDocs = {
         title: { tr: "Başka sitelere bağlantılar", en: "Links to other sites" },
         body: {
           tr: [
-            "Site, ürünlerimizin kendi sitelerine bağlanır: upcyman.com, getdima.com ve upcycarbon.com UpcyTech'e aittir. Bunların dışındaki bağlantılar yalnızca kolaylık içindir; bağlanılan sitenin içeriğinden ve gizlilik uygulamalarından o sitenin sahibi sorumludur.",
+            "Site, Dima uygulamasına veya üçüncü taraf kaynaklara bağlantılar içerebilir. Harici bağlantılar kolaylık amacıyla sunulur; bağlanılan sitenin içeriğinden ve gizlilik uygulamalarından ilgili sitenin sahibi sorumludur.",
           ],
           en: [
-            "This site links to our products' own sites: upcyman.com, getdima.com and upcycarbon.com belong to UpcyTech. Any other links are for convenience only; their owners are responsible for their content and privacy practices.",
+            "This site may link to the Dima application or to third-party resources. External links are provided for convenience; their owners are responsible for their content and privacy practices.",
           ],
         },
       },
