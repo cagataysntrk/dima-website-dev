@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import {
   Activity,
-  BarChart3,
   Building2,
   Database,
   Factory,
@@ -368,33 +367,41 @@ function CompanyMap({
         const Icon = ICONS[lobe.id];
         const pos = GRAPH_POSITIONS[lobe.id];
         const active = lobe.id === activeId;
-        return (
+        const card = (
+          <span className="flex items-center gap-2">
+            <span className={compact ? "flex size-5 shrink-0 items-center justify-center rounded-control bg-raised" : "flex size-8 shrink-0 items-center justify-center rounded-control bg-raised"}>
+              <Icon aria-hidden="true" className={compact ? "size-3 text-brand-text" : "size-4 text-brand-text"} />
+            </span>
+            <span className="min-w-0">
+              <span className={compact ? "block truncate text-[0.65rem] font-medium text-ink" : "block truncate text-ui font-semibold text-ink"}>{lobe.shortLabel[locale]}</span>
+              {!compact && (
+                <span className="mt-0.5 flex items-center gap-1.5 text-micro text-muted">
+                  <span aria-hidden="true" className={statusDot(lobe.status)} />
+                  <span className="truncate">{lobe.statusLabel[locale]}</span>
+                </span>
+              )}
+            </span>
+          </span>
+        );
+        const className = [
+          "absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-card border text-left shadow-sm transition duration-160",
+          compact ? "min-w-[5.75rem] px-2 py-1.5" : "min-w-[9.5rem] px-3.5 py-3",
+          active ? "border-brand-text/50 bg-surface shadow-md" : STATUS_CLASS[lobe.status],
+        ].join(" ");
+        const style = { left: `${pos.x}%`, top: `${pos.y}%` };
+
+        return compact ? (
+          <div key={lobe.id} className={className} style={style}>{card}</div>
+        ) : (
           <button
             key={lobe.id}
             type="button"
             aria-pressed={active}
             onClick={() => onSelect?.(lobe.id)}
-            className={[
-              "absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-card border text-left shadow-sm transition duration-160",
-              compact ? "min-w-[7rem] px-2.5 py-2" : "min-w-[9.5rem] px-3.5 py-3",
-              active ? "border-brand-text/50 bg-surface shadow-md" : STATUS_CLASS[lobe.status],
-            ].join(" ")}
-            style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+            className={className}
+            style={style}
           >
-            <span className="flex items-center gap-2">
-              <span className={compact ? "flex size-6 shrink-0 items-center justify-center rounded-control bg-raised" : "flex size-8 shrink-0 items-center justify-center rounded-control bg-raised"}>
-                <Icon aria-hidden="true" className={compact ? "size-3.5 text-brand-text" : "size-4 text-brand-text"} />
-              </span>
-              <span className="min-w-0">
-                <span className={compact ? "block truncate text-micro font-medium text-ink" : "block truncate text-ui font-semibold text-ink"}>{lobe.shortLabel[locale]}</span>
-                {!compact && (
-                  <span className="mt-0.5 flex items-center gap-1.5 text-micro text-muted">
-                    <span aria-hidden="true" className={statusDot(lobe.status)} />
-                    <span className="truncate">{lobe.statusLabel[locale]}</span>
-                  </span>
-                )}
-              </span>
-            </span>
+            {card}
           </button>
         );
       })}
@@ -438,24 +445,35 @@ function SignalRail({
           <span className="font-mono text-micro text-brand-text">{todayItems.length}</span>
         </div>
         <div className="mt-3 space-y-2">
-          {visible.map((lobe) => (
-            <button
-              key={lobe.id}
-              type="button"
-              aria-pressed={lobe.id === activeId}
-              onClick={() => onSelect?.(lobe.id)}
-              className={[
-                "w-full rounded-control border p-2.5 text-left transition duration-160",
-                lobe.id === activeId ? "border-brand-text/40 bg-surface" : "border-hairline bg-canvas/40",
-              ].join(" ")}
-            >
-              <span className="flex items-center gap-2 text-micro font-medium text-ink">
-                <span aria-hidden="true" className={statusDot(lobe.status)} />
-                <span>{lobe.shortLabel[locale]}</span>
-              </span>
-              <span className="mt-1 block text-micro leading-relaxed text-muted">{lobe.finding.title[locale]}</span>
-            </button>
-          ))}
+          {visible.map((lobe) => {
+            const body = (
+              <>
+                <span className="flex items-center gap-2 text-micro font-medium text-ink">
+                  <span aria-hidden="true" className={statusDot(lobe.status)} />
+                  <span>{lobe.shortLabel[locale]}</span>
+                </span>
+                <span className="mt-1 block text-micro leading-relaxed text-muted">{lobe.finding.title[locale]}</span>
+              </>
+            );
+            const className = [
+              "w-full rounded-control border p-2.5 text-left transition duration-160",
+              lobe.id === activeId ? "border-brand-text/40 bg-surface" : "border-hairline bg-canvas/40",
+            ].join(" ");
+
+            return compact ? (
+              <div key={lobe.id} className={className}>{body}</div>
+            ) : (
+              <button
+                key={lobe.id}
+                type="button"
+                aria-pressed={lobe.id === activeId}
+                onClick={() => onSelect?.(lobe.id)}
+                className={className}
+              >
+                {body}
+              </button>
+            );
+          })}
         </div>
       </div>
 
