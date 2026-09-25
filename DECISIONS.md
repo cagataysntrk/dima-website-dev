@@ -9,6 +9,21 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-064 · OG Turkish glyph fallback stays fully local
+**Decided:** Open Graph generation must not depend on Satori's dynamic network font fallback.
+Fontsource `latin` and `latin-ext` WOFF subsets are registered as distinct font-family
+records (for serif, sans and mono) and used as explicit CSS fallback chains. The OG root also
+declares the active locale via `lang`.
+
+Previously both subsets were registered with the same family name and weight. Satori could
+select the Latin record while treating Turkish extended glyphs such as ğ/ş/İ/ı as missing,
+then attempted its dynamic external fallback during static generation. Network timeout only
+produced warnings and the build still completed, but it made builds noisy and network-
+dependent.
+
+**Reason:** production/static builds should be deterministic and offline-capable for the
+languages the site explicitly supports.
+
 ### D-063 · Final local typecheck regressions are closed
 **Decided:** the two remaining local TypeScript failures after dependency relinking are fixed
 at their source boundaries: Open Graph theme lookup uses the literal content-owned
