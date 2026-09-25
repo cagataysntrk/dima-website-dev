@@ -44,16 +44,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { template: `%s | ${site.name}`, default: site.name },
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-      { url: "/favicon_apple.png", type: "image/png" },
-    ],
+    icon: [{ url: "/products/dima-mark.png", type: "image/png" }],
+    apple: [{ url: "/products/dima-mark.png", type: "image/png" }],
   },
 };
 

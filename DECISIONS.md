@@ -9,6 +9,19 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-054 · Use the existing Dima mark asset consistently in chrome and metadata
+**Decided:** the source snapshot contains `public/products/dima-mark.png`; the earlier
+foundation pass referenced a non-existent `.webp` variant in nav/footer. Correct both chrome
+references to the real PNG and use the same mark for browser icon/apple-icon metadata instead
+of continuing to publish the legacy source-site favicon set.
+
+Do not import the donor product frontend's dark-square SVG icon yet. Its visual grammar is
+newer, but changing the actual brand mark needs a deliberate brand-asset decision rather than
+silently replacing a working Dima asset during structural refactor.
+
+**Reason:** fix a concrete broken-asset path now while keeping brand-asset replacement
+separate from architecture work.
+
 ### D-053 · Browser regression follows Company Brain, not the retired chat demo
 **Decided:** replace the homepage/product-page chat-demo browser contract with a Company Brain
 contract. Browser tests now verify that selecting a lobe changes the visible finding/evidence,
