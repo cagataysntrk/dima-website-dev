@@ -22,8 +22,8 @@ export interface BrainLobe {
 export const companyBrain = {
   eyebrow: { tr: "Company Brain", en: "Company Brain" },
   title: {
-    tr: "Dashboard değil, şirketin yaşayan haritası.",
-    en: "Not a dashboard. A living map of the company.",
+    tr: "Şirketin yaşayan haritası, karar yüzeyleriyle birlikte.",
+    en: "A living map of the company, connected to decision surfaces.",
   },
   intro: {
     tr: "Her lob gerçek bir iş alanını; her node müşteri, fatura, makine, sipariş veya başka bir şirket varlığını temsil eder. Dima ilişkileri ve zaman içindeki değişimleri birlikte izler; önemli bir sinyal oluştuğunda ilgili noktayı öne çıkarır ve araştırmayı aynı bağlamda derinleştirir.",
@@ -42,8 +42,68 @@ export const companyBrain = {
     },
   },
   heroAria: {
-    tr: "Finans, üretim, satış, satın alma ve kalite loblarından oluşan Company Brain önizlemesi",
-    en: "Company Brain preview with finance, manufacturing, sales, procurement and quality lobes",
+    tr: "Dima ürün yüzeyi içinde Company Brain, Dima Today sinyalleri ve şirket haritası önizlemesi",
+    en: "Dima product surface preview with Company Brain, Dima Today signals and the company map",
+  },
+  dashboard: {
+    productLabel: { tr: "Dima", en: "Dima" },
+    search: { tr: "Şirketinizde neyi inceleyelim?", en: "What should we inspect in your company?" },
+    live: { tr: "Canlı", en: "Live" },
+    overview: { tr: "Ana ekran", en: "Overview" },
+    companyMap: { tr: "Şirket haritası", en: "Company map" },
+    signals: { tr: "Sinyaller", en: "Signals" },
+    investigations: { tr: "Araştırmalar", en: "Investigations" },
+    decisions: { tr: "Kararlar", en: "Decisions" },
+    dataSources: { tr: "Veri kaynakları", en: "Data sources" },
+    heading: { tr: "Şirketiniz şu anda nasıl çalışıyor?", en: "How is your company operating right now?" },
+    subheading: {
+      tr: "Dima veriyi bağlar, ilişkileri izler ve karar gerektiren değişimleri aynı bağlamda öne çıkarır.",
+      en: "Dima connects data, monitors relationships and surfaces changes that require a decision in the same context.",
+    },
+    mapTitle: { tr: "Company Brain", en: "Company Brain" },
+    mapHelper: { tr: "İlişkiler, sinyaller ve etki", en: "Relationships, signals and impact" },
+    todayTitle: { tr: "Öne çıkan sinyaller", en: "Priority signals" },
+    contextTitle: { tr: "Seçili bağlam", en: "Selected context" },
+    evidenceTitle: { tr: "Evidence", en: "Evidence" },
+    nextTitle: { tr: "Sıradaki karar adımı", en: "Next decision step" },
+    sourcesTitle: { tr: "Bağlı kaynaklar", en: "Connected sources" },
+    sources: {
+      tr: ["ERP", "CRM", "Excel / CSV", "Veritabanı", "API"],
+      en: ["ERP", "CRM", "Excel / CSV", "Database", "API"],
+    },
+    layers: {
+      tr: [
+        { title: "Veri katmanı", body: "Kaynaklar · tablolar · akışlar" },
+        { title: "Bağlantı katmanı", body: "Entity'ler · ilişkiler · zaman" },
+        { title: "Analiz katmanı", body: "Finding · evidence · nedenler" },
+        { title: "Karar katmanı", body: "Seçenekler · etkiler · aksiyon" },
+      ],
+      en: [
+        { title: "Data layer", body: "Sources · tables · flows" },
+        { title: "Relationship layer", body: "Entities · relationships · time" },
+        { title: "Analysis layer", body: "Finding · evidence · causes" },
+        { title: "Decision layer", body: "Options · impact · action" },
+      ],
+    },
+    outputs: {
+      tr: ["Sinyaller", "Araştırmalar", "Kararlar", "Aksiyonlar"],
+      en: ["Signals", "Investigations", "Decisions", "Actions"],
+    },
+    metrics: {
+      tr: [
+        { label: "Aktif veri kaynağı", value: "12" },
+        { label: "Öncelikli finding", value: "4" },
+        { label: "Açık investigation", value: "3" },
+        { label: "Karar bekliyor", value: "2" },
+      ],
+      en: [
+        { label: "Active data sources", value: "12" },
+        { label: "Priority findings", value: "4" },
+        { label: "Open investigations", value: "3" },
+        { label: "Awaiting decision", value: "2" },
+      ],
+    },
+    sampleBadge: { tr: "Örnek şirket · seed veri", en: "Sample company · seeded data" },
   },
   lensLabel: { tr: "Company Brain görünümü", en: "Company Brain view" },
   lenses: {
