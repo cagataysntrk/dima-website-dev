@@ -20,12 +20,13 @@ import { consentCopy } from "@/content/consent";
 import { solutionsPage } from "@/content/pages/solutions";
 import { chatDemoCopy } from "@/content/dima-demo";
 import { problemMatcherCopy } from "@/content/problem-matcher";
+import { companyBrain } from "@/content/company-brain";
 
 /** Every content module. Add a new one here when a page is built. */
 const CONTENT = {
   homePage, aboutPage, contactPage, careersPage, blogPage, categories, hiringSteps, roles, team,
   legalDocs, drafterFacts, legalChrome, consentCopy, products, productsPage, industries, frameworks, industriesPage,
-  services, clientNeeds, servicesPage, solutionsPage, chatDemoCopy, problemMatcherCopy, site,
+  services, clientNeeds, servicesPage, solutionsPage, chatDemoCopy, problemMatcherCopy, companyBrain, site,
 } as const;
 
 test("service copy keeps the handover vocabulary: devir, never teslim", () => {
@@ -50,6 +51,17 @@ test("every dated pressure has a valid ISO date and a source in both languages",
     .map((p) => `${s.id}: ${p.date}`));
   expect(bad, bad.join("\n")).toEqual([]);
 });
+
+test("Company Brain relations reference real lobes and lobe ids are unique", () => {
+  const ids = companyBrain.lobes.map((lobe) => lobe.id);
+  expect(new Set(ids).size).toBe(ids.length);
+  const idSet = new Set(ids);
+  const bad = companyBrain.relations
+    .filter((relation) => !idSet.has(relation.from) || !idSet.has(relation.to))
+    .map((relation) => `${relation.from} → ${relation.to}`);
+  expect(bad, bad.join("\n")).toEqual([]);
+});
+
 
 type Leaf = { path: string; text: string };
 

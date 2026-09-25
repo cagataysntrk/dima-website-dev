@@ -2,27 +2,26 @@ import type { CSSProperties, ReactNode } from "react";
 import { Section, Stack, Text } from "@upcytech/ui";
 import { HeroTitle } from "@/components/home/hero-title";
 import { HeroField } from "@/components/home/hero-field";
-import { HeroGlobe } from "@/components/home/hero-globe";
 
 const delay = (ms: number) => ({ "--enter-delay": `${ms}ms` }) as CSSProperties;
 
 /**
- * The home hero: headline, lede and actions over the Pixel Blast field, with the globe to
- * their right from lg up, running off the right edge (D-038). It pulls up under the floating
- * nav (-mt / pt by --nav-offset) so the field runs behind the glass.
+ * The home hero: headline, lede and actions over the existing Pixel Blast field, with a
+ * product-specific visual to their right from lg up. The layout, spacing and performance
+ * posture stay intact while the old globe is replaced by the Company Brain preview.
  *
- * Below lg the globe is left out: a second WebGL canvas would push the headline down and cost
- * the most on the smallest, weakest devices.
+ * Below lg the visual is left out so the headline remains the first, lightest experience.
  *
  * The text layer lets clicks through to the field — its ripples answer a click — and only the
  * headline (kinetic hover), the lede (selection) and the actions take the pointer back.
  */
-export function HomeHero({ title, accents, lede, actions }: {
+export function HomeHero({ title, accents, lede, actions, visual }: {
   title: string;
   /** Title words set in italic, faded brand blue. */
   accents: readonly string[];
   lede: string;
   actions: ReactNode;
+  visual: ReactNode;
 }) {
   return (
     <div className="relative isolate -mt-(--nav-offset) flex min-h-[min(72svh,56rem)] flex-col justify-center overflow-hidden pt-(--nav-offset) sm:min-h-[min(78svh,56rem)] lg:min-h-[min(88svh,56rem)]">
@@ -56,7 +55,9 @@ export function HomeHero({ title, accents, lede, actions }: {
                 </div>
               </Stack>
             </div>
-            <HeroGlobe className="hidden lg:col-span-5 lg:block" />
+            <div className="hidden lg:col-span-5 lg:block">
+              {visual}
+            </div>
           </div>
         </Section>
       </div>

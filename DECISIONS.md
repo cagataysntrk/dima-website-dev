@@ -9,6 +9,33 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-044 · Company Brain replaces the globe and single-product wheel as the home product model
+**Decided:** the home hero keeps its proven layout and background field, but the Stripe-style
+globe is no longer the product visual. The right-hand hero slot becomes a lightweight Company
+Brain preview, and the former single-product wheel becomes the interactive Company Brain
+experience.
+
+The experience has two lenses over the **same selected lobe and the same underlying content
+model**: Full Brain Form and Company Brain Map. Five top-level business domains are represented
+in this first marketing slice: accounting/finance, manufacturing, sales, procurement and
+quality. Selecting a lobe exposes its connected entities, a representative finding, the
+evidence categories inspected and the next decision step. Cross-domain relationships remain
+visible in map mode.
+
+The marketing surface uses semantic DOM + SVG and existing tokens rather than importing
+ReactFlow/XYFlow or a second UI system from the product repo. The product repo's graph work is
+a donor/reference for the later real entity-graph depth, not a dependency for this page.
+Visible examples are explicitly labelled representative/sample data; no static marketing
+interaction is presented as a live backend execution.
+
+**Performance/accessibility:** no new WebGL dependency, deterministic first render, keyboard
+buttons for both lens and lobe selection, reduced-motion-safe status pulses, and all
+user-visible copy remains in typed bilingual content.
+
+**Reason:** make the website itself explain the product's core mental model — company → lobe →
+entity/relationship → signal → finding → evidence/investigation → decision/action — without
+discarding the site's existing design system or performance posture.
+
 ### D-043 · Refactor the current site in place; do not rebuild it from scratch
 **Decided:** the public Dima website is developed from the exact UpcyTech production
 snapshot recorded in `SOURCE_BASELINE.md`. Existing layout, responsive behavior, motion,

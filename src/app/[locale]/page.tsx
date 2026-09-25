@@ -3,7 +3,6 @@ import { setRequestLocale } from "next-intl/server";
 import { Button } from "@upcytech/ui";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { products } from "@/content/products";
 import { industries } from "@/content/industries";
 import { teamForDisplay } from "@/content/team";
 import { getPosts } from "@/lib/blog";
@@ -12,8 +11,9 @@ import { homePage as copy } from "@/content/pages/home";
 import { HomeHero } from "@/components/home/home-hero";
 import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
 import {
-  LoopBand, ProductWheel, ReferenceStrip, SectorsSection,
+  LoopBand, ReferenceStrip, SectorsSection,
 } from "@/components/sections/home";
+import { CompanyBrainExperience, CompanyBrainHero } from "@/components/sections/company-brain";
 import { TeamRow } from "@/components/sections/team-row";
 import { CtaBand } from "@/components/sections/cta-band";
 import { pageMetadata } from "@/lib/seo";
@@ -32,10 +32,6 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
   const latest = (await getPosts(locale)).slice(0, 3);
-  // The master product is the only customer-facing product on the new site. Legacy portfolio
-  // data stays in content until the route-by-route consolidation phase.
-  const dima = products.find((p) => p.id === "analytics")!;
-
   return (
     <>
       <HomeHero
@@ -51,6 +47,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             </Button>
           </>
         }
+        visual={<CompanyBrainHero locale={locale} />}
       />
 
       <ReferenceStrip
@@ -58,20 +55,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         partners={copy.references.partners}
       />
 
-      <ProductWheel
-        locale={locale}
-        products={[dima]}
-        title={copy.productIndex.title[locale]}
-        labels={{
-          wheel: copy.productIndex.wheel[locale],
-          link: copy.productIndex.link[locale],
-          missingDesktop: copy.productIndex.missingDesktop[locale],
-          missingMobile: copy.productIndex.missingMobile[locale],
-        }}
-      />
-
-      {/* Chat-first and multi-product sections are removed in the brand-foundation pass.
-          Company Brain becomes the primary product experience in the next coherent phase. */}
+      <CompanyBrainExperience locale={locale} />
 
       <SectorsSection locale={locale} industries={industries} copy={copy.industries} />
 
