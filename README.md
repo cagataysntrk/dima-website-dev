@@ -1,7 +1,10 @@
-# upcytech.com
+# Dima website — development workspace
 
-The UpcyTech corporate site. Next.js (App Router), TypeScript strict, Tailwind v4 through
-the design system, next-intl with Turkish first. Bun only.
+Dima's public marketing-site refactor, built from the exact UpcyTech production snapshot
+recorded in `SOURCE_BASELINE.md`. The migration is intentionally in-place: existing layout,
+responsive behavior, tests, motion and design-system integration are preserved and adapted
+route by route. Next.js (App Router), TypeScript strict, Tailwind v4 through the design
+system, next-intl with Turkish first. Bun only.
 
 ## Local setup
 

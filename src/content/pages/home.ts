@@ -16,30 +16,30 @@ export interface Partner {
 export const homePage = {
   meta: {
     title: {
-      tr: "UpcyTech: üretimde verimlilik, süreç optimizasyonu ve yönetim sistemleri",
-      en: "UpcyTech: manufacturing efficiency, process optimization and management systems",
+      tr: "Dima — Şirketinizin denetim, optimizasyon ve karar merkezi",
+      en: "Dima — Your company's monitoring, optimization and decision center",
     },
     description: {
-      tr: "UpcyTech, üreticiler için üretim yönetim sistemleri, süreç optimizasyonu ve gelişmiş raporlama çözümleri geliştirir; fabrikalarda verimlilik ve operasyonel netlik sağlar.",
-      en: "UpcyTech builds enterprise manufacturing management systems, process optimization, and advanced reporting solutions, delivering efficiency and operational clarity.",
+      tr: "Dima; finans, muhasebe, üretim ve diğer veri kaynaklarını birlikte anlamlandırır, şirketi sürekli izler, önemli sapma ve fırsatların nedenini kanıtlarıyla araştırıp karara hazırlar.",
+      en: "Dima connects finance, accounting, manufacturing and other company data, continuously monitors what matters, investigates the causes of risks and opportunities with evidence, and prepares decisions.",
     },
   },
   hero: {
     title: {
-      tr: "Üretimde verimlilik, süreç optimizasyonu ve akıllı yönetim sistemleri.",
-      en: "Manufacturing efficiency, process optimization, and intelligent management systems.",
+      tr: "Şirketinizde ne oluyor, neden oluyor, ne yapılmalı?",
+      en: "What is happening in your company, why, and what should happen next?",
     },
-    /** Words of the title set in italic and faded brand blue — exactly as they appear in it. */
+    /** Accent only meaningful words; the sentence still carries the message without the effect. */
     accents: {
-      tr: ["verimlilik", "optimizasyonu"],
-      en: ["efficiency", "optimization"],
+      tr: ["neden", "yapılmalı"],
+      en: ["why", "next"],
     },
     lede: {
-      tr: "Üretim süreçlerinde verimlilik ve optimizasyon sağlayan kurumsal yönetim sistemleri ve gelişmiş raporlama çözümleri geliştiriyoruz. Standart yazılımların yetersiz kaldığı noktalarda süreçlerinize özel sistemler kurarak karar alma mekanizmalarınızı güçlendiriyoruz.",
-      en: "We build enterprise management systems and advanced reporting solutions that drive manufacturing process efficiency and optimization. When standard software falls short, we build tailored systems to empower your operational decision-making.",
+      tr: "Dima şirketinizin denetim, optimizasyon ve karar merkezidir. Finans, muhasebe, üretim ve diğer veri kaynaklarını birlikte anlamlandırır; şirketi sürekli izler, önemli sapma, risk ve fırsatları sizin sormanızı beklemeden fark eder; nedenini araştırır ve kanıtlarıyla karara hazırlar.",
+      en: "Dima is your company's monitoring, optimization and decision center. It connects finance, accounting, manufacturing and other data; continuously watches the business, detects important deviations, risks and opportunities without waiting for a prompt, investigates why they happened, and prepares the evidence for a decision.",
     },
-    primary: { tr: "Çözümleri inceleyin", en: "Explore solutions" },
-    secondary: { tr: "Bize ulaşın", en: "Talk to us" },
+    primary: { tr: "Dima'yı keşfedin", en: "Explore Dima" },
+    secondary: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
   /**
    * The partner strip, as on upcyman.com: institutions and programmes the company works with
@@ -85,22 +85,22 @@ export const homePage = {
     lineLink: { tr: "Ayrıntılar", en: "Details" },
   },
   productIndex: {
-    title: { tr: "Ürünlerimiz", en: "Our products" },
-    /** The product wheel: its accessible name, the link under the mockups, missing screens. */
-    wheel: { tr: "Ürün seçin", en: "Choose a product" },
-    link: { tr: "Ürüne bakın", en: "See the product" },
+    title: { tr: "Dima'yı ürünün içinde görün", en: "See Dima in the product" },
+    /** Kept on the existing showcase component while the Company Brain visual replaces it. */
+    wheel: { tr: "Dima ürün görünümü", en: "Dima product view" },
+    link: { tr: "Ürünü inceleyin", en: "Explore the product" },
     missingDesktop: { tr: "masaüstü ekran görüntüsü", en: "desktop screenshot" },
     missingMobile: { tr: "mobil ekran görüntüsü", en: "mobile screenshot" },
     intro: {
-      tr: "Her biri kendi sorununu çözüyor. Hangisinin kimin için olduğu çözümler sayfasında.",
-      en: "Each answers its own problem. Which one is for whom is on the solutions page.",
+      tr: "Dima tek bir dashboard veya chatbot değildir; şirketin verisini, ilişkilerini, sinyallerini ve araştırmalarını aynı karar döngüsünde birleştirir.",
+      en: "Dima is not a single dashboard or chatbot; it brings company data, relationships, signals and investigations into one decision loop.",
     },
   },
   industries: {
     title: { tr: "Sektörler", en: "Industries" },
     intro: {
-      tr: "Tekstil, plastik ve genel imalat. Her birinde talep aynı biçimde geliyor: alıcıdan ve AB düzenlemesinden, bir tarihle.",
-      en: "Textile, plastics and general manufacturing. In each, the demand arrives the same way: from buyers and from EU regulation, with a date.",
+      tr: "Dima'nın ortak Company Brain modeli farklı sektörlerde aynı karar döngüsünü korur; sektör paketleri tekstil, plastik ve genel imalattaki gerçek entity, süreç ve ilişkilerle bu modeli derinleştirir.",
+      en: "Dima keeps the same Company Brain decision loop across industries; sector packs deepen it with the real entities, processes and relationships of textile, plastics and general manufacturing.",
     },
     latest: { tr: "Son tarihli talep", en: "Latest dated requirement" },
     /** Inside a gallery panel with no photograph yet. */
@@ -109,8 +109,8 @@ export const homePage = {
   },
   /** The full-width text loop between the sectors and the team: what the company does. */
   loop: {
-    tr: "Üretim verimliliği ✦ Süreç optimizasyonu ✦ Veri analitiği ✦ Kurumsal yönetim sistemleri ✦ Sürdürülebilirlik ve karbon yönetimi ✦ Karar destek",
-    en: "Manufacturing efficiency ✦ Process optimization ✦ Data analytics ✦ Enterprise management systems ✦ Sustainability and carbon management ✦ Decision support",
+    tr: "Bağla ✦ Anla ✦ İzle ✦ Denetle ✦ Fark et ✦ Araştır ✦ Kanıtla ✦ Karara taşı",
+    en: "Connect ✦ Understand ✦ Monitor ✦ Check ✦ Detect ✦ Investigate ✦ Evidence ✦ Decide",
   },
   team: {
     title: { tr: "Ekip", en: "Team" },
@@ -125,11 +125,11 @@ export const homePage = {
     link: { tr: "Tüm yazılar", en: "All posts" },
   },
   cta: {
-    title: { tr: "Ne üzerinde çalışıyorsunuz?", en: "What are you working on?" },
+    title: { tr: "Dima'yı kendi şirketinizde görün.", en: "See Dima in your own company." },
     body: {
-      tr: "Hangi kaydın nerede tutulduğunu ve kimin hangi sayıyı istediğini anlatın. Ürün mü, hizmet mi, ikisi birden mi gerektiğini birlikte çıkaralım.",
-      en: "Tell us which records live where, and who is asking for which number. We will work out together whether it needs a product, a service, or both.",
+      tr: "Verinizin nerede yaşadığını ve bugün hangi kararları elle takip ettiğinizi anlatın. Canlı demoda Dima'nın veriyi nasıl bağladığını, neyi izlediğini ve bir bulguyu nasıl kanıtlarıyla karara taşıdığını gösterelim.",
+      en: "Tell us where your data lives and which decisions your team still tracks manually. In a live demo, we will show how Dima connects that data, what it monitors, and how a finding is investigated with evidence and prepared for a decision.",
     },
-    action: { tr: "Bize ulaşın", en: "Talk to us" },
+    action: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
 };

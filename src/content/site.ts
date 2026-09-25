@@ -8,22 +8,28 @@ export interface SiteLink {
 
 /** Site chrome: navigation, footer, legal entity, and the few strings every page shares. */
 export const site = {
-  name: "UpcyTech",
+  name: "Dima",
   nav: [
-    { href: "/solutions", label: { tr: "Çözümler", en: "Solutions" } },
-    { href: "/industries", label: { tr: "Sektörler", en: "Industries" } },
+    { href: "/solutions", label: { tr: "Ürün", en: "Product" } },
+    { href: "/industries", label: { tr: "Kullanım alanları", en: "Use cases" } },
     { href: "/about", label: { tr: "Hakkımızda", en: "About" } },
-    // Careers is reached from the footer (Şirket), not the bar — the company's call, 2026-09-15.
-    { href: "/blog", label: { tr: "Blog", en: "Blog" } },
+    { href: "/blog", label: { tr: "Kaynaklar", en: "Resources" } },
   ] satisfies SiteLink[],
-  /** Secondary in the nav: each view keeps a single primary call to action (DESIGN.md §3). */
-  navAction: { href: "/contact", label: { tr: "Bize ulaşın", en: "Talk to us" } } satisfies SiteLink,
+  /** Sales-assisted path until the self-serve OAuth/demo onboarding is wired in the next phase. */
+  navAction: { href: "/contact", label: { tr: "Canlı demo isteyin", en: "Request a live demo" } } satisfies SiteLink,
   footer: {
     groups: [
       {
+        title: { tr: "Dima", en: "Dima" },
+        links: [
+          { href: "/solutions", label: { tr: "Ürün", en: "Product" } },
+          { href: "/industries", label: { tr: "Kullanım alanları", en: "Use cases" } },
+          { href: "/blog", label: { tr: "Kaynaklar", en: "Resources" } },
+        ] satisfies SiteLink[],
+      },
+      {
         title: { tr: "Şirket", en: "Company" },
         links: [
-          { href: "/solutions", label: { tr: "Çözümler", en: "Solutions" } },
           { href: "/about", label: { tr: "Hakkımızda", en: "About" } },
           { href: "/careers", label: { tr: "Kariyer", en: "Careers" } },
           { href: "/contact", label: { tr: "İletişim", en: "Contact" } },

@@ -65,62 +65,55 @@ export const products: readonly Product[] = [
     hasOwnSite: true,
     domain: "https://usedima.com",
     depth: "standalone",
-    category: { tr: "Denetlenebilir İş Analisti, Kök Neden & Optimizasyon", en: "Auditable Business Analyst, Root Cause & Optimization" },
+    category: { tr: "Kurumsal Karar Zekâsı ve Optimizasyon Platformu", en: "Enterprise Decision Intelligence and Optimization Platform" },
     oneLiner: {
-      tr: "Belirsizliği tahminle kapatmayan, gerektiğinde soru soran ve kök nedenleri kanıtlarıyla sunan denetlenebilir iş analisti.",
-      en: "An auditable business analyst that never guesses through ambiguity, asks targeted questions, and uncovers root causes with evidence.",
+      tr: "Şirket verisini bir araya getirir; olan biteni sürekli izler, önemli sapma ve fırsatları fark eder, nedenini kanıtlarıyla araştırır ve karara hazırlar.",
+      en: "Connects company data, continuously monitors what is happening, detects important deviations and opportunities, investigates why with evidence, and prepares decisions.",
     },
     matrix: {
       problem: {
-        tr: "Üretimdeki fire, duruş ve maliyet sapmalarının kök nedenini bulmak günler sürüyor; standart araçlar ise tahmin yürüterek yanıltıyor.",
-        en: "Pinpointing root causes of scrap, downtime, and cost variance takes days, while standard tools guess and mislead.",
+        tr: "Finans, muhasebe, üretim ve diğer kaynaklardaki veriler hem birbirinden kopuk hem zaman içinde derin. Kritik ilişkileri ve değişimleri elle izlemek zor.",
+        en: "Data across finance, accounting, manufacturing and other systems is both disconnected and deep over time. Critical relationships and changes are hard to monitor manually.",
       },
       audience: {
-        tr: "Verisinden anlık ve güvenilir cevap isteyen, kök nedenleri tablolar ve grafiklerle denetlenebilir biçimde görmek isteyen yöneticiler",
-        en: "Operations leaders who need instant, verified answers and auditable root-cause discovery through tables and charts",
+        tr: "Şirkette ne olduğunu, neden olduğunu ve ne yapılabileceğini güvenilir verilerle daha erken görmek isteyen yöneticiler",
+        en: "Leaders who need to see what is happening, why it is happening and what can be done earlier, with evidence they can verify",
       },
     },
-    title: {
-      tr: "Doğrudan konuşun. Tahmin yürütmez, gerektiğinde soru sorar ve kök nedeni kanıtlarıyla önünüze serer.",
-      en: "Talk directly to your data. It never guesses, asks clarifying questions when needed, and uncovers root causes with proof.",
-    },
+    title: { tr: "Şirketinizin denetim, optimizasyon ve karar merkezi.", en: "Your company's monitoring, optimization and decision center." },
     problem: {
       tr: [
-        "Fabrika yönetimi 'Geçen ay fire neden arttı?' gibi kritik bir soru sorduğunda, cevaba ulaşmak günler sürebiliyor. ERP'den veri çekiliyor, Excel tablolarına aktarılıyor ve farklı bölümler arasında zaman kaybediliyor.",
-        "Standart araçlar ise belirsizliği tahminlerle dolduruyor ve yanıltıcı çıktılar üretiyor. Sonuçta asıl kök neden bulunamıyor; karar alma süreçleri yavaşlarken üretimdeki verimlilik kaybı devam ediyor.",
+        "Şirket verisi yalnız dağınık değildir. Finans, muhasebe, üretim, satış ve diğer sistemlerde aynı şirketin farklı parçaları yaşar; aralarındaki ilişkileri kurmak zordur. Aynı zamanda yıllar boyunca biriken geçmiş veri, bugünkü değişimi anlamak ve geleceğe yönelik projeksiyon yapmak için ayrı bir derinlik oluşturur.",
+        "Dima bu yatay ilişkileri ve zamansal örüntüleri aynı şirket bağlamında birlikte okumayı hedefler. Kullanıcının bir dashboard açmasını veya soru sormasını beklemeden önemli sapma, risk ve fırsatları izler; bir bulgu gördüğünde nedenini araştırır, kanıtlarını gösterir ve ne yapılabileceğini karara hazırlar.",
       ],
       en: [
-        "When plant management asks critical questions like why scrap increased last month, finding answers often takes days. Data is pulled from the ERP, exported to spreadsheets, and teams lose valuable time.",
-        "Standard tools fill ambiguity with guesses and misleading summaries. As a result, true root causes stay hidden, decision-making stalls, and efficiency losses on the shop floor compound.",
+        "Company data is not only scattered. Finance, accounting, manufacturing, sales and other systems hold different parts of the same business, and the relationships between them are difficult to reconstruct. Years of historical data add another dimension needed to understand change and make projections.",
+        "Dima is designed to read those cross-system relationships and time-based patterns in one company context. It does not wait for someone to open a dashboard or ask a question: it monitors for important deviations, risks and opportunities, investigates why a finding matters, shows the evidence, and prepares the next decision.",
       ],
     },
     capabilities: {
       tr: [
-        { title: "Belirsizliği tahminle kapatmaz", body: "Kullanıcının her mesajını bir konuşma turu olarak anlar. Belirsizliği tahmin ederek kapatmaz; eksik ya da belirsiz bir parametre olduğunda nokta atışı sorular sorarak niyeti netleştirir." },
-        { title: "Semantik model ve gerçek veri", body: "Cevapları modelin serbest metin üretimine bırakmaz; fabrikanızın tanımlı semantik modelini ve gerçek üretim verisini güvenilir bir analitik motor üzerinden sorgulayarak kesin sonuç verir." },
-        { title: "Hızlı yanıt ve aşamalı derinleşme", body: "Basit soruları hızla cevaplar; karmaşık kök neden araştırmalarında ise sonuçları gördükçe analizini adım adım geliştirir." },
-        { title: "Kanıt, tablo ve grafik tek raporda", body: "Ulaştığı sonuçları havada bırakmaz; kanıtları, veri tablolarını, grafikleri ve kök neden adaylarını aynı konuşma ve rapor akışı içinde birleştirir." },
+        { title: "Bağlar ve anlar", body: "Veritabanı, ERP, Excel/CSV ve diğer kaynakları yalnız aynı yerde toplamaz; müşteri, fatura, sipariş, makine, ürün ve metrik gibi entity'leri ve aralarındaki ilişkileri ortak bir Company Brain bağlamında anlamlandırır." },
+        { title: "İzler ve denetler", body: "Normal davranışı, geçmiş örüntüleri, planları ve ilişkileri sürekli takip eder. Kullanıcının sormasını beklemeden önemli sapma, risk ve fırsatları canlı sinyaller olarak öne çıkarır." },
+        { title: "Araştırır ve kanıtlar", body: "Bir sinyali yalnız alarm olarak bırakmaz. Etkilenen entity ve ilişkileri inceler, kök neden adaylarını araştırır ve bulgunun hangi veri ve hesaplara dayandığını görünür kılar." },
+        { title: "Karara ve aksiyona taşır", body: "Bulguyu karar seçeneklerine, senaryolara ve önerilere dönüştürür. Chat bu noktada seçili bağlamla konuşma arayüzüdür; karar daha sonra görev, e-posta, ERP taslağı veya başka bir aksiyona taşınabilir." },
       ],
       en: [
-        { title: "Never guesses through ambiguity", body: "Understands each user prompt as a conversational turn. It never fills ambiguity with guesswork; when a parameter is missing, it asks targeted clarifying questions." },
-        { title: "Semantic model over real data", body: "Never leaves answers to generative guesswork; it queries your plant's structured semantic model and live production data via a reliable analytical engine." },
-        { title: "Rapid answers and iterative depth", body: "Answers routine operational questions immediately; for complex requests, it deepens its investigation iteratively as findings unfold." },
-        { title: "Evidence, charts, and root causes in one view", body: "Combines underlying evidence, data tables, visual trends, and candidate root causes in a unified conversational dialogue and audit-ready report." },
+        { title: "Connects and understands", body: "It does more than collect databases, ERP, Excel/CSV and other sources in one place. It models entities such as customers, invoices, orders, machines, products and metrics, and the relationships between them, inside one Company Brain context." },
+        { title: "Monitors and checks", body: "It continuously watches normal behavior, historical patterns, plans and relationships. Important deviations, risks and opportunities can surface as live signals without waiting for a prompt." },
+        { title: "Investigates and evidences", body: "A signal does not stop at an alert. Dima examines the affected entities and relationships, investigates candidate root causes, and makes the underlying data and calculations visible." },
+        { title: "Moves work to decision and action", body: "Findings become decision options, scenarios and recommendations. Chat is the conversational interface to the selected context; the result can then become a task, email, ERP draft or another governed action." },
       ],
     },
     note: {
-      tr: "Dima, mevcut ERP sisteminize, sensörlerinize ve üretim veritabanlarınıza güvenle bağlanır. Veri modelleriniz ve iş kurallarınız tamamen fabrikanızın mülkiyetinde kalır.",
-      en: "Dima connects securely to your existing ERP, sensors, and production databases. All data models and business rules remain entirely your plant's property.",
+      tr: "Dima'nın ana deneyimi yaşayan Company Brain'dir; Dima Today, Radar, Investigation, Evidence ve karar yüzeyleri bu beynin farklı derinlikleridir. Chat ürünün merkezi değil, zaten çalışan şirket zekâsıyla konuşmanın yollarından biridir.",
+      en: "Dima's primary experience is a living Company Brain. Dima Today, Radar, Investigation, Evidence and decision surfaces are different depths of that same brain. Chat is not the product center; it is one way to talk to intelligence that is already running.",
     },
     audience: {
-      tr: [
-        "Fabrika sahipleri, üretim direktörleri ve operasyon ekipleri: tahminlerle değil, denetlenebilir kök neden analizi ve güvenilir veriyle fireyi düşürmeyi hedefleyen profesyoneller.",
-      ],
-      en: [
-        "Plant owners, manufacturing directors, and operations teams who want to cut scrap using auditable root-cause discovery and verified data rather than guesswork.",
-      ],
+      tr: ["CEO, CFO, finans/muhasebe ve operasyon/üretim ekipleri: dağınık veriler arasındaki ilişkileri daha erken görmek, kritik değişimlerin nedenini kanıtlarıyla anlamak ve karar döngüsünü hızlandırmak isteyen şirketler."],
+      en: ["CEOs, CFOs, finance/accounting and operations/manufacturing teams that need to connect fragmented data, understand important changes with evidence, and shorten the decision loop."],
     },
-    cta: { tr: "Dima'yı inceleyin", en: "Explore Dima" },
+    cta: { tr: "Dima'yı keşfedin", en: "Explore Dima" },
   },
   {
     id: "carbon",

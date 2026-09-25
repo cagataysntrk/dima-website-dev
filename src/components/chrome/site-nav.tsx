@@ -24,12 +24,12 @@ export function SiteNav({ locale }: { locale: Locale }) {
       className="fixed inset-x-0 top-(--nav-top) mx-3 sm:mx-4 md:mx-6 lg:mx-auto w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] md:w-[calc(100%-3rem)] lg:w-full"
       product={site.name}
       logo={
-        // The company logo (ink for light grounds, white for dark; swapped in globals.css).
-        // Sized by width so the wordmark matches across themes; width/height reserve the box.
-        <>
-          <img src="/brand/upcytech-logo-on-light.png" alt="" width={338} height={64} className="logo-on-light h-auto w-[6.75rem] sm:w-[8.25rem] cursor-pointer pointer-events-none select-none" />
-          <img src="/brand/upcytech-logo-on-dark.png" alt="" width={338} height={78} className="logo-on-dark h-auto w-[6.75rem] sm:w-[8.25rem] cursor-pointer pointer-events-none select-none" />
-        </>
+        <span className="flex w-[6.75rem] items-center gap-2 sm:w-[8.25rem]">
+          <img src="/products/dima-mark.webp" alt="" width={28} height={28} className="size-7 shrink-0 pointer-events-none select-none" />
+          <span className="font-[family-name:var(--font-geist-sans)] text-ui font-semibold tracking-[-0.02em] text-ink">
+            {site.name}
+          </span>
+        </span>
       }
       homeHref="/"
       locale={locale}

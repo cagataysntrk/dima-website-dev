@@ -7,6 +7,29 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-25 — Dima master-brand website refactor
+
+### D-043 · Refactor the current site in place; do not rebuild it from scratch
+**Decided:** the public Dima website is developed from the exact UpcyTech production
+snapshot recorded in `SOURCE_BASELINE.md`. Existing layout, responsive behavior, motion,
+accessibility, performance budgets, content typing, tests and design-system integration are
+assets to preserve. Changes proceed route by route and component by component: adapt first,
+replace only where the Dima product model requires a different interaction.
+
+The customer-facing master brand becomes **Dima** and the canonical marketing domain becomes
+`usedima.com`. **UpcyTech Teknoloji A.Ş.** remains the legal entity where legal/company
+identity is required. The current Brand House V1.5 is the messaging authority: Dima is the
+company's monitoring, optimization and decision center; Company Brain is the primary product
+experience; chat is a contextual interface, not the product center.
+
+The first foundation pass changes brand chrome, SEO, hero and Dima product copy, and removes
+the old multi-product/services emphasis and the chat-first home demo. It deliberately does
+**not** rewrite the hero visual or section primitives: the next coherent pass replaces the
+globe/product-demo emphasis with the real Company Brain experience.
+
+**Reason:** preserve the already-proven site quality while changing the product and brand
+architecture without creating a second frontend or a parallel design language.
+
 ## 2026-09-24 — Website revision (nav, CTA, hero, product demo)
 
 ### D-042 · Responsive pass: phones get stacked rows, touch gets 44px everywhere

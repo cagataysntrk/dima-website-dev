@@ -4,7 +4,7 @@ import { routing, type Locale, type StaticPathname } from "@/i18n/routing";
 import { site } from "@/content/site";
 
 /** Production origin. [CONFIRM] — set NEXT_PUBLIC_SITE_URL per environment. */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://upcytech.com";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://usedima.com";
 
 export const absoluteUrl = (href: StaticPathname, locale: Locale): string =>
   new URL(getPathname({ href, locale }), SITE_URL).toString();
@@ -48,7 +48,7 @@ export function pageMetadata({ href, locale, title, description }: {
       title,
       description,
       url,
-      siteName: "UpcyTech",
+      siteName: "Dima",
       locale: locale === "tr" ? "tr_TR" : "en_GB",
       type: "website",
       images: [image],
@@ -81,7 +81,7 @@ export function postMetadata({ slug, locale, locales, title, description, date, 
       languages: Object.fromEntries(locales.map((l) => [l, postUrl(slug, l)])),
     },
     openGraph: {
-      title, description, url, siteName: "UpcyTech", type: "article",
+      title, description, url, siteName: "Dima", type: "article",
       locale: locale === "tr" ? "tr_TR" : "en_GB",
       publishedTime: date, ...(updated ? { modifiedTime: updated } : {}),
       images: [image],
@@ -101,14 +101,14 @@ export const articleJsonLd = (post: {
   dateModified: post.updated ?? post.date,
   inLanguage: post.locale,
   author: { "@type": "Person", name: post.authorName },
-  publisher: { "@type": "Organization", name: "UpcyTech", url: SITE_URL },
+  publisher: { "@type": "Organization", name: "Dima", legalName: site.company.legalName.tr, url: SITE_URL },
   mainEntityOfPage: postUrl(post.slug, post.locale),
 });
 
 export const organizationJsonLd = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "UpcyTech",
+  name: "Dima",
   legalName: site.company.legalName.tr,
   url: SITE_URL,
   address: { "@type": "PostalAddress", ...site.company.postalAddress },

@@ -20,11 +20,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
       linkAs={Link}
       homeHref="/"
       logo={
-        // Ink artwork on light grounds, white on dark — swapped in globals.css, as in the nav.
-        <>
-          <img src="/brand/upcytech-logo-on-light.png" alt="" width={338} height={64} loading="lazy" decoding="async" className="logo-on-light h-auto w-[8.25rem]" />
-          <img src="/brand/upcytech-logo-on-dark.png" alt="" width={338} height={78} loading="lazy" decoding="async" className="logo-on-dark h-auto w-[8.25rem]" />
-        </>
+        <span className="flex items-center gap-2">
+          <img src="/products/dima-mark.webp" alt="" width={30} height={30} loading="lazy" decoding="async" className="size-[1.875rem] shrink-0" />
+          <span className="font-[family-name:var(--font-geist-sans)] text-ui font-semibold tracking-[-0.02em] text-ink">
+            {site.name}
+          </span>
+        </span>
       }
       social={social.map((s) => ({ label: s.label, href: s.href, icon: <SocialIcon id={s.id} /> }))}
       wordmark={

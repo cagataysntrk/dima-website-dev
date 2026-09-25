@@ -5,7 +5,6 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { products } from "@/content/products";
 import { industries } from "@/content/industries";
-import { services } from "@/content/services";
 import { teamForDisplay } from "@/content/team";
 import { getPosts } from "@/lib/blog";
 import { PostList } from "@/components/sections/blog";
@@ -13,15 +12,11 @@ import { homePage as copy } from "@/content/pages/home";
 import { HomeHero } from "@/components/home/home-hero";
 import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
 import {
-  LoopBand, ProductWheel, ReferenceStrip, SectorsSection, WhatWeDo,
+  LoopBand, ProductWheel, ReferenceStrip, SectorsSection,
 } from "@/components/sections/home";
 import { TeamRow } from "@/components/sections/team-row";
 import { CtaBand } from "@/components/sections/cta-band";
 import { pageMetadata } from "@/lib/seo";
-
-import { ChatDemo } from "@/components/sections/chat-demo/chat-demo";
-import { chatDemoCopy, chatDemoFor } from "@/content/dima-demo";
-import { Heading, Section, Stack, Text } from "@upcytech/ui";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
   const locale = (await params).locale as Locale;
@@ -37,8 +32,9 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
   const latest = (await getPosts(locale)).slice(0, 3);
-  // The chat demo is the analytics product's screen, found by id — never by list position.
-  const analytics = products.find((p) => p.id === "analytics")!;
+  // Dima is the only customer-facing product on the new site. Legacy portfolio data stays
+  // in content until the route-by-route consolidation phase.
+  const dima = products.find((p) => p.id === "analytics")!;
 
   return (
     <>
@@ -64,7 +60,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
       <ProductWheel
         locale={locale}
-        products={products}
+        products={[dima]}
         title={copy.productIndex.title[locale]}
         labels={{
           wheel: copy.productIndex.wheel[locale],
@@ -74,31 +70,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         }}
       />
 
-      {/* The product's chat screen, working, on sample data (D-040) — under the products. */}
-      <Section divided aria-labelledby="chat-demo-heading">
-        <Stack gap="loose">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <Heading level={2} variant="title" id="chat-demo-heading">
-              {chatDemoCopy.title[locale]}
-            </Heading>
-            <Text variant="lede" tone="muted" className="max-w-2xl">
-              {chatDemoCopy.subtitle[locale]}
-            </Text>
-          </div>
-          <div className="mx-auto w-full max-w-6xl">
-            <ChatDemo copy={chatDemoFor(locale)} locale={locale} product={analytics} />
-          </div>
-        </Stack>
-      </Section>
-
-      <WhatWeDo
-        locale={locale}
-        title={copy.whatWeDo.title[locale]}
-        products={pick(copy.whatWeDo.products, locale)}
-        services={pick(copy.whatWeDo.services, locale)}
-        lines={services.map((s) => ({ anchor: s.anchor[locale], name: s.name[locale], claim: s.title[locale] }))}
-        lineLink={copy.whatWeDo.lineLink[locale]}
-      />
+      {/* Chat-first and multi-product sections are removed in the brand-foundation pass.
+          Company Brain becomes the primary product experience in the next coherent phase. */}
 
       <SectorsSection locale={locale} industries={industries} copy={copy.industries} />
 
@@ -131,8 +104,4 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       />
     </>
   );
-}
-
-function pick(block: { title: { tr: string; en: string }; body: { tr: string; en: string }; link: { tr: string; en: string } }, locale: Locale) {
-  return { title: block.title[locale], body: block.body[locale], link: block.link[locale] };
 }
