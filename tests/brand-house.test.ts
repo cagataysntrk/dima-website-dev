@@ -40,6 +40,17 @@ test("Brand House V1.6 keeps a single active product", () => {
   expect(products[0]?.category.en).toBe("Decision Intelligence & Optimization Platform");
 });
 
+test("Company Brain product proof uses dashboard semantics, not an anatomical silhouette", () => {
+  expect(companyBrain.dashboard.heading.tr).toBe("Şirketiniz şu anda nasıl çalışıyor?");
+  expect(companyBrain.dashboard.todayTitle.tr).toBe("Öne çıkan sinyaller");
+  expect(companyBrain.dashboard.layers.tr.map((layer) => layer.title)).toEqual([
+    "Veri katmanı",
+    "Bağlantı katmanı",
+    "Analiz katmanı",
+    "Karar katmanı",
+  ]);
+});
+
 test("Company Brain keeps one state model across two lenses and chat stays contextual", () => {
   expect(companyBrain.lenses.brain.tr).toBe("Tam Beyin Formu");
   expect(companyBrain.lenses.map.tr).toBe("Company Brain Map");
