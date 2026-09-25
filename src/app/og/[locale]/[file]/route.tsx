@@ -27,15 +27,35 @@ const face = (pkg: string, file: string) =>
   readFile(join(process.cwd(), "node_modules/@fontsource", pkg, "files", file));
 
 /** Latin plus latin-ext for each face: Turkish letters (ğ ş ı İ) live in latin-ext. */
+const OG_FONT = {
+  serif: "SerifLatin, SerifLatinExt",
+  sans: "SansLatin, SansLatinExt",
+  mono: "MonoLatin, MonoLatinExt",
+} as const;
+
 async function fonts() {
-  const cut = (name: string, pkg: string, prefix: string, weight: 400 | 500 | 600) =>
-    ["latin", "latin-ext"].map(async (subset) =>
-      ({ name, weight, style: "normal" as const, data: await face(pkg, `${prefix}-${subset}-${weight}-normal.woff`) }));
-  return Promise.all([
+  const cut = (name: string, pkg: string, prefix: string, weight: 400 | 500 | 600) => [
+    {
+      name: `${name}Latin`,
+      weight,
+      style: "normal" as const,
+      data: face(pkg, `${prefix}-latin-${weight}-normal.woff`),
+    },
+    {
+      name: `${name}LatinExt`,
+      weight,
+      style: "normal" as const,
+      data: face(pkg, `${prefix}-latin-ext-${weight}-normal.woff`),
+    },
+  ];
+
+  const records = [
     ...cut("Serif", "source-serif-4", "source-serif-4", 500),
     ...cut("Sans", "plus-jakarta-sans", "plus-jakarta-sans", 400),
     ...cut("Mono", "jetbrains-mono", "jetbrains-mono", 500),
-  ]);
+  ];
+
+  return Promise.all(records.map(async (record) => ({ ...record, data: await record.data })));
 }
 
 export async function GET(_request: Request, { params }: RouteContext<"/og/[locale]/[file]">) {
@@ -49,8 +69,8 @@ export async function GET(_request: Request, { params }: RouteContext<"/og/[loca
 
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: t.colorBgCanvas, padding: "64px 72px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: "Mono", fontSize: 22 }}>
+      <div lang={locale === "tr" ? "tr-TR" : "en-US"} style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: t.colorBgCanvas, padding: "64px 72px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: OG_FONT.mono, fontSize: 22 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, color: t.colorTextPrimary, letterSpacing: "0.14em" }}>
             <div style={{ width: 14, height: 14, borderRadius: 7, background: t.colorBgBrand }} />
             {site.name.toUpperCase()}
@@ -60,13 +80,13 @@ export async function GET(_request: Request, { params }: RouteContext<"/og/[loca
         <div style={{ height: 1, background: t.colorBorderSubtle, marginTop: 40 }} />
         <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "flex-end" }}>
           <div style={{
-            fontFamily: "Serif", fontSize: long ? 64 : 80, lineHeight: 1.05, letterSpacing: "-0.02em",
+            fontFamily: OG_FONT.serif, fontSize: long ? 64 : 80, lineHeight: 1.05, letterSpacing: "-0.02em",
             color: t.colorTextPrimary, maxWidth: 1000,
           }}>
             {entry.title}
           </div>
           <div style={{
-            fontFamily: "Sans", fontSize: 28, lineHeight: 1.45, color: t.colorTextMuted,
+            fontFamily: OG_FONT.sans, fontSize: 28, lineHeight: 1.45, color: t.colorTextMuted,
             marginTop: 28, maxWidth: 940,
           }}>
             {entry.description}
