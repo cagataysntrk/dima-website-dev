@@ -51,8 +51,8 @@ export const industries: readonly Industry[] = [
     anchor: { tr: "tekstil", en: "textile" },
     name: { tr: "Tekstil", en: "Textile" },
     summary: {
-      tr: "Tekstil ihracatçısı iki yönden baskı altında: alıcı markanın tedarikçi denetimi ve markanın kendi pazarındaki AB düzenlemesi. İkisi de aynı şeyi istiyor: suyun, kimyasalın ve atığın kayıtlı olmasını.",
-      en: "Textile exporters are pressed from two sides: the buying brand's supplier audit, and EU regulation in the brand's own market. Both want the same thing, water, chemicals and waste on the record.",
+      tr: "Tekstil pack'i reçete, renk, lot, makine, kumaş, kimyasal, su/enerji ve kalite ilişkilerini ortak üretim beynine ekler; batch ve kalite finding'lerini proses ve maliyet bağlamında araştırmaya hazırlar.",
+      en: "The textile pack adds recipe, color, lot, machine, fabric, chemical, water/energy and quality relationships to the common manufacturing brain, preparing batch and quality findings for process and cost investigation.",
     },
     pressures: [
       {
@@ -105,8 +105,8 @@ export const industries: readonly Industry[] = [
     anchor: { tr: "plastik", en: "plastics" },
     name: { tr: "Plastik", en: "Plastics" },
     summary: {
-      tr: "Plastikte soru, ne kadar geri dönüştürülmüş malzeme kullandığınız ve bunu kanıtlayıp kanıtlayamadığınız. AB ambalaj kuralları bu sayıyı bir eşiğe bağlıyor; Türkiye'de Sıfır Atık Yönetmeliği atığın kaynağında ayrı toplanmasını istiyor.",
-      en: "In plastics the question is how much recycled material you use, and whether you can prove it. EU packaging rules tie that number to a threshold; in Türkiye, the Zero Waste Regulation requires waste to be separated at source.",
+      tr: "Plastik pack'i resin, masterbatch, regrind, makine, kalıp/die, cycle, drying, dosing, defect ve enerji ilişkilerini aynı üretim bağlamında birleştirir.",
+      en: "The plastics pack combines resin, masterbatch, regrind, machine, mold/die, cycle, drying, dosing, defect and energy relationships in the same manufacturing context.",
     },
     pressures: [
       {
@@ -159,8 +159,8 @@ export const industries: readonly Industry[] = [
     anchor: { tr: "genel-imalat", en: "general-manufacturing" },
     name: { tr: "Genel imalat", en: "General manufacturing" },
     summary: {
-      tr: "Metal ürünlerden otomotiv yan sanayine, mobilyadan ambalaja kadar AB'ye satan imalatçı için talep aynı biçimde geliyor: alıcı bir hesap istiyor ve bir tarih veriyor.",
-      en: "For manufacturers selling into the EU, from metal products and automotive parts to furniture and packaging, the request arrives the same way: a customer wants a calculation, with a date attached.",
+      tr: "Genel imalat pack'i sipariş, ürün, makine/hat, vardiya, malzeme, kalite, bakım ve maliyet ilişkilerinden şirketin kendi üretim modelini kurar.",
+      en: "The general manufacturing pack builds the company's own production model from relationships among orders, products, machines/lines, shifts, materials, quality, maintenance and cost.",
     },
     pressures: [
       {

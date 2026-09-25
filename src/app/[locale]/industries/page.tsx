@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
-import { Button } from "@upcytech/ui";
-import { getPathname, Link } from "@/i18n/navigation";
+import { Button, Heading, Section, Stack, Text } from "@upcytech/ui";
+
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { frameworks, industries } from "@/content/industries";
-import { products } from "@/content/products";
 import { industriesPage as copy } from "@/content/pages/industries";
 import { PageHero } from "@/components/sections/page-hero";
-import { IndustryBlock } from "@/components/sections/industry-block";
-import { RegulationCalendar } from "@/components/sections/regulation-calendar";
-import { FrameworkTable } from "@/components/sections/framework-table";
+import { PointList } from "@/components/sections/parts";
 import { CtaBand } from "@/components/sections/cta-band";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
@@ -28,21 +25,20 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/industri
 export default async function IndustriesPage({ params }: PageProps<"/[locale]/industries">) {
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
+  const items = [...copy.domains, ...copy.sectorPacks];
 
   return (
     <>
-      {/* No primary button in the hero: each sector carries its own enquiry, and the page
-          keeps one primary action per view. The hero offers the way to your sector instead. */}
       <PageHero
         title={copy.hero.title[locale]}
         lede={copy.hero.lede[locale]}
         action={
           <nav aria-label={copy.hero.jumpLabel[locale]}>
             <ul className="flex flex-wrap gap-2">
-              {industries.map((industry) => (
-                <li key={industry.id}>
+              {items.map((item) => (
+                <li key={item.id}>
                   <Button variant="secondary" asChild>
-                    <a href={`#${industry.anchor[locale]}`}>{industry.name[locale]}</a>
+                    <a href={`#${item.anchor[locale]}`}>{item.title[locale]}</a>
                   </Button>
                 </li>
               ))}
@@ -51,24 +47,24 @@ export default async function IndustriesPage({ params }: PageProps<"/[locale]/in
         }
       />
 
-      {industries.map((industry) => (
-        <IndustryBlock
-          key={industry.id}
-          industry={industry}
-          products={products}
-          locale={locale}
-          labels={copy.sector}
-        />
+      <Section divided aria-labelledby="use-case-principle">
+        <div className="grid gap-8 lg:grid-cols-12">
+          <Heading level={2} variant="title" id="use-case-principle" className="lg:col-span-5">
+            {copy.principle.title[locale]}
+          </Heading>
+          <Text variant="lede" tone="muted" className="lg:col-span-7">
+            {copy.principle.body[locale]}
+          </Text>
+        </div>
+      </Section>
+
+      {copy.domains.map((item) => (
+        <UseCaseSection key={item.id} item={item} locale={locale} />
       ))}
 
-      <RegulationCalendar
-        industries={industries}
-        locale={locale}
-        copy={{ title: copy.calendar.title, intro: copy.calendar.intro, source: copy.sector.source }}
-        baseHref={getPathname({ href: "/industries", locale })}
-      />
-
-      <FrameworkTable locale={locale} frameworks={frameworks} copy={copy.compliance} />
+      {copy.sectorPacks.map((item) => (
+        <UseCaseSection key={item.id} item={item} locale={locale} />
+      ))}
 
       <CtaBand
         id="enquiry"
@@ -86,5 +82,32 @@ export default async function IndustriesPage({ params }: PageProps<"/[locale]/in
         ])}
       />
     </>
+  );
+}
+
+function UseCaseSection({ item, locale }: {
+  item: (typeof copy.domains)[number] | (typeof copy.sectorPacks)[number];
+  locale: Locale;
+}) {
+  return (
+    <Section divided id={item.anchor[locale]} aria-labelledby={`${item.id}-title`} className="scroll-mt-[calc(var(--nav-offset)+4rem)]">
+      <div className="grid gap-10 lg:grid-cols-12">
+        <Stack gap="tight" className="lg:col-span-5 lg:sticky lg:top-[calc(var(--nav-offset)+4rem)] lg:self-start">
+          <Text variant="eyebrow" tone="muted">{item.eyebrow[locale]}</Text>
+          <Heading level={2} variant="title" id={`${item.id}-title`}>{item.title[locale]}</Heading>
+          <Text tone="muted">{item.intro[locale]}</Text>
+          <ul className="flex flex-wrap gap-2 pt-2">
+            {item.clusters[locale].map((cluster) => (
+              <li key={cluster} className="rounded-chip border border-hairline bg-raised px-2.5 py-1.5 text-micro font-medium text-muted">
+                {cluster}
+              </li>
+            ))}
+          </ul>
+        </Stack>
+        <div className="lg:col-span-7">
+          <PointList points={[...item.behaviors[locale]]} />
+        </div>
+      </div>
+    </Section>
   );
 }

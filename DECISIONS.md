@@ -9,6 +9,26 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-046 · /industries becomes use cases: domain intelligence + sector packs
+**Decided:** keep the localized `/industries` route for URL continuity, but change its public
+meaning to "Use cases / Kullanım alanları". The old regulatory-pressure calendar, compliance
+framework table and product mapping no longer render on this route.
+
+The new page separates two concepts that must not be confused:
+1. **Domain intelligence** — accounting/finance and manufacturing are depths of the same
+   Company Brain, with domain-specific entities, relationships and intelligence behaviors.
+2. **Sector intelligence packs** — textile, plastics and general manufacturing overlay the
+   shared production brain with sector-specific entity networks and process vocabulary.
+
+The page deliberately summarizes the large UX inventory into clusters and representative
+intelligence behaviors instead of presenting 20 finance and 30 manufacturing items as separate
+modules. Existing sector image/gallery content remains available on the home page, but its
+summaries are updated to the new pack model; legacy regulation data stays non-rendered until
+a later content/archive decision.
+
+**Reason:** preserve the single-brain product law while still showing enough domain depth for
+a buyer to understand how the product applies to real finance and manufacturing work.
+
 ### D-045 · /solutions becomes the single-product Dima explanation, not a portfolio router
 **Decided:** keep the existing localized `/solutions` route for continuity, but change its
 public meaning to the product page behind the nav label "Product / Ürün". The old category
