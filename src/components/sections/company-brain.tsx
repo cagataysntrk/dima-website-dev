@@ -163,7 +163,7 @@ function DashboardFrame({
               </div>
             )}
 
-            <div className={compact ? "mt-3 grid gap-3" : "mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_20rem]"}>
+            <div className={compact ? "mt-3 grid gap-3 sm:grid-cols-[minmax(0,1fr)_10.5rem]" : "mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_20rem]"}>
               <div className="min-w-0 overflow-hidden rounded-card border border-hairline bg-raised">
                 {lens === "brain" && !compact ? (
                   <LayeredIntelligence locale={locale} activeId={activeId} />
