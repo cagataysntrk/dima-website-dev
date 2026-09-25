@@ -84,7 +84,7 @@ export async function sendEnquiry(_previous: ContactState, form: FormData): Prom
       const originUrl = new URL(origin);
       const isSameHost = Boolean(host && (originUrl.host === host || originUrl.host.split(":")[0] === host.split(":")[0]));
       const isLocal = originUrl.hostname === "localhost" || originUrl.hostname === "127.0.0.1" || originUrl.hostname.endsWith(".local");
-      const site = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://upcytech.com");
+      const site = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://usedima.com");
       const isConfiguredSite = originUrl.origin === site.origin;
 
       if (!isSameHost && !isConfiguredSite && !isLocal) {
@@ -147,7 +147,7 @@ export async function sendEnquiry(_previous: ContactState, form: FormData): Prom
       from: env.CONTACT_FROM ?? env.SMTP_USER,
       to: env.CONTACT_TO,
       replyTo: { name: oneLine(data.name), address: data.email },
-      subject: oneLine(`[upcytech.com] ${topic}: ${data.name}${data.company ? `, ${data.company}` : ""}`),
+      subject: oneLine(`[usedima.com] ${topic}: ${data.name}${data.company ? `, ${data.company}` : ""}`),
       text: [
         `Ad soyad: ${data.name}`,
         `Firma: ${data.company || "Belirtilmedi"}`,

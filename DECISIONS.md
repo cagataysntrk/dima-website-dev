@@ -9,6 +9,27 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-047 · About and Contact become Dima-facing while legal identity stays UpcyTech
+**Decided:** preserve the existing About/Contact route structure, team records, office map,
+form validation, anti-spam controls and legal-registration section. Replace the old
+multi-product/agency narrative with the single-product Dima story and decision-problem-led
+contact flow.
+
+The About page now explains the fragmented-context problem, Company Brain product model,
+evidence/numeric-authority principles, "simplify without emptying" content rule and the legal
+relationship: Dima is the customer-facing product/brand; UpcyTech Teknoloji A.Ş. is the legal
+entity developing it.
+
+The contact form retains its stable internal topic enum during migration so old deep links and
+the server schema do not break, but visible topic labels now map to live demo, data connection,
+pilot/use case, accounting/finance, manufacturing/sector pack and careers. The server-side
+same-origin fallback and enquiry subject move from upcytech.com to usedima.com. Existing real
+contact channels stay unchanged until corresponding usedima.com mail/social endpoints are
+actually configured.
+
+**Reason:** remove customer-facing legacy positioning without breaking the working form or
+inventing infrastructure that has not been configured.
+
 ### D-046 · /industries becomes use cases: domain intelligence + sector packs
 **Decided:** keep the localized `/industries` route for URL continuity, but change its public
 meaning to "Use cases / Kullanım alanları". The old regulatory-pressure calendar, compliance

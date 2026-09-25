@@ -1,106 +1,134 @@
-import { copyNeeded, type L, type Point } from "../types";
+import type { L, Point } from "../types";
 
 /**
- * /about. The thesis and convictions come from the design system's public corporate house
- * (brand/public/messaging-upcytech.md §1). The origin story and partners are the company's
- * to supply: the house itself says "none of this may be inferred". Team names and roles are
- * sourced from the published team records.
+ * /about. Dima is the customer-facing master brand; UpcyTech Teknoloji A.Ş. remains the
+ * legal entity. This page explains why the product exists without reviving the old
+ * multi-product portfolio story.
  */
 export const aboutPage = {
   meta: {
     title: {
-      tr: "Hakkımızda: neden varız, neye inanıyoruz, kimiz",
-      en: "About: why we exist, what we believe, who we are",
+      tr: "Dima hakkında: neden var, nasıl düşünüyoruz, kim geliştiriyor",
+      en: "About Dima: why it exists, how we think, who builds it",
     },
     description: {
-      tr: "UpcyTech, üreticilerin ürettiği sayıların kaynağından ayrılmaması için kuruldu. Hikâyemiz, inandıklarımız, ekibimiz ve nerede çalıştığımız.",
-      en: "UpcyTech exists so that the numbers manufacturers produce stay attached to their source. Our story, our convictions, our team, and where we work.",
+      tr: "Dima'nın neden geliştirildiğini, şirket verisini nasıl ele aldığımızı, ürün ilkelerimizi ve ürünü geliştiren ekibi tanıyın.",
+      en: "Learn why Dima is being built, how we think about company data, the product principles behind it, and the team building it.",
     },
   },
   breadcrumb: { home: { tr: "Ana sayfa", en: "Home" }, self: { tr: "Hakkımızda", en: "About" } },
   hero: {
     title: {
-      tr: "Bir sayıyı üretmek ucuzladı. Onu kanıtlamak pahalılaştı.",
-      en: "Producing a number got cheap. Proving one got expensive.",
+      tr: "Şirketlerde veri çok. Karar için gereken bağlam hâlâ parçalı.",
+      en: "Companies have plenty of data. The context needed for decisions is still fragmented.",
     },
     lede: {
-      tr: "Alıcı, denetçi ve düzenleyici artık rakamı değil, rakamın nereden geldiğini soruyor. UpcyTech, üreticinin ürettiği sayının kaynağından ayrılmaması için kuruldu.",
-      en: "Buyers, auditors and regulators no longer ask for the figure; they ask where it came from. UpcyTech exists so that a manufacturer's numbers never come apart from their source.",
+      tr: "Dima'yı bu problem için geliştiriyoruz: finans, muhasebe, üretim ve diğer sistemlerde yaşayan parçaları aynı şirket bağlamında birleştirmek; önemli değişimleri siz sormadan izlemek; nedenini kanıtlarıyla araştırmak ve karara taşımak.",
+      en: "Dima is built for this problem: connect the pieces living across finance, accounting, manufacturing and other systems into one company context, monitor important change without waiting for a prompt, investigate why with evidence, and move it toward a decision.",
     },
   },
   story: {
-    title: { tr: "Hikâye", en: "Story" },
+    title: { tr: "Neden Dima", en: "Why Dima" },
     paragraphs: {
-      // The founding moment itself is the founders' to sharpen: replace these two
-      // paragraphs with the specific factory, report or buyer question it started with.
       tr: [
-        "UpcyTech'i beş kurucu ortak kurdu: iş geliştirme, finans, ürün, teknoloji ve yazılım aynı masada. Kural ilk günden belliydi: sizinle konuşan kişi, işi yapan kişidir.",
-        "Tesislerin içine girdikçe gördüğümüz şey değişmedi, adı kondu: istenen hiçbir sayı tek başına durmuyor; her birinin arkasında bir kayıt, bir kaynak, bir tarih aranıyor. O günden beri tek bir iş yapıyoruz: sayıyı, kaynağından ayrılamayacak biçimde kurmak.",
-        "Bugün yaptığımız her şey aynı yere çıkıyor: bir sayıyı, kaynağından ayrılamayacak biçimde kurmak. Operasyonu kaydeden bir ERP, bir hesabı raporlayan bir karbon platformu, veriye soru soran bir analiz aracı ve hazır ürün yetmediğinde yazdığımız yazılım, bu tek işin farklı yüzleri.",
+        "Dima'yı geliştiren ekip UpcyTech Teknoloji A.Ş. çatısı altında ürün, teknoloji, yazılım, finans ve iş geliştirme disiplinlerini aynı masada birleştiriyor. Bugün müşteri-facing odağımız tek ürün: Dima.",
+        "Şirket verisinin yalnız farklı sistemlere dağılmadığını gördük. Aynı müşteri, sipariş, makine veya maliyet birden fazla departmanda farklı izler bırakıyor; yıllar boyunca biriken geçmiş veri de bugünkü değişimin ne anlama geldiğini belirliyor. Asıl zor sorular bu yatay ilişkilerle zaman boyutunu birlikte okumayı gerektiriyor.",
+        "Bu yüzden Dima'yı bir chatbot veya yalnızca dashboard olarak tasarlamıyoruz. Company Brain şirketin entity ve ilişkilerini yaşayan bir bağlamda tutuyor; Today ve Radar neyin değiştiğini öne çıkarıyor; Investigation ve Evidence nedenini araştırıyor; Decision ve Action katmanları sonucu işe dönüştürüyor.",
       ],
       en: [
-        "UpcyTech was founded by five co-founders: business development, finance, product, technology and software around one table. The rule was set on day one: the person you talk to is the person who does the work.",
-        "What we saw inside real facilities never changed, it only got its name: no requested number stands alone; behind each one someone looks for a record, a source, a date. Since then we have done exactly one job: making a number that cannot be separated from its source.",
-        "Everything we build today comes back to one job: making a number that cannot be separated from its source. An ERP that records the operation, a carbon platform that reports the calculation, an analytics tool that answers questions of the data, and the software we write when no product fits are different faces of that one job.",
+        "The team building Dima works under UpcyTech Teknoloji A.Ş., bringing product, technology, software, finance and business development into one operating group. Today our customer-facing focus is one product: Dima.",
+        "Company data is not only scattered across systems. The same customer, order, machine or cost leaves different traces across departments, while years of historical data shape what today's change actually means. The hardest questions require reading those horizontal relationships together with time.",
+        "That is why Dima is not designed as a chatbot or merely a dashboard. Company Brain keeps company entities and relationships in a living context; Today and Radar surface what changed; Investigation and Evidence examine why; Decision and Action turn the result into work.",
       ],
     },
   },
   beliefs: {
-    title: { tr: "Neye inanıyoruz", en: "What we believe" },
+    title: { tr: "Ürün ilkelerimiz", en: "Product principles" },
     items: {
       tr: [
-        { title: "Kaynağından ayrılabilen bir sayı iddiadır.", body: "Kaynağıyla birlikte taşınan bir sayı ise kayıttır. Yazılımın işi, bu farkı korumaktır." },
-        { title: "Sorun hız değil, tekrar üretilebilirlik.", body: "Sektör cevabı hızlandırmaya çalışıyor. Asıl başarısızlık, geçen yılın cevabının bugün tekrar üretilememesi." },
-        { title: "Bize güvenmeyin, sayıyı kontrol edin.", body: "Tanımadığınız bir firmadan gelen bir rakama güvenmek zor. Bu yüzden her çıktıyı, bize sormadan doğrulayabileceğiniz biçimde kuruyoruz." },
-        { title: "Türkçe sonradan eklenmez.", body: "Türkçe, Türk muhasebe pratiği ve Türkiye'nin düzenleyici takvimi bir yerelleştirme katmanı değil, tasarımın girdisi." },
+        {
+          title: "Önemli olanı kullanıcı sormadan fark etmek gerekir.",
+          body: "Chat faydalıdır ama ürünün merkezi değildir. Şirketi izleyen sistem, kritik sapma, risk veya fırsatı kullanıcı doğru soruyu kurmadan önce bulabilmelidir.",
+        },
+        {
+          title: "Bir finding kanıtından ayrı düşünülemez.",
+          body: "Kaynak, dönem, entity, ilişki ve hesaplama bağlamı sonradan eklenen teknik ayrıntılar değildir. Kararın güvenilir olmasının parçasıdır.",
+        },
+        {
+          title: "Sayısal otorite modelin tahmini olmamalıdır.",
+          body: "LLM dili ve araştırmayı destekleyebilir; fakat sayısal sonuç tanımlı semantik ve analitik katmandan gelmeli, tekrar kontrol edilebilmelidir.",
+        },
+        {
+          title: "Basitleştir, fakat boşaltma.",
+          body: "İster ürün ekranı ister web sitesi olsun, bir şeyi anlaşılır hale getirirken gerçek bilgiyi yok etmiyoruz. Kullanıcı ne olduğunu, neden önemli olduğunu ve ne yapabileceğini anlayabilmeli.",
+        },
+        {
+          title: "Tek şirket beyni, farklı yönetici lensleri.",
+          body: "CEO, CFO veya üretim yöneticisi farklı öncelikler görür; fakat alttaki şirket bağlamı ve veri modeli bölünmez. Aynı finding departmanlar arasında izini korur.",
+        },
       ],
       en: [
-        { title: "A number that can be separated from its source is a claim.", body: "A number that travels with its source is a record. Software's job is to keep the difference." },
-        { title: "The failure is not speed. It is reproducibility.", body: "The industry competes on how fast it can answer. The real failure is that last year's answer cannot be reproduced today." },
-        { title: "Don't trust us. Check the number.", body: "A figure from a vendor you do not know is hard to trust, so we build every output to be verifiable without asking us." },
-        { title: "Turkish is not added afterwards.", body: "The Turkish language, Turkish accounting practice and Türkiye's regulatory calendar are inputs to the design, not a localisation layer." },
+        {
+          title: "Important change should surface before the user asks.",
+          body: "Chat is useful but it is not the product center. A system monitoring the company should be able to find a critical deviation, risk or opportunity before the user formulates the perfect question.",
+        },
+        {
+          title: "A finding cannot be separated from its evidence.",
+          body: "Source, period, entity, relationship and calculation context are not technical details added afterwards. They are part of what makes a decision trustworthy.",
+        },
+        {
+          title: "Numeric authority should not come from model guesswork.",
+          body: "An LLM can support language and investigation, but numeric results should come from a defined semantic and analytical layer and remain checkable.",
+        },
+        {
+          title: "Simplify without emptying the idea.",
+          body: "Whether in the product or on the website, making something understandable should not remove the real information. The user should understand what it is, why it matters and what can be done.",
+        },
+        {
+          title: "One company brain, different management lenses.",
+          body: "A CEO, CFO and manufacturing leader may see different priorities, but the company context and data model underneath do not split. The same finding keeps its trace across departments.",
+        },
       ],
     } satisfies L<Point[]>,
   },
   team: {
     title: { tr: "Ekip", en: "Team" },
     intro: {
-      tr: "Beş kişiyiz ve vaka çalışmamız henüz yok; bu yüzden kanıt, işi yapan insanlar. Sizinle konuşan kişi, işi yapan kişidir.",
-      en: "We are five people and have no case study yet, so the proof is the people who do the work. The person you talk to is the person who delivers.",
+      tr: "Dima'yı ürün, finans, iş geliştirme, teknoloji ve yazılım sorumluluklarını doğrudan taşıyan beş kişilik çekirdek ekip geliştiriyor.",
+      en: "Dima is built by a five-person core team directly responsible for product, finance, business development, technology and software.",
     },
     photo: { tr: "Fotoğraf", en: "Photo" },
   },
   where: {
     title: { tr: "Nerede çalışıyoruz", en: "Where we work" },
     intro: {
-      tr: "Türkiye'de kurulduk ve önce Türk üreticiler için çalışıyoruz. Müşterimiz Avrupa'ya satıyorsa, Avrupa'nın takvimi de bizim takvimimiz.",
-      en: "We are based in Türkiye and work first for Turkish manufacturers. When a customer sells into Europe, Europe's regulatory calendar becomes ours too.",
+      tr: "Türkiye'de kurulduk ve ilk odağımız Türk şirketleri. Dima'yı Türkçe iş dili, yerel muhasebe pratiği ve üretim gerçekliğini sonradan eklenen bir yerelleştirme katmanı değil, ürün girdisi olarak ele alarak geliştiriyoruz.",
+      en: "We are based in Türkiye and our first focus is Turkish companies. Dima treats Turkish business language, local accounting practice and manufacturing reality as product inputs rather than a localisation layer added later.",
     },
     facts: {
-      // Headquarters repeats the registered address until an office elsewhere is supplied.
       tr: [
         { label: "Merkez", value: "Reşitpaşa Mah. Katar Cad. İTÜ Tasarım ve Prototip Merkezi Binası No: 2/41 İç Kapı No: 19, 34467 Sarıyer / İstanbul" },
-        { label: "Öncelikli pazar", value: "Türkiye; AB'ye ihracat yapan üreticiler" },
+        { label: "Ana pazar", value: "Türkiye" },
         { label: "Diller", value: "Türkçe ve İngilizce" },
-        { label: "Kurulum", value: "Bulut öncelikli; talep üzerine yerinde kurulum" },
-        { label: "Uluslararası çalışma", value: "AB'ye satış yapan müşterilerimizle Avrupa'nın raporlama takviminde çalışıyoruz. Görüşmeler Türkçe ya da İngilizce, uzaktan ya da sahada yapılır." },
+        { label: "Ürün odağı", value: "Dima — kurumsal karar zekâsı ve optimizasyon platformu" },
+        { label: "Tüzel yapı", value: "UpcyTech Teknoloji A.Ş." },
       ],
       en: [
         { label: "Headquarters", value: "Reşitpaşa Mah. Katar Cad. İTÜ Tasarım ve Prototip Merkezi Binası No: 2/41 İç Kapı No: 19, 34467 Sarıyer / İstanbul, Türkiye" },
-        { label: "Primary market", value: "Türkiye, and manufacturers exporting to the EU" },
+        { label: "Primary market", value: "Türkiye" },
         { label: "Languages", value: "Turkish and English" },
-        { label: "Deployment", value: "Cloud-first; on-premise on request" },
-        { label: "International work", value: "With customers selling into the EU we work to Europe's reporting calendar. Meetings happen in Turkish or English, remote or on site." },
+        { label: "Product focus", value: "Dima — enterprise decision intelligence and optimization platform" },
+        { label: "Legal entity", value: "UpcyTech Teknoloji A.Ş." },
       ],
     },
   },
   cta: {
-    title: { tr: "Bizimle çalışın ya da bize katılın", en: "Work with us, or join us" },
+    title: { tr: "Dima'yı kendi şirketinizde görün ya da ekibe katılın.", en: "See Dima in your company, or join the team." },
     body: {
-      tr: "Ne üzerinde çalıştığınızı anlatın; ürün mü hizmet mi gerektiğini birlikte çıkaralım. Ekibe katılmak istiyorsanız kariyer sayfası sizin için.",
-      en: "Tell us what you are working on and we will work out together whether it needs a product or a service. If you would like to join the team, the careers page is for you.",
+      tr: "Bir karar problemini ve verinin bugün nerede yaşadığını anlatın; hangi veriyle başlayacağımızı ve canlı demoda neyi göstereceğimizi netleştirelim. Ekibe katılmak istiyorsanız kariyer sayfası açık.",
+      en: "Tell us about one decision problem and where the relevant data lives today; we will define what to connect first and what to show in a live demo. If you want to join the team, the careers page is open.",
     },
-    primary: { tr: "Bize ulaşın", en: "Talk to us" },
+    primary: { tr: "Canlı demo isteyin", en: "Request a live demo" },
     secondary: { tr: "Kariyer", en: "Careers" },
   },
-};
+} as const;

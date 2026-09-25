@@ -1,39 +1,40 @@
 import type { L } from "../types";
 
 /**
- * /contact. Field names, errors and the consent line follow the design system's voice rules:
- * controls take the bare imperative, sentences take "siz", errors say what happened and how
- * to fix it without apologising, and an action keeps its verb ("Gönder" → "Gönderildi").
+ * Stable internal topic keys are retained so old deep links and the server action contract do
+ * not break during the brand migration. User-visible labels now describe Dima conversations.
  */
 export const TOPICS = ["products", "software", "consultancy", "sustainability", "sector", "careers", "other"] as const;
 export type Topic = (typeof TOPICS)[number];
 
 export const contactPage = {
   meta: {
-    title: { tr: "İletişim: UpcyTech ile görüşün", en: "Contact: talk to UpcyTech" },
+    title: { tr: "İletişim: Dima ile görüşün", en: "Contact: talk to Dima" },
     description: {
-      tr: "UpcyTech'e yazın: ürünler, özel yazılım, mimari inceleme ya da sürdürülebilirlik çözümleri. Mesajınızı işi yapacak kişi okur.",
-      en: "Write to UpcyTech about products, custom software, architecture review or sustainability solutions. The person who reads your message is the person who does the work.",
+      tr: "Dima canlı demosu, veri bağlantısı, muhasebe/finans, üretim veya pilot kullanım alanı için ekiple görüşün.",
+      en: "Talk to the team about a Dima live demo, data connection, accounting/finance, manufacturing or a pilot use case.",
     },
   },
   breadcrumb: { home: { tr: "Ana sayfa", en: "Home" }, self: { tr: "İletişim", en: "Contact" } },
   hero: {
-    title: { tr: "Bize ulaşın", en: "Talk to us" },
+    title: { tr: "Dima'yı kendi şirketinizde görmek için başlayın.", en: "Start with your own company context." },
     lede: {
-      tr: "Ne üzerinde çalıştığınızı birkaç cümleyle anlatın. Mesajınızı, işi yapacak kişi okur.",
-      en: "Tell us in a few sentences what you are working on. Your message is read by the person who would do the work.",
+      tr: "Bir karar problemini, bugün hangi sistemlerden baktığınızı ve cevabı bulmanın neden zor olduğunu birkaç cümleyle anlatın. İlk görüşmenin amacı ürün sunumu yapmak değil, Dima'nın hangi veriyle gerçek değer gösterebileceğini netleştirmektir.",
+      en: "Describe one decision problem, which systems you look at today and why the answer is difficult to reach. The first conversation is not a generic product pitch; it is to identify which data would let Dima demonstrate real value.",
     },
   },
   next: {
     title: { tr: "Sonra ne olur", en: "What happens next" },
     steps: {
       tr: [
-        "Mesajınızı, işi yapacak kişi okur.",
-        "İlk görüşmede hangi ürünün ya da hizmetin uyduğunu birlikte çıkarırız; hiçbiri uymuyorsa bunu da söyleriz.",
+        "Mesajınızı ürün veya teknik tarafta konuyla ilgilenecek kişi okur.",
+        "Bir karar problemini ve onu açıklamak için gereken veri kaynaklarını birlikte sınırlarız.",
+        "Uygunsa canlı demo veya dar kapsamlı pilot için sonraki adımı netleştiririz.",
       ],
       en: [
-        "Your message is read by the person who would do the work.",
-        "In a first call we work out together which product or service fits, and tell you if none of them does.",
+        "Your message is read by the person on the product or technical side who would work on the topic.",
+        "Together we narrow one decision problem and the data sources required to explain it.",
+        "If there is a fit, we define the next step for a live demo or tightly scoped pilot.",
       ],
     },
     responseLabel: { tr: "Cevap süresi", en: "Response time" },
@@ -49,18 +50,17 @@ export const contactPage = {
     },
     emailPlaceholder: { tr: "ad.soyad@firma.com.tr…", en: "name@company.com…" },
     messageHint: {
-      tr: "Hangi kaydın nerede tutulduğunu ve kimin hangi raporu istediğini yazın.",
-      en: "Say which records live where, and who is asking for which report.",
+      tr: "Örnek: hangi karar gecikiyor, veriler hangi ERP/Excel/veritabanında ve bugün bunu kim takip ediyor?",
+      en: "Example: which decision is delayed, where the data lives today, and who currently has to track it?",
     },
     topicPlaceholder: { tr: "Bir konu seçin", en: "Choose a topic" },
-    /** The spam honeypot is hidden from people and assistive technology; its label is still localized. */
     honeypot: { tr: "Web sitesi", en: "Website" },
     topics: {
-      products: { tr: "Ürünler", en: "Products" },
-      software: { tr: "Özel yazılım", en: "Custom software" },
-      consultancy: { tr: "Mimari inceleme & teknik analiz", en: "Architecture review & technical analysis" },
-      sustainability: { tr: "Sürdürülebilirlik çözümleri", en: "Sustainability solutions" },
-      sector: { tr: "Sektörel çözüm görüşmesi", en: "Sector solution meeting" },
+      products: { tr: "Dima canlı demo", en: "Dima live demo" },
+      software: { tr: "Veri bağlantısı & entegrasyon", en: "Data connection & integration" },
+      consultancy: { tr: "Pilot & kullanım alanı", en: "Pilot & use case" },
+      sustainability: { tr: "Muhasebe & finans", en: "Accounting & finance" },
+      sector: { tr: "Üretim & sektör pack'i", en: "Manufacturing & sector pack" },
       careers: { tr: "Kariyer", en: "Careers" },
       other: { tr: "Diğer", en: "Something else" },
     } satisfies Record<Topic, L>,
@@ -80,8 +80,8 @@ export const contactPage = {
     },
     topic: { tr: "Bir konu seçin.", en: "Choose a topic." },
     message: {
-      tr: "Mesaj en az 20 karakter olmalı. Ne üzerinde çalıştığınızı birkaç cümleyle yazın.",
-      en: "The message needs at least 20 characters. Describe what you are working on in a few sentences.",
+      tr: "Mesaj en az 20 karakter olmalı. Karar problemini ve verinin bugün nerede yaşadığını birkaç cümleyle yazın.",
+      en: "The message needs at least 20 characters. Describe the decision problem and where the relevant data lives today.",
     },
     consent: {
       tr: "Göndermek için KVKK aydınlatma metnini onaylayın.",
@@ -99,8 +99,8 @@ export const contactPage = {
   success: {
     title: { tr: "Gönderildi. Mesajınız bize ulaştı.", en: "Sent. Your message reached us." },
     body: {
-      tr: "Mesajınızı işi yapacak kişi okuyacak ve size e-posta ile dönecek.",
-      en: "The person who would do the work will read it and reply by email.",
+      tr: "Mesajınızı konuyla ilgilenecek ekip üyesi okuyacak ve size e-posta ile dönecek.",
+      en: "The team member responsible for the topic will read it and reply by email.",
     },
   },
   channels: {
@@ -118,8 +118,8 @@ export const contactPage = {
   office: {
     title: { tr: "Ofis", en: "Office" },
     intro: {
-      tr: "Görüşmeye gelmek isterseniz önceden haber verin; işi yapacak kişinin orada olmasını sağlayalım.",
-      en: "If you would like to visit, let us know beforehand so the person who would do the work is there.",
+      tr: "Görüşmeye gelmek isterseniz önceden haber verin; konuyla ilgilenecek kişinin orada olmasını sağlayalım.",
+      en: "If you would like to visit, let us know beforehand so the person responsible for the topic is there.",
     },
     labels: {
       address: { tr: "Adres", en: "Address" },
@@ -130,7 +130,6 @@ export const contactPage = {
       controls: {
         zoomIn: { tr: "Yakınlaştır", en: "Zoom in" },
         zoomOut: { tr: "Uzaklaştır", en: "Zoom out" },
-        /** Unused today (only zoom renders): present so enabling a control can never ship English. */
         locate: { tr: "Konumumu bul", en: "Find my location" },
         fullscreen: { tr: "Tam ekrana geç", en: "Toggle fullscreen" },
         resetBearing: { tr: "Kuzeye döndür", en: "Reset bearing to north" },
@@ -145,8 +144,8 @@ export const contactPage = {
   legal: {
     title: { tr: "Şirket bilgileri", en: "Company details" },
     intro: {
-      tr: "Türk Ticaret Kanunu gereği yayımladığımız tescil bilgileri.",
-      en: "Our registration details, published as Turkish commercial law requires.",
+      tr: "Dima'nın geliştiricisi olan tüzel kişiliğin Türk Ticaret Kanunu gereği yayımlanan tescil bilgileri.",
+      en: "Registration details of the legal entity developing Dima, published as Turkish commercial law requires.",
     },
     labels: {
       legalName: { tr: "Ticari unvan", en: "Registered name" },
@@ -154,4 +153,4 @@ export const contactPage = {
       mersis: { tr: "MERSİS numarası", en: "MERSİS number" },
     },
   },
-};
+} as const;
