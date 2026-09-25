@@ -4,7 +4,7 @@ import { routing, type Locale, type StaticPathname } from "@/i18n/routing";
 import { site } from "@/content/site";
 
 /** Production origin. [CONFIRM] — set NEXT_PUBLIC_SITE_URL per environment. */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://usedima.com";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? site.domain;
 
 export const absoluteUrl = (href: StaticPathname, locale: Locale): string =>
   new URL(getPathname({ href, locale }), SITE_URL).toString();

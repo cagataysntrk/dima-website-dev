@@ -9,6 +9,24 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-057 · The active product registry is Dima-only and V1.6 is test-enforced
+**Decided:** reduce the active `products` registry to Dima only and narrow the active
+`BrandKey` type accordingly. The retired UpcyCarbon, UpcyMan and UpcyOps records are not moved
+into new Dima sub-brands and are not retained as active customer-facing product objects in the
+public working repo. Their historical source remains in the frozen upstream organization
+repository and archived materials.
+
+Add a focused `tests/brand-house.test.ts` contract for the non-negotiable V1.6 facts:
+Dima master brand, usedima.com domain, UpcyTech legal identity only, exact Turkish descriptor
+and hero line, official trial/live-demo/login CTA labels, the official verbal rhythm, one
+active Dima product, the two Company Brain lens names, the core experience law, contextual
+rather than mandatory chat, and Dima Today as the brain's focus layer.
+
+The site domain is also centralized in `site.domain`; SEO uses that value as its default
+instead of maintaining a second hard-coded brand domain.
+
+**Reason:** make branding drift a test failure rather than a future copy-review surprise.
+
 ### D-056 · Active sector content no longer carries the retired compliance portfolio
 **Decided:** simplify `src/content/industries.ts` to the only data still used by the home
 sector gallery: sector id/anchor/name, Dima-aligned Company Brain pack summary and imagery.
