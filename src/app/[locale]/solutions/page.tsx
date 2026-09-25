@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
-import { Heading, Section, Stack, Text } from "@upcytech/ui";
+import { Button, Heading, Section, Stack, Text } from "@upcytech/ui";
 
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -30,6 +30,7 @@ export default async function SolutionsPage({ params }: PageProps<"/[locale]/sol
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
   const product = products.find((item) => item.id === "analytics")!;
+  const tryUrl = process.env.NEXT_PUBLIC_TRY_URL?.trim();
 
   return (
     <>
@@ -37,7 +38,18 @@ export default async function SolutionsPage({ params }: PageProps<"/[locale]/sol
         title={copy.hero.title[locale]}
         lede={copy.hero.lede[locale]}
         action={
-          <RainbowButton as="a" href="#consult">{copy.hero.action[locale]}</RainbowButton>
+          <div className="flex flex-wrap gap-2">
+            {tryUrl ? (
+              <RainbowButton as="a" href={tryUrl}>{copy.hero.trial[locale]}</RainbowButton>
+            ) : null}
+            {tryUrl ? (
+              <Button variant="secondary" asChild>
+                <Link href="/contact">{copy.hero.demo[locale]}</Link>
+              </Button>
+            ) : (
+              <RainbowButton as={Link} href="/contact">{copy.hero.demo[locale]}</RainbowButton>
+            )}
+          </div>
         }
       />
 
@@ -50,7 +62,7 @@ export default async function SolutionsPage({ params }: PageProps<"/[locale]/sol
         showScreens={false}
         action={
           <RainbowButton as={Link} href="/contact">
-            {copy.hero.action[locale]}
+            {copy.hero.demo[locale]}
           </RainbowButton>
         }
       />

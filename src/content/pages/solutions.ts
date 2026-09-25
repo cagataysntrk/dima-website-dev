@@ -22,7 +22,8 @@ export const solutionsPage = {
       tr: "Dima bir soru kutusu veya rapor ekranı olarak başlamaz. Şirketin finans, muhasebe, üretim ve diğer veri kaynaklarını ortak bir bağlamda anlamlandırır; güncel veri akışına göre izler, önemli değişimleri bulur, nedenini araştırır ve karar için gereken kanıtı aynı akışta tutar.",
       en: "Dima does not begin as a question box or reporting screen. It connects finance, accounting, manufacturing and other company data into one context, monitors changes as data updates, surfaces what matters, investigates why it happened, and keeps the evidence needed for a decision in the same flow.",
     },
-    action: { tr: "Canlı demo isteyin", en: "Request a live demo" },
+    trial: { tr: "Dima'yı deneyin", en: "Try Dima" },
+    demo: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
   section: {
     problem: { tr: "Neden gerekli", en: "Why it is needed" },
@@ -69,8 +70,8 @@ export const solutionsPage = {
           body: "Tek bir öneriyi mutlak doğru gibi sunmak yerine uygulanabilir seçenekleri, maliyet, nakit, kapasite, termin veya diğer ilgili etkileriyle birlikte değerlendirmeye hazırlar.",
         },
         {
-          title: "Aksiyonu ve sonucu aynı hafızaya bağla",
-          body: "Onaylanan karar görev, bildirim, e-posta veya sistem taslağı gibi kontrollü bir aksiyona dönüşebilir. Sonuç daha sonra aynı entity ve finding'e bağlanarak karar hafızasını besler.",
+          title: "Aksiyonu kontrollü yürüt, sonucu hafızaya bağla",
+          body: "Uygun aksiyonlar Draft → Validate → Preview → Approve → Execute → Receipt zinciriyle ilerler; yüksek etkili finans/ERP işlemlerinde insan onayı ve audit izi korunur. Sonuç daha sonra aynı entity, finding ve karar varsayımına bağlanarak Outcome/Memory katmanını besler.",
         },
       ],
       en: [
@@ -95,8 +96,8 @@ export const solutionsPage = {
           body: "Rather than presenting one recommendation as absolute truth, Dima prepares viable options for comparison with their relevant cost, cash, capacity, delivery or other business effects.",
         },
         {
-          title: "Connect action and outcome back to memory",
-          body: "An approved decision can become a governed task, notification, email or system draft. The outcome can then be linked back to the same entity and finding to build decision memory.",
+          title: "Run action through controls and connect the outcome to memory",
+          body: "Eligible actions move through Draft → Validate → Preview → Approve → Execute → Receipt; high-impact finance/ERP operations keep human approval and an audit trail. The outcome then links back to the same entity, finding and decision assumption to feed Outcome/Memory.",
         },
       ],
     },
@@ -125,8 +126,8 @@ export const solutionsPage = {
           body: "Chat kullanıldığında kullanıcı sıfırdan soru sormaz. Konuşma seçili finding, entity ve investigation bağlamının üzerinde devam eder; bu yüzden takip soruları aynı araştırmanın devamıdır.",
         },
         {
-          title: "Aksiyon yetki ve onayla sınırlıdır",
-          body: "Dima'nın gelecekte daha fazla işi yürütmesi hedeflense de bugünkü marka vaadi sınırsız otonomi değildir. Aksiyonlar açık yetki, onay ve denetlenebilir kayıt ilkeleriyle tasarlanır.",
+          title: "Aksiyon yetki, önizleme ve onayla sınırlıdır",
+          body: "Dima'nın gelecekte daha fazla işi yürütmesi hedeflense de bugünkü marka vaadi sınırsız otonomi değildir. Kritik aksiyon tasarımı Draft → Validate → Preview → Approve → Execute → Receipt zincirini, yüksek etkili işlemlerde insan onayını ve denetlenebilir audit izini korur.",
         },
       ],
       en: [
@@ -143,8 +144,8 @@ export const solutionsPage = {
           body: "When chat is used, the user does not start from zero. The conversation continues on the selected finding, entity and investigation context, so follow-up questions remain part of the same investigation.",
         },
         {
-          title: "Actions are bounded by permission and approval",
-          body: "Dima is intended to carry more work over time, but today's brand promise is not unlimited autonomy. Actions are designed around explicit permissions, approvals and auditable records.",
+          title: "Actions are bounded by permission, preview and approval",
+          body: "Dima is intended to carry more work over time, but today's brand promise is not unlimited autonomy. Critical action design follows Draft → Validate → Preview → Approve → Execute → Receipt, retaining human approval for high-impact operations and an auditable trail.",
         },
       ],
     },

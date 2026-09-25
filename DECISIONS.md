@@ -9,6 +9,23 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-059 · Product CTA and controlled-action language follow V1.6
+**Decided:** the Product route uses the V1.6 CTA hierarchy: when a verified
+`NEXT_PUBLIC_TRY_URL` exists, "Dima'yı deneyin" is the primary action and "Canlı demo
+isteyin" remains the secondary sales-assisted path. Without a working self-serve target, the
+page shows only the real live-demo action instead of pretending onboarding exists.
+
+The decision loop now states the controlled execution contract explicitly for eligible
+actions: Draft → Validate → Preview → Approve → Execute → Receipt, with human approval and
+audit trail retained for high-impact finance/ERP operations. Outcome is then connected back
+to the same entity/finding/decision assumption to feed memory.
+
+This language describes the governed action architecture without claiming that Dima is an
+unlimited autonomous manager today.
+
+**Reason:** match V1.6's action/approval guardrail and CTA hierarchy while preserving its
+separate rule against promising unshipped capability.
+
 ### D-058 · Public metadata and contact identities cannot leak the legacy brand
 **Decided:** the Open Graph image generator uses the Dima token theme selected from
 `site.name` and renders the current master-brand wordmark from the same source. It must not
