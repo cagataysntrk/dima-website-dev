@@ -1,20 +1,67 @@
 export const metadata = {
-  title: "An auditable business analyst: verified engines supply the number, not the model",
-  description: "Dima is an auditable business analyst that understands each prompt as a conversational turn, never guesses through ambiguity, and queries semantic models over real data.",
+  title: "How to verify a business finding: the analytical layer supplies the number",
+  description: "How a Dima finding is formed, why numeric results should not come from LLM guesswork, and how evidence stays attached through the decision flow.",
   date: "2026-08-20",
+  updated: "2026-09-25",
   author: "member-4",
   category: "data",
   related: { kind: "product", id: "analytics" },
 };
 
-When executive management asks critical questions like why scrap increased last month, finding verified answers often takes days. Data is pulled from the ERP, exported to spreadsheets, and meetings drag on. Standard generative tools try to paper over missing data with guesses and hallucinations.
+When a manager asks “why did scrap increase last month?”, a verified answer can take days. But there is a more basic problem: the company often waits for someone to formulate the right question before an important change is investigated at all.
 
-## Where the answer comes from
+Dima is designed to reverse that loop. The system monitors company data, creates a finding when a meaningful deviation or opportunity appears, and lets the user investigate why it happened and what can be done next.
 
-Dima treats every user message as a conversational turn. It never fills ambiguity with guesswork; when clarification is needed, it asks targeted questions. It queries your plant's structured semantic model and real data through a reliable analytical engine. Queries are planned read-only; they can never alter your records.
+For that to be trustworthy, one distinction is essential:
 
-## Rapid answers and iterative investigation
+**A model can help with the investigation. It should not invent the number.**
 
-Dima answers straightforward questions in seconds. For complex investigations, it develops its research iteratively as preliminary findings emerge. It combines underlying evidence, data tables, visual charts, and candidate root causes within the same conversation and auditable report.
+## Where the numeric result comes from
 
-Your ERP, spreadsheets, and databases stay where they are. Dima connects securely to your existing infrastructure, tailored to your plant's workflows. At the end of setup, all data models and business rules remain entirely yours.
+A language model can write a useful explanation and translate a complex question into business terms. But the difference between 82.4 and 84.1 is not a matter of producing a plausible sentence.
+
+In Dima, numeric authority should remain in the semantic and analytical layer:
+
+1. The business metric is mapped to a defined measure.
+2. The query is planned and bounded before execution.
+3. It runs against the real data source.
+4. The result travels with its source, period and entity context.
+
+The LLM can explain that result; it should not fabricate it.
+
+## A finding is more than a number
+
+“Scrap increased” is not enough to make a decision.
+
+A useful finding needs to answer questions such as:
+
+- When did the change begin?
+- Which products, machines, shifts or orders concentrate it?
+- What behavior was considered normal?
+- Did the same pattern appear before?
+- What is the financial or operational impact?
+- Which explanations are supported, and which have been eliminated?
+
+That is why Dima's investigation layer does not leave a KPI on a result screen. It follows the relevant entities and relationships to examine root-cause candidates.
+
+## Where chat enters the flow
+
+Chat does not have to be the starting point.
+
+When a user opens a finding, the context is already known: selected lobe, entities, period, evidence and investigation. If the user asks “what happens if we exclude this customer?” or “how does this option affect delivery?”, the conversation continues the same investigation.
+
+That distinction matters. The user does not need to explain the company to the model again in every prompt.
+
+## Why evidence is part of the product
+
+Even a correct result is difficult to defend in a meeting if nobody can see where it came from.
+
+Evidence therefore should not live only in a technical log. The finding should expose:
+
+- data source,
+- period used,
+- relevant entities,
+- calculation or query result,
+- relationships used in the investigation.
+
+Dima's goal is not to say “AI answered”. It is to answer: **why should this finding be taken seriously, and what data supports it?**

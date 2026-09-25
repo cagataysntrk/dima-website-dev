@@ -1,26 +1,57 @@
 export const metadata = {
   title: "Excel mutabakatı neden ay sonunda tutmaz",
-  description: "Çek defteri, cari bakiye ve sahadaki stok üç ayrı yerde tutulunca ay sonu mutabakat değil, müzakere olur.",
+  description: "Cari, banka ve stok ayrı sistemlerde doğru görünse bile aralarındaki ilişki kopuksa ay sonu mutabakatı neden tartışmaya dönüşür, nasıl araştırılır?",
   date: "2026-09-03",
+  updated: "2026-09-25",
   author: "member-5",
   category: "operations",
-  related: { kind: "product", id: "erp" },
+  related: { kind: "product", id: "analytics" },
 };
 
-Ay sonunda üç kayıt birbirini tutmuyor: çek defteri, cari bakiye ve sahadaki stok. Excel, bir defter ve bir mesaj grubuyla yürüyen iş mutabakatta tıkanıyor; hangi rakamın doğru olduğu belirlenemiyor.
+Ay sonunda üç kayıt birbirini tutmuyor: cari bakiye başka, banka hareketi başka, sahadaki stok başka bir şey söylüyor. Sorun çoğu zaman tek bir kaydın yanlış olması değil; **aynı ticari olayın farklı sistemlerde bıraktığı izlerin birbirine bağlanamaması**.
 
-## Üç defterin hikâyesi
+## Üç kayıt da doğru olabilir
 
-- **Çek defteri** muhasebede durur; vade, tutar ve imza oradadır.
-- **Cari bakiye** ayrı bir tabloda yaşar; kimin ne kadar borcu olduğu oraya yazılır.
-- **Sahadaki stok** ise sahadadır: giren mal, çıkan ürün ve fire gözün gördüğü yerdedir.
+Bir satış işlemini düşünün:
 
-Üçü de doğru olabilir ve üçü birden yanlış toplanabilir. Sorun kayıtlarda değil, aralarındaki boşluktadır: bir çek yazıldığında stoktan ne düştüğünü, bir mal çıktığında cariye ne yazıldığını söyleyen bağ yoktur.
+- ERP'de sipariş ve sevkiyat kaydı oluşur.
+- Muhasebede fatura ve cari hareket oluşur.
+- Bankada tahsilat daha sonra görünür.
+- Stokta ürün miktarı değişir.
 
-## Mutabakat değil, müzakere
+Bu dört kayıt aynı olaya aittir ama farklı zamanlarda, farklı anahtarlarla ve farklı ekiplerin kontrolünde oluşabilir. Her ekran kendi içinde doğru görünürken şirket seviyesinde ilişki kopabilir.
 
-Bağ olmayınca ay sonu toplantısı mutabakat değil müzakere olur. Herkes kendi defterini savunur, rakamlar pazarlıkla uzlaşır ve uzlaşılan rakam bir dahaki aya kadar yaşar. Kayıt, tartışmayı bitirmesi gerekirken tartışmanın konusu olur.
+Bu yüzden mutabakat problemi çoğu zaman “hangi sayı doğru?” sorusundan önce şu sorudur:
 
-Çözüm dördüncü bir defter değildir; ikinci sistemin kaldırılmasıdır. Saha ile kasa aynı kayıtta durur: stok, makine, personel ve atık kabulü; cari hesap, kasa, banka ve çek ile aynı sistemde. Her finansal işlem tek parça tamamlanır, her stok hareketi nedenini saklar, her belgenin takip edilebilir bir numarası olur. Tartışmayı kayıt bitirir.
+**Bu kayıtlar gerçekten aynı müşteri, sipariş, fatura ve ödeme zincirine mi ait?**
 
-Biz bunu UpcyMan'de böyle kuruyoruz: operasyon ve muhasebe tek kayıtta, her hareket iz bırakır. Birden fazla tesis tek kurulumda çalışır, veriler birbirine karışmaz.
+## Dördüncü bir Excel neden çözmez
+
+Farkları yeni bir tabloya kopyalamak kısa vadede görünürlük sağlar ama ilişkiyi kalıcı hale getirmez. Bir sonraki ay aynı eşleştirme tekrar yapılır.
+
+Daha sağlam yaklaşım, kayıtları silmeden veya ERP'yi değiştirmeden aralarındaki ortak entity'leri kurmaktır:
+
+- müşteri,
+- fatura,
+- sipariş,
+- banka hareketi,
+- stok hareketi,
+- tarih ve tutar ilişkileri.
+
+Böylece sistem yalnız “iki sayı farklı” demez; farkın hangi işlem zincirinde oluştuğunu araştırabilir.
+
+## Dima bu problemi nasıl ele alır
+
+Dima'nın hedefi bütün sistemleri tek ERP'ye dönüştürmek değildir. Mevcut kaynakları Company Brain bağlamında ilişkilendirir.
+
+Örneğin bir cari bakiye sapması görüldüğünde:
+
+1. İlgili müşteri ve faturalar bulunur.
+2. Fatura vadesi ve ödeme geçmişi karşılaştırılır.
+3. Banka hareketlerinde eşleşen veya eşleşmeyen tahsilatlar aranır.
+4. Sipariş ve sevkiyat ilişkisi kontrol edilir.
+5. Finding, hangi kayıtların sonucu desteklediğini gösterecek evidence ile birlikte sunulur.
+
+Bu yaklaşım mutabakatı “Excel'de fark bulma” işinden çıkarıp **entity ve ilişki araştırmasına** dönüştürür.
+
+Dima bir kaydı otomatik olarak doğru ilan etmek zorunda değildir. Belirsizlik varsa onu görünür tutmak, hangi kaynağın ne söylediğini göstermek ve karar verecek kişiye denetlenebilir bir araştırma bırakmak daha değerlidir.

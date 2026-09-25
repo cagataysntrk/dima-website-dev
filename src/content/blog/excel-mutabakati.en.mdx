@@ -1,26 +1,57 @@
 export const metadata = {
   title: "Why the spreadsheet never reconciles at month-end",
-  description: "When the cheque book, the customer balances and the stock on the floor live in three different places, month-end is a negotiation, not a reconciliation.",
+  description: "Even when receivables, bank transactions and stock each look correct, month-end turns into an argument when the relationships between them are broken.",
   date: "2026-09-03",
+  updated: "2026-09-25",
   author: "member-5",
   category: "operations",
-  related: { kind: "product", id: "erp" },
+  related: { kind: "product", id: "analytics" },
 };
 
-At month-end three records disagree: the cheque book, the customer balances and the stock on the floor. Work that runs on spreadsheets, a notebook and a messaging group stalls at reconciliation, and nobody can say which figure is right.
+At month-end three records disagree: customer balances say one thing, bank movements another, and stock on the floor something else. The problem is often not that one record is simply wrong. It is that **the traces left by the same business event across several systems cannot be connected reliably**.
 
-## The story of the three ledgers
+## All three records can be correct
 
-- **The cheque book** sits in accounting; maturities, amounts and signatures live there.
-- **The customer balances** live in a separate table; who owes what is written there.
-- **The stock on the floor** is on the floor: goods in, product out, and scrap, all where the eye can see them.
+Consider one sale:
 
-All three can be correct and still add up wrong together. The problem is not in the records but in the gaps between them: nothing says what left stock when a cheque was written, or what was booked to the account when goods shipped.
+- The ERP records the order and shipment.
+- Accounting records the invoice and receivable.
+- The bank records the collection later.
+- Inventory records the stock movement.
 
-## A negotiation, not a reconciliation
+These records belong to the same event, but they may be created at different times, under different identifiers and by different teams. Each screen can look correct in isolation while the company-level relationship is broken.
 
-Without those links, the month-end meeting is a negotiation, not a reconciliation. Everyone defends their own ledger, the figures settle by bargaining, and the settlement lasts until next month. The record, which should end the argument, becomes its subject.
+So before asking “which number is right?”, reconciliation often needs a more basic question:
 
-The fix is not a fourth ledger. It is removing the second system. Operations and accounts share one record: stock, machines, personnel and waste intake sit in the same system as receivables, cash, bank and cheques. Each financial operation completes as a whole, each stock movement keeps its reason, and each document carries a traceable number. The record settles the argument.
+**Do these records actually belong to the same customer, order, invoice and payment chain?**
 
-That is how we build it in UpcyMan: operations and accounts in one record, where every movement leaves a trail. Several facilities run on one installation without their data mixing.
+## Why a fourth spreadsheet does not solve it
+
+Copying differences into another workbook can create short-term visibility, but it does not make the relationship durable. The matching exercise starts again next month.
+
+A stronger approach is to keep the source systems and establish the shared entities between them:
+
+- customer,
+- invoice,
+- order,
+- bank transaction,
+- inventory movement,
+- date and amount relationships.
+
+The system can then investigate not only that two figures differ, but where in the transaction chain the difference appeared.
+
+## How Dima approaches the problem
+
+Dima is not designed to replace every system with one ERP. It connects existing sources inside the Company Brain context.
+
+When a receivables discrepancy appears, for example:
+
+1. The relevant customer and invoices are identified.
+2. Due dates and payment history are compared.
+3. Bank movements are searched for matched and unmatched collections.
+4. Order and shipment relationships are checked.
+5. The finding is presented together with evidence showing which records support it.
+
+This turns reconciliation from “finding a difference in Excel” into an **entity and relationship investigation**.
+
+Dima does not need to declare one record correct automatically. When ambiguity remains, it is often more valuable to keep that ambiguity visible, show what each source says and leave the decision-maker with an investigation that can be checked.

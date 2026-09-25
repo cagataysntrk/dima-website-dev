@@ -1,18 +1,11 @@
 import type { L } from "../types";
 
-/**
- * Blog categories. A post names one by id; the index filters on it (?kategori=…).
- *
- * House rule for `author` (the company's call, 2026-09-17): the author follows the
- * post's product — UpcyCarbon posts are Enes (member-1), UpcyOps posts are
- * C. Çağatay Şentürk (member-3), UpcyMan posts are Y. Hamza Çelebi (member-5),
- * and Dima posts are A. Harun Öztürk (member-4).
- */
+/** Blog/resource categories. Author ownership stays explicit in each post's metadata. */
 export const categories = [
-  { id: "compliance", label: { tr: "Karbon ve uyum", en: "Carbon and compliance" } },
-  { id: "data", label: { tr: "Veri ve raporlama", en: "Data and reporting" } },
-  { id: "operations", label: { tr: "Üretim operasyonu", en: "Operations" } },
-  { id: "company", label: { tr: "Şirket", en: "Company" } },
+  { id: "compliance", label: { tr: "Kanıt & yönetişim", en: "Evidence & governance" } },
+  { id: "data", label: { tr: "Veri & karar", en: "Data & decisions" } },
+  { id: "operations", label: { tr: "Üretim & operasyon", en: "Manufacturing & operations" } },
+  { id: "company", label: { tr: "Dima & şirket", en: "Dima & company" } },
 ] as const satisfies readonly { id: string; label: L }[];
 
 export type CategoryId = (typeof categories)[number]["id"];

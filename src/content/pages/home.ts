@@ -121,8 +121,8 @@ export const homePage = {
     photo: { tr: "Fotoğraf", en: "Photo" },
   },
   blog: {
-    title: { tr: "Yazılar", en: "Writing" },
-    link: { tr: "Tüm yazılar", en: "All posts" },
+    title: { tr: "Kaynaklar", en: "Resources" },
+    link: { tr: "Tüm kaynaklar", en: "All resources" },
   },
   cta: {
     title: { tr: "Dima'yı kendi şirketinizde görün.", en: "See Dima in your own company." },

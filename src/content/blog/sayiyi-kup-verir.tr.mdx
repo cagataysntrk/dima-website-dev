@@ -1,20 +1,69 @@
 export const metadata = {
-  title: "Denetlenebilir iş analisti: sayıyı model değil, analitik motor verir",
-  description: "Dima, her mesajı konuşma turu olarak anlayan, belirsizliği tahminle kapatmayan, semantik modeli ve gerçek veriyi güvenilir analitik motor üzerinden kullanan denetlenebilir iş analistidir.",
+  title: "Bir iş bulgusu nasıl doğrulanır: sayıyı model değil analitik katman üretir",
+  description: "Dima'da bir finding'in nasıl oluştuğunu, sayısal sonucun neden LLM tahmininden gelmemesi gerektiğini ve evidence'ın karar akışında nasıl korunduğunu anlatıyoruz.",
   date: "2026-08-20",
+  updated: "2026-09-25",
   author: "member-4",
   category: "data",
   related: { kind: "product", id: "analytics" },
 };
 
-Fabrika yönetimi "Geçen ay fire neden arttı?" gibi kritik bir soru sorduğunda, cevaba ulaşmak günler sürebiliyor. ERP'den veri çekilmesi isteniyor: Excel tablolarına aktarılıyor, bölümler arası toplantılar yapılıyor. Takip eden her detay talebinde döngü baştan başlıyor. Standart araçlar ise eksik veriyi tahminlerle kapatmaya çalışarak yanıltıcı sonuçlar üretiyor.
+Bir yönetici “geçen ay fire neden arttı?” diye sorduğunda cevap günler sürebilir. Fakat daha temel problem şudur: şirketin önemli bir değişikliği fark etmesi için her seferinde birinin doğru soruyu sorması gerekir.
 
-## Cevap nereden gelir
+Dima'nın hedefi bu döngüyü tersine çevirmektir. Sistem şirket verisini izler, anlamlı bir sapma veya fırsat gördüğünde finding oluşturur; kullanıcı daha sonra bu finding'in nedenini ve ne yapılabileceğini inceler.
 
-Dima, kullanıcının her mesajını önce bir konuşma turu olarak anlar. Belirsizliği tahmin ederek kapatmaz; gerektiğinde nokta atışı sorular sorarak niyeti netleştirir. Şirketin semantik modelini ve gerçek üretim verisini güvenilir bir analitik motor üzerinden kullanır. Sorgular salt-okunur planlanır; verinizi asla değiştiremez.
+Ama bunun güvenilir olması için kritik bir ayrım gerekir:
 
-## Hızlı yanıt ve derinleşen araştırma
+**Model araştırmaya yardım edebilir. Sayıyı model uydurmamalıdır.**
 
-Basit soruları saniyeler içinde cevaplar. Karmaşık kök neden araştırmalarında ise sonuçları gördükçe araştırmasını adım adım geliştirir. Kanıtları, tabloları, grafikleri ve kök neden adaylarını aynı konuşma ve rapor akışı içinde birleştiren denetlenebilir bir iş analistidir.
+## Sayısal sonuç nereden gelir
 
-ERP'niz, tablolarınız ve mevcut veritabanlarınız yerinde kalır. Dima bu sistemlere güvenle bağlanır, fabrikanızın üretim dinamiklerine göre modeller. Kurulumun sonunda tüm veri modelleri ve kurallar tamamen sizin kontrolünüzde kalır.
+Bir dil modeli iyi bir açıklama yazabilir ve karmaşık bir soruyu iş terimlerine çevirebilir. Fakat 82,4 ile 84,1 arasındaki fark “makul görünen” bir cümle meselesi değildir.
+
+Dima'da sayısal otoritenin semantik ve analitik katmanda kalması gerekir:
+
+1. İş metriği tanımlı bir ölçüye bağlanır.
+2. Sorgu çalışmadan önce planlanır ve sınırları kontrol edilir.
+3. Gerçek veri kaynağında çalıştırılır.
+4. Sonuç hangi kaynak, dönem ve entity bağlamından geldiğiyle birlikte taşınır.
+
+LLM bu sonucu açıklayabilir; sonucu kendisi icat etmemelidir.
+
+## Finding yalnız bir sayı değildir
+
+“Fire oranı yükseldi” tek başına karar için yeterli değildir.
+
+Bir finding'in anlamlı olabilmesi için en az şu soruların cevaplanması gerekir:
+
+- Değişim ne zaman başladı?
+- Hangi ürün, makine, vardiya veya siparişlerde yoğunlaşıyor?
+- Normal kabul edilen davranış neydi?
+- Aynı örüntü geçmişte oluştu mu?
+- Finansal veya operasyonel etkisi nedir?
+- Hangi nedenler destekleniyor, hangileri eleniyor?
+
+Bu nedenle Dima'nın investigation katmanı KPI'ı bir sonuç ekranında bırakmaz; ilgili entity ve ilişkiler üzerinden kök neden adaylarını araştırır.
+
+## Chat nerede devreye girer
+
+Chat bu sistemin başlangıç noktası olmak zorunda değildir.
+
+Kullanıcı bir finding'e tıkladığında bağlam zaten bellidir: seçili lob, entity'ler, dönem, evidence ve investigation. Kullanıcı “bu müşteriyi hariç tutarsak ne olur?” veya “bu seçenek termini nasıl etkiler?” dediğinde konuşma aynı araştırmanın devamı olur.
+
+Bu fark önemlidir. Kullanıcı her soruda şirketi modele yeniden anlatmaz.
+
+## Evidence neden ürünün parçasıdır
+
+Bir sonuç doğru olsa bile nereden geldiği görülemiyorsa toplantıda savunmak zordur.
+
+Bu yüzden evidence ayrı bir teknik log olarak saklanmamalıdır. Finding'in içinde:
+
+- veri kaynağı,
+- kullanılan dönem,
+- ilgili entity'ler,
+- hesaplama veya sorgu sonucu,
+- araştırmada kullanılan bağlantılar
+
+görülebilmelidir.
+
+Dima'nın amacı “AI cevap verdi” demek değil; **bu bulgu neden dikkate alınmalı ve hangi veriye dayanıyor?** sorusunu cevaplayabilmektir.

@@ -2,38 +2,36 @@
 export const blogPage = {
   meta: {
     title: {
-      tr: "Blog: üretim verisi, karbon hesabı ve uyum üzerine yazılar",
-      en: "Blog: writing on production data, carbon accounting and compliance",
+      tr: "Kaynaklar: şirket verisi, karar zekâsı, finans ve üretim",
+      en: "Resources: company data, decision intelligence, finance and manufacturing",
     },
     description: {
-      tr: "UpcyTech'in üretim verisi, karbon hesabı, AB düzenlemeleri ve yazılım üzerine yazıları.",
-      en: "UpcyTech writing on production data, carbon accounting, EU regulation and software.",
+      tr: "Dima'nın ele aldığı veri, denetim, kök neden, finans ve üretim problemlerini somut örneklerle açıklayan kaynaklar.",
+      en: "Practical resources explaining the data, monitoring, root-cause, finance and manufacturing problems Dima is built to address.",
     },
   },
-  breadcrumb: { home: { tr: "Ana sayfa", en: "Home" }, self: { tr: "Blog", en: "Blog" } },
+  breadcrumb: { home: { tr: "Ana sayfa", en: "Home" }, self: { tr: "Kaynaklar", en: "Resources" } },
   hero: {
-    title: { tr: "Yazılar", en: "Writing" },
+    title: { tr: "Kaynaklar", en: "Resources" },
     lede: {
-      tr: "Üretim verisi, karbon hesabı ve uyum üzerine yazılar. Bir iddia varsa, kaynağı da yazının içinde.",
-      en: "On production data, carbon accounting and compliance. Where a post makes a claim, its source is in the post.",
+      tr: "Bir kavramı anlatıyorsak okuyucu ne olduğunu ve neden önemli olduğunu öğrenmeli. Bir ürün davranışını anlatıyorsak Dima'nın hangi veriye baktığı, nasıl araştırdığı ve sonucun nasıl doğrulanabildiği anlaşılmalı.",
+      en: "When we explain a concept, the reader should learn what it is and why it matters. When we explain product behavior, it should be clear what data Dima inspects, how the investigation works and how the result can be checked.",
     },
   },
   featured: { tr: "Öne çıkan", en: "Featured" },
-  all: { tr: "Tüm yazılar", en: "All posts" },
+  all: { tr: "Tüm kaynaklar", en: "All resources" },
   read: { tr: "Yazıyı okuyun", en: "Read the post" },
   filter: {
     label: { tr: "Kategoriye göre süz", en: "Filter by category" },
     all: { tr: "Tümü", en: "All" },
   },
-  empty: { tr: "Henüz yayımlanmış bir yazı yok.", en: "Nothing published yet." },
-  emptyCategory: { tr: "Bu kategoride henüz yazı yok.", en: "Nothing in this category yet." },
+  empty: { tr: "Henüz yayımlanmış bir kaynak yok.", en: "Nothing published yet." },
+  emptyCategory: { tr: "Bu kategoride henüz kaynak yok.", en: "Nothing in this category yet." },
   follow: {
-    title: { tr: "Takip edin", en: "Follow along" },
-    // A newsletter signup flow does not exist yet: this line promises the channel,
-    // not the form. Wire the signup before launch; until then it reads as intent.
+    title: { tr: "Neyi yayımlıyoruz", en: "What we publish" },
     body: {
-      tr: "Yeni yazılar yayımlandığında e-posta ile haber veriyoruz. Kayıt akışı kuruluyor.",
-      en: "We announce new posts by email. The signup is being set up.",
+      tr: "Sloganı içerik yerine kullanmıyoruz. Her yazı ya gerçek bir işletme problemini mekanizmasıyla açıklamalı, ya okuyucuya uygulanabilir bir düşünme yöntemi vermeli ya da Dima'nın bir davranışını veri, bağlam ve sınırlarıyla göstermeli.",
+      en: "We do not use slogans as a substitute for content. Every post should either explain a real business problem and its mechanism, give the reader a usable way to think about it, or show a Dima behavior together with its data, context and boundaries.",
     },
   },
   post: {
@@ -42,12 +40,12 @@ export const blogPage = {
     about: { tr: "Yazar hakkında", en: "About the author" },
     photo: { tr: "Fotoğraf", en: "Photo" },
     related: { tr: "İlgili yazılar", en: "Related posts" },
-    ctaTitle: { tr: "Bu işi sizin verinizle yapalım", en: "Let's do this with your own data" },
+    ctaTitle: { tr: "Bunu kendi verinizde görün", en: "See this with your own data" },
     ctaBody: {
-      tr: "Yazıda anlattığımızı kendi tesisinizde görmek isterseniz, buradan başlayın.",
-      en: "If you would like to see this working in your own facility, start here.",
+      tr: "Yazıdaki problemi kendi şirketinizde nasıl görünür hale getirebileceğimizi konuşmak isterseniz, tek bir karar problemi ve onu açıklayan veriyle başlayabiliriz.",
+      en: "If you want to see how the problem described here becomes visible in your own company, we can start with one decision problem and the data required to explain it.",
     },
-    serviceAction: { tr: "Kapsam görüşmesi planlayın", en: "Book a scoping call" },
-    contactAction: { tr: "Bize ulaşın", en: "Talk to us" },
+    serviceAction: { tr: "Pilot kapsamını konuşun", en: "Discuss a pilot scope" },
+    contactAction: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
-};
+} as const;

@@ -9,6 +9,29 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-048 · Resources publish Dima-relevant knowledge; legacy portfolio posts stay archived
+**Decided:** keep the existing MDX blog engine and post URLs, but change the public surface to
+"Resources / Kaynaklar" and apply the Brand House content standard: every published item must
+teach a real mechanism, explain a business problem, or show a product behavior with enough
+context to be useful.
+
+Two existing posts remain public after substantive revision:
+- the month-end reconciliation article now explains cross-system entity/relationship breaks
+  and how Dima investigates them without pretending every source system must be replaced;
+- the old chat-centric analytics article now explains proactive findings, analytical numeric
+  authority, investigation context, contextual chat and evidence.
+
+CBAM/UpcyCarbon evidence-chain and UpcyOps trade-document posts are not deleted. Their source
+files stay in the repository but are marked `draft: true`, removing them from public lists,
+sitemaps and related-post surfaces until a separate UpcyTech archive strategy is decided.
+
+Resource categories and page copy now align to data/decisions, manufacturing/operations,
+evidence/governance and company/product topics. No newsletter signup is promised before one
+exists.
+
+**Reason:** preserve valuable historical content without letting retired product narratives
+re-fragment the Dima master brand.
+
 ### D-047 · About and Contact become Dima-facing while legal identity stays UpcyTech
 **Decided:** preserve the existing About/Contact route structure, team records, office map,
 form validation, anti-spam controls and legal-registration section. Replace the old
