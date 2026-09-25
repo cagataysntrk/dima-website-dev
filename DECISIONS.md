@@ -9,6 +9,24 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-056 · Active sector content no longer carries the retired compliance portfolio
+**Decided:** simplify `src/content/industries.ts` to the only data still used by the home
+sector gallery: sector id/anchor/name, Dima-aligned Company Brain pack summary and imagery.
+Remove the retired regulatory-pressure, UpcyCarbon/ERP product mapping, consulting deliverable
+and framework catalogue from the active typed marketing model.
+
+This is not a historical deletion decision. The old organization repository remains the
+upstream archive and the relevant legacy blog posts are already kept as drafts. The Dima
+working site simply stops treating retired portfolio material as active source of truth.
+
+The home sector heading becomes "Sektör bağlamları / Sector contexts"; the link points to the
+broader use-case page. The visible brand ribbon uses the V1.6 verbal rhythm exactly:
+"İzler. Denetler. Fark eder. Karara taşır." The closing home CTA asks the Brand House question
+"Dima şirketinizde neyi fark eder?" while retaining the real live-demo action.
+
+**Reason:** prevent legacy compliance/product positioning from re-entering the Dima site
+through reusable typed content and align the highest-frequency homepage language to V1.6.
+
 ### D-055 · Brand House V1.6 is the active website source of truth
 **Decided:** V1.6 supersedes the earlier Brand House snapshot used at the start of this branch.
 The customer-facing website must preserve its exact strategic hierarchy: Dima as the single

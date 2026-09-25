@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { products } from "@/content/products";
 import { productsPage } from "@/content/pages/products";
 import { site } from "@/content/site";
-import { frameworks, industries } from "@/content/industries";
+import { industries } from "@/content/industries";
 import { industriesPage } from "@/content/pages/industries";
 import { clientNeeds, services } from "@/content/services";
 import { servicesPage } from "@/content/pages/services";
@@ -25,7 +25,7 @@ import { companyBrain } from "@/content/company-brain";
 /** Every content module. Add a new one here when a page is built. */
 const CONTENT = {
   homePage, aboutPage, contactPage, careersPage, blogPage, categories, hiringSteps, roles, team,
-  legalDocs, drafterFacts, legalChrome, consentCopy, products, productsPage, industries, frameworks, industriesPage,
+  legalDocs, drafterFacts, legalChrome, consentCopy, products, productsPage, industries, industriesPage,
   services, clientNeeds, servicesPage, solutionsPage, chatDemoCopy, problemMatcherCopy, companyBrain, site,
 } as const;
 
@@ -39,17 +39,12 @@ test("service copy keeps the handover vocabulary: devir, never teslim", () => {
   expect(hits, "design-system messaging: handover is a process (devir), delivery is a moment\n" + hits.join("\n")).toEqual([]);
 });
 
-test("sectors reference products that exist", () => {
-  const ids = new Set(products.map((p) => p.id));
-  const missing = industries.flatMap((s) => s.products.filter((id) => !ids.has(id)).map((id) => `${s.id} → ${id}`));
-  expect(missing, missing.join("\n")).toEqual([]);
-});
-
-test("every dated pressure has a valid ISO date and a source in both languages", () => {
-  const bad = industries.flatMap((s) => s.pressures
-    .filter((p) => (p.date !== null && Number.isNaN(Date.parse(p.date))) || !p.source.tr || !p.source.en)
-    .map((p) => `${s.id}: ${p.date}`));
-  expect(bad, bad.join("\n")).toEqual([]);
+test("sector-context previews have unique ids and localized anchors", () => {
+  expect(new Set(industries.map((item) => item.id)).size).toBe(industries.length);
+  const tr = industries.map((item) => item.anchor.tr);
+  const en = industries.map((item) => item.anchor.en);
+  expect(new Set(tr).size).toBe(tr.length);
+  expect(new Set(en).size).toBe(en.length);
 });
 
 test("Company Brain relations reference real lobes and lobe ids are unique", () => {

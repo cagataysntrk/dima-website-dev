@@ -67,20 +67,19 @@ export const homePage = {
     ] satisfies readonly Partner[],
   },
   industries: {
-    title: { tr: "Sektörler", en: "Industries" },
+    title: { tr: "Sektör bağlamları", en: "Sector contexts" },
     intro: {
       tr: "Dima'nın ortak Company Brain modeli farklı sektörlerde aynı karar döngüsünü korur; sektör paketleri tekstil, plastik ve genel imalattaki gerçek entity, süreç ve ilişkilerle bu modeli derinleştirir.",
       en: "Dima keeps the same Company Brain decision loop across industries; sector packs deepen it with the real entities, processes and relationships of textile, plastics and general manufacturing.",
     },
-    latest: { tr: "Son tarihli talep", en: "Latest dated requirement" },
     /** Inside a gallery panel with no photograph yet. */
     missingPhoto: { tr: "fotoğraf", en: "photo" },
-    link: { tr: "Sektöre bakın", en: "See the sector" },
+    link: { tr: "Kullanım alanlarını inceleyin", en: "Explore use cases" },
   },
   /** The full-width text loop between the sectors and the team: what the company does. */
   loop: {
-    tr: "Bağla ✦ Anla ✦ İzle ✦ Denetle ✦ Fark et ✦ Araştır ✦ Kanıtla ✦ Karara taşı",
-    en: "Connect ✦ Understand ✦ Monitor ✦ Check ✦ Detect ✦ Investigate ✦ Evidence ✦ Decide",
+    tr: "İzler ✦ Denetler ✦ Fark eder ✦ Karara taşır",
+    en: "Monitors ✦ Checks ✦ Detects ✦ Moves to decision",
   },
   team: {
     title: { tr: "Ekip", en: "Team" },
@@ -95,7 +94,7 @@ export const homePage = {
     link: { tr: "Tüm kaynaklar", en: "All resources" },
   },
   cta: {
-    title: { tr: "Dima'yı kendi şirketinizde görün.", en: "See Dima in your own company." },
+    title: { tr: "Dima şirketinizde neyi fark eder?", en: "What would Dima notice in your company?" },
     body: {
       tr: "Verinizin nerede yaşadığını ve bugün hangi kararları elle takip ettiğinizi anlatın. Canlı demoda Dima'nın veriyi nasıl bağladığını, neyi izlediğini ve bir bulguyu nasıl kanıtlarıyla karara taşıdığını gösterelim.",
       en: "Tell us where your data lives and which decisions your team still tracks manually. In a live demo, we will show how Dima connects that data, what it monitors, and how a finding is investigated with evidence and prepared for a decision.",
