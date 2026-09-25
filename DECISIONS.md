@@ -9,6 +9,22 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-058 · Public metadata and contact identities cannot leak the legacy brand
+**Decided:** the Open Graph image generator uses the Dima token theme selected from
+`site.name` and renders the current master-brand wordmark from the same source. It must not
+hardcode the retired customer-facing company brand.
+
+Public Dima contact identities are environment-gated until verified. The contact page may use
+`NEXT_PUBLIC_CONTACT_EMAIL` to replace the transitional legal/company mailbox and
+`NEXT_PUBLIC_LINKEDIN_URL` to expose an approved Dima LinkedIn. If no Dima LinkedIn URL is
+configured, no old company LinkedIn is presented as a Dima social channel. The existing
+UpcyTech legal name, address, MERSİS, transitional mailbox fallback and company record remain
+available where legally/operationally required.
+
+**Reason:** Brand House V1.6 moves customer-facing digital identity to Dima while explicitly
+keeping UpcyTech as the legal shell. Metadata and social/contact chrome must respect the same
+boundary.
+
 ### D-057 · The active product registry is Dima-only and V1.6 is test-enforced
 **Decided:** reduce the active `products` registry to Dima only and narrow the active
 `BrandKey` type accordingly. The retired UpcyCarbon, UpcyMan and UpcyOps records are not moved

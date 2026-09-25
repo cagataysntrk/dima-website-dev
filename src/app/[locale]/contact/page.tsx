@@ -34,9 +34,9 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
   setRequestLocale(locale);
   const company = site.company;
   const value = (entry: { tr: string; en: string }) => entry[locale];
-  const email = value(company.email);
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || value(company.email);
   const phone = value(company.phone);
-  const linkedin = value(company.linkedin);
+  const linkedin = process.env.NEXT_PUBLIC_LINKEDIN_URL?.trim();
 
   return (
     <>
@@ -80,15 +80,16 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
         facts={[
           { label: copy.channels.labels.email[locale], value: isPlaceholder(email) ? email : <UiLink href={`mailto:${email}`}>{email}</UiLink> },
           { label: copy.channels.labels.phone[locale], value: isPlaceholder(phone) ? phone : <UiLink href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}</UiLink> },
-          // Shown without scheme or trailing slash, breaking only at its slashes: the full URL broke
-          // mid-word on a phone ("…/company/upcyte / ch/").
-          { label: copy.channels.labels.linkedin[locale], value: isPlaceholder(linkedin) ? linkedin : (
-            <UiLink href={linkedin}>
-              {linkedin.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "").split("/").map((part, i) => (
-                <Fragment key={i}>{i > 0 && <>/<wbr /></>}<span className="whitespace-nowrap">{part}</span></Fragment>
-              ))}
-            </UiLink>
-          ) },
+          ...(linkedin ? [{
+            label: copy.channels.labels.linkedin[locale],
+            value: (
+              <UiLink href={linkedin}>
+                {linkedin.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "").split("/").map((part, i) => (
+                  <Fragment key={i}>{i > 0 && <>/<wbr /></>}<span className="whitespace-nowrap">{part}</span></Fragment>
+                ))}
+              </UiLink>
+            ),
+          }] : []),
         ]}
       />
 

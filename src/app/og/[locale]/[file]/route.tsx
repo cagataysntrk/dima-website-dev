@@ -6,6 +6,7 @@ import { getPathname } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { ogEntries } from "@/lib/og";
 import { SITE_URL } from "@/lib/seo";
+import { site } from "@/content/site";
 
 /**
  * Open Graph images, one per page and post, rendered once at build time (brief §9).
@@ -42,7 +43,7 @@ export async function GET(_request: Request, { params }: RouteContext<"/og/[loca
   const entry = (await ogEntries(locale as Locale)).find((e) => `${e.key}.png` === file);
   if (!entry) return new Response(null, { status: 404 });
 
-  const t = themes["upcytech.light"]!;
+  const t = themes[`${site.name.toLowerCase()}.light`]!;
   const url = new URL(getPathname({ href: entry.href, locale: locale as Locale }), SITE_URL);
   const long = entry.title.length > 56;
 
@@ -52,7 +53,7 @@ export async function GET(_request: Request, { params }: RouteContext<"/og/[loca
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: "Mono", fontSize: 22 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, color: t.colorTextPrimary, letterSpacing: "0.14em" }}>
             <div style={{ width: 14, height: 14, borderRadius: 7, background: t.colorBgBrand }} />
-            UPCYTECH
+            {site.name.toUpperCase()}
           </div>
           <div style={{ color: t.colorTextMuted }}>{url.host + url.pathname}</div>
         </div>
