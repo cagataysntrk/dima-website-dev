@@ -3,13 +3,21 @@
 import { useMemo, useState } from "react";
 import {
   Activity,
-  Brain,
+  BarChart3,
+  Building2,
+  Database,
   Factory,
+  FileSearch,
   Landmark,
+  Layers3,
+  ListChecks,
   Network,
   PackageSearch,
+  Search,
   ShieldCheck,
   ShoppingCart,
+  Sparkles,
+  type LucideIcon,
 } from "lucide-react";
 import { Heading, Section, Stack, Text } from "@upcytech/ui";
 import type { Locale } from "@/i18n/routing";
@@ -21,83 +29,42 @@ const ICONS = {
   sales: ShoppingCart,
   procurement: PackageSearch,
   quality: ShieldCheck,
-} as const;
+} as const satisfies Record<BrainLobeId, LucideIcon>;
 
-const BRAIN_CELL = {
-  finance: "col-start-1 row-start-1 rounded-[58%_42%_44%_56%/48%_44%_56%_52%]",
-  sales: "col-start-2 row-start-1 rounded-[42%_58%_56%_44%/44%_48%_52%_56%]",
-  procurement: "col-start-1 row-start-2 rounded-[50%_46%_52%_48%/42%_55%_45%_58%]",
-  quality: "col-start-2 row-start-2 rounded-[46%_54%_48%_52%/55%_42%_58%_45%]",
-  operations: "col-span-2 row-start-3 mx-[12%] rounded-[44%_56%_48%_52%/54%_46%_54%_46%]",
-} as const;
+const GRAPH_POSITIONS: Record<BrainLobeId, { x: number; y: number }> = {
+  finance: { x: 22, y: 24 },
+  sales: { x: 78, y: 22 },
+  operations: { x: 52, y: 67 },
+  procurement: { x: 82, y: 62 },
+  quality: { x: 18, y: 68 },
+};
 
-const MAP_POSITION = {
-  finance: "left-[7%] top-[11%]",
-  sales: "right-[7%] top-[11%]",
-  procurement: "left-[4%] bottom-[10%]",
-  quality: "right-[4%] bottom-[10%]",
-  operations: "left-1/2 bottom-[3%] -translate-x-1/2",
-} as const;
-
-const STATUS_STYLE: Record<BrainStatus, string> = {
-  attention: "border-brand-text bg-[color-mix(in_oklab,var(--color-text-brand)_12%,var(--color-bg-surface))]",
-  investigating: "border-outline bg-raised",
-  opportunity: "border-brand-text/70 bg-[color-mix(in_oklab,var(--color-text-brand)_8%,var(--color-bg-surface))]",
+const STATUS_CLASS: Record<BrainStatus, string> = {
+  attention: "border-brand-text/45 bg-[color-mix(in_oklab,var(--color-text-brand)_10%,var(--color-bg-surface))]",
+  investigating: "border-outline bg-surface",
+  opportunity: "border-brand-text/30 bg-[color-mix(in_oklab,var(--color-text-brand)_6%,var(--color-bg-surface))]",
   normal: "border-hairline bg-surface",
 };
 
 function statusDot(status: BrainStatus) {
   return [
-    "size-2 shrink-0 rounded-full",
-    status === "normal" ? "bg-muted" : "bg-brand motion-safe:animate-pulse",
+    "size-1.5 shrink-0 rounded-full",
+    status === "normal" ? "bg-muted" : "bg-brand",
   ].join(" ");
 }
 
 export function CompanyBrainHero({ locale }: { locale: Locale }) {
-  const c = companyBrain;
-  const todayCount = c.lobes.filter((lobe) => lobe.status !== "normal").length;
   return (
-    <div data-brand="dima" role="img" aria-label={c.heroAria[locale]} className="relative mx-auto aspect-[5/4] w-full max-w-[31rem]">
-      <div className="absolute inset-[4%] rounded-[46%_54%_48%_52%/43%_42%_58%_57%] border border-outline bg-[color-mix(in_oklab,var(--color-bg-surface)_82%,transparent)] shadow-xl backdrop-blur-sm" />
-      <div aria-hidden="true" className="absolute bottom-[12%] left-1/2 top-[12%] w-px -translate-x-1/2 bg-hairline" />
-      <div className="absolute inset-[11%] grid grid-cols-2 grid-rows-3 gap-3">
-        {c.lobes.map((lobe) => {
-          const Icon = ICONS[lobe.id];
-          return (
-            <div
-              key={lobe.id}
-              className={[
-                "flex min-w-0 flex-col justify-center border px-3 py-3 shadow-sm",
-                BRAIN_CELL[lobe.id],
-                STATUS_STYLE[lobe.status],
-              ].join(" ")}
-            >
-              <div className="flex items-center gap-2">
-                <Icon aria-hidden="true" className="size-4 shrink-0 text-brand-text" />
-                <span className="truncate text-ui font-medium text-ink">{lobe.shortLabel[locale]}</span>
-              </div>
-              <div className="mt-2 flex items-center gap-2 text-micro text-muted">
-                <span aria-hidden="true" className={statusDot(lobe.status)} />
-                <span className="truncate">{lobe.statusLabel[locale]}</span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="absolute bottom-[1%] right-[1%] max-w-[13rem] rounded-card border border-outline bg-surface/95 px-3 py-2 shadow-md backdrop-blur-sm">
-        <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-brand-text">{c.today.label[locale]}</p>
-        <p className="mt-1 text-ui font-semibold text-ink">{todayCount} {c.today.summary[locale]}</p>
-      </div>
+    <div role="img" aria-label={companyBrain.heroAria[locale]} className="mx-auto w-full max-w-[34rem]">
+      <DashboardFrame locale={locale} activeId="operations" lens="map" compact />
     </div>
   );
 }
 
 export function CompanyBrainExperience({ locale }: { locale: Locale }) {
   const c = companyBrain;
-  const [lens, setLens] = useState<"brain" | "map">("brain");
+  const [lens, setLens] = useState<"brain" | "map">("map");
   const [activeId, setActiveId] = useState<BrainLobeId>("operations");
-  const active = useMemo(() => c.lobes.find((lobe) => lobe.id === activeId) ?? c.lobes[0], [activeId]);
-  const todayItems = useMemo(() => c.lobes.filter((lobe) => lobe.status !== "normal"), []);
 
   return (
     <Section divided aria-labelledby="company-brain-title">
@@ -108,129 +75,434 @@ export function CompanyBrainExperience({ locale }: { locale: Locale }) {
             <Heading level={2} variant="title" id="company-brain-title">{c.title[locale]}</Heading>
             <Text variant="lede" tone="muted" className="max-w-3xl">{c.intro[locale]}</Text>
           </Stack>
-          <div className="lg:col-span-4 lg:justify-self-end">
-            <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">{c.sample[locale]}</p>
-          </div>
+          <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted lg:col-span-4 lg:justify-self-end">
+            {c.sample[locale]}
+          </p>
         </div>
 
-        <div data-brand="dima" className="overflow-hidden rounded-card border border-outline bg-surface shadow-sm">
-          <div className="flex flex-col gap-3 border-b border-hairline p-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-            <div role="group" aria-label={c.lensLabel[locale]} className="inline-flex w-fit rounded-control border border-hairline bg-raised p-1">
-              <LensButton active={lens === "brain"} icon={Brain} label={c.lenses.brain[locale]} onClick={() => setLens("brain")} />
-              <LensButton active={lens === "map"} icon={Network} label={c.lenses.map[locale]} onClick={() => setLens("map")} />
-            </div>
-            <div className="flex items-center gap-2 text-ui text-muted">
-              <Activity aria-hidden="true" className="size-4 text-brand-text" />
-              <span>{active.statusLabel[locale]}</span>
-            </div>
-          </div>
-
-          <div className="border-b border-hairline p-4 sm:p-6">
-            <div className="grid gap-4 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)] lg:items-start">
-              <div>
-                <p className="font-mono text-micro uppercase tracking-[0.14em] text-brand-text">{c.today.label[locale]}</p>
-                <p className="mt-1 text-base font-semibold text-ink">{todayItems.length} {c.today.summary[locale]}</p>
-                <p className="mt-1 max-w-xl text-ui leading-relaxed text-muted">{c.today.helper[locale]}</p>
-              </div>
-              <div className="grid gap-2 sm:grid-cols-2">
-                {todayItems.map((lobe) => {
-                  const activeToday = lobe.id === activeId;
-                  return (
-                    <button
-                      key={lobe.id}
-                      type="button"
-                      aria-pressed={activeToday}
-                      onClick={() => setActiveId(lobe.id)}
-                      className={[
-                        "min-h-11 rounded-control border p-3 text-left transition duration-160",
-                        activeToday ? "border-brand-text bg-[color-mix(in_oklab,var(--color-text-brand)_10%,var(--color-bg-surface))]" : "border-hairline bg-raised hoverable:hover:border-outline",
-                      ].join(" ")}
-                    >
-                      <span className="flex items-center gap-2 text-ui font-medium text-ink">
-                        <span aria-hidden="true" className={statusDot(lobe.status)} />
-                        <span>{lobe.shortLabel[locale]}</span>
-                      </span>
-                      <span className="mt-1 block text-micro leading-relaxed text-muted">{lobe.finding.title[locale]}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,0.65fr)]">
-            <div className="min-w-0 border-b border-hairline p-4 sm:p-6 lg:border-b-0 lg:border-r">
-              {lens === "brain" ? (
-                <BrainLens locale={locale} activeId={activeId} onSelect={setActiveId} />
-              ) : (
-                <MapLens locale={locale} activeId={activeId} onSelect={setActiveId} />
-              )}
-            </div>
-
-            <aside className="min-w-0 p-5 sm:p-7">
-              <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">{c.detail.domain[locale]}</p>
-              <div className="mt-2 flex items-start gap-3">
-                {(() => {
-                  const Icon = ICONS[active.id];
-                  return <span className="mt-1 flex size-9 shrink-0 items-center justify-center rounded-control bg-raised text-brand-text"><Icon aria-hidden="true" className="size-5" /></span>;
-                })()}
-                <div className="min-w-0">
-                  <h3 className="text-xl font-semibold text-ink">{active.label[locale]}</h3>
-                  <p className="mt-1 text-ui leading-relaxed text-muted">{active.summary[locale]}</p>
-                </div>
-              </div>
-
-              <DetailBlock label={c.detail.entities[locale]}>
-                <div className="flex flex-wrap gap-2">
-                  {active.entities[locale].map((entity) => (
-                    <span key={entity} className="rounded-chip border border-hairline bg-raised px-2.5 py-1 text-micro text-muted">{entity}</span>
-                  ))}
-                </div>
-              </DetailBlock>
-
-              <DetailBlock label={c.detail.finding[locale]}>
-                <p className="font-medium text-ink">{active.finding.title[locale]}</p>
-                <p className="mt-2 text-ui leading-relaxed text-muted">{active.finding.body[locale]}</p>
-              </DetailBlock>
-
-              <DetailBlock label={c.detail.evidence[locale]}>
-                <ul className="space-y-2">
-                  {active.finding.evidence[locale].map((item) => (
-                    <li key={item} className="flex gap-2 text-ui text-muted">
-                      <span aria-hidden="true" className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-brand" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </DetailBlock>
-
-              <DetailBlock label={c.detail.next[locale]}>
-                <p className="text-ui font-medium text-ink">{active.finding.next[locale]}</p>
-              </DetailBlock>
-
-              <p className="mt-5 rounded-control border border-hairline bg-raised p-3 text-ui leading-relaxed text-muted">
-                {c.detail.chat[locale]}
-              </p>
-            </aside>
-          </div>
-        </div>
-
-        <div aria-label={c.flowLabel[locale]} className="flex flex-wrap items-center gap-x-2 gap-y-2">
-          {c.flow[locale].map((step, index) => (
-            <div key={step} className="flex items-center gap-2">
-              <span className="rounded-chip border border-hairline bg-surface px-2.5 py-1.5 text-micro font-medium text-muted">{step}</span>
-              {index < c.flow[locale].length - 1 && <span aria-hidden="true" className="text-muted">→</span>}
-            </div>
-          ))}
-        </div>
+        <DashboardFrame
+          locale={locale}
+          activeId={activeId}
+          lens={lens}
+          onSelect={setActiveId}
+          onLensChange={setLens}
+        />
       </Stack>
     </Section>
   );
 }
 
-function LensButton({ active, icon: Icon, label, onClick }: {
+function DashboardFrame({
+  locale,
+  activeId,
+  lens,
+  compact = false,
+  onSelect,
+  onLensChange,
+}: {
+  locale: Locale;
+  activeId: BrainLobeId;
+  lens: "brain" | "map";
+  compact?: boolean;
+  onSelect?: (id: BrainLobeId) => void;
+  onLensChange?: (lens: "brain" | "map") => void;
+}) {
+  const c = companyBrain;
+  const active = useMemo(() => c.lobes.find((lobe) => lobe.id === activeId) ?? c.lobes[0], [activeId]);
+  const todayItems = useMemo(() => c.lobes.filter((lobe) => lobe.status !== "normal"), []);
+
+  return (
+    <div data-brand="dima" className="dima-app overflow-hidden rounded-card border border-outline bg-surface shadow-xl">
+      <div className={compact ? "grid" : "grid lg:grid-cols-[10.5rem_minmax(0,1fr)]"}>
+        {!compact && <DashboardSidebar locale={locale} />}
+
+        <div className="min-w-0">
+          <DashboardTopbar locale={locale} compact={compact} />
+
+          <div className={compact ? "p-3 sm:p-4" : "p-4 sm:p-6"}>
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className={compact ? "text-sm font-semibold text-ink" : "text-xl font-semibold tracking-tight text-ink"}>
+                  {c.dashboard.heading[locale]}
+                </p>
+                {!compact && <p className="mt-1 max-w-2xl text-ui leading-relaxed text-muted">{c.dashboard.subheading[locale]}</p>}
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-chip border border-hairline bg-raised px-2.5 py-1 text-micro text-muted">
+                  <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
+                  {c.dashboard.live[locale]}
+                </span>
+                {!compact && (
+                  <span className="rounded-chip border border-hairline bg-raised px-2.5 py-1 text-micro text-muted">
+                    {c.dashboard.sampleBadge[locale]}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {!compact && (
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <div role="group" aria-label={c.lensLabel[locale]} className="inline-flex rounded-control border border-hairline bg-raised p-1">
+                  <LensButton
+                    active={lens === "brain"}
+                    icon={Layers3}
+                    label={c.lenses.brain[locale]}
+                    onClick={() => onLensChange?.("brain")}
+                  />
+                  <LensButton
+                    active={lens === "map"}
+                    icon={Network}
+                    label={c.lenses.map[locale]}
+                    onClick={() => onLensChange?.("map")}
+                  />
+                </div>
+                <span className="inline-flex items-center gap-2 text-ui text-muted">
+                  <Activity aria-hidden="true" className="size-4 text-brand-text" />
+                  {active.statusLabel[locale]}
+                </span>
+              </div>
+            )}
+
+            <div className={compact ? "mt-3 grid gap-3" : "mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_20rem]"}>
+              <div className="min-w-0 overflow-hidden rounded-card border border-hairline bg-raised">
+                {lens === "brain" && !compact ? (
+                  <LayeredIntelligence locale={locale} activeId={activeId} />
+                ) : (
+                  <CompanyMap locale={locale} activeId={activeId} compact={compact} onSelect={onSelect} />
+                )}
+              </div>
+
+              <SignalRail
+                locale={locale}
+                activeId={activeId}
+                active={active}
+                todayItems={todayItems}
+                compact={compact}
+                onSelect={onSelect}
+              />
+            </div>
+
+            {!compact && (
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                {c.dashboard.metrics[locale].map((metric) => (
+                  <div key={metric.label} className="dima-surface-sm p-4">
+                    <p className="text-micro text-muted">{metric.label}</p>
+                    <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-ink">{metric.value}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DashboardSidebar({ locale }: { locale: Locale }) {
+  const c = companyBrain;
+  const items: { label: string; icon: LucideIcon; active?: boolean }[] = [
+    { label: c.dashboard.overview[locale], icon: Building2, active: true },
+    { label: c.dashboard.companyMap[locale], icon: Network },
+    { label: c.dashboard.signals[locale], icon: Activity },
+    { label: c.dashboard.investigations[locale], icon: FileSearch },
+    { label: c.dashboard.decisions[locale], icon: ListChecks },
+    { label: c.dashboard.dataSources[locale], icon: Database },
+  ];
+
+  return (
+    <aside className="hidden border-r border-hairline bg-[color-mix(in_oklab,var(--color-text-primary)_2%,var(--color-bg-canvas))] p-3 lg:block">
+      <div className="flex items-center gap-2 px-2 py-2">
+        <img src="/products/dima-mark.png" alt="" width={24} height={24} className="dima-logo-mark size-6 shrink-0" />
+        <span className="text-ui font-semibold text-ink">{c.dashboard.productLabel[locale]}</span>
+      </div>
+      <div className="mt-4 space-y-1">
+        {items.map(({ label, icon: Icon, active }) => (
+          <div
+            key={label}
+            className={[
+              "flex min-h-9 items-center gap-2 rounded-control px-2.5 text-micro",
+              active ? "bg-surface font-medium text-ink shadow-sm" : "text-muted",
+            ].join(" ")}
+          >
+            <Icon aria-hidden="true" className="size-3.5 shrink-0" />
+            <span className="truncate">{label}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function DashboardTopbar({ locale, compact }: { locale: Locale; compact: boolean }) {
+  const c = companyBrain;
+  return (
+    <div className="flex min-h-12 items-center gap-3 border-b border-hairline px-3 sm:px-4">
+      {compact && (
+        <div className="flex shrink-0 items-center gap-2">
+          <img src="/products/dima-mark.png" alt="" width={22} height={22} className="dima-logo-mark size-[1.375rem]" />
+          <span className="text-micro font-semibold text-ink">{c.dashboard.productLabel[locale]}</span>
+        </div>
+      )}
+      <div className="mx-auto flex min-h-8 w-full max-w-lg items-center gap-2 rounded-control border border-hairline bg-canvas/70 px-3 text-micro text-muted">
+        <Search aria-hidden="true" className="size-3.5 shrink-0" />
+        <span className="truncate">{c.dashboard.search[locale]}</span>
+      </div>
+      {!compact && <span className="hidden text-micro text-muted sm:block">{c.dashboard.sampleBadge[locale]}</span>}
+    </div>
+  );
+}
+
+function LayeredIntelligence({ locale, activeId }: { locale: Locale; activeId: BrainLobeId }) {
+  const c = companyBrain;
+  const active = c.lobes.find((lobe) => lobe.id === activeId) ?? c.lobes[0];
+
+  return (
+    <div className="relative min-h-[29rem] overflow-hidden p-4 sm:p-6">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,color-mix(in_oklab,var(--color-text-brand)_12%,transparent),transparent_48%)]"
+      />
+      <div className="relative grid min-h-[25rem] gap-4 md:grid-cols-[8.5rem_minmax(0,1fr)_8.5rem] md:items-center">
+        <div className="space-y-2">
+          <p className="mb-3 text-micro font-medium text-muted">{c.dashboard.sourcesTitle[locale]}</p>
+          {c.dashboard.sources[locale].map((source) => (
+            <div key={source} className="flex items-center gap-2 rounded-control border border-hairline bg-surface px-2.5 py-2 text-micro text-ink shadow-sm">
+              <Database aria-hidden="true" className="size-3.5 text-brand-text" />
+              <span>{source}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="relative mx-auto w-full max-w-xl py-5">
+          <div className="absolute inset-y-8 left-1/2 w-px -translate-x-1/2 bg-outline" aria-hidden="true" />
+          <div className="relative space-y-3">
+            {c.dashboard.layers[locale].map((layer, index) => (
+              <div
+                key={layer.title}
+                className={[
+                  "relative mx-auto rounded-card border px-4 py-4 shadow-md backdrop-blur-sm",
+                  index === 3
+                    ? "w-[76%] border-brand-text/35 bg-[color-mix(in_oklab,var(--color-text-brand)_10%,var(--color-bg-surface))]"
+                    : index === 2
+                      ? "w-[84%] border-brand-text/25 bg-surface/95"
+                      : index === 1
+                        ? "w-[92%] border-outline bg-surface/90"
+                        : "w-full border-hairline bg-surface/85",
+                ].join(" ")}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-ui font-semibold text-ink">{layer.title}</p>
+                    <p className="mt-0.5 text-micro text-muted">{layer.body}</p>
+                  </div>
+                  {index === 2 && (
+                    <span className="rounded-chip border border-hairline bg-raised px-2 py-1 text-micro text-muted">
+                      {active.shortLabel[locale]}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <p className="mb-3 text-micro font-medium text-muted">{c.dashboard.contextTitle[locale]}</p>
+          {c.dashboard.outputs[locale].map((output, index) => (
+            <div key={output} className="flex items-center gap-2 rounded-control border border-hairline bg-surface px-2.5 py-2 text-micro text-ink shadow-sm">
+              {[Activity, FileSearch, ListChecks, Sparkles][index] ? (() => {
+                const Icon = [Activity, FileSearch, ListChecks, Sparkles][index]!;
+                return <Icon aria-hidden="true" className="size-3.5 text-brand-text" />;
+              })() : null}
+              <span>{output}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CompanyMap({
+  locale,
+  activeId,
+  compact,
+  onSelect,
+}: {
+  locale: Locale;
+  activeId: BrainLobeId;
+  compact: boolean;
+  onSelect?: (id: BrainLobeId) => void;
+}) {
+  const c = companyBrain;
+
+  return (
+    <div className={compact ? "relative aspect-[16/10] min-h-[16rem] overflow-hidden" : "relative aspect-[16/10] min-h-[29rem] overflow-hidden"}>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,color-mix(in_oklab,var(--color-text-brand)_12%,transparent),transparent_46%)]"
+      />
+      <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 size-full text-outline">
+        {c.lobes.map((lobe) => {
+          const pos = GRAPH_POSITIONS[lobe.id];
+          return <line key={lobe.id} x1="50" y1="48" x2={pos.x} y2={pos.y} stroke="currentColor" strokeWidth="0.45" vectorEffect="non-scaling-stroke" />;
+        })}
+        {c.relations.map((relation) => {
+          const from = GRAPH_POSITIONS[relation.from];
+          const to = GRAPH_POSITIONS[relation.to];
+          return <line key={relation.label.en} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke="currentColor" strokeWidth="0.25" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />;
+        })}
+      </svg>
+
+      <div className="absolute left-1/2 top-[48%] z-10 -translate-x-1/2 -translate-y-1/2">
+        <div className={compact ? "flex size-20 items-center justify-center rounded-full border border-brand-text/35 bg-surface shadow-lg" : "flex size-28 items-center justify-center rounded-full border border-brand-text/35 bg-surface shadow-lg"}>
+          <div className="text-center">
+            <img src="/products/dima-mark.png" alt="" width={compact ? 24 : 30} height={compact ? 24 : 30} className="dima-logo-mark mx-auto" />
+            <p className="mt-1 text-micro font-semibold text-ink">{c.coreLabel[locale]}</p>
+          </div>
+        </div>
+      </div>
+
+      {c.lobes.map((lobe) => {
+        const Icon = ICONS[lobe.id];
+        const pos = GRAPH_POSITIONS[lobe.id];
+        const active = lobe.id === activeId;
+        return (
+          <button
+            key={lobe.id}
+            type="button"
+            aria-pressed={active}
+            onClick={() => onSelect?.(lobe.id)}
+            className={[
+              "absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-card border text-left shadow-sm transition duration-160",
+              compact ? "min-w-[7rem] px-2.5 py-2" : "min-w-[9.5rem] px-3.5 py-3",
+              active ? "border-brand-text/50 bg-surface shadow-md" : STATUS_CLASS[lobe.status],
+            ].join(" ")}
+            style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+          >
+            <span className="flex items-center gap-2">
+              <span className={compact ? "flex size-6 shrink-0 items-center justify-center rounded-control bg-raised" : "flex size-8 shrink-0 items-center justify-center rounded-control bg-raised"}>
+                <Icon aria-hidden="true" className={compact ? "size-3.5 text-brand-text" : "size-4 text-brand-text"} />
+              </span>
+              <span className="min-w-0">
+                <span className={compact ? "block truncate text-micro font-medium text-ink" : "block truncate text-ui font-semibold text-ink"}>{lobe.shortLabel[locale]}</span>
+                {!compact && (
+                  <span className="mt-0.5 flex items-center gap-1.5 text-micro text-muted">
+                    <span aria-hidden="true" className={statusDot(lobe.status)} />
+                    <span className="truncate">{lobe.statusLabel[locale]}</span>
+                  </span>
+                )}
+              </span>
+            </span>
+          </button>
+        );
+      })}
+
+      {!compact && (
+        <div className="absolute inset-x-4 bottom-3 flex flex-wrap justify-center gap-1.5">
+          {c.relations.map((relation) => (
+            <span key={relation.label.en} className="rounded-chip border border-hairline bg-surface/90 px-2 py-1 text-micro text-muted backdrop-blur-sm">
+              {relation.label[locale]}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SignalRail({
+  locale,
+  activeId,
+  active,
+  todayItems,
+  compact,
+  onSelect,
+}: {
+  locale: Locale;
+  activeId: BrainLobeId;
+  active: (typeof companyBrain.lobes)[number];
+  todayItems: readonly (typeof companyBrain.lobes)[number][];
+  compact: boolean;
+  onSelect?: (id: BrainLobeId) => void;
+}) {
+  const c = companyBrain;
+  const visible = compact ? todayItems.slice(0, 2) : todayItems;
+
+  return (
+    <aside className={compact ? "rounded-card border border-hairline bg-raised p-3" : "space-y-3"}>
+      <div className={compact ? "" : "dima-surface-sm p-4"}>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-ui font-semibold text-ink">{c.dashboard.todayTitle[locale]}</p>
+          <span className="font-mono text-micro text-brand-text">{todayItems.length}</span>
+        </div>
+        <div className="mt-3 space-y-2">
+          {visible.map((lobe) => (
+            <button
+              key={lobe.id}
+              type="button"
+              aria-pressed={lobe.id === activeId}
+              onClick={() => onSelect?.(lobe.id)}
+              className={[
+                "w-full rounded-control border p-2.5 text-left transition duration-160",
+                lobe.id === activeId ? "border-brand-text/40 bg-surface" : "border-hairline bg-canvas/40",
+              ].join(" ")}
+            >
+              <span className="flex items-center gap-2 text-micro font-medium text-ink">
+                <span aria-hidden="true" className={statusDot(lobe.status)} />
+                <span>{lobe.shortLabel[locale]}</span>
+              </span>
+              <span className="mt-1 block text-micro leading-relaxed text-muted">{lobe.finding.title[locale]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {!compact && (
+        <div className="dima-surface-sm p-4">
+          <p className="text-micro font-medium text-muted">{c.dashboard.contextTitle[locale]}</p>
+          <div className="mt-2 flex items-center gap-2">
+            {(() => {
+              const Icon = ICONS[active.id];
+              return <span className="flex size-8 shrink-0 items-center justify-center rounded-control bg-raised"><Icon aria-hidden="true" className="size-4 text-brand-text" /></span>;
+            })()}
+            <div className="min-w-0">
+              <p className="text-ui font-semibold text-ink">{active.label[locale]}</p>
+              <p className="truncate text-micro text-muted">{active.statusLabel[locale]}</p>
+            </div>
+          </div>
+
+          <div className="mt-4 border-t border-hairline pt-3">
+            <p className="text-micro font-medium text-muted">{c.dashboard.evidenceTitle[locale]}</p>
+            <ul className="mt-2 space-y-1.5">
+              {active.finding.evidence[locale].map((item) => (
+                <li key={item} className="flex gap-2 text-micro leading-relaxed text-muted">
+                  <span aria-hidden="true" className="mt-[0.45em] size-1 shrink-0 rounded-full bg-brand" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-4 border-t border-hairline pt-3">
+            <p className="text-micro font-medium text-muted">{c.dashboard.nextTitle[locale]}</p>
+            <p className="mt-1 text-ui leading-relaxed text-ink">{active.finding.next[locale]}</p>
+          </div>
+        </div>
+      )}
+    </aside>
+  );
+}
+
+function LensButton({
+  active,
+  icon: Icon,
+  label,
+  onClick,
+}: {
   active: boolean;
-  icon: typeof Brain;
+  icon: LucideIcon;
   label: string;
   onClick: () => void;
 }) {
@@ -247,110 +519,5 @@ function LensButton({ active, icon: Icon, label, onClick }: {
       <Icon aria-hidden="true" className="size-4" />
       <span>{label}</span>
     </button>
-  );
-}
-
-function BrainLens({ locale, activeId, onSelect }: {
-  locale: Locale;
-  activeId: BrainLobeId;
-  onSelect: (id: BrainLobeId) => void;
-}) {
-  const c = companyBrain;
-  return (
-    <div className="relative mx-auto aspect-[5/4] w-full max-w-3xl rounded-[46%_54%_48%_52%/43%_42%_58%_57%] border border-outline bg-[color-mix(in_oklab,var(--color-bg-raised)_68%,transparent)] p-[8%] shadow-inner">
-      <div aria-hidden="true" className="absolute bottom-[8%] left-1/2 top-[8%] w-px -translate-x-1/2 bg-hairline" />
-      <div className="grid h-full grid-cols-2 grid-rows-3 gap-2 sm:gap-4">
-        {c.lobes.map((lobe) => {
-          const Icon = ICONS[lobe.id];
-          const active = lobe.id === activeId;
-          return (
-            <button
-              key={lobe.id}
-              type="button"
-              aria-pressed={active}
-              onClick={() => onSelect(lobe.id)}
-              className={[
-                "group relative flex min-w-0 flex-col justify-center border px-3 py-3 text-left shadow-sm transition duration-160 sm:px-5",
-                BRAIN_CELL[lobe.id],
-                active ? "border-brand-text bg-[color-mix(in_oklab,var(--color-text-brand)_14%,var(--color-bg-surface))] shadow-md" : STATUS_STYLE[lobe.status],
-              ].join(" ")}
-            >
-              <div className="flex items-center gap-2">
-                <Icon aria-hidden="true" className="size-4 shrink-0 text-brand-text sm:size-5" />
-                <span className="truncate text-ui font-semibold text-ink sm:text-base">{lobe.shortLabel[locale]}</span>
-              </div>
-              <span className="mt-2 flex items-center gap-2 text-micro text-muted">
-                <span aria-hidden="true" className={statusDot(lobe.status)} />
-                <span className="truncate">{lobe.statusLabel[locale]}</span>
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function MapLens({ locale, activeId, onSelect }: {
-  locale: Locale;
-  activeId: BrainLobeId;
-  onSelect: (id: BrainLobeId) => void;
-}) {
-  const c = companyBrain;
-  return (
-    <div className="relative mx-auto aspect-[5/4] w-full max-w-3xl overflow-hidden rounded-card border border-hairline bg-raised">
-      <svg aria-hidden="true" viewBox="0 0 100 80" preserveAspectRatio="none" className="absolute inset-0 size-full text-outline">
-        <path d="M50 38 L20 18 M50 38 L80 18 M50 38 L18 65 M50 38 L82 65 M50 38 L50 70" fill="none" stroke="currentColor" strokeWidth="0.45" vectorEffect="non-scaling-stroke" />
-        <path d="M20 18 C34 10 66 10 80 18 M18 65 C28 52 39 48 50 38 M82 65 C72 52 61 48 50 38" fill="none" stroke="currentColor" strokeWidth="0.3" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />
-      </svg>
-
-      <div className="absolute left-1/2 top-[46%] flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-brand-text bg-surface text-center shadow-md sm:size-28">
-        <span className="px-2 text-ui font-semibold text-ink">{c.coreLabel[locale]}</span>
-      </div>
-
-      {c.lobes.map((lobe) => {
-        const Icon = ICONS[lobe.id];
-        const active = lobe.id === activeId;
-        return (
-          <button
-            key={lobe.id}
-            type="button"
-            aria-pressed={active}
-            onClick={() => onSelect(lobe.id)}
-            className={[
-              "absolute flex min-h-14 min-w-[7.5rem] max-w-[10rem] items-center gap-2 rounded-card border px-3 py-2 text-left shadow-sm transition duration-160 sm:min-w-[9rem]",
-              MAP_POSITION[lobe.id],
-              active ? "z-10 border-brand-text bg-surface shadow-md" : STATUS_STYLE[lobe.status],
-            ].join(" ")}
-          >
-            <Icon aria-hidden="true" className="size-4 shrink-0 text-brand-text" />
-            <span className="min-w-0">
-              <span className="block truncate text-ui font-medium text-ink">{lobe.shortLabel[locale]}</span>
-              <span className="mt-0.5 flex items-center gap-1.5 text-micro text-muted">
-                <span aria-hidden="true" className={statusDot(lobe.status)} />
-                <span className="truncate">{lobe.statusLabel[locale]}</span>
-              </span>
-            </span>
-          </button>
-        );
-      })}
-
-      <div className="absolute inset-x-3 bottom-2 hidden flex-wrap justify-center gap-1.5 md:flex">
-        {c.relations.map((relation) => (
-          <span key={relation.label.en} className="rounded-chip border border-hairline bg-surface/90 px-2 py-1 text-micro text-muted backdrop-blur-sm">
-            {relation.label[locale]}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function DetailBlock({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="mt-6 border-t border-hairline pt-5">
-      <p className="mb-3 font-mono text-micro uppercase tracking-[0.14em] text-muted">{label}</p>
-      {children}
-    </div>
   );
 }
