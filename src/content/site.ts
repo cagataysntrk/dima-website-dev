@@ -114,6 +114,7 @@ export const site = {
       tr: { locale: "en", short: "EN", name: "English" },
       en: { locale: "tr", short: "TR", name: "Türkçe" },
     },
+    login: { tr: "Giriş yap", en: "Sign in" },
     scrollToTop: { tr: "Yukarı çık", en: "Scroll to top" },
     readingProgress: { tr: "Sayfa konumu", en: "Reading progress" },
   },

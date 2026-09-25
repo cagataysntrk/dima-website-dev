@@ -9,6 +9,20 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-051 · Sign-in is environment-gated until a real product deployment is approved
+**Decided:** add an optional public `NEXT_PUBLIC_APP_URL` boundary. When it is empty, the
+marketing site renders no sign-in link. When an approved product application origin is
+configured, the nav exposes a secondary "Giriş yap / Sign in" action pointing to that origin.
+
+Do **not** expose Google OAuth, registration or the "own data vs demo company" fork from this
+marketing repo yet. The donor product frontend contains UI for those flows, but its own API
+client documents that register/forgot/OAuth backend endpoints are not yet part of the live
+backend contract. A marketing CTA must not lead to a non-working flow.
+
+**Reason:** prepare the information architecture without advertising functionality that is not
+currently executable. The future self-serve onboarding can be enabled only after the product
+auth contract and deployment are verified.
+
 ### D-050 · Root brand, Careers and legal site references align to Dima
 **Decided:** the locale root now renders the Dima design-system brand scope and uses Dima in
 the global metadata title template. Careers is rewritten around the actual single-product

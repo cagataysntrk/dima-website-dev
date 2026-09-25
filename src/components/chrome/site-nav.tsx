@@ -12,6 +12,7 @@ export function SiteNav({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const params = useParams();
   const other = site.chrome.switchTo[locale];
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
 
   return (
     <Nav
@@ -60,9 +61,16 @@ export function SiteNav({ locale }: { locale: Locale }) {
         </>
       }
       actions={
-        <RainbowButton as={Link} href={site.navAction.href} size="sm" glow={false} className="px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-ui">
-          {site.navAction.label[locale]}
-        </RainbowButton>
+        <>
+          {appUrl && (
+            <Button variant="ghost" size="sm" asChild>
+              <a href={appUrl}>{site.chrome.login[locale]}</a>
+            </Button>
+          )}
+          <RainbowButton as={Link} href={site.navAction.href} size="sm" glow={false} className="px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-ui">
+            {site.navAction.label[locale]}
+          </RainbowButton>
+        </>
       }
     />
   );
