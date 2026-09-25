@@ -9,6 +9,27 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-060 · Restore compile integrity after the V1.6 content-model refactor
+**Decided:** keep the active `products[]` registry Dima-only, but restore `BrandKey` as the
+design-system token union rather than treating it as an active-product union. Historical/test
+content may still name an available design token without becoming an active product.
+
+Content objects are immutable (`as const`), so shared display components accept readonly
+arrays for story paragraphs, principles/beliefs and fact rows instead of forcing callers to
+copy data just to satisfy mutable prop types.
+
+The retired compliance-era `IndustryBlock`, `FrameworkTable` and `RegulationCalendar`
+components are removed from the working Dima website because the active routes no longer
+import them and their old `Pressure/Framework/products/provides` contract conflicts with the
+new sector-context model. Do not re-expand `industries.ts` to keep dead components compiling.
+
+Finally, `dev`, `typecheck` and `build` re-run `scripts/link-design-system.ts` before
+Next/TypeScript. A missing or unbuilt sibling design-system therefore fails once with the
+actual root-cause message instead of cascading into dozens of TS2307 module-resolution errors.
+
+**Reason:** fix the compile regressions introduced by the refactor at their abstraction
+boundaries rather than restoring retired portfolio architecture.
+
 ### D-059 · Product CTA and controlled-action language follow V1.6
 **Decided:** the Product route uses the V1.6 CTA hierarchy: when a verified
 `NEXT_PUBLIC_TRY_URL` exists, "Dima'yı deneyin" is the primary action and "Canlı demo

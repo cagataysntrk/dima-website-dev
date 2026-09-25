@@ -4,7 +4,7 @@ import type { Point } from "@/content/types";
 import { Reveal, RevealItem } from "../motion/reveal";
 
 /** The story as prose: a reading column, not cards. */
-export function Story({ title, paragraphs }: { title: string; paragraphs: string[] }) {
+export function Story({ title, paragraphs }: { title: string; paragraphs: readonly string[] }) {
   return (
     <Section divided aria-labelledby="story-title">
       <Reveal className="grid gap-10 lg:grid-cols-12">
@@ -21,7 +21,7 @@ export function Story({ title, paragraphs }: { title: string; paragraphs: string
  * Convictions as statements: each one a sentence a competitor could not publish while its
  * own product contradicts it, with a line of reasoning beneath.
  */
-export function Beliefs({ title, items }: { title: string; items: Point[] }) {
+export function Beliefs({ title, items }: { title: string; items: readonly Point[] }) {
   return (
     <Section divided aria-labelledby="beliefs-title">
       <Stack gap="loose">
@@ -47,7 +47,7 @@ export function FactList({ id, title, intro, facts }: {
   id: string;
   title: string;
   intro: string;
-  facts: { label: string; value: React.ReactNode }[];
+  facts: readonly { label: string; value: React.ReactNode }[];
 }) {
   return (
     <Section divided aria-labelledby={`${id}-title`}>

@@ -253,7 +253,7 @@ export function LoopBand({ text, lang, brand, direction = "forward" }: {
 }
 
 /** Principles: what can be promised without a case study (the careers page's "how we work"). */
-export function Principles({ title, intro, principles }: { title: string; intro: string; principles: Point[] }) {
+export function Principles({ title, intro, principles }: { title: string; intro: string; principles: readonly Point[] }) {
   return (
     <Section divided aria-labelledby="how-title">
       <Reveal className="grid gap-10 lg:grid-cols-12">

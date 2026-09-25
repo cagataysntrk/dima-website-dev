@@ -9,10 +9,10 @@
   },
   "scripts": {
     "postinstall": "bun scripts/link-design-system.ts && bun scripts/copy-maplibre-worker.ts",
-    "dev": "next dev --webpack -p 3000",
-    "build": "next build --webpack",
+    "dev": "bun scripts/link-design-system.ts && next dev --webpack -p 3000",
+    "build": "bun scripts/link-design-system.ts && next build --webpack",
     "start": "next start",
-    "typecheck": "next typegen && tsc --noEmit",
+    "typecheck": "bun scripts/link-design-system.ts && next typegen && tsc --noEmit",
     "test": "bun test tests/content.test.ts tests/guards.test.ts tests/responsive.test.ts tests/team-assets.test.ts tests/chat-demo.test.ts",
     "check": "bun run test && bun run typecheck",
     "test:e2e": "playwright test",

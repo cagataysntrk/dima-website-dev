@@ -9,7 +9,7 @@ import type { L, Point } from "./types";
  */
 
 /** A design-system brand. Rendered as `data-brand` on the product's block. */
-export type BrandKey = "dima";
+export type BrandKey = "upcytech" | "dima" | "upcyman" | "upcycarbon" | "upcyops";
 
 export interface Product {
   /** Stable key for React and tests. Never shown; survives a rename. */

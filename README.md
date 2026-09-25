@@ -11,16 +11,16 @@ system, next-intl with Turkish first. Bun only.
 The design system is consumed from a sibling checkout until it is published:
 
 ```
-Desktop/
-  design-system/   github.com/UpcyTech/design-system
-  upcytech/        this repo
+workspace/
+  design-system/       github.com/UpcyTech/design-system
+  dima-website-dev/    this repo
 ```
 
 ```bash
 (cd ../design-system && bun install && bun run tokens)
 bun install        # postinstall links ../design-system/packages/* into node_modules/@upcytech
 cp .env.example .env.local
-bun run dev        # http://localhost:3000/tr
+bun run dev        # re-validates the design-system link, then starts http://localhost:3000/tr
 ```
 
 A different location: `UPCYTECH_DESIGN_SYSTEM=/path/to/design-system bun install`.
@@ -32,8 +32,8 @@ reads files under its own root. `postinstall` also copies the MapLibre worker in
 
 ```bash
 bun test           # content in both languages, voice rules, guards
-bun run typecheck
-bun run build
+bun run typecheck  # re-validates the design-system link first
+bun run build      # re-validates the design-system link first
 bun run check      # test + typecheck
 bun run test:e2e   # production-server browser checks (Chromium)
 bun run capture:screens  # re-shoot the analytics product's screens from the real PoC (see the script's header)
@@ -83,7 +83,7 @@ Every variable is listed, with comments, in `.env.example`.
 
 | Variable | Without it |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | Canonical, hreflang, sitemap and share-image URLs use `https://upcytech.com` |
+| `NEXT_PUBLIC_SITE_URL` | Canonical, hreflang, sitemap and share-image URLs use `https://usedima.com` |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | Analytics never starts, even after consent |
 | `SMTP_*`, `CONTACT_TO`, `CONTACT_FROM` | The contact form validates, then shows "could not send" and keeps what was typed |
 
