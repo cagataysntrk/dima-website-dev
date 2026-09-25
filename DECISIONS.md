@@ -9,6 +9,20 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-063 · Final local typecheck regressions are closed
+**Decided:** the two remaining local TypeScript failures after dependency relinking are fixed
+at their source boundaries: Open Graph theme lookup uses the literal content-owned
+`site.themeKey` instead of deriving `${string}.light` at runtime, and `PointList` accepts
+`readonly Point[]` to match immutable content.
+
+**Verification expectation:** after pulling this commit, `bun run test` should retain the
+44/44 pass baseline; `bun run typecheck` and `bun run build` must no longer report the old
+TS7053 at the OG theme lookup or TS4104 at `PointList`. Any appearance of those exact old
+lines means the local checkout has not pulled the current branch head.
+
+**Reason:** close the last two compile errors from the reported local run and make stale-head
+diagnosis explicit.
+
 ### D-062 · Theme identity and immutable point lists are type-safe
 **Decided:** centralize the active Dima design-system identity in `site.brandKey` /
 `site.themeKey` and let the Open Graph renderer index the native theme registry with that
