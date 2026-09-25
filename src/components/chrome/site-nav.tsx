@@ -27,7 +27,7 @@ export function SiteNav({ locale }: { locale: Locale }) {
       product={site.name}
       logo={
         <span className="flex w-[6.75rem] items-center gap-2 sm:w-[8.25rem]">
-          <img src="/products/dima-mark.png" alt="" width={28} height={28} className="size-7 shrink-0 pointer-events-none select-none" />
+          <img src="/products/dima-mark.png" alt="" width={28} height={28} className="dima-logo-mark size-7 shrink-0 pointer-events-none select-none" />
           <span className="font-[family-name:var(--font-geist-sans)] text-ui font-semibold tracking-[-0.02em] text-ink">
             {site.name}
           </span>
