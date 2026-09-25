@@ -9,6 +9,19 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-062 · Theme identity and immutable point lists are type-safe
+**Decided:** centralize the active Dima design-system identity in `site.brandKey` /
+`site.themeKey` and let the Open Graph renderer index the native theme registry with that
+literal content-owned key. Do not derive a theme key from an arbitrary string at runtime and
+do not hardcode the product theme inside an app route.
+
+`PointList` accepts `readonly Point[]`, matching the project's immutable `as const`
+content model. Display components do not require callers to clone immutable content just to
+satisfy mutable prop types.
+
+**Reason:** remove the final TypeScript errors reported after the V1.6 refactor while keeping
+brand identity in content and preserving immutable typed copy.
+
 ### D-061 · Brand House contract is part of the default test command
 **Decided:** include `tests/brand-house.test.ts` in `bun run test`. A governance test that is
 not part of the default verification path is not a guardrail.

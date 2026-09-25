@@ -43,7 +43,7 @@ export async function GET(_request: Request, { params }: RouteContext<"/og/[loca
   const entry = (await ogEntries(locale as Locale)).find((e) => `${e.key}.png` === file);
   if (!entry) return new Response(null, { status: 404 });
 
-  const t = themes[`${site.name.toLowerCase()}.light`]!;
+  const t = themes[site.themeKey];
   const url = new URL(getPathname({ href: entry.href, locale: locale as Locale }), SITE_URL);
   const long = entry.title.length > 56;
 

@@ -13,7 +13,7 @@ export function Part({ id, title, children }: { id?: string; title: string; chil
 }
 
 /** Title-and-body points separated by hairlines. Numbered only when the order is real. */
-export function PointList({ points, ordered = false }: { points: Point[]; ordered?: boolean }) {
+export function PointList({ points, ordered = false }: { points: readonly Point[]; ordered?: boolean }) {
   const List = ordered ? "ol" : "ul";
   return (
     <List className="flex flex-col gap-4">

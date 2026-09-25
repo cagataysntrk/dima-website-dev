@@ -9,6 +9,8 @@ export interface SiteLink {
 /** Site chrome: navigation, footer, legal entity, and the few strings every page shares. */
 export const site = {
   name: "Dima",
+  brandKey: "dima",
+  themeKey: "dima.light",
   domain: "https://usedima.com",
   nav: [
     { href: "/solutions", label: { tr: "Ürün", en: "Product" } },

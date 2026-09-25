@@ -6,6 +6,8 @@ import { site } from "@/content/site";
 
 test("Brand House V1.6 master-brand contract stays fixed", () => {
   expect(site.name).toBe("Dima");
+  expect(site.brandKey).toBe("dima");
+  expect(site.themeKey).toBe("dima.light");
   expect(site.domain).toBe("https://usedima.com");
   expect(site.company.legalName.tr).toBe("UpcyTech Teknoloji A.Ş.");
 
