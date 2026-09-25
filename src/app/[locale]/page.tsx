@@ -32,8 +32,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
   const latest = (await getPosts(locale)).slice(0, 3);
-  // Dima is the only customer-facing product on the new site. Legacy portfolio data stays
-  // in content until the route-by-route consolidation phase.
+  // The master product is the only customer-facing product on the new site. Legacy portfolio
+  // data stays in content until the route-by-route consolidation phase.
   const dima = products.find((p) => p.id === "analytics")!;
 
   return (
