@@ -33,6 +33,14 @@ export const companyBrain = {
     tr: "Temsili şirket görünümü · örnek veri",
     en: "Representative company view · sample data",
   },
+  today: {
+    label: { tr: "Dima Today", en: "Dima Today" },
+    summary: { tr: "konu dikkat gerektiriyor", en: "items need attention" },
+    helper: {
+      tr: "Today ayrı bir dashboard değil; Company Brain içindeki öncelikli finding'lerin odak katmanıdır.",
+      en: "Today is not a separate dashboard; it is the focus layer for priority findings inside Company Brain.",
+    },
+  },
   heroAria: {
     tr: "Finans, üretim, satış, satın alma ve kalite loblarından oluşan Company Brain önizlemesi",
     en: "Company Brain preview with finance, manufacturing, sales, procurement and quality lobes",
@@ -46,14 +54,18 @@ export const companyBrain = {
   detail: {
     domain: { tr: "Seçili alan", en: "Selected domain" },
     entities: { tr: "Bağlı entity'ler", en: "Connected entities" },
-    finding: { tr: "Canlı finding", en: "Live finding" },
+    finding: { tr: "Örnek finding", en: "Sample finding" },
     evidence: { tr: "Dima neye baktı?", en: "What did Dima inspect?" },
     next: { tr: "Karara giden sonraki adım", en: "Next step toward a decision" },
+    chat: {
+      tr: "İsterseniz aynı finding, entity ve evidence bağlamını kaybetmeden Dima ile konuşabilirsiniz.",
+      en: "If needed, you can talk to Dima without losing the selected finding, entity and evidence context.",
+    },
   },
   flowLabel: { tr: "Tek UX kanunu", en: "One UX law" },
   flow: {
-    tr: ["Şirket", "Lob", "Alt alan", "Entity", "İlişki", "Canlı sinyal", "Finding", "Evidence / Investigation", "Dima ile konuş", "Karar", "Aksiyon", "Outcome / Memory"],
-    en: ["Company", "Lobe", "Subdomain", "Entity", "Relationship", "Live signal", "Finding", "Evidence / Investigation", "Talk to Dima", "Decision", "Action", "Outcome / Memory"],
+    tr: ["Şirket", "Lob", "Alt alan", "Entity", "İlişki", "Signal", "Finding", "Evidence / Investigation", "Karar", "Aksiyon", "Outcome / Memory"],
+    en: ["Company", "Lobe", "Subdomain", "Entity", "Relationship", "Signal", "Finding", "Evidence / Investigation", "Decision", "Action", "Outcome / Memory"],
   },
   relations: [
     { from: "sales" as BrainLobeId, to: "operations" as BrainLobeId, label: { tr: "Sipariş → üretim", en: "Order → production" } },

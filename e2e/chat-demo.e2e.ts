@@ -15,6 +15,8 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 800 
     test("a lobe selection changes the finding and survives a lens switch", async ({ page }) => {
       const brain = await openBrain(page);
       await expect(brain).toContainText("Temsili şirket görünümü");
+      await expect(brain).toContainText("Dima Today");
+      await expect(brain).toContainText("4 konu dikkat gerektiriyor");
       await expect(brain.getByRole("button", { name: /Üretim/ }).first()).toHaveAttribute("aria-pressed", "true");
 
       await brain.getByRole("button", { name: /Finans/ }).first().click();

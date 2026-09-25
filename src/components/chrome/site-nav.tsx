@@ -12,7 +12,8 @@ export function SiteNav({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const params = useParams();
   const other = site.chrome.switchTo[locale];
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
+  const tryUrl = process.env.NEXT_PUBLIC_TRY_URL?.trim();
+  const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL?.trim();
 
   return (
     <Nav
@@ -62,14 +63,20 @@ export function SiteNav({ locale }: { locale: Locale }) {
       }
       actions={
         <>
-          {appUrl && (
+          {loginUrl && (
             <Button variant="ghost" size="sm" asChild>
-              <a href={appUrl}>{site.chrome.login[locale]}</a>
+              <a href={loginUrl}>{site.chrome.login[locale]}</a>
             </Button>
           )}
-          <RainbowButton as={Link} href={site.navAction.href} size="sm" glow={false} className="px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-ui">
-            {site.navAction.label[locale]}
-          </RainbowButton>
+          {tryUrl ? (
+            <RainbowButton as="a" href={tryUrl} size="sm" glow={false} className="px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-ui">
+              {site.trialAction.label[locale]}
+            </RainbowButton>
+          ) : (
+            <RainbowButton as={Link} href={site.navAction.href} size="sm" glow={false} className="px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-ui">
+              {site.navAction.label[locale]}
+            </RainbowButton>
+          )}
         </>
       }
     />

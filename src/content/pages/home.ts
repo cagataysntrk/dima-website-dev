@@ -25,6 +25,10 @@ export const homePage = {
     },
   },
   hero: {
+    descriptor: {
+      tr: "Şirketinizin denetim, optimizasyon ve karar merkezi.",
+      en: "Your company's monitoring, optimization and decision center.",
+    },
     title: {
       tr: "Şirketinizde ne oluyor, neden oluyor, ne yapılmalı?",
       en: "What is happening in your company, why, and what should happen next?",
@@ -35,10 +39,11 @@ export const homePage = {
       en: ["why", "next"],
     },
     lede: {
-      tr: "Dima şirketinizin denetim, optimizasyon ve karar merkezidir. Finans, muhasebe, üretim ve diğer veri kaynaklarını birlikte anlamlandırır; şirketi sürekli izler, önemli sapma, risk ve fırsatları sizin sormanızı beklemeden fark eder; nedenini araştırır ve kanıtlarıyla karara hazırlar.",
-      en: "Dima is your company's monitoring, optimization and decision center. It connects finance, accounting, manufacturing and other data; continuously watches the business, detects important deviations, risks and opportunities without waiting for a prompt, investigates why they happened, and prepares the evidence for a decision.",
+      tr: "Dima şirketinizin veri kaynaklarını anlamlandırır, sürekli izler; önemli sapmaları ve fırsatları sizin sormanızı beklemeden fark eder, nedenini kanıtlarıyla araştırır ve ne yapılabileceğini karara hazır biçimde sunar.",
+      en: "Dima makes sense of your company's data sources and continuously monitors them; it detects important deviations and opportunities without waiting for you to ask, investigates why with evidence, and presents what can be done in a decision-ready form.",
     },
-    primary: { tr: "Dima'yı keşfedin", en: "Explore Dima" },
+    primary: { tr: "Dima'yı deneyin", en: "Try Dima" },
+    primaryFallback: { tr: "Dima'yı keşfedin", en: "Explore Dima" },
     secondary: { tr: "Canlı demo isteyin", en: "Request a live demo" },
   },
   /**

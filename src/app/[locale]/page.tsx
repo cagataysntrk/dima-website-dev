@@ -32,15 +32,21 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
   const latest = (await getPosts(locale)).slice(0, 3);
+  const tryUrl = process.env.NEXT_PUBLIC_TRY_URL?.trim();
   return (
     <>
       <HomeHero
+        descriptor={copy.hero.descriptor[locale]}
         title={copy.hero.title[locale]}
         accents={copy.hero.accents[locale]}
         lede={copy.hero.lede[locale]}
         actions={
           <>
-            <RainbowButton as={Link} href="/solutions">{copy.hero.primary[locale]}</RainbowButton>
+            {tryUrl ? (
+              <RainbowButton as="a" href={tryUrl}>{copy.hero.primary[locale]}</RainbowButton>
+            ) : (
+              <RainbowButton as={Link} href="/solutions">{copy.hero.primaryFallback[locale]}</RainbowButton>
+            )}
             {/* Important: the DS cn does not know the site-only rounded-button, so it keeps rounded-control. */}
             <Button variant="secondary" asChild className="rounded-button!">
               <Link href="/contact">{copy.hero.secondary[locale]}</Link>

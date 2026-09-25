@@ -55,6 +55,7 @@ function statusDot(status: BrainStatus) {
 
 export function CompanyBrainHero({ locale }: { locale: Locale }) {
   const c = companyBrain;
+  const todayCount = c.lobes.filter((lobe) => lobe.status !== "normal").length;
   return (
     <div data-brand="dima" role="img" aria-label={c.heroAria[locale]} className="relative mx-auto aspect-[5/4] w-full max-w-[31rem]">
       <div className="absolute inset-[4%] rounded-[46%_54%_48%_52%/43%_42%_58%_57%] border border-outline bg-[color-mix(in_oklab,var(--color-bg-surface)_82%,transparent)] shadow-xl backdrop-blur-sm" />
@@ -83,6 +84,10 @@ export function CompanyBrainHero({ locale }: { locale: Locale }) {
           );
         })}
       </div>
+      <div className="absolute bottom-[1%] right-[1%] max-w-[13rem] rounded-card border border-outline bg-surface/95 px-3 py-2 shadow-md backdrop-blur-sm">
+        <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-brand-text">{c.today.label[locale]}</p>
+        <p className="mt-1 text-ui font-semibold text-ink">{todayCount} {c.today.summary[locale]}</p>
+      </div>
     </div>
   );
 }
@@ -92,6 +97,7 @@ export function CompanyBrainExperience({ locale }: { locale: Locale }) {
   const [lens, setLens] = useState<"brain" | "map">("brain");
   const [activeId, setActiveId] = useState<BrainLobeId>("operations");
   const active = useMemo(() => c.lobes.find((lobe) => lobe.id === activeId) ?? c.lobes[0], [activeId]);
+  const todayItems = useMemo(() => c.lobes.filter((lobe) => lobe.status !== "normal"), []);
 
   return (
     <Section divided aria-labelledby="company-brain-title">
@@ -116,6 +122,39 @@ export function CompanyBrainExperience({ locale }: { locale: Locale }) {
             <div className="flex items-center gap-2 text-ui text-muted">
               <Activity aria-hidden="true" className="size-4 text-brand-text" />
               <span>{active.statusLabel[locale]}</span>
+            </div>
+          </div>
+
+          <div className="border-b border-hairline p-4 sm:p-6">
+            <div className="grid gap-4 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)] lg:items-start">
+              <div>
+                <p className="font-mono text-micro uppercase tracking-[0.14em] text-brand-text">{c.today.label[locale]}</p>
+                <p className="mt-1 text-base font-semibold text-ink">{todayItems.length} {c.today.summary[locale]}</p>
+                <p className="mt-1 max-w-xl text-ui leading-relaxed text-muted">{c.today.helper[locale]}</p>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {todayItems.map((lobe) => {
+                  const activeToday = lobe.id === activeId;
+                  return (
+                    <button
+                      key={lobe.id}
+                      type="button"
+                      aria-pressed={activeToday}
+                      onClick={() => setActiveId(lobe.id)}
+                      className={[
+                        "min-h-11 rounded-control border p-3 text-left transition duration-160",
+                        activeToday ? "border-brand-text bg-[color-mix(in_oklab,var(--color-text-brand)_10%,var(--color-bg-surface))]" : "border-hairline bg-raised hoverable:hover:border-outline",
+                      ].join(" ")}
+                    >
+                      <span className="flex items-center gap-2 text-ui font-medium text-ink">
+                        <span aria-hidden="true" className={statusDot(lobe.status)} />
+                        <span>{lobe.shortLabel[locale]}</span>
+                      </span>
+                      <span className="mt-1 block text-micro leading-relaxed text-muted">{lobe.finding.title[locale]}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
@@ -168,6 +207,10 @@ export function CompanyBrainExperience({ locale }: { locale: Locale }) {
               <DetailBlock label={c.detail.next[locale]}>
                 <p className="text-ui font-medium text-ink">{active.finding.next[locale]}</p>
               </DetailBlock>
+
+              <p className="mt-5 rounded-control border border-hairline bg-raised p-3 text-ui leading-relaxed text-muted">
+                {c.detail.chat[locale]}
+              </p>
             </aside>
           </div>
         </div>

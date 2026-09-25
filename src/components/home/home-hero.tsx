@@ -15,7 +15,8 @@ const delay = (ms: number) => ({ "--enter-delay": `${ms}ms` }) as CSSProperties;
  * The text layer lets clicks through to the field — its ripples answer a click — and only the
  * headline (kinetic hover), the lede (selection) and the actions take the pointer back.
  */
-export function HomeHero({ title, accents, lede, actions, visual }: {
+export function HomeHero({ descriptor, title, accents, lede, actions, visual }: {
+  descriptor: string;
   title: string;
   /** Title words set in italic, faded brand blue. */
   accents: readonly string[];
@@ -43,6 +44,9 @@ export function HomeHero({ title, accents, lede, actions, visual }: {
             <div className="lg:col-span-7">
               <Stack gap="loose">
                 <Stack>
+                  <p className="pointer-events-auto font-mono text-micro uppercase tracking-[0.14em] text-brand-text animate-enter" style={delay(30)}>
+                    {descriptor}
+                  </p>
                   <div className="pointer-events-auto">
                     <HeroTitle text={title} accents={accents} />
                   </div>

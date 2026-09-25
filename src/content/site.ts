@@ -15,7 +15,8 @@ export const site = {
     { href: "/about", label: { tr: "Hakkımızda", en: "About" } },
     { href: "/blog", label: { tr: "Kaynaklar", en: "Resources" } },
   ] satisfies SiteLink[],
-  /** Sales-assisted path until the self-serve OAuth/demo onboarding is wired in the next phase. */
+  /** Brand House V1.6 CTA hierarchy. The self-serve target is enabled only by a verified env URL. */
+  trialAction: { label: { tr: "Dima'yı deneyin", en: "Try Dima" } },
   navAction: { href: "/contact", label: { tr: "Canlı demo isteyin", en: "Request a live demo" } } satisfies SiteLink,
   footer: {
     groups: [

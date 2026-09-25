@@ -9,6 +9,33 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-055 · Brand House V1.6 is the active website source of truth
+**Decided:** V1.6 supersedes the earlier Brand House snapshot used at the start of this branch.
+The customer-facing website must preserve its exact strategic hierarchy: Dima as the single
+master brand; usedima.com as the digital brand address; UpcyTech only as the legal/corporate
+shell; the descriptor "Şirketinizin denetim, optimizasyon ve karar merkezi."; Company Brain
+as the primary visual/product model; Dima Today as its focus layer; chat as an optional
+contextual conversation interface; and Full Brain Form / Company Brain Map as two lenses over
+the same selected state.
+
+The core experience law no longer makes chat a mandatory step. It is:
+Company → lobe → subdomain → entity → relationship → signal → finding →
+evidence/investigation → decision → action → outcome/memory. Contextual chat may be entered
+from a selected finding without resetting that chain.
+
+Self-serve CTA behavior follows both the V1.6 hierarchy and its governance rule against
+unshipped promises. The code exposes separate verified env boundaries:
+`NEXT_PUBLIC_TRY_URL` for "Dima'yı deneyin" and `NEXT_PUBLIC_LOGIN_URL` for "Giriş yap".
+If the self-serve URL is absent, the public site does not fake an OAuth/onboarding flow; it
+falls back to product exploration plus the real sales-assisted live-demo path.
+
+The Company Brain marketing preview remains explicitly labelled representative/sample data
+until it is backed by the seeded real-product demo described by V1.6. "Dima Today" is rendered
+from the same lobe/finding state, not as a separate dashboard.
+
+**Reason:** remove drift between brand strategy and implementation without overstating current
+product execution.
+
 ### D-054 · Use the existing Dima mark asset consistently in chrome and metadata
 **Decided:** the source snapshot contains `public/products/dima-mark.png`; the earlier
 foundation pass referenced a non-existent `.webp` variant in nav/footer. Correct both chrome
