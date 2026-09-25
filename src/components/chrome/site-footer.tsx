@@ -21,7 +21,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
       homeHref="/"
       logo={
         <span className="flex items-center gap-2">
-          <img src="/products/dima-mark.png" alt="" width={30} height={30} loading="lazy" decoding="async" className="size-[1.875rem] shrink-0" />
+          <img src="/products/dima-mark.png" alt="" width={30} height={30} loading="lazy" decoding="async" className="dima-logo-mark size-[1.875rem] shrink-0" />
           <span className="font-[family-name:var(--font-geist-sans)] text-ui font-semibold tracking-[-0.02em] text-ink">
             {site.name}
           </span>
