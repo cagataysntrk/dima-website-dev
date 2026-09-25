@@ -94,6 +94,13 @@ body.site-responsive main .flex > * {
  * The design system's `dark:` variant only sees an explicit data-theme, so the swap follows
  * the same rule as the tokens: an explicit choice wins, otherwise the OS preference.
  */
+/* Dima's PNG mark is dark ink on transparency. Keep it readable on dark surfaces. */
+.dima-logo-mark { filter: none; }
+[data-theme="dark"] .dima-logo-mark { filter: brightness(0) invert(1); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .dima-logo-mark { filter: brightness(0) invert(1); }
+}
+
 .logo-on-dark { display: none; }
 [data-theme="dark"] .logo-on-light { display: none; }
 [data-theme="dark"] .logo-on-dark { display: block; }
