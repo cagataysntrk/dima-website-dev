@@ -106,7 +106,7 @@ test.describe("responsive page contract", () => {
   test.describe("touch surfaces", () => {
     test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
 
-    test("touch fields and compact product controls meet the mobile contract", async ({ page }) => {
+    test("touch fields and Company Brain controls meet the mobile contract", async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto("/en/contact", { waitUntil: "domcontentloaded" });
       const field = page.locator("input[name='name']");
@@ -121,11 +121,13 @@ test.describe("responsive page contract", () => {
     });
   });
 
-  test("desktop keeps the wheel and full navigation", async ({ page }) => {
+  test("desktop keeps Company Brain and full navigation", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/tr", { waitUntil: "domcontentloaded" });
-    await expect(page.locator("[role='listbox']")).toBeVisible({ timeout: 15_000 });
-    await expect(page.getByRole("navigation", { name: "Ana menü" }).getByRole("link", { name: "Çözümler", exact: true })).toBeVisible();
+    const brain = page.locator('section[aria-labelledby="company-brain-title"]').first();
+    await expect(brain.getByRole("button", { name: "Tam Beyin Formu" })).toBeVisible();
+    await expect(brain.getByRole("button", { name: "Company Brain Map" })).toBeVisible();
+    await expect(page.getByRole("navigation", { name: "Ana menü" }).getByRole("link", { name: "Ürün", exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Menüyü aç" })).toBeHidden();
   });
 

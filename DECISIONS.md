@@ -9,6 +9,23 @@ Format: **decision** · alternatives · reason · date.
 
 ## 2026-09-25 — Dima master-brand website refactor
 
+### D-053 · Browser regression follows Company Brain, not the retired chat demo
+**Decided:** replace the homepage/product-page chat-demo browser contract with a Company Brain
+contract. Browser tests now verify that selecting a lobe changes the visible finding/evidence,
+switching Full Brain Form ↔ Company Brain Map preserves the selected lobe/context, controls are
+keyboard-operable, both Turkish and English product surfaces carry the model, and the
+interaction creates no horizontal overflow.
+
+Responsive desktop assertions now expect the Company Brain lenses and the current "Ürün"
+navigation label instead of the retired OptionWheel and "Çözümler" label. Touch target checks
+continue to assert 44px minimum controls, now naturally covering the brain lens buttons.
+
+The old scripted chat engine/unit tests remain temporarily as non-public reusable code until a
+later dead-code deletion decision; they no longer define the public browser experience.
+
+**Reason:** tests must protect the current product architecture, not force the website back
+toward a chat-first or multi-product UX.
+
 ### D-052 · Remove dead portfolio copy and unverified legacy social links
 **Decided:** remove the no-longer-rendered home `whatWeDo` and product-wheel copy rather than
 leave the retired multi-product/services story in active typed content. Existing reusable
