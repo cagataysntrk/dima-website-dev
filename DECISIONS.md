@@ -31,7 +31,9 @@ same rule.
 
 **Reason:** the Company Brain metaphor must read as a credible enterprise product and company
 operating model, not as a decorative hand-drawn brain. Product proof should resemble a real
-dashboard/workspace while preserving the underlying Brand House semantics.
+dashboard/workspace while preserving the underlying Brand House semantics. The supplied
+dashboard concepts are visual-direction references only; they are not treated as screenshots
+of shipped product behavior or customer data.
 
 ### D-064 · OG Turkish glyph fallback stays fully local
 **Decided:** Open Graph generation must not depend on Satori's dynamic network font fallback.
