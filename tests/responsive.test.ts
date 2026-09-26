@@ -43,6 +43,21 @@ test("homepage uses product-first wide surfaces instead of decorative AI hero ef
   expect(capabilities).not.toContain("FEATURE_POSITIONS");
 });
 
+test("inner product pages keep the product-first editorial contract", async () => {
+  const pageHero = await Bun.file(ROOT + "src/components/sections/page-hero.tsx").text();
+  expect(pageHero).toContain('width="wide"');
+  expect(pageHero).not.toContain("bg-[radial-gradient(circle");
+
+  const solutions = await Bun.file(ROOT + "src/app/[locale]/solutions/page.tsx").text();
+  const industries = await Bun.file(ROOT + "src/app/[locale]/industries/page.tsx").text();
+  expect(solutions).not.toContain("RainbowButton");
+  expect(industries).not.toContain("RainbowButton");
+
+  const capabilities = await Bun.file(ROOT + "src/components/sections/capability-catalog.tsx").text();
+  expect(capabilities).toContain('max-h-[38rem] overflow-y-auto');
+  expect(capabilities).toContain("AnimatedBackground");
+});
+
 test("sector gallery maintains vertical accordion on tablets up to lg", async () => {
   const sectorGallery = await Bun.file(ROOT + "src/components/sections/sector-gallery.tsx").text();
   expect(sectorGallery).toContain("lg:flex-row");

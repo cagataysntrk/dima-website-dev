@@ -29,6 +29,11 @@ state. Shared-layout selection is adapted from the MIT-licensed Motion-Primitive
 `AnimatedBackground`; Dima styling and tokens remain authoritative. Auto-rotation stops after
 explicit user interaction and reduced-motion preferences remain respected.
 
+The Product page follows the same rule: cross-functional value renders as a decision record,
+not a radial node diagram; technical trust renders as an inspectable layer selector with
+input/output and governance contracts, not an animated architecture network. The Use Cases
+catalog uses a searchable master-detail library rather than a wall of feature cards.
+
 The visual hierarchy alternates editorial light sections with one deliberate dark product
 theatre rather than repeating white bordered cards. Large screenshots are shown sharply and
 at useful scale. Copy remains explanatory and mechanism-led; visual simplification must not

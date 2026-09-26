@@ -9,11 +9,9 @@ import { UseCaseLab } from "@/components/sections/use-case-lab";
 import { BusinessValueMap } from "@/components/sections/business-value-map";
 import { VisualProductTour } from "@/components/sections/visual-product-tour";
 import { TechnicalArchitecture } from "@/components/sections/technical-architecture";
-import { ProductVisualGallery } from "@/components/sections/product-visual-gallery";
 import { CtaBand } from "@/components/sections/cta-band";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
-import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/solutions">): Promise<Metadata> {
   const locale = (await params).locale as Locale;
@@ -37,14 +35,14 @@ export default async function SolutionsPage({ params }: PageProps<"/[locale]/sol
         lede={copy.hero.lede[locale]}
         action={
           <div className="flex flex-wrap gap-2">
-            {tryUrl ? <RainbowButton as="a" href={tryUrl}>{copy.hero.trial[locale]}</RainbowButton> : null}
             {tryUrl ? (
-              <Button variant="secondary" asChild>
-                <Link href="/contact">{copy.hero.demo[locale]}</Link>
+              <Button variant="primary" asChild>
+                <a href={tryUrl}>{copy.hero.trial[locale]}</a>
               </Button>
-            ) : (
-              <RainbowButton as={Link} href="/contact">{copy.hero.demo[locale]}</RainbowButton>
-            )}
+            ) : null}
+            <Button variant={tryUrl ? "secondary" : "primary"} asChild>
+              <Link href="/contact">{copy.hero.demo[locale]}</Link>
+            </Button>
           </div>
         }
       />
@@ -53,13 +51,12 @@ export default async function SolutionsPage({ params }: PageProps<"/[locale]/sol
       <BusinessValueMap locale={locale} />
       <UseCaseLab locale={locale} />
       <TechnicalArchitecture locale={locale} />
-      <ProductVisualGallery locale={locale} />
 
       <CtaBand
         id="consult"
         title={copy.consult.title[locale]}
         body={copy.consult.body[locale]}
-        action={<RainbowButton as={Link} href="/contact">{copy.consult.action[locale]}</RainbowButton>}
+        action={<Button variant="primary" asChild><Link href="/contact">{copy.consult.action[locale]}</Link></Button>}
       />
 
       <JsonLd data={breadcrumbJsonLd(locale, [

@@ -12,7 +12,6 @@ import { PointList } from "@/components/sections/parts";
 import { CtaBand } from "@/components/sections/cta-band";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
-import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/industries">): Promise<Metadata> {
   const locale = (await params).locale as Locale;
@@ -75,7 +74,7 @@ export default async function IndustriesPage({ params }: PageProps<"/[locale]/in
         id="enquiry"
         title={copy.cta.title[locale]}
         body={copy.cta.body[locale]}
-        action={<RainbowButton as={Link} href="/contact">{copy.cta.action[locale]}</RainbowButton>}
+        action={<Button variant="primary" asChild><Link href="/contact">{copy.cta.action[locale]}</Link></Button>}
       />
 
       <JsonLd
