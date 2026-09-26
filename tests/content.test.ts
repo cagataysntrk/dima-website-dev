@@ -22,12 +22,17 @@ import { problemMatcherCopy } from "@/content/problem-matcher";
 import { companyBrain } from "@/content/company-brain";
 import { capabilityDepths, capabilityDepthsCopy } from "@/content/capability-depths";
 import { productExperience } from "@/content/product-experience";
+import { continuousIntelligence } from "@/content/continuous-intelligence";
+import { useCaseLab } from "@/content/use-case-lab";
+import { technicalArchitecture } from "@/content/technical-architecture";
+import { contextualChat } from "@/content/contextual-chat";
 
 const CONTENT = {
   homePage, aboutPage, contactPage, careersPage, blogPage, categories, hiringSteps, roles, team,
   legalDocs, drafterFacts, legalChrome, consentCopy, products, productsPage, industries, industriesPage,
   services, clientNeeds, servicesPage, solutionsPage, chatDemoCopy, problemMatcherCopy, companyBrain,
-  capabilityDepths, capabilityDepthsCopy, productExperience, site,
+  capabilityDepths, capabilityDepthsCopy, productExperience, continuousIntelligence, useCaseLab,
+  technicalArchitecture, contextualChat, site,
 } as const;
 
 const PUBLIC_LANGUAGE_CONTENT = {
@@ -44,6 +49,11 @@ const PUBLIC_LANGUAGE_CONTENT = {
   capabilityDepths,
   capabilityDepthsCopy,
   productExperience,
+  continuousIntelligence,
+  useCaseLab,
+  technicalArchitecture,
+  contextualChat,
+  chatDemoCopy,
   site,
   team,
 } as const;
@@ -141,8 +151,13 @@ describe("public Turkish language", () => {
   const turkishLeaves: Leaf[] = [];
   for (const { path, value } of publicLocalized) strings(value.tr, `${path}.tr`, turkishLeaves);
 
-  test("visible copy has no long dash characters", () => {
-    const hits = turkishLeaves.filter(({ text }) => /[—–]/.test(text)).map(({ path, text }) => `${path}: ${text}`);
+  test("visible copy has no long dash characters in either language", () => {
+    const publicLeaves: Leaf[] = [];
+    for (const { path, value } of publicLocalized) {
+      strings(value.tr, `${path}.tr`, publicLeaves);
+      strings(value.en, `${path}.en`, publicLeaves);
+    }
+    const hits = publicLeaves.filter(({ text }) => /[—–]/.test(text)).map(({ path, text }) => `${path}: ${text}`);
     expect(hits, hits.join("\n")).toEqual([]);
   });
 

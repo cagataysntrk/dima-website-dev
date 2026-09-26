@@ -1,5 +1,6 @@
 import type { L } from "../types";
 
+/** LEGACY COMPATIBILITY COPY. The public /services route redirects permanently to /solutions. Do not use this file as Dima source-of-truth. */
 /** Every string on /services that is not about one service. Service copy is in ../services.ts. */
 export const servicesPage = {
   meta: {

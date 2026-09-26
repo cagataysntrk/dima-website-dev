@@ -125,7 +125,7 @@ test.describe("responsive page contract", () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/tr", { waitUntil: "domcontentloaded" });
     const brain = page.locator('section[aria-labelledby="company-brain-title"]').first();
-    await expect(brain.getByRole("button", { name: "Katmanlı Şirket Beyni" })).toBeVisible();
+    await expect(brain.getByRole("button", { name: "Tam Beyin Formu" })).toBeVisible();
     await expect(brain.getByRole("button", { name: "Şirket Haritası" })).toBeVisible();
     await expect(page.getByRole("navigation", { name: "Ana menü" }).getByRole("link", { name: "Ürün", exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Menüyü aç" })).toBeHidden();

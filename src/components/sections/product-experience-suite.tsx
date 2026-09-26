@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import * as React from "react";
 import {
   Activity,
   ArrowRight,
@@ -12,6 +12,8 @@ import {
   Factory,
   Landmark,
   Network,
+  Pause,
+  Play,
   Search,
   ShieldCheck,
   ShoppingCart,
@@ -41,8 +43,34 @@ const STEP_ICON: Record<ExperienceStepId, LucideIcon> = {
 
 export function ProductExperienceSuite({ locale }: { locale: Locale }) {
   const c = productExperience;
-  const [step, setStep] = useState<ExperienceStepId>("overview");
+  const [step, setStep] = React.useState<ExperienceStepId>("overview");
+  const [paused, setPaused] = React.useState(false);
+  const [reduced, setReduced] = React.useState(false);
   const active = c.steps.find((item) => item.id === step) ?? c.steps[0];
+
+  React.useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  React.useEffect(() => {
+    if (paused || reduced) return;
+    const timer = window.setInterval(() => {
+      setStep((current) => {
+        const index = c.steps.findIndex((item) => item.id === current);
+        return c.steps[(index + 1) % c.steps.length]!.id;
+      });
+    }, 4300);
+    return () => window.clearInterval(timer);
+  }, [paused, reduced, c.steps]);
+
+  const selectStep = (id: ExperienceStepId) => {
+    setStep(id);
+    setPaused(true);
+  };
 
   return (
     <Section divided aria-labelledby="product-experience-title">
@@ -71,7 +99,7 @@ export function ProductExperienceSuite({ locale }: { locale: Locale }) {
                       key={item.id}
                       type="button"
                       aria-pressed={selected}
-                      onClick={() => setStep(item.id)}
+                      onClick={() => selectStep(item.id)}
                       className={[
                         "flex min-h-11 items-center gap-2 rounded-control px-2.5 text-left text-micro transition",
                         selected ? "bg-surface font-medium text-ink shadow-sm" : "text-muted hoverable:hover:text-ink",
@@ -92,8 +120,18 @@ export function ProductExperienceSuite({ locale }: { locale: Locale }) {
                   <span className="truncate">{c.search[locale]}</span>
                 </div>
                 <span className="hidden rounded-chip border border-hairline bg-raised px-2.5 py-1 text-micro text-muted sm:inline-flex">
-                  {c.sample[locale]}
+                  <span aria-hidden="true" className="mr-1.5 size-1.5 rounded-full bg-brand motion-safe:animate-pulse" />
+                  {c.auto.running[locale]}
                 </span>
+                <button
+                  type="button"
+                  onClick={() => setPaused((value) => !value)}
+                  aria-label={(paused ? c.auto.resume : c.auto.pause)[locale]}
+                  className="inline-flex min-h-9 items-center gap-1.5 rounded-control border border-hairline bg-raised px-2.5 text-micro text-muted transition hoverable:hover:text-ink"
+                >
+                  {paused ? <Play aria-hidden="true" className="size-3.5" /> : <Pause aria-hidden="true" className="size-3.5" />}
+                  <span className="hidden md:inline">{(paused ? c.auto.resume : c.auto.pause)[locale]}</span>
+                </button>
               </div>
 
               <div className="grid xl:grid-cols-[minmax(0,1fr)_20rem]">
@@ -119,7 +157,7 @@ export function ProductExperienceSuite({ locale }: { locale: Locale }) {
                     <div key={item.id} className="flex items-center gap-2">
                       <button
                         type="button"
-                        onClick={() => setStep(item.id)}
+                        onClick={() => selectStep(item.id)}
                         className={[
                           "rounded-chip border px-2.5 py-1 text-micro",
                           item.id === step ? "border-brand-text/40 bg-raised text-ink" : "border-hairline text-muted",

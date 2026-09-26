@@ -7,6 +7,54 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Always-on product proof
+
+### D-067 · Always-on product proof, actual Full Brain Form and contextual conversation
+**Decided:** Dima's public product proof must make the always-on operating model visible before
+it asks the visitor to understand individual features. The website therefore treats continuous
+monitoring, auditing, deviation/opportunity detection, investigation, optimization and
+decision preparation as one running loop rather than as isolated feature cards.
+
+The major representative product surfaces auto-progress when motion is allowed and stop when
+the visitor interacts with them. They remain explicitly labelled sample/representative data,
+provide pause/resume controls where appropriate and respect reduced-motion preferences. Motion
+must express product state or flow, never exist only as generic AI decoration.
+
+D-065 is superseded on one narrow point: **Full Brain Form is now a real brain-shaped product
+lens.** It uses a clean enterprise SVG outline with functional business-domain nodes,
+connections, statuses and signals. It is not a fleshy anatomical illustration and it is not a
+decorative image. Company Brain Map remains the second lens over the same selected state. The
+old data -> relationship -> analysis -> decision layered visualization moves to the technical
+architecture story, where that abstraction is accurate and useful.
+
+Conversation is restored to the Product page as a substantial interactive surface, but it does
+not become the product center. It opens inside existing company/finding/evidence context and
+uses the existing scripted Dima chat experience to show streaming analysis, charts, source
+query and follow-up behavior. The governing product law remains Company -> domain -> entity ->
+relationship -> signal -> finding -> evidence/investigation -> decision -> action ->
+outcome/memory; conversation is an optional interface into that context.
+
+Three additional public proof surfaces are canonical:
+1. **Continuous Intelligence:** horizontal data fragmentation plus historical depth, with a
+   rotating monitoring feed showing deviation, risk, opportunity, recommendation and business
+   impact.
+2. **Use Case Lab:** executive, finance, sales, manufacturing, procurement and quality cases,
+   each expressed as business problem -> detection -> investigation -> recommendation ->
+   decision output.
+3. **Technical Architecture:** sources -> company model -> deterministic analytics ->
+   continuous monitoring -> evidence-backed investigation -> governed decision/action ->
+   outcome memory.
+
+The homepage leads with continuous intelligence, then the end-to-end product flow, Company
+Brain, concrete use cases and business-depth proof. The Product page adds contextual
+conversation and technical architecture. The Use Cases page includes the same concrete
+scenario lab before detailed domain and sector contexts.
+
+**Reason:** a visitor should be able to answer, without translating product jargon, what Dima
+does continuously, what it notices, how it proves a cause, what decision it prepares, how the
+same intelligence appears across business functions, and where conversation and the language
+model fit technically.
+
 ## 2026-09-25 — Dima master-brand website refactor
 
 ### D-066 · Public product proof is Turkish-first, evidence-led and navigable

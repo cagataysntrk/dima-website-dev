@@ -48,7 +48,7 @@ export const companyBrain = {
   dashboard: {
     productLabel: { tr: "Dima", en: "Dima" },
     search: { tr: "Şirketinizde neyi inceleyelim?", en: "What should we inspect in your company?" },
-    live: { tr: "Canlı", en: "Live" },
+    live: { tr: "Sürekli izleme", en: "Continuous monitoring" },
     overview: { tr: "Ana ekran", en: "Overview" },
     companyMap: { tr: "Şirket haritası", en: "Company map" },
     signals: { tr: "Sinyaller", en: "Signals" },
@@ -71,20 +71,6 @@ export const companyBrain = {
       tr: ["ERP", "CRM", "Excel / CSV", "Veritabanı", "API"],
       en: ["ERP", "CRM", "Excel / CSV", "Database", "API"],
     },
-    layers: {
-      tr: [
-        { title: "Veri katmanı", body: "Kaynaklar · tablolar · akışlar" },
-        { title: "Bağlantı katmanı", body: "Varlıklar · ilişkiler · zaman" },
-        { title: "Analiz katmanı", body: "Bulgular · kanıtlar · nedenler" },
-        { title: "Karar katmanı", body: "Seçenekler · etkiler · aksiyon" },
-      ],
-      en: [
-        { title: "Data layer", body: "Sources · tables · flows" },
-        { title: "Relationship layer", body: "Entities · relationships · time" },
-        { title: "Analysis layer", body: "Finding · evidence · causes" },
-        { title: "Decision layer", body: "Options · impact · action" },
-      ],
-    },
     outputs: {
       tr: ["Sinyaller", "Araştırmalar", "Kararlar", "Eylemler"],
       en: ["Signals", "Investigations", "Decisions", "Actions"],
@@ -105,9 +91,15 @@ export const companyBrain = {
     },
     sampleBadge: { tr: "Örnek şirket · örnek veri", en: "Sample company · seeded data" },
   },
+  auto: {
+    running: { tr: "Temsili denetim akışı çalışıyor", en: "Representative monitoring flow is running" },
+    pause: { tr: "Otomatik akışı duraklat", en: "Pause automatic flow" },
+    resume: { tr: "Otomatik akışı sürdür", en: "Resume automatic flow" },
+    helper: { tr: "Dima iş alanlarını sırayla tarıyor; bir alanı seçtiğinizde bağlam sabitlenir.", en: "Dima cycles through business domains; selecting one pins that context." },
+  },
   lensLabel: { tr: "Şirket Beyni görünümü", en: "Company Brain view" },
   lenses: {
-    brain: { tr: "Katmanlı Şirket Beyni", en: "Full Brain Form" },
+    brain: { tr: "Tam Beyin Formu", en: "Full Brain Form" },
     map: { tr: "Şirket Haritası", en: "Company Brain Map" },
   },
   coreLabel: { tr: "Şirket", en: "Company" },
@@ -137,7 +129,7 @@ export const companyBrain = {
   lobes: [
     {
       id: "finance",
-      label: { tr: "Muhasebe & Finans", en: "Accounting & Finance" },
+      label: { tr: "Muhasebe ve Finans", en: "Accounting & Finance" },
       shortLabel: { tr: "Finans", en: "Finance" },
       status: "opportunity",
       statusLabel: { tr: "Fırsat bulundu", en: "Opportunity found" },
@@ -260,7 +252,7 @@ export const companyBrain = {
       finding: {
         title: { tr: "Aktif kritik kalite sinyali yok; ilişkiler izlenmeye devam ediyor.", en: "No active critical quality signal; relationships remain under observation." },
         body: {
-          tr: "Normal durum da boş ekran değildir. Dima kalite sonuçlarını üretim koşulları ve geçmiş örüntülerle karşılaştırmaya devam eder; anlamlı bir değişim oluştuğunda ilgili entity ve bağlantıyı öne çıkarır.",
+          tr: "Normal durum da boş ekran değildir. Dima kalite sonuçlarını üretim koşulları ve geçmiş örüntülerle karşılaştırmaya devam eder; anlamlı bir değişim oluştuğunda ilgili varlık ve bağlantıyı öne çıkarır.",
           en: "A normal state is not an empty screen. Dima keeps comparing quality results with production conditions and historical patterns; when a meaningful change appears, it surfaces the relevant entity and connection.",
         },
         evidence: {

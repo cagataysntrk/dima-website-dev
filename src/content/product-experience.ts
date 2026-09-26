@@ -10,10 +10,15 @@ export const productExperience = {
     en: "Move from a signal to a decision without losing company context.",
   },
   intro: {
-    tr: "Aşağıdaki örnek, tohumlanmış örnek şirket verisiyle çalışan temsili bir Dima akışıdır. Ekranlar gerçek ürün davranışını anlatmak için hazırlanmıştır; gerçek müşteri verisi içermez.",
+    tr: "Aşağıdaki temsili akış örnek şirket verisiyle çalışır. Dima bir sinyali fark ettikten sonra araştırma, kanıt, karar ve eylem adımlarının aynı bağlamda nasıl ilerlediğini gösterir. Gerçek müşteri verisi içermez.",
     en: "The experience below is a representative Dima flow using seeded sample-company data. It is designed to explain real product behavior and contains no customer data.",
   },
   sample: { tr: "Örnek şirket verisi", en: "Sample company data" },
+  auto: {
+    running: { tr: "Akış otomatik ilerliyor", en: "Flow is progressing automatically" },
+    pause: { tr: "Akışı duraklat", en: "Pause flow" },
+    resume: { tr: "Akışı sürdür", en: "Resume flow" },
+  },
   search: { tr: "Şirketinizde neyi inceleyelim?", en: "What should we inspect in your company?" },
   steps: [
     {

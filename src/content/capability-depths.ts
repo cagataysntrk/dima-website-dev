@@ -208,5 +208,10 @@ export const capabilityDepthsCopy = {
     en: "These surfaces are not separate products. The same company map, signal, investigation, decision and outcome chain exposes different detail for management, finance and manufacturing work.",
   },
   selectLabel: { tr: "İş alanı seçin", en: "Choose a work area" },
+  auto: {
+    running: { tr: "İş alanları otomatik ilerliyor", en: "Work areas are rotating automatically" },
+    pause: { tr: "Akışı duraklat", en: "Pause flow" },
+    resume: { tr: "Akışı sürdür", en: "Resume flow" },
+  },
   exampleLabel: { tr: "Somut örnek", en: "Concrete example" },
 } as const;

@@ -2,6 +2,10 @@ import { expect, test } from "bun:test";
 import { companyBrain } from "@/content/company-brain";
 import { capabilityDepths } from "@/content/capability-depths";
 import { productExperience } from "@/content/product-experience";
+import { continuousIntelligence } from "@/content/continuous-intelligence";
+import { useCaseLab } from "@/content/use-case-lab";
+import { technicalArchitecture } from "@/content/technical-architecture";
+import { contextualChat } from "@/content/contextual-chat";
 import { industriesPage } from "@/content/pages/industries";
 import { homePage } from "@/content/pages/home";
 import { products } from "@/content/products";
@@ -43,21 +47,16 @@ test("Brand House keeps a single active product", () => {
   expect(products[0]?.category.en).toBe("Decision Intelligence & Optimization Platform");
 });
 
-test("Şirket Beyni product proof uses dashboard semantics, not an anatomical silhouette", () => {
+test("Şirket Beyni has a real Full Brain Form and a Company Map over the same state model", () => {
   expect(companyBrain.eyebrow.tr).toBe("Şirket Beyni");
+  expect(companyBrain.lenses.brain.tr).toBe("Tam Beyin Formu");
+  expect(companyBrain.lenses.map.tr).toBe("Şirket Haritası");
   expect(companyBrain.dashboard.heading.tr).toBe("Şirketiniz şu anda nasıl çalışıyor?");
+  expect(companyBrain.dashboard.live.tr).toBe("Sürekli izleme");
   expect(companyBrain.dashboard.todayTitle.tr).toBe("Öne çıkan sinyaller");
-  expect(companyBrain.dashboard.layers.tr.map((layer) => layer.title)).toEqual([
-    "Veri katmanı",
-    "Bağlantı katmanı",
-    "Analiz katmanı",
-    "Karar katmanı",
-  ]);
 });
 
-test("Şirket Beyni keeps one state model across two lenses and conversation stays contextual", () => {
-  expect(companyBrain.lenses.brain.tr).toBe("Katmanlı Şirket Beyni");
-  expect(companyBrain.lenses.map.tr).toBe("Şirket Haritası");
+test("Şirket Beyni flow stays contextual and conversation stays optional", () => {
   expect(companyBrain.flow.tr).toEqual([
     "Şirket",
     "İş alanı",
@@ -71,13 +70,18 @@ test("Şirket Beyni keeps one state model across two lenses and conversation sta
     "Eylem",
     "Sonuç / Hafıza",
   ]);
+  expect(companyBrain.flow.tr).not.toContain("Dima ile konuş");
   expect(companyBrain.detail.chat.tr).toContain("aynı bulgu, varlık ve kanıt bağlamını kaybetmeden");
   expect(companyBrain.today.label.tr).toBe("Dima Bugün");
 });
 
-test("the 70 UX strategy is represented as three depths, not separate products", () => {
-  expect(capabilityDepths.map((item) => item.id)).toEqual(["management", "finance", "manufacturing"]);
-  expect(capabilityDepths.every((item) => item.items.length >= 6)).toBe(true);
+test("always-on monitoring is a first-class product story", () => {
+  expect(continuousIntelligence.events.length).toBeGreaterThanOrEqual(5);
+  expect(continuousIntelligence.process.tr).toContain("İzle");
+  expect(continuousIntelligence.process.tr).toContain("Fark et");
+  expect(continuousIntelligence.process.tr).toContain("Optimize et");
+  expect(continuousIntelligence.events.some((event) => event.status.tr === "Fırsat")).toBe(true);
+  expect(continuousIntelligence.events.some((event) => event.status.tr === "Sapma")).toBe(true);
 });
 
 test("the product proof covers the full signal-to-action flow", () => {
@@ -89,6 +93,38 @@ test("the product proof covers the full signal-to-action flow", () => {
     "decision",
     "action",
   ]);
+});
+
+test("conversation remains a strong contextual surface without becoming the product center", () => {
+  expect(contextualChat.title.tr).toContain("Sohbet var");
+  expect(contextualChat.title.tr).toContain("yüzey");
+  expect(contextualChat.context.tr).toContain("Hat 3");
+});
+
+test("business layers are represented as both product depths and concrete use cases", () => {
+  expect(capabilityDepths.map((item) => item.id)).toEqual(["management", "finance", "manufacturing"]);
+  expect(capabilityDepths.every((item) => item.items.length >= 6)).toBe(true);
+  expect(useCaseLab.cases.map((item) => item.id)).toEqual([
+    "executive",
+    "finance",
+    "sales",
+    "manufacturing",
+    "procurement",
+    "quality",
+  ]);
+});
+
+test("technical architecture keeps deterministic analytics, monitoring, investigation and memory explicit", () => {
+  expect(technicalArchitecture.layers.map((item) => item.id)).toEqual([
+    "sources",
+    "model",
+    "analytics",
+    "watch",
+    "investigation",
+    "decision",
+    "memory",
+  ]);
+  expect(technicalArchitecture.principles[0]?.title.tr).toBe("Rakamı model uydurmaz");
 });
 
 test("sector contexts are broad enough for the first market story", () => {

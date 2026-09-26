@@ -117,7 +117,7 @@ export const aboutPage = {
         { label: "Headquarters", value: "Reşitpaşa Mah. Katar Cad. İTÜ Tasarım ve Prototip Merkezi Binası No: 2/41 İç Kapı No: 19, 34467 Sarıyer / İstanbul, Türkiye" },
         { label: "Primary market", value: "Türkiye" },
         { label: "Languages", value: "Turkish and English" },
-        { label: "Product focus", value: "Dima — enterprise decision intelligence and optimization platform" },
+        { label: "Product focus", value: "Dima: enterprise decision intelligence and optimization platform" },
         { label: "Legal entity", value: "UpcyTech Teknoloji A.Ş." },
       ],
     },

@@ -1,3 +1,10 @@
+# ARCHIVED CHECKLIST
+
+> Historical implementation record only. Do not execute this file as the current plan.
+> Current website branch: `refactor/dima-brand-foundation`.
+> Current architecture and product-proof authority: `DECISIONS.md` D-067 and the root `README.md`.
+> Test counts, branch names and verification receipts below are historical snapshots.
+
 # Website revizyonu — checklist
 
 Plan: `~/.claude/plans/pasted-content-id-1603-website-revizyon-sparkling-axolotl.md`

@@ -1,5 +1,6 @@
 import type { L } from "../types";
 
+/** LEGACY COMPATIBILITY COPY. The public /products route redirects permanently to /solutions. Do not use this file as Dima source-of-truth. */
 /** Every string on /products that is not about one product. Product copy is in ../products.ts. */
 export const productsPage = {
   meta: {

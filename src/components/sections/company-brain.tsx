@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import * as React from "react";
 import {
   Activity,
   Building2,
@@ -8,14 +8,14 @@ import {
   Factory,
   FileSearch,
   Landmark,
-  Layers3,
   ListChecks,
   Network,
   PackageSearch,
+  Pause,
+  Play,
   Search,
   ShieldCheck,
   ShoppingCart,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { Heading, Section, Stack, Text } from "@upcytech/ui";
@@ -38,6 +38,14 @@ const GRAPH_POSITIONS: Record<BrainLobeId, { x: number; y: number }> = {
   quality: { x: 18, y: 68 },
 };
 
+const BRAIN_POSITIONS: Record<BrainLobeId, { x: number; y: number }> = {
+  finance: { x: 34, y: 28 },
+  sales: { x: 66, y: 28 },
+  operations: { x: 50, y: 68 },
+  procurement: { x: 67, y: 57 },
+  quality: { x: 32, y: 58 },
+};
+
 const STATUS_CLASS: Record<BrainStatus, string> = {
   attention: "border-brand-text/45 bg-[color-mix(in_oklab,var(--color-text-brand)_10%,var(--color-bg-surface))]",
   investigating: "border-outline bg-surface",
@@ -45,25 +53,71 @@ const STATUS_CLASS: Record<BrainStatus, string> = {
   normal: "border-hairline bg-surface",
 };
 
+function useReducedMotion() {
+  const [reduced, setReduced] = React.useState(false);
+  React.useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return reduced;
+}
+
 function statusDot(status: BrainStatus) {
   return [
     "size-1.5 shrink-0 rounded-full",
-    status === "normal" ? "bg-muted" : "bg-brand",
+    status === "normal" ? "bg-muted" : "bg-brand motion-safe:animate-pulse",
   ].join(" ");
 }
 
 export function CompanyBrainHero({ locale }: { locale: Locale }) {
+  const reduced = useReducedMotion();
+  const [activeId, setActiveId] = React.useState<BrainLobeId>("operations");
+
+  React.useEffect(() => {
+    if (reduced) return;
+    const ids = companyBrain.lobes.filter((item) => item.status !== "normal").map((item) => item.id);
+    const timer = window.setInterval(() => {
+      setActiveId((current) => {
+        const index = ids.indexOf(current);
+        return ids[(index + 1) % ids.length] ?? "operations";
+      });
+    }, 2600);
+    return () => window.clearInterval(timer);
+  }, [reduced]);
+
   return (
     <div role="img" aria-label={companyBrain.heroAria[locale]} className="mx-auto w-full max-w-[34rem]">
-      <DashboardFrame locale={locale} activeId="operations" lens="map" compact />
+      <DashboardFrame locale={locale} activeId={activeId} lens="map" compact />
     </div>
   );
 }
 
 export function CompanyBrainExperience({ locale }: { locale: Locale }) {
   const c = companyBrain;
-  const [lens, setLens] = useState<"brain" | "map">("map");
-  const [activeId, setActiveId] = useState<BrainLobeId>("operations");
+  const reduced = useReducedMotion();
+  const [lens, setLens] = React.useState<"brain" | "map">("brain");
+  const [activeId, setActiveId] = React.useState<BrainLobeId>("operations");
+  const [paused, setPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (paused || reduced) return;
+    const ids = c.lobes.map((item) => item.id);
+    const timer = window.setInterval(() => {
+      setActiveId((current) => {
+        const index = ids.indexOf(current);
+        return ids[(index + 1) % ids.length] ?? "operations";
+      });
+    }, 3600);
+    return () => window.clearInterval(timer);
+  }, [paused, reduced, c.lobes]);
+
+  const select = (id: BrainLobeId) => {
+    setActiveId(id);
+    setPaused(true);
+  };
 
   return (
     <Section divided aria-labelledby="company-brain-title">
@@ -74,17 +128,20 @@ export function CompanyBrainExperience({ locale }: { locale: Locale }) {
             <Heading level={2} variant="title" id="company-brain-title">{c.title[locale]}</Heading>
             <Text variant="lede" tone="muted" className="max-w-3xl">{c.intro[locale]}</Text>
           </Stack>
-          <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted lg:col-span-4 lg:justify-self-end">
-            {c.sample[locale]}
-          </p>
+          <div className="space-y-2 lg:col-span-4 lg:justify-self-end lg:text-right">
+            <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">{c.sample[locale]}</p>
+            <p className="text-micro text-muted">{c.auto.helper[locale]}</p>
+          </div>
         </div>
 
         <DashboardFrame
           locale={locale}
           activeId={activeId}
           lens={lens}
-          onSelect={setActiveId}
+          paused={paused}
+          onSelect={select}
           onLensChange={setLens}
+          onPauseChange={setPaused}
         />
       </Stack>
     </Section>
@@ -96,19 +153,23 @@ function DashboardFrame({
   activeId,
   lens,
   compact = false,
+  paused = false,
   onSelect,
   onLensChange,
+  onPauseChange,
 }: {
   locale: Locale;
   activeId: BrainLobeId;
   lens: "brain" | "map";
   compact?: boolean;
+  paused?: boolean;
   onSelect?: (id: BrainLobeId) => void;
   onLensChange?: (lens: "brain" | "map") => void;
+  onPauseChange?: (paused: boolean) => void;
 }) {
   const c = companyBrain;
-  const active = useMemo(() => c.lobes.find((lobe) => lobe.id === activeId) ?? c.lobes[0], [activeId]);
-  const todayItems = useMemo(() => c.lobes.filter((lobe) => lobe.status !== "normal"), []);
+  const active = React.useMemo(() => c.lobes.find((lobe) => lobe.id === activeId) ?? c.lobes[0], [activeId]);
+  const todayItems = React.useMemo(() => c.lobes.filter((lobe) => lobe.status !== "normal"), []);
 
   return (
     <div data-brand="dima" className="dima-app overflow-hidden rounded-card border border-outline bg-surface shadow-xl">
@@ -128,7 +189,10 @@ function DashboardFrame({
               </div>
               <div className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-chip border border-hairline bg-raised px-2.5 py-1 text-micro text-muted">
-                  <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
+                  <span aria-hidden="true" className="relative flex size-2">
+                    <span className="absolute inline-flex size-full motion-safe:animate-ping rounded-full bg-brand opacity-40" />
+                    <span className="relative inline-flex size-2 rounded-full bg-brand" />
+                  </span>
                   {c.dashboard.live[locale]}
                 </span>
                 {!compact && (
@@ -141,19 +205,20 @@ function DashboardFrame({
 
             {!compact && (
               <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-                <div role="group" aria-label={c.lensLabel[locale]} className="inline-flex rounded-control border border-hairline bg-raised p-1">
-                  <LensButton
-                    active={lens === "brain"}
-                    icon={Layers3}
-                    label={c.lenses.brain[locale]}
-                    onClick={() => onLensChange?.("brain")}
-                  />
-                  <LensButton
-                    active={lens === "map"}
-                    icon={Network}
-                    label={c.lenses.map[locale]}
-                    onClick={() => onLensChange?.("map")}
-                  />
+                <div className="flex flex-wrap items-center gap-2">
+                  <div role="group" aria-label={c.lensLabel[locale]} className="inline-flex rounded-control border border-hairline bg-raised p-1">
+                    <LensButton active={lens === "brain"} icon={Activity} label={c.lenses.brain[locale]} onClick={() => onLensChange?.("brain")} />
+                    <LensButton active={lens === "map"} icon={Network} label={c.lenses.map[locale]} onClick={() => onLensChange?.("map")} />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => onPauseChange?.(!paused)}
+                    aria-label={(paused ? c.auto.resume : c.auto.pause)[locale]}
+                    className="inline-flex min-h-11 items-center gap-2 rounded-control border border-hairline bg-raised px-3 text-ui text-muted transition hoverable:hover:text-ink"
+                  >
+                    {paused ? <Play aria-hidden="true" className="size-4" /> : <Pause aria-hidden="true" className="size-4" />}
+                    <span className="hidden sm:inline">{(paused ? c.auto.resume : c.auto.pause)[locale]}</span>
+                  </button>
                 </div>
                 <span className="inline-flex items-center gap-2 text-ui text-muted">
                   <Activity aria-hidden="true" className="size-4 text-brand-text" />
@@ -165,20 +230,13 @@ function DashboardFrame({
             <div className={compact ? "mt-3 grid gap-3 sm:grid-cols-[minmax(0,1fr)_10.5rem]" : "mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_20rem]"}>
               <div className="min-w-0 overflow-hidden rounded-card border border-hairline bg-raised">
                 {lens === "brain" && !compact ? (
-                  <LayeredIntelligence locale={locale} activeId={activeId} />
+                  <BrainForm locale={locale} activeId={activeId} onSelect={onSelect} />
                 ) : (
                   <CompanyMap locale={locale} activeId={activeId} compact={compact} onSelect={onSelect} />
                 )}
               </div>
 
-              <SignalRail
-                locale={locale}
-                activeId={activeId}
-                active={active}
-                todayItems={todayItems}
-                compact={compact}
-                onSelect={onSelect}
-              />
+              <SignalRail locale={locale} activeId={activeId} active={active} todayItems={todayItems} compact={compact} onSelect={onSelect} />
             </div>
 
             {!compact && (
@@ -217,13 +275,7 @@ function DashboardSidebar({ locale }: { locale: Locale }) {
       </div>
       <div className="mt-4 space-y-1">
         {items.map(({ label, icon: Icon, active }) => (
-          <div
-            key={label}
-            className={[
-              "flex min-h-9 items-center gap-2 rounded-control px-2.5 text-micro",
-              active ? "bg-surface font-medium text-ink shadow-sm" : "text-muted",
-            ].join(" ")}
-          >
+          <div key={label} className={["flex min-h-9 items-center gap-2 rounded-control px-2.5 text-micro", active ? "bg-surface font-medium text-ink shadow-sm" : "text-muted"].join(" ")}>
             <Icon aria-hidden="true" className="size-3.5 shrink-0" />
             <span className="truncate">{label}</span>
           </div>
@@ -252,96 +304,101 @@ function DashboardTopbar({ locale, compact }: { locale: Locale; compact: boolean
   );
 }
 
-function LayeredIntelligence({ locale, activeId }: { locale: Locale; activeId: BrainLobeId }) {
+function BrainForm({ locale, activeId, onSelect }: { locale: Locale; activeId: BrainLobeId; onSelect?: (id: BrainLobeId) => void }) {
   const c = companyBrain;
-  const active = c.lobes.find((lobe) => lobe.id === activeId) ?? c.lobes[0];
-
   return (
-    <div className="relative min-h-[29rem] overflow-hidden p-4 sm:p-6">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,color-mix(in_oklab,var(--color-text-brand)_12%,transparent),transparent_48%)]"
-      />
-      <div className="relative grid min-h-[25rem] gap-4 md:grid-cols-[8.5rem_minmax(0,1fr)_8.5rem] md:items-center">
-        <div className="space-y-2">
-          <p className="mb-3 text-micro font-medium text-muted">{c.dashboard.sourcesTitle[locale]}</p>
-          {c.dashboard.sources[locale].map((source) => (
-            <div key={source} className="flex items-center gap-2 rounded-control border border-hairline bg-surface px-2.5 py-2 text-micro text-ink shadow-sm">
-              <Database aria-hidden="true" className="size-3.5 text-brand-text" />
-              <span>{source}</span>
-            </div>
-          ))}
-        </div>
+    <div className="relative aspect-[16/10] min-h-[29rem] overflow-hidden">
+      <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,color-mix(in_oklab,var(--color-text-brand)_13%,transparent),transparent_46%)]" />
+      <svg aria-hidden="true" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid meet" className="absolute inset-0 size-full text-outline">
+        <path
+          d="M400 70 C344 35 281 46 247 95 C190 92 145 129 145 181 C101 207 94 269 128 307 C118 358 158 401 210 405 C245 451 320 454 400 414 C480 454 555 451 590 405 C642 401 682 358 672 307 C706 269 699 207 655 181 C655 129 610 92 553 95 C519 46 456 35 400 70 Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path d="M400 72 C389 129 411 168 400 222 C389 274 410 326 400 412" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="5 6" vectorEffect="non-scaling-stroke" />
+        <path d="M245 116 C285 143 303 184 293 229 C281 278 301 327 350 375" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d="M555 116 C515 143 497 184 507 229 C519 278 499 327 450 375" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d="M170 245 C232 223 272 235 321 269" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d="M630 245 C568 223 528 235 479 269" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        {c.relations.map((relation) => {
+          const from = BRAIN_POSITIONS[relation.from];
+          const to = BRAIN_POSITIONS[relation.to];
+          return (
+            <line
+              key={relation.label.en}
+              x1={from.x * 8}
+              y1={from.y * 4.8}
+              x2={to.x * 8}
+              y2={to.y * 4.8}
+              stroke="currentColor"
+              strokeWidth="0.7"
+              strokeDasharray="3 5"
+              vectorEffect="non-scaling-stroke"
+            />
+          );
+        })}
+      </svg>
 
-        <div className="relative mx-auto w-full max-w-xl py-5">
-          <div className="absolute inset-y-8 left-1/2 w-px -translate-x-1/2 bg-outline" aria-hidden="true" />
-          <div className="relative space-y-3">
-            {c.dashboard.layers[locale].map((layer, index) => (
-              <div
-                key={layer.title}
-                className={[
-                  "relative mx-auto rounded-card border px-4 py-4 shadow-md backdrop-blur-sm",
-                  index === 3
-                    ? "w-[76%] border-brand-text/35 bg-[color-mix(in_oklab,var(--color-text-brand)_10%,var(--color-bg-surface))]"
-                    : index === 2
-                      ? "w-[84%] border-brand-text/25 bg-surface/95"
-                      : index === 1
-                        ? "w-[92%] border-outline bg-surface/90"
-                        : "w-full border-hairline bg-surface/85",
-                ].join(" ")}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-ui font-semibold text-ink">{layer.title}</p>
-                    <p className="mt-0.5 text-micro text-muted">{layer.body}</p>
-                  </div>
-                  {index === 2 && (
-                    <span className="rounded-chip border border-hairline bg-raised px-2 py-1 text-micro text-muted">
-                      {active.shortLabel[locale]}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
+      <div className="absolute left-1/2 top-[47%] z-10 -translate-x-1/2 -translate-y-1/2">
+        <div className="relative flex size-20 items-center justify-center rounded-full border border-brand-text/35 bg-surface shadow-lg">
+          <span aria-hidden="true" className="absolute inset-0 motion-safe:animate-ping rounded-full border border-brand-text/20" />
+          <div className="relative text-center">
+            <img src="/products/dima-mark.png" alt="" width={26} height={26} className="dima-logo-mark mx-auto" />
+            <p className="mt-1 text-micro font-semibold text-ink">{c.coreLabel[locale]}</p>
           </div>
         </div>
+      </div>
 
-        <div className="space-y-2">
-          <p className="mb-3 text-micro font-medium text-muted">{c.dashboard.contextTitle[locale]}</p>
-          {c.dashboard.outputs[locale].map((output, index) => (
-            <div key={output} className="flex items-center gap-2 rounded-control border border-hairline bg-surface px-2.5 py-2 text-micro text-ink shadow-sm">
-              {[Activity, FileSearch, ListChecks, Sparkles][index] ? (() => {
-                const Icon = [Activity, FileSearch, ListChecks, Sparkles][index]!;
-                return <Icon aria-hidden="true" className="size-3.5 text-brand-text" />;
-              })() : null}
-              <span>{output}</span>
-            </div>
-          ))}
-        </div>
+      {c.lobes.map((lobe) => {
+        const Icon = ICONS[lobe.id];
+        const pos = BRAIN_POSITIONS[lobe.id];
+        const active = lobe.id === activeId;
+        return (
+          <button
+            key={lobe.id}
+            type="button"
+            aria-pressed={active}
+            onClick={() => onSelect?.(lobe.id)}
+            className={[
+              "absolute z-10 min-w-[8.5rem] -translate-x-1/2 -translate-y-1/2 rounded-card border px-3 py-2.5 text-left shadow-sm transition duration-160",
+              active ? "border-brand-text/55 bg-surface shadow-md" : STATUS_CLASS[lobe.status],
+            ].join(" ")}
+            style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+          >
+            <span className="flex items-center gap-2">
+              <span className={["flex size-8 shrink-0 items-center justify-center rounded-control bg-raised", active ? "motion-safe:animate-pulse" : ""].join(" ")}>
+                <Icon aria-hidden="true" className="size-4 text-brand-text" />
+              </span>
+              <span className="min-w-0">
+                <span className="block truncate text-ui font-semibold text-ink">{lobe.shortLabel[locale]}</span>
+                <span className="mt-0.5 flex items-center gap-1.5 text-micro text-muted">
+                  <span aria-hidden="true" className={statusDot(lobe.status)} />
+                  <span className="truncate">{lobe.statusLabel[locale]}</span>
+                </span>
+              </span>
+            </span>
+          </button>
+        );
+      })}
+
+      <div className="absolute inset-x-4 bottom-3 flex flex-wrap justify-center gap-1.5">
+        {c.relations.map((relation) => (
+          <span key={relation.label.en} className="rounded-chip border border-hairline bg-surface/90 px-2 py-1 text-micro text-muted backdrop-blur-sm">
+            {relation.label[locale]}
+          </span>
+        ))}
       </div>
     </div>
   );
 }
 
-function CompanyMap({
-  locale,
-  activeId,
-  compact,
-  onSelect,
-}: {
-  locale: Locale;
-  activeId: BrainLobeId;
-  compact: boolean;
-  onSelect?: (id: BrainLobeId) => void;
-}) {
+function CompanyMap({ locale, activeId, compact, onSelect }: { locale: Locale; activeId: BrainLobeId; compact: boolean; onSelect?: (id: BrainLobeId) => void }) {
   const c = companyBrain;
-
   return (
     <div className={compact ? "relative aspect-[16/10] min-h-[16rem] overflow-hidden" : "relative aspect-[16/10] min-h-[29rem] overflow-hidden"}>
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,color-mix(in_oklab,var(--color-text-brand)_12%,transparent),transparent_46%)]"
-      />
+      <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,color-mix(in_oklab,var(--color-text-brand)_12%,transparent),transparent_46%)]" />
       <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 size-full text-outline">
         {c.lobes.map((lobe) => {
           const pos = GRAPH_POSITIONS[lobe.id];
@@ -355,8 +412,9 @@ function CompanyMap({
       </svg>
 
       <div className="absolute left-1/2 top-[48%] z-10 -translate-x-1/2 -translate-y-1/2">
-        <div className={compact ? "flex size-20 items-center justify-center rounded-full border border-brand-text/35 bg-surface shadow-lg" : "flex size-28 items-center justify-center rounded-full border border-brand-text/35 bg-surface shadow-lg"}>
-          <div className="text-center">
+        <div className={compact ? "relative flex size-20 items-center justify-center rounded-full border border-brand-text/35 bg-surface shadow-lg" : "relative flex size-28 items-center justify-center rounded-full border border-brand-text/35 bg-surface shadow-lg"}>
+          <span aria-hidden="true" className="absolute inset-0 motion-safe:animate-ping rounded-full border border-brand-text/20" />
+          <div className="relative text-center">
             <img src="/products/dima-mark.png" alt="" width={compact ? 24 : 30} height={compact ? 24 : 30} className="dima-logo-mark mx-auto" />
             <p className="mt-1 text-micro font-semibold text-ink">{c.coreLabel[locale]}</p>
           </div>
@@ -393,25 +451,14 @@ function CompanyMap({
         return compact ? (
           <div key={lobe.id} className={className} style={style}>{card}</div>
         ) : (
-          <button
-            key={lobe.id}
-            type="button"
-            aria-pressed={active}
-            onClick={() => onSelect?.(lobe.id)}
-            className={className}
-            style={style}
-          >
-            {card}
-          </button>
+          <button key={lobe.id} type="button" aria-pressed={active} onClick={() => onSelect?.(lobe.id)} className={className} style={style}>{card}</button>
         );
       })}
 
       {!compact && (
         <div className="absolute inset-x-4 bottom-3 flex flex-wrap justify-center gap-1.5">
           {c.relations.map((relation) => (
-            <span key={relation.label.en} className="rounded-chip border border-hairline bg-surface/90 px-2 py-1 text-micro text-muted backdrop-blur-sm">
-              {relation.label[locale]}
-            </span>
+            <span key={relation.label.en} className="rounded-chip border border-hairline bg-surface/90 px-2 py-1 text-micro text-muted backdrop-blur-sm">{relation.label[locale]}</span>
           ))}
         </div>
       )}
@@ -419,14 +466,7 @@ function CompanyMap({
   );
 }
 
-function SignalRail({
-  locale,
-  activeId,
-  active,
-  todayItems,
-  compact,
-  onSelect,
-}: {
+function SignalRail({ locale, activeId, active, todayItems, compact, onSelect }: {
   locale: Locale;
   activeId: BrainLobeId;
   active: (typeof companyBrain.lobes)[number];
@@ -455,23 +495,12 @@ function SignalRail({
                 <span className="mt-1 block text-micro leading-relaxed text-muted">{lobe.finding.title[locale]}</span>
               </>
             );
-            const className = [
-              "w-full rounded-control border p-2.5 text-left transition duration-160",
-              lobe.id === activeId ? "border-brand-text/40 bg-surface" : "border-hairline bg-canvas/40",
-            ].join(" ");
+            const className = ["w-full rounded-control border p-2.5 text-left transition duration-160", lobe.id === activeId ? "border-brand-text/40 bg-surface" : "border-hairline bg-canvas/40"].join(" ");
 
             return compact ? (
               <div key={lobe.id} className={className}>{body}</div>
             ) : (
-              <button
-                key={lobe.id}
-                type="button"
-                aria-pressed={lobe.id === activeId}
-                onClick={() => onSelect?.(lobe.id)}
-                className={className}
-              >
-                {body}
-              </button>
+              <button key={lobe.id} type="button" aria-pressed={lobe.id === activeId} onClick={() => onSelect?.(lobe.id)} className={className}>{body}</button>
             );
           })}
         </div>
@@ -491,6 +520,8 @@ function SignalRail({
             </div>
           </div>
 
+          <p className="mt-4 text-ui leading-relaxed text-muted">{active.finding.body[locale]}</p>
+
           <div className="mt-4 border-t border-hairline pt-3">
             <p className="text-micro font-medium text-muted">{c.dashboard.evidenceTitle[locale]}</p>
             <ul className="mt-2 space-y-1.5">
@@ -507,23 +538,15 @@ function SignalRail({
             <p className="text-micro font-medium text-muted">{c.dashboard.nextTitle[locale]}</p>
             <p className="mt-1 text-ui leading-relaxed text-ink">{active.finding.next[locale]}</p>
           </div>
+
+          <p className="mt-4 border-t border-hairline pt-3 text-micro leading-relaxed text-muted">{c.detail.chat[locale]}</p>
         </div>
       )}
     </aside>
   );
 }
 
-function LensButton({
-  active,
-  icon: Icon,
-  label,
-  onClick,
-}: {
-  active: boolean;
-  icon: LucideIcon;
-  label: string;
-  onClick: () => void;
-}) {
+function LensButton({ active, icon: Icon, label, onClick }: { active: boolean; icon: LucideIcon; label: string; onClick: () => void }) {
   return (
     <button
       type="button"

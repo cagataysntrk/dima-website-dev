@@ -41,9 +41,9 @@ export interface ChatScenario {
 }
 
 export const chatDemoCopy = {
-  title: { tr: "Dima'ya bir soru sorun", en: "Ask Dima a question" },
+  title: { tr: "Seçili bağlamda Dima'ya sorun", en: "Ask Dima inside the selected context" },
   subtitle: {
-    tr: "Dima'nın sohbet ekranının sade bir kopyası, örnek bir boyahanenin verisiyle. Yanıtlar önceden hazırlandı; gerçek kurulumda aynı akış sizin tablolarınız üzerinde çalışır.",
+    tr: "Şirket Beyni içinden açılan etkileşimli sohbet yüzeyi, örnek bir boyahanenin verisiyle gösterilir. Yanıtlar temsili olarak hazırlanmıştır; gerçek kullanımda bağlam seçili şirket verisi, bulgu ve kanıtlarla birlikte taşınır.",
     en: "A simplified copy of Dima's chat screen, running on a sample dye house's data. The answers are prepared in advance; in a real installation the same flow runs on your own tables.",
   },
   sampleData: { tr: "Örnek veri", en: "Sample data" },
@@ -60,9 +60,9 @@ export const chatDemoCopy = {
     user: { tr: "Örnek Kullanıcı", en: "Sample User" },
     company: { tr: "Örnek Boyahane", en: "Sample Dye House" },
   },
-  emptyTitle: { tr: "Verinize sorun", en: "Ask your data" },
+  emptyTitle: { tr: "Seçili bağlamla konuşun", en: "Talk to the selected context" },
   emptyBody: {
-    tr: "{company} verisi üzerinde doğal dilde soru sorun; yanıt, grafik ve kullanılan sorguyla gelsin.",
+    tr: "{company} bağlamında sorunuzu doğal dille yazın; yanıt, grafik ve kullanılan sorguyla birlikte gelsin.",
     en: "Ask {company}'s data a question in plain language; the answer comes with a chart and the query behind it.",
   },
   startersLabel: { tr: "Örnek sorular", en: "Sample questions" },
@@ -106,8 +106,8 @@ export const chatDemoCopy = {
     tables: 14,
     answer: {
       tr: [
-        "Bu demo, örnek veri setinde yalnızca aşağıdaki dört soruyu yanıtlıyor. Birini seçin ya da benzer bir soru yazın.",
-        "Gerçek kurulumda Dima, tablolarınızdaki her soruyu aynı akışla yanıtlar: şemayı okur, sorguyu yazar, çalıştırır ve sonucu kaynağıyla gösterir.",
+        "Bu temsili deneyim, örnek veri setinde aşağıdaki dört soruya hazırlanmıştır. Birini seçin ya da benzer bir soru yazın.",
+        "Gerçek kullanımda Dima desteklenen veri bağlamında aynı temel akışı izler: şemayı okur, sorguyu hazırlar, çalıştırır ve sonucu kaynağıyla birlikte gösterir.",
       ],
       en: [
         "This demo answers only the four questions below on its sample data. Pick one, or type a similar question.",
@@ -169,7 +169,7 @@ export const chatDemoCopy = {
       tables: 14,
       answer: {
         tr: [
-          "Aylık üretim **Mart–Haziran 2026** arasında zirve yaptı; en yüksek ay **Mayıs: 468 ton**.",
+          "Aylık üretim **Mart ile Haziran 2026** arasında zirve yaptı; en yüksek ay **Mayıs: 468 ton**.",
           "- Son 12 ayın ortalaması **427 ton**.",
           "- Ağustos'taki 389 ton, Mayıs'a göre **%16,9 düşük**. Benzer bir düşüş Aralık'ta da var; iki dönem de bakım ve izin dönemleriyle örtüşüyor olabilir.",
         ],
@@ -190,7 +190,7 @@ export const chatDemoCopy = {
       ].join("\n"),
       result: {
         kind: "line",
-        caption: { tr: "Aylık net üretim, Eylül 2025 – Ağustos 2026", en: "Monthly net production, September 2025 – August 2026" },
+        caption: { tr: "Aylık net üretim, Eylül 2025 ile Ağustos 2026", en: "Monthly net production, September 2025 to August 2026" },
         columns: { tr: ["Ay", "Üretim (ton)"], en: ["Month", "Production (t)"] },
         unit: { tr: "{v} ton", en: "{v} t" },
         rows: [

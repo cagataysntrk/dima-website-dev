@@ -80,7 +80,7 @@ export const careersPage = {
         { label: "Çalışma düzeni", value: "Pozisyona göre çalışma düzeni görüşmede netleşir." },
       ],
       en: [
-        { label: "Product", value: "Dima — enterprise decision intelligence and optimization platform" },
+        { label: "Product", value: "Dima: enterprise decision intelligence and optimization platform" },
         { label: "Areas of work", value: "Product, frontend, backend, data/semantic layer, AI/agentic flows and platform engineering" },
         { label: "Languages", value: "Turkish and English" },
         { label: "Engineering principle", value: "Root-cause fixes instead of prompt/regex patches, with tests and belgelendirme alongside the change" },

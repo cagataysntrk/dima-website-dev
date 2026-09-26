@@ -303,9 +303,9 @@ export const industriesPage = {
   cta: {
     title: { tr: "Kendi şirket bağlamınızı gerçek veriyle görün.", en: "See your own company context with real data." },
     body: {
-      tr: "Sektör bağlamı başlangıç noktasıdır. Asıl değer, Dima'nın sizin veri kaynaklarınızdan gerçek varlıkları, ilişkileri ve karar problemlerini çıkarmasıyla oluşur. Pilot için tek bir önemli karar problemi ve onu açıklayan veri yeterlidir.",
+      tr: "Sektör bağlamı başlangıç noktasıdır. Asıl değer, Dima'nın sizin veri kaynaklarınızdan gerçek varlıkları, ilişkileri ve karar problemlerini çıkarmasıyla oluşur. Dar kapsamlı bir deneme çalışması için tek bir önemli karar problemi ve onu açıklayan veri yeterlidir.",
       en: "A sector context is only the starting point. The value begins when Dima derives your actual entities, relationships and decision problems from your data. One important decision problem and the data needed to explain it are enough for a pilot.",
     },
-    action: { tr: "Canlı demo isteyin", en: "Request a live demo" },
+    action: { tr: "Canlı gösterim isteyin", en: "Request a live demo" },
   },
 } as const;

@@ -1,0 +1,97 @@
+export type WatchEventId = "production-loss" | "collection-risk" | "margin-shift" | "supplier-opportunity" | "quality-stable";
+
+export const continuousIntelligence = {
+  eyebrow: { tr: "Siz sormadan çalışan katman", en: "The layer that works before you ask" },
+  title: {
+    tr: "Dima yalnız soruya cevap vermez. Şirketi sürekli denetler.",
+    en: "Dima does more than answer questions. It continuously monitors the company.",
+  },
+  intro: {
+    tr: "Şirket verisi yatayda ERP, muhasebe, üretim, satış, banka ve Excel gibi sistemlere dağılır; dikeyde ise yıllara yayılan bir geçmiş birikir. Dima bu iki boyutu aynı şirket bağlamında birleştirir. Yeni kayıtlar geldikçe veya tanımlı kontroller çalıştıkça normal davranışı, planı ve ilişkileri karşılaştırır; anlamlı sapma, risk, fırsat veya optimizasyon alanı oluştuğunda bunu kendisi gündeme taşır.",
+    en: "Company data is fragmented horizontally across ERP, accounting, manufacturing, sales, banking and spreadsheets, while years of history create a vertical dimension. Dima connects both dimensions in one company context. As new records arrive or defined checks run, it compares normal behavior, plans and relationships, then surfaces meaningful deviations, risks, opportunities or optimization areas without waiting for a prompt.",
+  },
+  thesis: {
+    horizontal: {
+      title: { tr: "Yatay parçalanma", en: "Horizontal fragmentation" },
+      body: { tr: "Aynı şirket olayı farklı sistemlerde farklı izler bırakır.", en: "The same business event leaves traces across different systems." },
+      items: { tr: ["ERP", "Muhasebe", "Banka", "Üretim", "Satış", "Excel"], en: ["ERP", "Accounting", "Banking", "Manufacturing", "Sales", "Spreadsheets"] },
+    },
+    vertical: {
+      title: { tr: "Zamansal derinlik", en: "Historical depth" },
+      body: { tr: "Bugünkü değişim, geçmişteki normal davranış ve tekrar eden örüntülerle anlam kazanır.", en: "Today's change gains meaning through historical normal behavior and recurring patterns." },
+      items: { tr: ["Bugün", "30 gün", "12 ay", "Geçmiş kararlar"], en: ["Today", "30 days", "12 months", "Past decisions"] },
+    },
+    cross: {
+      title: { tr: "Dima'nın şirket bağlamı", en: "Dima company context" },
+      body: { tr: "Varlık, ilişki, zaman ve iş etkisini aynı araştırmada bir araya getirir.", en: "Entities, relationships, time and business impact stay in the same investigation." },
+    },
+  },
+  processTitle: { tr: "Sürekli çalışan döngü", en: "The continuously running loop" },
+  process: {
+    tr: ["Bağla", "Normalini öğren", "İzle", "Fark et", "Araştır", "Optimize et", "Karara taşı", "Sonucu hatırla"],
+    en: ["Connect", "Learn normal", "Monitor", "Detect", "Investigate", "Optimize", "Prepare decision", "Remember outcome"],
+  },
+  monitor: {
+    title: { tr: "Şirket denetimi çalışıyor", en: "Company monitoring is running" },
+    sample: { tr: "Temsili canlı akış, örnek şirket verisi", en: "Representative live flow, sample company data" },
+    sources: { tr: "12 veri kaynağı bağlı", en: "12 data sources connected" },
+    pause: { tr: "Akışı duraklat", en: "Pause flow" },
+    resume: { tr: "Akışı sürdür", en: "Resume flow" },
+    detected: { tr: "Dima ne fark etti?", en: "What did Dima detect?" },
+    inspected: { tr: "Neyi karşılaştırdı?", en: "What did it inspect?" },
+    recommendation: { tr: "Ne öneriyor?", en: "What does it recommend?" },
+    impact: { tr: "İş etkisi", en: "Business impact" },
+  },
+  events: [
+    {
+      id: "production-loss",
+      domain: { tr: "Üretim", en: "Manufacturing" },
+      status: { tr: "Sapma", en: "Deviation" },
+      title: { tr: "Hat 3 performansı üç vardiyadır hedefin altında", en: "Line 3 performance has stayed below target for three shifts" },
+      detected: { tr: "Kayıp tek vardiyalık değil; aynı makine rotasını kullanan iki siparişte kümeleniyor.", en: "The loss is not a single-shift event; it clusters on two orders using the same machine route." },
+      inspected: { tr: "OEE, duruş kayıtları, bakım geçmişi, ürün karması ve sipariş terminleri", en: "OEE, downtime records, maintenance history, product mix and order due dates" },
+      recommendation: { tr: "Bakımı öne alma ve sipariş sırasını değiştirme seçeneklerini termin ve maliyet etkisiyle karşılaştır.", en: "Compare bringing maintenance forward with resequencing orders by delivery and cost impact." },
+      impact: { tr: "2 siparişte teslim riski, tahmini 184 bin TL maliyet etkisi", en: "Delivery risk on 2 orders, estimated TRY 184k cost impact" },
+    },
+    {
+      id: "collection-risk",
+      domain: { tr: "Finans", en: "Finance" },
+      status: { tr: "Risk", en: "Risk" },
+      title: { tr: "Üç müşteride ödeme davranışı son 60 güne göre bozuluyor", en: "Payment behavior is deteriorating for three customers versus the prior 60 days" },
+      detected: { tr: "Açık fatura tutarı tek başına yüksek değil; gecikme süresi ve yeni sipariş davranışı birlikte değişiyor.", en: "Open invoice value alone is not extreme; delay duration and new order behavior are changing together." },
+      inspected: { tr: "Fatura vadeleri, banka tahsilatları, sipariş sıklığı ve müşteri geçmişi", en: "Invoice due dates, bank collections, order frequency and customer history" },
+      recommendation: { tr: "Tahsilat önceliğini nakit etkisine göre değiştir ve yüksek riskli müşteriler için kontrollü takip planı hazırla.", en: "Reorder collection priority by cash impact and prepare a controlled follow-up plan for higher-risk accounts." },
+      impact: { tr: "13 haftalık nakit planında yaklaşık 1,6 milyon TL zamanlama riski", en: "About TRY 1.6m timing risk in the 13-week cash plan" },
+    },
+    {
+      id: "margin-shift",
+      domain: { tr: "Satış", en: "Sales" },
+      status: { tr: "Sapma", en: "Deviation" },
+      title: { tr: "Ciro sabit görünürken sipariş karması marjı aşağı çekiyor", en: "Revenue looks stable while order mix is pulling margin down" },
+      detected: { tr: "Toplam satış değişmiyor fakat düşük marjlı ürünlerin payı son dört haftada belirgin biçimde arttı.", en: "Total sales is stable, but low-margin products have taken a larger share over the last four weeks." },
+      inspected: { tr: "Müşteri, ürün karması, indirim, maliyet ve sipariş sıklığı", en: "Customer, product mix, discount, cost and order frequency" },
+      recommendation: { tr: "Marj kaybını müşteri ve ürün düzeyinde ayır; fiyat, ürün karması ve hacim seçeneklerini ayrı ayrı değerlendir.", en: "Decompose margin loss by customer and product, then compare price, mix and volume options separately." },
+      impact: { tr: "Aylık brüt kârda yaklaşık 620 bin TL baskı", en: "About TRY 620k monthly gross-profit pressure" },
+    },
+    {
+      id: "supplier-opportunity",
+      domain: { tr: "Satın alma", en: "Procurement" },
+      status: { tr: "Fırsat", en: "Opportunity" },
+      title: { tr: "Daha düşük birim fiyatlı tedarikçi toplam maliyette de avantajlı olabilir", en: "A lower-price supplier may also be better on total cost" },
+      detected: { tr: "Fiyat farkı tek başına karar vermek için yeterli değil; termin, stok taşıma ve ödeme koşulları birlikte olumlu görünüyor.", en: "Price alone is not enough, but lead time, inventory carrying cost and payment terms are also favorable." },
+      inspected: { tr: "Fiyat geçmişi, termin, kalite sonucu, stok seviyesi, tüketim planı ve ödeme koşulu", en: "Price history, lead time, quality result, inventory level, consumption plan and payment terms" },
+      recommendation: { tr: "İki tedarikçi için toplam maliyet ve nakit senaryosunu karşılaştır; kalite eşiği korunuyorsa kontrollü geçiş planı hazırla.", en: "Compare total-cost and cash scenarios for both suppliers and prepare a controlled switch if quality thresholds hold." },
+      impact: { tr: "Yıllıklandırılmış yaklaşık 410 bin TL iyileştirme potansiyeli", en: "About TRY 410k annualized improvement potential" },
+    },
+    {
+      id: "quality-stable",
+      domain: { tr: "Kalite", en: "Quality" },
+      status: { tr: "Normal", en: "Normal" },
+      title: { tr: "Kritik kalite sapması yok, izleme devam ediyor", en: "No critical quality deviation, monitoring continues" },
+      detected: { tr: "Son kalite sonuçları normal aralıkta. Sistem normal durumu da boş bırakmıyor; örüntüleri ve eşikleri izlemeye devam ediyor.", en: "Recent quality results are within normal range. Normal state is still monitored for pattern and threshold changes." },
+      inspected: { tr: "Lot, makine, ürün, yeniden işleme ve müşteri geri bildirimleri", en: "Lot, machine, product, rework and customer feedback" },
+      recommendation: { tr: "Mevcut izlemeyi sürdür; lot ve makine ilişkisi anlamlı biçimde değişirse araştırmayı otomatik gündeme taşı.", en: "Keep monitoring and surface an investigation if lot and machine relationships change materially." },
+      impact: { tr: "Şu anda müdahale gerektiren iş etkisi yok", en: "No business impact currently requires intervention" },
+    },
+  ] as const,
+} as const;

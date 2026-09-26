@@ -5,10 +5,14 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { solutionsPage as copy } from "@/content/pages/solutions";
 import { PageHero } from "@/components/sections/page-hero";
+import { ContinuousIntelligence } from "@/components/sections/continuous-intelligence";
 import { ProductExperienceSuite } from "@/components/sections/product-experience-suite";
-import { CapabilityDepths } from "@/components/sections/capability-depths";
-import { ProductVisualGallery } from "@/components/sections/product-visual-gallery";
 import { CompanyBrainExperience } from "@/components/sections/company-brain";
+import { ContextualChatShowcase } from "@/components/sections/contextual-chat-showcase";
+import { UseCaseLab } from "@/components/sections/use-case-lab";
+import { CapabilityDepths } from "@/components/sections/capability-depths";
+import { TechnicalArchitecture } from "@/components/sections/technical-architecture";
+import { ProductVisualGallery } from "@/components/sections/product-visual-gallery";
 import { WorkflowFlow } from "@/components/sections/workflow-flow";
 import { PointList } from "@/components/sections/parts";
 import { CtaBand } from "@/components/sections/cta-band";
@@ -50,10 +54,14 @@ export default async function SolutionsPage({ params }: PageProps<"/[locale]/sol
         }
       />
 
+      <ContinuousIntelligence locale={locale} />
       <ProductExperienceSuite locale={locale} />
-      <CapabilityDepths locale={locale} />
-      <ProductVisualGallery locale={locale} />
       <CompanyBrainExperience locale={locale} />
+      <ContextualChatShowcase locale={locale} />
+      <UseCaseLab locale={locale} />
+      <CapabilityDepths locale={locale} />
+      <TechnicalArchitecture locale={locale} />
+      <ProductVisualGallery locale={locale} />
 
       <Section divided id="decision-loop" aria-labelledby="decision-loop-title">
         <Stack gap="loose">

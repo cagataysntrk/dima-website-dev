@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { BriefcaseBusiness, Calculator, Factory, type LucideIcon } from "lucide-react";
+import * as React from "react";
+import { BriefcaseBusiness, Calculator, Factory, Pause, Play, type LucideIcon } from "lucide-react";
 import { Heading, Section, Stack, Text } from "@upcytech/ui";
 import type { Locale } from "@/i18n/routing";
 import {
@@ -17,8 +17,34 @@ const ICONS: Record<CapabilityDepthId, LucideIcon> = {
 };
 
 export function CapabilityDepths({ locale }: { locale: Locale }) {
-  const [activeId, setActiveId] = useState<CapabilityDepthId>("management");
+  const [activeId, setActiveId] = React.useState<CapabilityDepthId>("management");
+  const [paused, setPaused] = React.useState(false);
+  const [reduced, setReduced] = React.useState(false);
   const active = capabilityDepths.find((item) => item.id === activeId) ?? capabilityDepths[0];
+
+  React.useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  React.useEffect(() => {
+    if (paused || reduced) return;
+    const timer = window.setInterval(() => {
+      setActiveId((current) => {
+        const index = capabilityDepths.findIndex((item) => item.id === current);
+        return capabilityDepths[(index + 1) % capabilityDepths.length]!.id;
+      });
+    }, 5200);
+    return () => window.clearInterval(timer);
+  }, [paused, reduced]);
+
+  const select = (id: CapabilityDepthId) => {
+    setActiveId(id);
+    setPaused(true);
+  };
 
   return (
     <Section divided aria-labelledby="capability-depths-title">
@@ -33,6 +59,17 @@ export function CapabilityDepths({ locale }: { locale: Locale }) {
               {capabilityDepthsCopy.intro[locale]}
             </Text>
           </Stack>
+          <div className="lg:col-span-4 lg:justify-self-end">
+            <button
+              type="button"
+              onClick={() => setPaused((value) => !value)}
+              aria-label={(paused ? capabilityDepthsCopy.auto.resume : capabilityDepthsCopy.auto.pause)[locale]}
+              className="inline-flex min-h-11 items-center gap-2 rounded-control border border-hairline bg-raised px-3 text-ui text-muted transition hoverable:hover:text-ink"
+            >
+              {paused ? <Play aria-hidden="true" className="size-4" /> : <Pause aria-hidden="true" className="size-4" />}
+              {(paused ? capabilityDepthsCopy.auto.resume : capabilityDepthsCopy.auto.pause)[locale]}
+            </button>
+          </div>
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[17rem_minmax(0,1fr)]">
@@ -50,7 +87,7 @@ export function CapabilityDepths({ locale }: { locale: Locale }) {
                   type="button"
                   role="tab"
                   aria-selected={selected}
-                  onClick={() => setActiveId(item.id)}
+                  onClick={() => select(item.id)}
                   className={[
                     "min-h-14 rounded-card border p-4 text-left transition duration-160",
                     selected

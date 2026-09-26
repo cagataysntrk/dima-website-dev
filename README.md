@@ -54,8 +54,8 @@ bun run capture:screens  # re-shoot the analytics product's screens from the rea
 ```
 
 The browser suite covers 320px route overflow, the fixed nav's footprint and sticky layers on
-every route in both languages, tablet navigation, touch form controls, the product selector
-and wheel, the chat demo end to end, and the first-load JS budget. It builds a production
+every route in both languages, tablet navigation, touch controls, the two Şirket Beyni lenses,
+context preservation across view switches, the contextual chat experience and the first-load JS budget. It builds a production
 server on port 3010 unless `PLAYWRIGHT_BASE_URL` points at an already-running server.
 
 `FAIL_ON_COPY=1 bun test` fails on any `[COPY NEEDED]` slot (default: report only,
@@ -98,6 +98,9 @@ Every variable is listed, with comments, in `.env.example`.
 | Variable | Without it |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Canonical, hreflang, sitemap and share-image URLs use `https://usedima.com` |
+| `NEXT_PUBLIC_TRY_URL` | Self-serve "Dima'yı deneyin" stays gated; no fake onboarding is exposed |
+| `NEXT_PUBLIC_LOGIN_URL` | Existing-user sign-in stays gated; no fake OAuth flow is exposed |
+| `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_LINKEDIN_URL` | Verified Dima-facing contact/social overrides remain hidden until supplied |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | Analytics never starts, even after consent |
 | `SMTP_*`, `CONTACT_TO`, `CONTACT_FROM` | The contact form validates, then shows "could not send" and keeps what was typed |
 
@@ -109,16 +112,21 @@ Copy is never written in a component. It lives in typed files under `src/content
 
 | File | Holds |
 |---|---|
-| `products.ts` | Every product: name, brand colour, domain, and all its copy |
-| `industries.ts` | Sectors, their dated regulatory pressures (each with a source), brand frameworks |
-| `services.ts` | Services and the needs a client arrives with |
-| `team.ts`, `careers.ts` | The team (home and about share it), open roles, the hiring steps |
-| `legal.ts` | The legal pages' structure, and the facts their drafter needs |
-| `consent.ts` | The cookie banner |
-| `dima-demo.ts` | The scripted chat demo: its questions, answers, sample data and SQL |
-| `pages/<page>.ts` | The strings on one page that are not about a single product, sector or service |
-| `site.ts` | Navigation, footer, company details, skip link |
-| `blog/` | Posts and categories — see below |
+| `products.ts` | Active Dima registry: product identity, canonical domain and shared product copy |
+| `company-brain.ts` | Şirket Beyni state model, domains, signals, lenses, evidence and decision context |
+| `continuous-intelligence.ts` | Always-on monitoring story and representative detection feed |
+| `product-experience.ts` | End-to-end signal -> investigation -> evidence -> decision -> action sample case |
+| `capability-depths.ts` | Management, accounting/finance and manufacturing depths of the same product |
+| `use-case-lab.ts` | Concrete executive, finance, sales, manufacturing, procurement and quality scenarios |
+| `technical-architecture.ts` | Technical source/model/analytics/watch/investigation/decision/memory flow |
+| `contextual-chat.ts`, `dima-demo.ts` | Contextual conversation framing plus the interactive sample chat data and SQL |
+| `industries.ts` | Compact sector gallery data; detailed domain/sector contexts live in `pages/industries.ts` |
+| `team.ts`, `careers.ts` | The team, open roles and hiring steps |
+| `legal.ts` | Legal-page structure and drafter facts |
+| `consent.ts` | Cookie-consent copy |
+| `pages/<page>.ts` | Page-specific strings that do not belong to a shared product model |
+| `site.ts` | Navigation, footer, company details and shared chrome |
+| `blog/` | Posts and categories, see below |
 
 Every string is `{ tr, en }`. A missing English string is a **type error**, and `bun test`
 fails on an empty one. Turkish is written first; English is a rewrite for a different
@@ -128,12 +136,17 @@ Where copy is unknown, write `copyNeeded("what is missing")`. It renders visibly
 `[COPY NEEDED: …]`, and `bun test` prints how many remain. Never fill a gap with an invented
 metric, customer, quote or certification.
 
-## Renaming or consolidating a product
+## Product identity and legacy boundaries
 
-Edit `src/content/products.ts` only: `name`, `slug`, `brandKey`, `domain`, and the copy.
-`tests/guards.test.ts` fails if a product name appears in any component or route, which is
-what keeps a rename to one file. A new or retired brand colour is a design-system change
-(`packages/tokens/src/brand/`), made there first.
+`src/content/products.ts` contains the single active customer-facing product, Dima. Product
+identity (`name`, `slug`, `brandKey`, `domain`) stays there so `tests/guards.test.ts` can keep
+components/routes free of hard-coded product names. A brand-colour change is a design-system
+change (`packages/tokens/src/brand/`), made there first.
+
+`src/content/pages/products.ts`, `src/content/pages/services.ts` and the old `/products` and
+`/services` route contracts are legacy compatibility material only. Public routes redirect to
+`/solutions`; those files are not source-of-truth for current Dima positioning. Current product
+behavior belongs in the typed Dima content modules listed above and in `DECISIONS.md`.
 
 ## Adding a blog post
 
@@ -151,7 +164,7 @@ export const metadata = {
   date: "2026-10-01",         // ISO; `updated` is optional
   author: "member-1",         // an id from src/content/team.ts
   category: "compliance",     // compliance | data | operations | company
-  related: { kind: "product", id: "carbon" }, // where the closing CTA points
+  related: { kind: "product", id: "analytics" }, // active Dima product
   featured: false,
   draft: false,
 };
