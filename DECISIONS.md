@@ -7,6 +7,44 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Responsive product compositions
+
+### D-073 · Mobile gets purpose-built product compositions, not scaled desktop canvases
+**Decided:** Dima's product-heavy marketing surfaces must preserve the same information and
+interaction hierarchy from 320px through large desktop, but they do not have to preserve the
+same geometry. Dense desktop diagrams are allowed to switch to simpler mobile compositions
+when shrinking them would make labels unreadable or interactions fragile.
+
+The guided product tour now has explicit phone behavior:
+- tabs remain horizontally discoverable inside their own snap-scrolling rail and never create
+  page-level horizontal scroll;
+- sign-in cards compress without reducing touch targets;
+- data connection becomes a compact source/context matrix on phones while the connection graph
+  remains available from the sm breakpoint upward;
+- company-model formation becomes a two-column domain list on phones instead of overlapping
+  absolute-positioned nodes;
+- the dashboard stage uses the real mobile Dima capture below sm and the desktop command
+  center above it;
+- monitoring and evidence scenes reduce height/padding before they reduce text size.
+
+Homepage capability proof moves its explanatory panel below the product image on phones instead
+of covering most of the screenshot. The full capability directory shortens its list viewport
+on phones, uses a 16px touch input font to prevent iOS zoom and returns to the denser
+master-detail layout progressively.
+
+Use-case proof, the continuous decision ledger, business-value tables and technical-layer
+selectors likewise use mobile-specific stacking, compact row grids and horizontal selector
+rails. Tables that remain tabular preserve readable minimum columns; selectors may scroll
+inside themselves, but the document itself must not scroll horizontally.
+
+The browser contract covers the product-heavy Turkish routes at 320, 390, 768, 1024, 1440 and
+1920 pixels, in addition to the all-route shell checks. Horizontal controls are permitted to
+scroll only when their own container owns the overflow.
+
+**Reason:** responsive design is a composition problem, not a uniform scale operation. Dima's
+desktop product surfaces are intentionally dense; preserving clarity on phones requires
+changing layout while keeping the same product truth, wording, state and action hierarchy.
+
 ## 2026-09-26 — Intentional brand motion and live decision ledger
 
 ### D-072 · Restore character without restoring generic AI decoration

@@ -63,7 +63,7 @@ export function TechnicalArchitecture({ locale }: { locale: Locale }) {
 
         <div className="grid overflow-hidden rounded-[1.35rem] border border-white/12 bg-white/[0.035] lg:grid-cols-[18rem_minmax(0,1fr)]">
           <nav aria-label={c.title[locale]} className="border-b border-white/10 p-3 lg:border-b-0 lg:border-r lg:p-4">
-            <div className="flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible">
+            <div className="flex snap-x snap-mandatory gap-1 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-col lg:overflow-visible">
               <AnimatedBackground
                 defaultValue={active.id}
                 onValueChange={(id) => {
@@ -80,7 +80,7 @@ export function TechnicalArchitecture({ locale }: { locale: Locale }) {
                       data-id={layer.id}
                       type="button"
                       aria-pressed={layer.id === active.id}
-                      className="min-w-[12rem] rounded-[0.9rem] px-3 py-3 text-left text-white/55 transition-colors data-[checked=true]:text-white lg:min-w-0"
+                      className="min-w-[10.75rem] snap-start rounded-[0.9rem] px-3 py-3 text-left text-white/55 transition-colors data-[checked=true]:text-white sm:min-w-[12rem] lg:min-w-0"
                     >
                       <span className="flex items-center gap-3">
                         <span className="font-mono text-[0.62rem] tabular-nums opacity-45">{String(index + 1).padStart(2, "0")}</span>
@@ -95,7 +95,7 @@ export function TechnicalArchitecture({ locale }: { locale: Locale }) {
           </nav>
 
           <div className="min-w-0">
-            <div className="grid gap-8 border-b border-white/10 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_18rem] lg:p-8">
+            <div className="grid gap-6 border-b border-white/10 p-4 sm:gap-8 sm:p-7 lg:grid-cols-[minmax(0,1fr)_18rem] lg:p-8">
               <div>
                 <span className="grid size-11 place-items-center rounded-control border border-white/12 bg-white/5 text-brand-text">
                   <ActiveIcon aria-hidden="true" className="size-5" />
@@ -103,7 +103,7 @@ export function TechnicalArchitecture({ locale }: { locale: Locale }) {
                 <p className="mt-5 font-mono text-micro uppercase tracking-[0.12em] text-white/40">
                   {String(activeIndex + 1).padStart(2, "0")} / {String(c.layers.length).padStart(2, "0")}
                 </p>
-                <h3 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-white">{active.title[locale]}</h3>
+                <h3 className="mt-2 max-w-2xl text-xl font-semibold tracking-tight text-white sm:text-2xl">{active.title[locale]}</h3>
                 <p className="mt-3 max-w-3xl text-ui leading-relaxed text-white/60">{active.body[locale]}</p>
               </div>
 
@@ -119,7 +119,7 @@ export function TechnicalArchitecture({ locale }: { locale: Locale }) {
               </dl>
             </div>
 
-            <div className="p-5 sm:p-7 lg:p-8">
+            <div className="p-4 sm:p-7 lg:p-8">
               <div className="grid gap-5 lg:grid-cols-[0.6fr_1.4fr]">
                 <div>
                   <p className="font-mono text-micro uppercase tracking-[0.12em] text-white/40">{c.assurances.eyebrow[locale]}</p>

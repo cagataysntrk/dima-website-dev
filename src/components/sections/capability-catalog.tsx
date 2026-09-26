@@ -83,7 +83,7 @@ export function CapabilityShowcase({ locale }: { locale: Locale }) {
 
         <div className="grid gap-6 lg:grid-cols-[18rem_minmax(0,1fr)]">
           <div className="min-w-0">
-            <div className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+            <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-col lg:overflow-visible lg:pb-0">
               <AnimatedBackground
                 defaultValue={active.id}
                 onValueChange={(id) => {
@@ -100,7 +100,7 @@ export function CapabilityShowcase({ locale }: { locale: Locale }) {
                     data-id={item.id}
                     type="button"
                     aria-pressed={item.id === active.id}
-                    className="min-w-[13rem] rounded-[0.9rem] px-3 py-3 text-left text-white/60 transition-colors data-[checked=true]:text-white lg:min-w-0"
+                    className="min-w-[11.5rem] snap-start rounded-[0.9rem] px-3 py-3 text-left text-white/60 transition-colors data-[checked=true]:text-white sm:min-w-[13rem] lg:min-w-0"
                   >
                     <span className="flex items-start gap-3">
                       <span className="pt-0.5 font-mono text-[0.62rem] tabular-nums opacity-45">{String(index + 1).padStart(2, "0")}</span>
@@ -113,14 +113,14 @@ export function CapabilityShowcase({ locale }: { locale: Locale }) {
           </div>
 
           <div className="min-w-0 overflow-hidden rounded-[1.3rem] border border-white/12 bg-white/[0.035] shadow-2xl">
-            <div className="flex min-h-12 items-center gap-2 border-b border-white/10 px-4">
-              <span aria-hidden="true" className="size-2 rounded-full bg-white/25" />
-              <span aria-hidden="true" className="size-2 rounded-full bg-white/20" />
-              <span aria-hidden="true" className="size-2 rounded-full bg-white/15" />
-              <span className="ml-2 font-mono text-micro uppercase tracking-[0.12em] text-white/45">{copy.featured[locale]}</span>
+            <div className="flex min-h-11 items-center gap-1.5 border-b border-white/10 px-3 sm:min-h-12 sm:gap-2 sm:px-4">
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-white/25 sm:size-2" />
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-white/20 sm:size-2" />
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-white/15 sm:size-2" />
+              <span className="ml-1.5 font-mono text-[0.62rem] uppercase tracking-[0.11em] text-white/45 sm:ml-2 sm:text-micro">{copy.featured[locale]}</span>
             </div>
 
-            <div className="relative min-h-[28rem] overflow-hidden sm:min-h-[34rem]">
+            <div className="relative aspect-[4/3] overflow-hidden sm:aspect-auto sm:min-h-[34rem]">
               <img
                 key={image}
                 src={image}
@@ -129,10 +129,10 @@ export function CapabilityShowcase({ locale }: { locale: Locale }) {
                 height={1024}
                 className="absolute inset-0 size-full object-cover object-top opacity-90"
               />
-              <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,transparent_45%,color-mix(in_oklab,var(--upcytech-neutral-1000)_78%,transparent)_100%)]" />
+              <div aria-hidden="true" className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_45%,color-mix(in_oklab,var(--upcytech-neutral-1000)_78%,transparent)_100%)] sm:block" />
 
-              <div className="absolute inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[24rem]">
-                <div className="rounded-[1.15rem] border border-white/15 bg-[color-mix(in_oklab,var(--upcytech-neutral-1000)_90%,transparent)] p-4 shadow-xl backdrop-blur-xl sm:p-5">
+              <div className="absolute inset-x-3 bottom-3 hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:block sm:w-[24rem]">
+                <div className="rounded-[1.15rem] border border-white/15 bg-[color-mix(in_oklab,var(--upcytech-neutral-1000)_90%,transparent)] p-5 shadow-xl backdrop-blur-xl">
                   <p className="font-mono text-micro uppercase tracking-[0.12em] text-white/45">{copy.featured[locale]}</p>
                   <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">{active.title[locale]}</h3>
                   <p className="mt-3 text-ui leading-relaxed text-white/65">{active.summary[locale]}</p>
@@ -141,6 +141,16 @@ export function CapabilityShowcase({ locale }: { locale: Locale }) {
                     <p className="mt-1 text-ui font-semibold leading-snug text-white">{active.outcome[locale]}</p>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 p-4 sm:hidden">
+              <p className="font-mono text-[0.62rem] uppercase tracking-[0.11em] text-white/45">{copy.featured[locale]}</p>
+              <h3 className="mt-2 text-lg font-semibold tracking-tight text-white">{active.title[locale]}</h3>
+              <p className="mt-2 text-ui leading-relaxed text-white/65">{active.summary[locale]}</p>
+              <div className="mt-3 border-t border-white/10 pt-3">
+                <p className="text-micro text-white/45">{copy.labels.outcome[locale]}</p>
+                <p className="mt-1 text-ui font-semibold leading-snug text-white">{active.outcome[locale]}</p>
               </div>
             </div>
           </div>
@@ -194,7 +204,7 @@ export function CapabilityDirectory({ locale }: { locale: Locale }) {
         </div>
 
         <div className="border-y border-hairline py-3">
-          <div className="flex gap-1 overflow-x-auto">
+          <div className="flex snap-x snap-mandatory gap-1 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <AnimatedBackground
               defaultValue={group}
               onValueChange={(id) => {
@@ -212,7 +222,7 @@ export function CapabilityDirectory({ locale }: { locale: Locale }) {
                     data-id={item.id}
                     type="button"
                     aria-pressed={item.id === group}
-                    className="min-w-max rounded-button px-3 py-2.5 text-ink transition-colors data-[checked=true]:text-canvas"
+                    className="min-w-max snap-start rounded-button px-3 py-2.5 text-ink transition-colors data-[checked=true]:text-canvas"
                   >
                     <span className="flex items-center gap-2">
                       <Icon aria-hidden="true" className="size-4" />
@@ -226,7 +236,7 @@ export function CapabilityDirectory({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className="grid overflow-hidden rounded-[1.35rem] border border-outline bg-surface shadow-sm lg:grid-cols-[minmax(18rem,0.72fr)_minmax(0,1.28fr)]">
+        <div className="grid overflow-hidden rounded-[1.15rem] border border-outline bg-surface shadow-sm sm:rounded-[1.35rem] lg:grid-cols-[minmax(18rem,0.72fr)_minmax(0,1.28fr)]">
           <div className="border-b border-hairline lg:border-b-0 lg:border-r">
             <div className="border-b border-hairline p-3">
               <label className="relative block">
@@ -236,12 +246,12 @@ export function CapabilityDirectory({ locale }: { locale: Locale }) {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder={copy.search[locale]}
-                  className="min-h-11 w-full rounded-control border border-hairline bg-canvas pl-9 pr-3 text-ui text-ink outline-none transition focus:border-brand-text"
+                  className="min-h-11 w-full rounded-control border border-hairline bg-canvas pl-9 pr-3 text-ui text-ink outline-none transition focus:border-brand-text pointer-coarse:text-base"
                 />
               </label>
             </div>
 
-            <div className="max-h-[38rem] overflow-y-auto">
+            <div className="max-h-[24rem] overflow-y-auto overscroll-contain sm:max-h-[30rem] lg:max-h-[38rem]">
               {filtered.map((item, index) => {
                 const selected = item.id === active.id;
                 return (
@@ -273,17 +283,17 @@ export function CapabilityDirectory({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <aside className="relative min-h-[34rem] p-5 sm:p-7 lg:min-h-[38rem] lg:p-8">
+          <aside className="relative min-h-0 p-4 sm:min-h-[30rem] sm:p-7 lg:min-h-[38rem] lg:p-8">
             <div aria-hidden="true" className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(55%_100%_at_18%_0%,color-mix(in_oklab,var(--color-text-brand)_8%,transparent),transparent_78%)]" />
             <div className="relative">
               <span className="grid size-11 place-items-center rounded-control border border-hairline bg-raised text-brand-text">
                 <ActiveIcon aria-hidden="true" className="size-5" />
               </span>
               <p className="mt-6 font-mono text-micro uppercase tracking-[0.12em] text-brand-text">{activeGroup.label[locale]}</p>
-              <h3 className="mt-2 max-w-2xl text-3xl font-semibold tracking-tight text-ink">{active.title[locale]}</h3>
+              <h3 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{active.title[locale]}</h3>
               <p className="mt-4 max-w-3xl text-ui leading-relaxed text-muted">{active.summary[locale]}</p>
 
-              <div className="mt-8 grid gap-5 border-y border-hairline py-6 sm:grid-cols-2">
+              <div className="mt-6 grid gap-5 border-y border-hairline py-5 sm:mt-8 sm:grid-cols-2 sm:py-6">
                 <div>
                   <p className="font-mono text-micro uppercase tracking-[0.12em] text-muted">{copy.labels.outcome[locale]}</p>
                   <p className="mt-2 text-base font-semibold leading-relaxed text-ink">{active.outcome[locale]}</p>
@@ -311,7 +321,7 @@ export function CapabilityDirectory({ locale }: { locale: Locale }) {
                   height={1024}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[16/7] w-full object-cover object-top"
+                  className="aspect-[4/3] w-full object-cover object-top sm:aspect-[16/7]"
                 />
               </div>
             </div>

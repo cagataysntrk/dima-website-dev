@@ -41,8 +41,22 @@ async function assertNoViewportOverflow(page: Page) {
   const overflow = await page.evaluate(() => {
     const viewport = window.innerWidth;
     const candidates = [...document.querySelectorAll("main h1, main h2, main h3, main p, main a, main button, main input, main select, main textarea")];
+
+    const ownedByHorizontalScroller = (element: Element) => {
+      let parent = element.parentElement;
+      while (parent && parent !== document.body) {
+        const style = getComputedStyle(parent);
+        if ((style.overflowX === "auto" || style.overflowX === "scroll") && parent.scrollWidth > parent.clientWidth + 1) {
+          return true;
+        }
+        parent = parent.parentElement;
+      }
+      return false;
+    };
+
     return candidates
       .filter((element) => !element.closest("[aria-hidden='true']"))
+      .filter((element) => !ownedByHorizontalScroller(element))
       .map((element) => ({ text: (element.textContent ?? "").trim().slice(0, 80), rect: element.getBoundingClientRect().toJSON() }))
       .filter(({ rect }) => rect.width > 0 && (rect.left < -1 || rect.right > viewport + 1));
   });
@@ -57,6 +71,41 @@ test.describe("responsive page contract", () => {
       await expect(page.locator("h1")).toBeVisible();
       await assertNoViewportOverflow(page);
     }
+  });
+
+  test("product-heavy routes stay contained from 320px through 1920px", async ({ page }) => {
+    test.setTimeout(180_000);
+    const widths = [320, 390, 768, 1024, 1440, 1920];
+    const productRoutes = ["/tr", "/tr/cozumler", "/tr/sektorler"];
+
+    for (const width of widths) {
+      await page.setViewportSize({ width, height: width < 600 ? 844 : 1000 });
+      for (const route of productRoutes) {
+        await page.goto(route, { waitUntil: "domcontentloaded" });
+        await expect(page.locator("h1")).toBeVisible();
+        await assertNoViewportOverflow(page);
+        await assertShell(page, route);
+      }
+    }
+  });
+
+  test("mobile product-story controls scroll within themselves, not the page", async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 740 });
+    await page.goto("/tr", { waitUntil: "domcontentloaded" });
+
+    const tour = page.locator('section[aria-labelledby="visual-product-tour-title"]');
+    await tour.scrollIntoViewIfNeeded();
+    await expect(tour.getByRole("tab")).toHaveCount(6);
+
+    const pageOverflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+    expect(pageOverflow).toBeLessThanOrEqual(0);
+
+    const tourScroller = tour.getByRole("tablist");
+    const scrollState = await tourScroller.evaluate((element) => ({
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+    }));
+    expect(scrollState.scrollWidth).toBeGreaterThanOrEqual(scrollState.clientWidth);
   });
 
   for (const width of [390, 1280]) {

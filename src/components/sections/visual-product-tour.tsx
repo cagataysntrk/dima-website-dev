@@ -63,15 +63,15 @@ export function ProductHeroPreview({ locale }: { locale: Locale }) {
   const c = productTour.heroPreview;
 
   return (
-    <div role="img" aria-label={c.imageAlt[locale]} className="relative w-full">
-      <div className="overflow-hidden rounded-[1.35rem] border border-outline bg-surface shadow-2xl">
-        <div className="flex min-h-11 items-center gap-2 border-b border-hairline bg-surface px-4">
-          <span aria-hidden="true" className="size-2 rounded-full bg-outline" />
-          <span aria-hidden="true" className="size-2 rounded-full bg-outline" />
-          <span aria-hidden="true" className="size-2 rounded-full bg-outline" />
-          <span className="ml-2 font-mono text-micro uppercase tracking-[0.12em] text-muted">{c.sample[locale]}</span>
-          <span className="ml-auto inline-flex items-center gap-2 text-micro font-medium text-muted">
-            <span aria-hidden="true" className="size-2 rounded-full bg-positive" />
+    <div role="img" aria-label={c.imageAlt[locale]} className="relative -mx-3 w-auto sm:mx-0 sm:w-full">
+      <div className="overflow-hidden rounded-[1.05rem] border border-outline bg-surface shadow-xl sm:rounded-[1.35rem] sm:shadow-2xl">
+        <div className="flex min-h-10 items-center gap-1.5 border-b border-hairline bg-surface px-3 sm:min-h-11 sm:gap-2 sm:px-4">
+          <span aria-hidden="true" className="size-1.5 rounded-full bg-outline sm:size-2" />
+          <span aria-hidden="true" className="size-1.5 rounded-full bg-outline sm:size-2" />
+          <span aria-hidden="true" className="size-1.5 rounded-full bg-outline sm:size-2" />
+          <span className="ml-1 hidden font-mono text-micro uppercase tracking-[0.12em] text-muted sm:inline">{c.sample[locale]}</span>
+          <span className="ml-auto inline-flex items-center gap-1.5 text-[0.66rem] font-medium text-muted sm:gap-2 sm:text-micro">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-positive sm:size-2" />
             {c.monitoring[locale]}
           </span>
         </div>
@@ -83,12 +83,18 @@ export function ProductHeroPreview({ locale }: { locale: Locale }) {
             width={1536}
             height={1024}
             fetchPriority="high"
-            className="aspect-[16/10] w-full object-cover object-top"
+            className="aspect-[4/3] w-full object-cover object-top sm:aspect-[16/10]"
           />
-          <div className="absolute bottom-4 right-4 max-w-[18rem] rounded-[1rem] border border-hairline bg-surface/95 p-3 shadow-lg backdrop-blur-md sm:bottom-5 sm:right-5">
+
+          <div className="hidden sm:absolute sm:bottom-5 sm:right-5 sm:block sm:max-w-[18rem] sm:rounded-[1rem] sm:border sm:border-hairline sm:bg-surface/95 sm:p-3 sm:shadow-lg sm:backdrop-blur-md">
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.12em] text-brand-text">{c.signalMeta[locale]}</p>
             <p className="mt-1 text-ui font-semibold leading-snug text-ink">{c.signal[locale]}</p>
           </div>
+        </div>
+
+        <div className="border-t border-hairline bg-surface p-3 sm:hidden">
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.11em] text-brand-text">{c.signalMeta[locale]}</p>
+          <p className="mt-1 text-sm font-semibold leading-snug text-ink">{c.signal[locale]}</p>
         </div>
       </div>
     </div>
@@ -143,7 +149,7 @@ export function VisualProductTour({ locale }: { locale: Locale }) {
 
         <div className="grid gap-5 lg:grid-cols-[17rem_minmax(0,1fr)] xl:gap-7">
           <div className="lg:pt-3">
-            <div role="tablist" aria-label={c.title[locale]} className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+            <div role="tablist" aria-label={c.title[locale]} className="flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-col lg:overflow-visible lg:pb-0">
               <AnimatedBackground
                 defaultValue={active.id}
                 onValueChange={(id) => {
@@ -161,7 +167,7 @@ export function VisualProductTour({ locale }: { locale: Locale }) {
                       type="button"
                       role="tab"
                       aria-selected={stage.id === active.id}
-                      className="min-w-[12.5rem] rounded-[0.9rem] px-3 py-3 text-left text-ink transition-colors data-[checked=true]:text-canvas lg:min-w-0"
+                      className="min-w-[11.25rem] snap-start rounded-[0.9rem] px-3 py-3 text-left text-ink transition-colors data-[checked=true]:text-canvas sm:min-w-[12.5rem] lg:min-w-0"
                     >
                       <span className="flex items-start gap-3">
                         <span className="grid size-8 shrink-0 place-items-center rounded-control border border-current/15">
@@ -212,8 +218,8 @@ export function VisualProductTour({ locale }: { locale: Locale }) {
               <p className="text-ui leading-relaxed text-muted">{active.caption[locale]}</p>
             </div>
 
-            <div className="relative min-h-[36rem] overflow-hidden bg-canvas sm:min-h-[40rem] xl:min-h-[43rem]">
-              <div key={active.id} className="dima-tour-scene min-h-[36rem] sm:min-h-[40rem] xl:min-h-[43rem]">
+            <div className="relative min-h-[30rem] overflow-hidden bg-canvas sm:min-h-[36rem] lg:min-h-[40rem] xl:min-h-[43rem]">
+              <div key={active.id} className="dima-tour-scene min-h-[30rem] sm:min-h-[36rem] lg:min-h-[40rem] xl:min-h-[43rem]">
                 <TourScene id={active.id} locale={locale} />
               </div>
             </div>
@@ -237,41 +243,41 @@ function AuthScene({ locale }: { locale: Locale }) {
   const c = productTour.auth;
   const product = products[0]!;
   return (
-    <div className="grid min-h-[34rem] place-items-center p-5 sm:p-8">
-      <div className="w-full max-w-xl rounded-[1.75rem] border border-outline bg-surface p-5 shadow-xl sm:p-7">
+    <div className="grid min-h-[28rem] place-items-center p-4 sm:min-h-[34rem] sm:p-8">
+      <div className="w-full max-w-xl rounded-[1.25rem] border border-outline bg-surface p-4 shadow-xl sm:rounded-[1.75rem] sm:p-7">
         <div className="flex items-center gap-3">
-          <img src="/products/dima-mark.png" alt="" width={36} height={36} className="dima-logo-mark size-9" />
-          <div>
-            <p className="text-lg font-semibold text-ink">{product.name}</p>
-            <p className="text-micro text-muted">{c.title[locale]}</p>
+          <img src="/products/dima-mark.png" alt="" width={36} height={36} className="dima-logo-mark size-8 sm:size-9" />
+          <div className="min-w-0">
+            <p className="text-base font-semibold text-ink sm:text-lg">{product.name}</p>
+            <p className="truncate text-micro text-muted">{c.title[locale]}</p>
           </div>
         </div>
 
-        <div className="mt-6 rounded-button border border-hairline bg-canvas px-4 py-3 text-center text-ui font-medium text-ink shadow-sm">
+        <div className="mt-5 rounded-button border border-hairline bg-canvas px-3 py-3 text-center text-ui font-medium text-ink shadow-sm sm:mt-6 sm:px-4">
           <span className="mr-2 inline-grid size-6 place-items-center rounded-full bg-surface font-semibold text-brand-text shadow-sm">G</span>
           {c.google[locale]}
         </div>
 
-        <div className="my-5 flex items-center gap-3">
+        <div className="my-4 flex items-center gap-3 sm:my-5">
           <span className="h-px flex-1 bg-hairline" />
           <span className="text-micro text-muted">{product.name}</span>
           <span className="h-px flex-1 bg-hairline" />
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="relative overflow-hidden rounded-card border border-brand-text/35 bg-[color-mix(in_oklab,var(--color-text-brand)_7%,var(--color-bg-surface))] p-4">
+        <div className="grid gap-2.5 min-[380px]:grid-cols-2 sm:gap-3">
+          <div className="relative overflow-hidden rounded-card border border-brand-text/35 bg-[color-mix(in_oklab,var(--color-text-brand)_7%,var(--color-bg-surface))] p-3.5 sm:p-4">
             <span aria-hidden="true" className="absolute -right-5 -top-5 size-20 rounded-full bg-brand/10 blur-xl" />
             <Database aria-hidden="true" className="size-5 text-brand-text" />
-            <p className="mt-4 text-ui font-semibold text-ink">{c.own[locale]}</p>
-            <ArrowRight aria-hidden="true" className="mt-3 size-4 text-brand-text" />
+            <p className="mt-3 text-ui font-semibold text-ink sm:mt-4">{c.own[locale]}</p>
+            <ArrowRight aria-hidden="true" className="mt-2.5 size-4 text-brand-text sm:mt-3" />
           </div>
-          <div className="rounded-card border border-hairline bg-raised p-4">
+          <div className="rounded-card border border-hairline bg-raised p-3.5 sm:p-4">
             <Building2 aria-hidden="true" className="size-5 text-brand-text" />
-            <p className="mt-4 text-ui font-semibold text-ink">{c.sample[locale]}</p>
-            <ArrowRight aria-hidden="true" className="mt-3 size-4 text-muted" />
+            <p className="mt-3 text-ui font-semibold text-ink sm:mt-4">{c.sample[locale]}</p>
+            <ArrowRight aria-hidden="true" className="mt-2.5 size-4 text-muted sm:mt-3" />
           </div>
         </div>
-        <p className="mt-5 text-center text-micro leading-relaxed text-muted">{c.disclaimer[locale]}</p>
+        <p className="mt-4 text-center text-micro leading-relaxed text-muted sm:mt-5">{c.disclaimer[locale]}</p>
       </div>
     </div>
   );
@@ -280,16 +286,62 @@ function AuthScene({ locale }: { locale: Locale }) {
 function ConnectScene({ locale }: { locale: Locale }) {
   const c = productTour.connect;
   const icons: LucideIcon[] = [Database, Building2, FileSpreadsheet, Database, Factory, Zap];
+
   return (
-    <div className="grid min-h-[34rem] gap-5 p-5 lg:grid-cols-[1fr_0.85fr] lg:p-8">
-      <div className="relative min-h-[24rem] overflow-hidden rounded-[1.5rem] border border-hairline bg-surface">
+    <div className="min-h-[30rem] p-4 sm:min-h-[34rem] sm:p-6 lg:grid lg:grid-cols-[1fr_0.85fr] lg:gap-5 lg:p-8">
+      <div className="sm:hidden">
+        <div className="rounded-[1.15rem] border border-hairline bg-surface p-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="font-mono text-micro uppercase tracking-[0.12em] text-muted">{c.setupLabel[locale]}</p>
+            <img src="/products/dima-mark.png" alt="" width={28} height={28} className="dima-logo-mark size-7" />
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {c.sources.map((source, index) => {
+              const Icon = icons[index] ?? Database;
+              return (
+                <div key={source} className="flex min-h-12 items-center gap-2 rounded-control border border-hairline bg-raised px-2.5 py-2">
+                  <span className="grid size-7 shrink-0 place-items-center rounded-control bg-surface text-brand-text">
+                    <Icon aria-hidden="true" className="size-3.5" />
+                  </span>
+                  <span className="min-w-0 truncate text-micro font-medium text-ink">{source}</span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-4 border-t border-hairline pt-4">
+            <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-muted">{c.contextLabel[locale]}</p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {c.entities[locale].map((item) => (
+                <span key={item} className="rounded-chip border border-hairline bg-canvas px-2 py-1 text-micro text-muted">{item}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-3 rounded-[1.15rem] border border-hairline bg-surface p-4">
+          <div className="space-y-2">
+            {c.checks[locale].map((item, index) => (
+              <div key={item} className="flex items-center gap-2.5 text-ui text-ink">
+                <span className={[
+                  "grid size-6 shrink-0 place-items-center rounded-full",
+                  index < 3 ? "bg-[color-mix(in_oklab,var(--color-text-brand)_12%,transparent)] text-brand-text" : "bg-raised text-muted",
+                ].join(" ")}>
+                  {index < 3 ? <Check aria-hidden="true" className="size-3.5" /> : <span className="size-1.5 rounded-full bg-brand" />}
+                </span>
+                <span className="leading-snug">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="relative hidden min-h-[24rem] overflow-hidden rounded-[1.5rem] border border-hairline bg-surface sm:block">
         <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 size-full text-brand-text/25">
           {[18, 31, 44, 57, 70, 83].map((y) => (
             <path key={y} d={`M 15 ${y} C 32 ${y}, 35 50, 50 50`} fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />
           ))}
         </svg>
         <div className="absolute left-1/2 top-1/2 z-10 grid size-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-text/30 bg-surface shadow-xl">
-          <span aria-hidden="true" className="absolute inset-0 rounded-full border border-brand-text/20" />
           <img src="/products/dima-mark.png" alt="" width={36} height={36} className="dima-logo-mark relative size-9" />
         </div>
         <div className="absolute inset-y-0 left-4 flex w-[42%] flex-col justify-center gap-2 sm:left-6">
@@ -298,8 +350,8 @@ function ConnectScene({ locale }: { locale: Locale }) {
             return (
               <div key={source} className="flex items-center gap-2 rounded-control border border-hairline bg-surface/95 px-3 py-2 shadow-sm backdrop-blur-sm">
                 <span className="grid size-7 place-items-center rounded-control bg-raised text-brand-text"><Icon aria-hidden="true" className="size-3.5" /></span>
-                <span className="text-micro font-medium text-ink">{source}</span>
-                <span className="ml-auto size-1.5 rounded-full bg-brand" style={{ animationDelay: `${index * 180}ms` }} />
+                <span className="truncate text-micro font-medium text-ink">{source}</span>
+                <span className="ml-auto size-1.5 rounded-full bg-brand" />
               </div>
             );
           })}
@@ -317,7 +369,7 @@ function ConnectScene({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center rounded-[1.5rem] border border-hairline bg-surface p-5 sm:p-6">
+      <div className="mt-4 hidden flex-col justify-center rounded-[1.5rem] border border-hairline bg-surface p-5 sm:flex sm:p-6 lg:mt-0">
         <p className="font-mono text-micro uppercase tracking-[0.12em] text-muted">{c.setupLabel[locale]}</p>
         <div className="mt-5 space-y-3">
           {c.checks[locale].map((item, index) => (
@@ -340,57 +392,88 @@ function ConnectScene({ locale }: { locale: Locale }) {
 function ModelScene({ locale }: { locale: Locale }) {
   const c = productTour.model;
   return (
-    <div className="relative min-h-[34rem] overflow-hidden p-5 sm:p-8">
-      <p className="absolute left-1/2 top-7 z-20 -translate-x-1/2 whitespace-nowrap rounded-button border border-hairline bg-surface/90 px-4 py-2 text-ui font-semibold text-ink shadow-sm backdrop-blur-sm">
-        {c.heading[locale]}
-      </p>
-      <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 size-full text-outline">
-        {DOMAIN_POSITIONS.slice(0, 7).map(([x, y], index) => (
-          <line key={index} x1="50" y1="50" x2={Number.parseFloat(x)} y2={Number.parseFloat(y)} stroke="currentColor" strokeWidth="0.35" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />
-        ))}
-      </svg>
-      <div className="absolute left-1/2 top-1/2 z-10 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-text/35 bg-surface shadow-xl">
-        <span aria-hidden="true" className="absolute inset-2 rounded-full border border-brand-text/15" />
-        <div className="text-center">
-          <img src="/products/dima-mark.png" alt="" width={34} height={34} className="dima-logo-mark mx-auto size-8" />
-          <p className="mt-1 text-micro font-semibold text-ink">{c.company[locale]}</p>
+    <div className="relative min-h-[30rem] overflow-hidden p-4 sm:min-h-[34rem] sm:p-8">
+      <div className="sm:hidden">
+        <div className="rounded-[1.15rem] border border-outline bg-surface p-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <span className="grid size-11 place-items-center rounded-full border border-brand-text/30 bg-raised">
+              <img src="/products/dima-mark.png" alt="" width={28} height={28} className="dima-logo-mark size-7" />
+            </span>
+            <div>
+              <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-brand-text">{c.company[locale]}</p>
+              <p className="mt-1 text-base font-semibold text-ink">{c.heading[locale]}</p>
+            </div>
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {c.domains[locale].map((domain, index) => (
+              <div key={domain} className="flex min-h-12 items-center gap-2 rounded-control border border-hairline bg-raised px-3 py-2.5">
+                <span className={["size-2 shrink-0 rounded-full", index < 3 ? "bg-brand" : "bg-outline"].join(" ")} />
+                <span className="text-micro font-semibold leading-snug text-ink">{domain}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      {c.domains[locale].map((domain, index) => {
-        const [x, y] = DOMAIN_POSITIONS[index]!;
-        return (
-          <div
-            key={domain}
-            className="absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-card border border-hairline bg-surface/95 px-3 py-2.5 shadow-sm backdrop-blur-sm"
-            style={{ left: x, top: y }}
-          >
-            <span className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-brand" style={{ animationDelay: `${index * 120}ms` }} />
-              <span className="text-micro font-semibold text-ink sm:text-ui">{domain}</span>
-            </span>
+
+      <div className="hidden sm:block">
+        <p className="absolute left-1/2 top-7 z-20 -translate-x-1/2 whitespace-nowrap rounded-button border border-hairline bg-surface/90 px-4 py-2 text-ui font-semibold text-ink shadow-sm backdrop-blur-sm">
+          {c.heading[locale]}
+        </p>
+        <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 size-full text-outline">
+          {DOMAIN_POSITIONS.slice(0, 7).map(([x, y], index) => (
+            <line key={index} x1="50" y1="50" x2={Number.parseFloat(x)} y2={Number.parseFloat(y)} stroke="currentColor" strokeWidth="0.35" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />
+          ))}
+        </svg>
+        <div className="absolute left-1/2 top-1/2 z-10 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-text/35 bg-surface shadow-xl">
+          <span aria-hidden="true" className="absolute inset-2 rounded-full border border-brand-text/15" />
+          <div className="text-center">
+            <img src="/products/dima-mark.png" alt="" width={34} height={34} className="dima-logo-mark mx-auto size-8" />
+            <p className="mt-1 text-micro font-semibold text-ink">{c.company[locale]}</p>
           </div>
-        );
-      })}
+        </div>
+        {c.domains[locale].map((domain, index) => {
+          const [x, y] = DOMAIN_POSITIONS[index]!;
+          return (
+            <div
+              key={domain}
+              className="absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-card border border-hairline bg-surface/95 px-3 py-2.5 shadow-sm backdrop-blur-sm"
+              style={{ left: x, top: y }}
+            >
+              <span className="flex items-center gap-2">
+                <span className="size-2 rounded-full bg-brand" />
+                <span className="text-micro font-semibold text-ink sm:text-ui">{domain}</span>
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 function DashboardScene({ locale }: { locale: Locale }) {
   return (
-    <div className="relative min-h-[34rem] overflow-hidden bg-raised">
+    <div className="relative min-h-[30rem] overflow-hidden bg-raised sm:min-h-[34rem]">
+      <img
+        src="/products/dima-mobile.webp"
+        alt={productTour.dashboard.imageAlt[locale]}
+        width={1080}
+        height={2337}
+        className="absolute inset-0 size-full object-cover object-top sm:hidden"
+      />
       <img
         src="/product-concepts/dima-command-center.webp"
-        alt={productTour.dashboard.imageAlt[locale]}
+        alt=""
         width={1536}
         height={1024}
-        className="absolute inset-0 size-full object-cover object-top"
+        className="absolute inset-0 hidden size-full object-cover object-top sm:block"
       />
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-canvas/75 via-transparent to-transparent" />
-      <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-end justify-between gap-3 sm:bottom-7 sm:left-7 sm:right-7">
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-canvas/80 via-transparent to-transparent" />
+      <div className="absolute bottom-4 left-4 right-4 flex flex-col items-start gap-2 sm:bottom-7 sm:left-7 sm:right-7 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between sm:gap-3">
         <span className="rounded-button border border-white/25 bg-black/60 px-3 py-2 text-micro font-medium text-white backdrop-blur-md">
           {productTour.dashboard.ready[locale]}
         </span>
-        <span className="rounded-button border border-white/25 bg-white/90 px-3 py-2 text-micro font-medium text-ink backdrop-blur-md">
+        <span className="max-w-full rounded-button border border-white/25 bg-white/90 px-3 py-2 text-micro font-medium leading-snug text-ink backdrop-blur-md">
           {productTour.dashboard.summary[locale]}
         </span>
       </div>
@@ -414,7 +497,7 @@ function ChatScene({ locale }: { locale: Locale }) {
 function WatchScene({ locale }: { locale: Locale }) {
   const c = productTour.watch;
   return (
-    <div className="relative min-h-[34rem] overflow-hidden">
+    <div className="relative min-h-[30rem] overflow-hidden sm:min-h-[34rem]">
       <img
         src="/product-concepts/dima-full-brain.webp"
         alt=""
@@ -424,7 +507,7 @@ function WatchScene({ locale }: { locale: Locale }) {
       />
       <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-bg-canvas)_8%,color-mix(in_oklab,var(--color-bg-canvas)_68%,transparent)_45%,var(--color-bg-canvas)_94%)]" />
 
-      <div className="relative z-10 grid min-h-[34rem] gap-5 p-5 lg:grid-cols-[0.85fr_1.15fr] lg:p-8">
+      <div className="relative z-10 grid min-h-[30rem] gap-4 p-4 sm:min-h-[34rem] sm:gap-5 sm:p-6 lg:grid-cols-[0.85fr_1.15fr] lg:p-8">
         <div className="flex flex-col justify-center">
           <span className="inline-flex w-fit items-center gap-2 rounded-button border border-brand-text/30 bg-surface/90 px-3 py-2 text-micro font-semibold text-brand-text shadow-sm backdrop-blur-sm">
             <span aria-hidden="true" className="relative flex size-2">
@@ -433,7 +516,7 @@ function WatchScene({ locale }: { locale: Locale }) {
             </span>
             {c.badge[locale]}
           </span>
-          <div className="mt-4 max-w-md rounded-[1.5rem] border border-outline bg-surface/95 p-5 shadow-xl backdrop-blur-md">
+          <div className="mt-4 max-w-md rounded-[1.2rem] border border-outline bg-surface/95 p-4 shadow-xl backdrop-blur-md sm:rounded-[1.5rem] sm:p-5">
             <p className="font-mono text-micro uppercase tracking-[0.12em] text-brand-text">{c.signal[locale]}</p>
             <p className="mt-2 text-xl font-semibold tracking-tight text-ink">{c.signalTitle[locale]}</p>
             <p className="mt-2 text-ui text-muted">{c.impact[locale]}</p>
@@ -458,7 +541,7 @@ function WatchScene({ locale }: { locale: Locale }) {
         </div>
 
         <div className="flex flex-col justify-center">
-          <div className="rounded-[1.5rem] border border-hairline bg-surface/90 p-4 shadow-xl backdrop-blur-md sm:p-5">
+          <div className="rounded-[1.2rem] border border-hairline bg-surface/90 p-3.5 shadow-xl backdrop-blur-md sm:rounded-[1.5rem] sm:p-5">
             <div className="space-y-2.5">
               {c.events.map((event, index) => (
                 <div

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const H1 =
-  "max-w-[12ch] font-[family-name:var(--font-geist-sans)] text-[clamp(3rem,5.6vw,6.4rem)] " +
+  "max-w-[12ch] font-[family-name:var(--font-geist-sans)] text-[clamp(2.65rem,11vw,4.5rem)] sm:text-[clamp(3rem,8vw,5rem)] lg:text-[clamp(3.5rem,5.6vw,6.4rem)] " +
   "font-semibold leading-[0.96] tracking-[-0.055em] text-ink break-words [overflow-wrap:anywhere] [text-wrap:balance]";
 
 /**

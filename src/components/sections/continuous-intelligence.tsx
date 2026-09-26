@@ -102,15 +102,15 @@ export function ContinuousIntelligence({ locale }: { locale: Locale }) {
                     onClick={() => choose(index)}
                     aria-pressed={selected}
                     className={[
-                      "grid w-full gap-2 px-4 py-4 text-left transition sm:px-5 lg:grid-cols-[5rem_9rem_7rem_minmax(0,1.6fr)_minmax(0,1fr)] lg:items-center lg:gap-4",
+                      "grid w-full grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-2 px-4 py-4 text-left transition sm:px-5 lg:grid-cols-[5rem_9rem_7rem_minmax(0,1.6fr)_minmax(0,1fr)] lg:items-center lg:gap-4",
                       selected ? "bg-surface" : "bg-transparent hoverable:hover:bg-surface/70",
                     ].join(" ")}
                   >
-                    <span className="font-mono text-micro tabular-nums text-muted">{event.time}</span>
+                    <span className="col-start-1 row-start-1 font-mono text-micro tabular-nums text-muted lg:col-auto lg:row-auto">{event.time}</span>
 
-                    <span className="text-ui font-semibold text-ink">{event.domain[locale]}</span>
+                    <span className="col-start-2 row-start-1 text-ui font-semibold text-ink lg:col-auto lg:row-auto">{event.domain[locale]}</span>
 
-                    <span className="inline-flex w-fit items-center gap-2 rounded-chip border border-hairline bg-surface px-2 py-1 text-micro text-muted">
+                    <span className="col-start-1 row-start-2 inline-flex w-fit items-center gap-2 rounded-chip border border-hairline bg-surface px-2 py-1 text-micro text-muted lg:col-auto lg:row-auto">
                       <span
                         aria-hidden="true"
                         className={[
@@ -127,8 +127,8 @@ export function ContinuousIntelligence({ locale }: { locale: Locale }) {
                       {event.status[locale]}
                     </span>
 
-                    <span className="text-ui font-medium leading-relaxed text-ink">{event.title[locale]}</span>
-                    <span className="text-ui leading-relaxed text-muted">{event.impact[locale]}</span>
+                    <span className="col-start-2 row-start-2 text-ui font-medium leading-relaxed text-ink lg:col-auto lg:row-auto">{event.title[locale]}</span>
+                    <span className="col-span-2 row-start-3 text-micro leading-relaxed text-muted lg:col-auto lg:row-auto lg:col-span-1 lg:text-ui">{event.impact[locale]}</span>
                   </button>
                 );
               })}
@@ -153,11 +153,11 @@ export function ContinuousIntelligence({ locale }: { locale: Locale }) {
             />
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-hairline px-5 py-4 sm:px-6">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col items-start justify-between gap-4 border-t border-hairline px-4 py-4 sm:flex-row sm:flex-wrap sm:items-center sm:px-6">
+            <div className="flex min-w-0 items-start gap-2 sm:items-center">
               <CircleDollarSign aria-hidden="true" className="size-4 text-brand-text" />
               <span className="text-micro font-medium text-muted">{c.monitor.impact[locale]}</span>
-              <span className="text-ui font-semibold text-ink">{active.impact[locale]}</span>
+              <span className="min-w-0 text-ui font-semibold leading-relaxed text-ink">{active.impact[locale]}</span>
             </div>
 
             <div className="flex flex-wrap items-center gap-1.5">

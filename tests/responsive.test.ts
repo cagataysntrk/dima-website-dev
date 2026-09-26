@@ -74,6 +74,45 @@ test("inner product pages keep the product-first editorial contract", async () =
   expect(capabilities).toContain("AnimatedBackground");
 });
 
+test("product storytelling has phone-specific compositions instead of scaled desktop diagrams", async () => {
+  const tour = await Bun.file(ROOT + "src/components/sections/visual-product-tour.tsx").text();
+  expect(tour).toContain("dima-mobile.webp");
+  expect(tour).toContain("sm:hidden");
+  expect(tour).toContain("snap-x snap-mandatory");
+  expect(tour).toContain("min-h-[30rem]");
+  expect(tour).toContain("grid grid-cols-2 gap-2");
+  expect(tour).toContain("hidden sm:block");
+
+  const capabilities = await Bun.file(ROOT + "src/components/sections/capability-catalog.tsx").text();
+  expect(capabilities).toContain("aspect-[4/3]");
+  expect(capabilities).toContain("sm:aspect-[16/7]");
+  expect(capabilities).toContain("sm:hidden");
+  expect(capabilities).toContain("pointer-coarse:text-base");
+  expect(capabilities).toContain("max-h-[24rem]");
+
+  const useCases = await Bun.file(ROOT + "src/components/sections/use-case-lab.tsx").text();
+  expect(useCases).toContain("min-h-[24rem]");
+  expect(useCases).toContain("lg:min-h-[40rem]");
+  expect(useCases).toContain("snap-x snap-mandatory");
+
+  const business = await Bun.file(ROOT + "src/components/sections/business-value-map.tsx").text();
+  expect(business).toContain("minmax(6.25rem,0.55fr)");
+  expect(business).toContain("snap-x snap-mandatory");
+
+  const technical = await Bun.file(ROOT + "src/components/sections/technical-architecture.tsx").text();
+  expect(technical).toContain("snap-x snap-mandatory");
+  expect(technical).toContain("min-w-[10.75rem]");
+});
+
+test("continuous monitoring ledger collapses into a readable mobile record layout", async () => {
+  const ledger = await Bun.file(ROOT + "src/components/sections/continuous-intelligence.tsx").text();
+  expect(ledger).toContain("grid-cols-[auto_minmax(0,1fr)]");
+  expect(ledger).toContain("col-start-1 row-start-1");
+  expect(ledger).toContain("col-start-2 row-start-2");
+  expect(ledger).toContain("col-span-2 row-start-3");
+  expect(ledger).toContain("sm:flex-row");
+});
+
 test("sector gallery maintains vertical accordion on tablets up to lg", async () => {
   const sectorGallery = await Bun.file(ROOT + "src/components/sections/sector-gallery.tsx").text();
   expect(sectorGallery).toContain("lg:flex-row");

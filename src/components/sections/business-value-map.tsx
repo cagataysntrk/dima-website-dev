@@ -46,14 +46,14 @@ export function BusinessValueMap({ locale }: { locale: Locale }) {
               <p className="font-mono text-micro uppercase tracking-[0.12em] text-brand-text">{businessValue.example.label[locale]}</p>
               <p className="mt-1 text-base font-semibold text-ink">{businessValue.example.signal[locale]}</p>
             </div>
-            <span className="rounded-button bg-ink px-3 py-2 text-micro font-semibold text-canvas">
+            <span className="w-full max-w-full rounded-button bg-ink px-3 py-2 text-left text-micro font-semibold leading-snug text-canvas sm:w-auto">
               {active.output[locale]}
             </span>
           </div>
 
           <div className="grid lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,0.65fr)]">
             <div className="border-b border-hairline lg:border-b-0 lg:border-r">
-              <div className="grid grid-cols-[minmax(7rem,0.55fr)_minmax(0,1.45fr)] border-b border-hairline bg-raised px-4 py-2.5 text-micro text-muted sm:px-6">
+              <div className="grid grid-cols-[minmax(6.25rem,0.55fr)_minmax(0,1.45fr)] border-b border-hairline bg-raised px-3 py-2.5 text-micro text-muted sm:grid-cols-[minmax(7rem,0.55fr)_minmax(0,1.45fr)] sm:px-6">
                 <span>{businessValue.example.label[locale]}</span>
                 <span>{active.title[locale]}</span>
               </div>
@@ -65,7 +65,7 @@ export function BusinessValueMap({ locale }: { locale: Locale }) {
                     <div
                       key={node.label.en}
                       className={[
-                        "grid min-h-20 grid-cols-[minmax(7rem,0.55fr)_minmax(0,1.45fr)] items-center border-b border-hairline px-4 py-4 last:border-b-0 sm:px-6",
+                        "grid min-h-20 grid-cols-[minmax(6.25rem,0.55fr)_minmax(0,1.45fr)] items-center border-b border-hairline px-3 py-4 last:border-b-0 sm:grid-cols-[minmax(7rem,0.55fr)_minmax(0,1.45fr)] sm:px-6",
                         highlighted ? "bg-[color-mix(in_oklab,var(--color-text-brand)_5%,var(--color-bg-surface))]" : "bg-surface",
                       ].join(" ")}
                     >
@@ -83,7 +83,7 @@ export function BusinessValueMap({ locale }: { locale: Locale }) {
             </div>
 
             <aside className="p-4 sm:p-6">
-              <div className="flex gap-1 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible">
+              <div className="flex snap-x snap-mandatory gap-1 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-col lg:overflow-visible">
                 <AnimatedBackground
                   defaultValue={active.id}
                   onValueChange={(id) => {
@@ -100,7 +100,7 @@ export function BusinessValueMap({ locale }: { locale: Locale }) {
                         data-id={role.id}
                         type="button"
                         aria-pressed={role.id === active.id}
-                        className="min-w-[12rem] rounded-[0.9rem] px-3 py-3 text-left text-ink transition-colors data-[checked=true]:text-canvas lg:min-w-0"
+                        className="min-w-[10.75rem] snap-start rounded-[0.9rem] px-3 py-3 text-left text-ink transition-colors data-[checked=true]:text-canvas sm:min-w-[12rem] lg:min-w-0"
                       >
                         <span className="flex items-start gap-3">
                           <Icon aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
