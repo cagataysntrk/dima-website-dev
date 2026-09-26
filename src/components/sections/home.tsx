@@ -246,8 +246,21 @@ export function LoopBand({ text, lang, brand, direction = "forward" }: {
   return (
     // Equal whitespace on both sides: the neighbouring sections' own padding frames it, plus
     // the same margin above and below — it separates, it never crowds.
-    <div data-brand={brand} className="relative z-10 my-6 h-32 overflow-hidden sm:my-10 sm:h-36">
-      <LoopBandCanvas text={text} lang={lang} separator="✦" shape="wave" curviness={14} fontSize={30} fontWeight={700} letterSpacing={3} speed={70} ribbonWidth={64} direction={direction} className="h-full" />
+    <div data-brand={brand} className="relative z-10 my-3 h-24 overflow-hidden sm:my-5 sm:h-28">
+      <LoopBandCanvas
+        text={text}
+        lang={lang}
+        separator="✦"
+        shape="wave"
+        curviness={10}
+        fontSize={24}
+        fontWeight={650}
+        letterSpacing={2.2}
+        speed={56}
+        ribbonWidth={52}
+        direction={direction}
+        className="h-full"
+      />
     </div>
   );
 }

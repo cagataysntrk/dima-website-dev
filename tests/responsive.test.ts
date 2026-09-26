@@ -43,6 +43,22 @@ test("homepage uses product-first wide surfaces instead of decorative AI hero ef
   expect(capabilities).not.toContain("FEATURE_POSITIONS");
 });
 
+test("homepage restores intentional motion and the live decision ledger", async () => {
+  const home = await Bun.file(ROOT + "src/app/[locale]/page.tsx").text();
+  expect(home).toContain("LoopBand");
+  expect(home).toContain("ContinuousIntelligence");
+  expect(home).toContain("copy.loop[locale]");
+
+  const ledger = await Bun.file(ROOT + "src/components/sections/continuous-intelligence.tsx").text();
+  expect(ledger).toContain("columns.finding");
+  expect(ledger).toContain("columns.impact");
+  expect(ledger).toContain("dima-ledger-scan");
+
+  const css = await Bun.file(ROOT + "src/app/globals.css").text();
+  expect(css).toContain("@keyframes dima-ledger-scan");
+  expect(css).toContain("@keyframes dima-ledger-detail-in");
+});
+
 test("inner product pages keep the product-first editorial contract", async () => {
   const pageHero = await Bun.file(ROOT + "src/components/sections/page-hero.tsx").text();
   expect(pageHero).toContain('width="wide"');

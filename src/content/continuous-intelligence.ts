@@ -33,6 +33,17 @@ export const continuousIntelligence = {
   },
   monitor: {
     title: { tr: "Şirket denetimi çalışıyor", en: "Company monitoring is running" },
+    intro: {
+      tr: "Yeni kayıtlar geldikçe Dima normal davranışı, planı ve ilişkileri yeniden karşılaştırır. İş etkisi taşıyan değişimleri kullanıcı sormadan gündeme getirir.",
+      en: "As new records arrive, Dima rechecks normal behavior, plans and relationships. It surfaces changes with business impact without waiting for a prompt.",
+    },
+    columns: {
+      time: { tr: "Zaman", en: "Time" },
+      domain: { tr: "Alan", en: "Domain" },
+      status: { tr: "Durum", en: "State" },
+      finding: { tr: "Ne değişti?", en: "What changed?" },
+      impact: { tr: "İş etkisi", en: "Business impact" },
+    },
     sample: { tr: "Temsili canlı akış, örnek şirket verisi", en: "Representative live flow, sample company data" },
     sources: { tr: "12 veri kaynağı bağlı", en: "12 data sources connected" },
     pause: { tr: "Akışı duraklat", en: "Pause flow" },
@@ -45,6 +56,7 @@ export const continuousIntelligence = {
   events: [
     {
       id: "production-loss",
+      time: "09:42",
       domain: { tr: "Üretim", en: "Manufacturing" },
       status: { tr: "Sapma", en: "Deviation" },
       title: { tr: "Hat 3 performansı üç vardiyadır hedefin altında", en: "Line 3 performance has stayed below target for three shifts" },
@@ -55,6 +67,7 @@ export const continuousIntelligence = {
     },
     {
       id: "collection-risk",
+      time: "09:31",
       domain: { tr: "Finans", en: "Finance" },
       status: { tr: "Risk", en: "Risk" },
       title: { tr: "Üç müşteride ödeme davranışı son 60 güne göre bozuluyor", en: "Payment behavior is deteriorating for three customers versus the prior 60 days" },
@@ -65,6 +78,7 @@ export const continuousIntelligence = {
     },
     {
       id: "margin-shift",
+      time: "09:18",
       domain: { tr: "Satış", en: "Sales" },
       status: { tr: "Sapma", en: "Deviation" },
       title: { tr: "Ciro sabit görünürken sipariş karması marjı aşağı çekiyor", en: "Revenue looks stable while order mix is pulling margin down" },
@@ -75,6 +89,7 @@ export const continuousIntelligence = {
     },
     {
       id: "supplier-opportunity",
+      time: "08:56",
       domain: { tr: "Satın alma", en: "Procurement" },
       status: { tr: "Fırsat", en: "Opportunity" },
       title: { tr: "Daha düşük birim fiyatlı tedarikçi toplam maliyette de avantajlı olabilir", en: "A lower-price supplier may also be better on total cost" },
@@ -85,6 +100,7 @@ export const continuousIntelligence = {
     },
     {
       id: "quality-stable",
+      time: "08:40",
       domain: { tr: "Kalite", en: "Quality" },
       status: { tr: "Normal", en: "Normal" },
       title: { tr: "Kritik kalite sapması yok, izleme devam ediyor", en: "No critical quality deviation, monitoring continues" },

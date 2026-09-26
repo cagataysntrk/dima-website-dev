@@ -7,6 +7,41 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Intentional brand motion and live decision ledger
+
+### D-072 · Restore character without restoring generic AI decoration
+**Decided:** D-071 remains the governing visual direction, but its motion rule does not mean
+that the site should become visually inert. The homepage restores selected brand motion that
+carries meaning or rhythm:
+
+- the existing wave TextLoop ribbon returns once after the guided product tour and carries the
+  canonical Dima rhythm ("İzler · Denetler · Fark eder · Karara taşır");
+- the partner logo marquee remains a slow, pause-on-hover brand/reference motion;
+- product-tour, capability and use-case selectors retain state transitions and auto-progression
+  until the user explicitly interacts;
+- the continuous-monitoring story returns to the homepage in a redesigned **live decision
+  ledger**, not as the previous prose-heavy card wall.
+
+The live decision ledger renders representative monitoring data as an inspectable business
+table with time, domain, state, finding and business impact. One row advances automatically;
+selecting a row pauses automation and opens the same event's detection, inspected context and
+recommendation below the table. A restrained scan line and detail transition communicate that
+the monitoring surface is active. Reduced-motion preferences disable those animations.
+
+This specifically supersedes the narrow D-068 statement that Continuous Intelligence should
+not appear in the primary homepage narrative. The old component's long explanatory card
+composition stays retired; the underlying product concept returns because the always-on
+monitoring behavior is central to Dima and the table form is faster to understand.
+
+Hero particle fields, rainbow CTAs, floating/pulsing decorative marks and radial logo diagrams
+remain retired. The restored motion must either communicate product state, provide navigational
+continuity, or create a deliberate brand transition between major editorial sections.
+
+**Reason:** the first product-first pass correctly removed generic AI decoration but over-
+corrected by removing some of the site's strongest authored motion. Dima should feel alive and
+distinctive without looking synthetic. Rhythm, data movement and state change achieve that
+better than particles, glows and arbitrary pulse effects.
+
 ## 2026-09-26 — Product-first editorial visual system
 
 ### D-071 · Real product state replaces generic AI decoration

@@ -313,6 +313,23 @@ nav[aria-label="Main"]:has([aria-expanded="true"]) {
 
 .dima-tour-scene > * { min-height: inherit; }
 
+@keyframes dima-ledger-scan {
+  from { transform: translateX(-10rem); }
+  to { transform: translateX(calc(100vw + 10rem)); }
+}
+.dima-ledger-scan {
+  animation: dima-ledger-scan 7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dima-ledger-detail-in {
+  from { opacity: 0.35; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dima-ledger-detail {
+  animation: dima-ledger-detail-in 360ms var(--motion-ease-default) both;
+}
+
 @keyframes dima-tour-scene-in {
   from { opacity: 0.28; transform: translateY(8px) scale(0.996); filter: blur(3px); }
   to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
@@ -366,6 +383,8 @@ nav[aria-label="Main"]:has([aria-expanded="true"]) {
 
 @media (prefers-reduced-motion: reduce) {
   .dima-watch-loop-step,
+  .dima-ledger-scan,
+  .dima-ledger-detail,
   .dima-tour-scene,
   .dima-tour-tab-progress,
   .dima-watch-scan,

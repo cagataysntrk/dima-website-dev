@@ -9,10 +9,11 @@ import { getPosts } from "@/lib/blog";
 import { PostList } from "@/components/sections/blog";
 import { homePage as copy } from "@/content/pages/home";
 import { HomeHero } from "@/components/home/home-hero";
-import { ReferenceStrip, SectorsSection } from "@/components/sections/home";
+import { LoopBand, ReferenceStrip, SectorsSection } from "@/components/sections/home";
 import { UseCaseLab } from "@/components/sections/use-case-lab";
 import { CapabilityShowcase } from "@/components/sections/capability-catalog";
 import { ProductHeroPreview, VisualProductTour } from "@/components/sections/visual-product-tour";
+import { ContinuousIntelligence } from "@/components/sections/continuous-intelligence";
 import { TeamRow } from "@/components/sections/team-row";
 import { CtaBand } from "@/components/sections/cta-band";
 import { pageMetadata } from "@/lib/seo";
@@ -56,6 +57,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       />
 
       <VisualProductTour locale={locale} />
+      <LoopBand text={copy.loop[locale]} lang={locale} brand="dima" />
+      <ContinuousIntelligence locale={locale} />
       <CapabilityShowcase locale={locale} />
       <UseCaseLab locale={locale} />
       <SectorsSection locale={locale} industries={industries} copy={copy.industries} />

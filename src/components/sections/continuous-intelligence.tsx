@@ -2,30 +2,18 @@
 
 import * as React from "react";
 import {
-  Activity,
   CircleDollarSign,
   Database,
-  Factory,
-  PackageSearch,
   Pause,
   Play,
   ScanLine,
-  ShieldCheck,
-  ShoppingCart,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { Heading, Section, Stack, Text } from "@upcytech/ui";
-import type { Locale } from "@/i18n/routing";
-import { continuousIntelligence, type WatchEventId } from "@/content/continuous-intelligence";
 
-const EVENT_ICON: Record<WatchEventId, LucideIcon> = {
-  "production-loss": Factory,
-  "collection-risk": CircleDollarSign,
-  "margin-shift": ShoppingCart,
-  "supplier-opportunity": PackageSearch,
-  "quality-stable": ShieldCheck,
-};
+import type { Locale } from "@/i18n/routing";
+import { continuousIntelligence } from "@/content/continuous-intelligence";
 
 function useReducedMotion() {
   const [reduced, setReduced] = React.useState(false);
@@ -50,145 +38,137 @@ export function ContinuousIntelligence({ locale }: { locale: Locale }) {
     if (paused || reduced) return;
     const timer = window.setInterval(() => {
       setActiveIndex((value) => (value + 1) % c.events.length);
-    }, 4200);
+    }, 5400);
     return () => window.clearInterval(timer);
   }, [paused, reduced, c.events.length]);
 
-  const select = (index: number) => {
+  const choose = (index: number) => {
     setActiveIndex(index);
     setPaused(true);
   };
 
   return (
-    <Section divided aria-labelledby="continuous-intelligence-title">
+    <Section width="wide" responsive aria-labelledby="continuous-intelligence-title" className="py-20! sm:py-24! lg:py-28!">
       <Stack gap="loose">
-        <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
-          <Stack gap="tight" className="lg:col-span-6">
+        <div className="grid gap-5 lg:grid-cols-12 lg:items-end">
+          <Stack gap="tight" className="lg:col-span-8">
             <Text variant="eyebrow">{c.eyebrow[locale]}</Text>
-            <Heading level={2} variant="title" id="continuous-intelligence-title">
+            <Heading level={2} variant="title" id="continuous-intelligence-title" className="max-w-4xl">
               {c.title[locale]}
             </Heading>
-            <Text variant="lede" tone="muted">{c.intro[locale]}</Text>
-
-            <div className="mt-2 grid gap-3 sm:grid-cols-2">
-              <article className="rounded-card border border-hairline bg-surface p-4">
-                <p className="text-ui font-semibold text-ink">{c.thesis.horizontal.title[locale]}</p>
-                <p className="mt-1 text-ui leading-relaxed text-muted">{c.thesis.horizontal.body[locale]}</p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {c.thesis.horizontal.items[locale].map((item) => (
-                    <span key={item} className="rounded-chip border border-hairline bg-raised px-2 py-1 text-micro text-muted">{item}</span>
-                  ))}
-                </div>
-              </article>
-              <article className="rounded-card border border-hairline bg-surface p-4">
-                <p className="text-ui font-semibold text-ink">{c.thesis.vertical.title[locale]}</p>
-                <p className="mt-1 text-ui leading-relaxed text-muted">{c.thesis.vertical.body[locale]}</p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {c.thesis.vertical.items[locale].map((item) => (
-                    <span key={item} className="rounded-chip border border-hairline bg-raised px-2 py-1 text-micro text-muted">{item}</span>
-                  ))}
-                </div>
-              </article>
-            </div>
-
-            <article className="rounded-card border border-brand-text/25 bg-[color-mix(in_oklab,var(--color-text-brand)_6%,var(--color-bg-surface))] p-4">
-              <div className="flex items-center gap-2">
-                <Sparkles aria-hidden="true" className="size-4 text-brand-text" />
-                <p className="text-ui font-semibold text-ink">{c.thesis.cross.title[locale]}</p>
-              </div>
-              <p className="mt-1 text-ui leading-relaxed text-muted">{c.thesis.cross.body[locale]}</p>
-            </article>
+            <p className="max-w-3xl text-ui leading-relaxed text-muted">{c.monitor.intro[locale]}</p>
           </Stack>
 
-          <div className="lg:col-span-6">
-            <div data-brand="dima" className="dima-app overflow-hidden rounded-card border border-outline bg-surface shadow-xl">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-hairline px-4 py-3">
-                <div className="flex items-center gap-2">
-                  <span aria-hidden="true" className="relative flex size-3">
-                    <span className="absolute inline-flex size-full motion-safe:animate-ping rounded-full bg-brand opacity-40" />
-                    <span className="relative inline-flex size-3 rounded-full bg-brand" />
-                  </span>
-                  <div>
-                    <p className="text-ui font-semibold text-ink">{c.monitor.title[locale]}</p>
-                    <p className="text-micro text-muted">{c.monitor.sources[locale]}</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setPaused((value) => !value)}
-                  aria-label={(paused ? c.monitor.resume : c.monitor.pause)[locale]}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-control border border-hairline bg-raised px-3 text-micro text-muted transition hoverable:hover:text-ink"
-                >
-                  {paused ? <Play aria-hidden="true" className="size-3.5" /> : <Pause aria-hidden="true" className="size-3.5" />}
-                  {(paused ? c.monitor.resume : c.monitor.pause)[locale]}
-                </button>
-              </div>
+          <div className="flex items-center gap-3 lg:col-span-4 lg:justify-self-end">
+            <span className="inline-flex items-center gap-2 font-mono text-micro uppercase tracking-[0.12em] text-muted">
+              <span aria-hidden="true" className="size-2 rounded-full bg-positive" />
+              {c.monitor.sources[locale]}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPaused((value) => !value)}
+              aria-label={(paused ? c.monitor.resume : c.monitor.pause)[locale]}
+              className="inline-flex min-h-11 items-center gap-2 rounded-button border border-hairline bg-surface px-3 text-ui font-medium text-muted transition hoverable:hover:text-ink"
+            >
+              {paused ? <Play aria-hidden="true" className="size-4" /> : <Pause aria-hidden="true" className="size-4" />}
+              {(paused ? c.monitor.resume : c.monitor.pause)[locale]}
+            </button>
+          </div>
+        </div>
 
-              <div className="border-b border-hairline px-4 py-3">
-                <p className="font-mono text-micro uppercase tracking-[0.12em] text-muted">{c.monitor.sample[locale]}</p>
-                <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-                  {c.events.map((event, index) => {
-                    const Icon = EVENT_ICON[event.id];
-                    const selected = index === activeIndex;
-                    return (
-                      <button
-                        key={event.id}
-                        type="button"
-                        onClick={() => select(index)}
-                        aria-pressed={selected}
+        <div className="overflow-hidden rounded-[1.35rem] border border-outline bg-surface shadow-xl">
+          <div className="relative border-b border-hairline bg-raised/60">
+            {!paused && !reduced ? <span aria-hidden="true" className="dima-ledger-scan absolute inset-y-0 w-28 bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--color-text-brand)_7%,transparent),transparent)]" /> : null}
+
+            <div
+              role="row"
+              className="hidden grid-cols-[5rem_9rem_7rem_minmax(0,1.6fr)_minmax(0,1fr)] gap-4 px-5 py-3 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted lg:grid"
+            >
+              <span>{c.monitor.columns.time[locale]}</span>
+              <span>{c.monitor.columns.domain[locale]}</span>
+              <span>{c.monitor.columns.status[locale]}</span>
+              <span>{c.monitor.columns.finding[locale]}</span>
+              <span>{c.monitor.columns.impact[locale]}</span>
+            </div>
+
+            <div role="table" aria-label={c.monitor.title[locale]} className="divide-y divide-hairline">
+              {c.events.map((event, index) => {
+                const selected = index === activeIndex;
+                return (
+                  <button
+                    key={event.id}
+                    type="button"
+                    role="row"
+                    onClick={() => choose(index)}
+                    aria-pressed={selected}
+                    className={[
+                      "grid w-full gap-2 px-4 py-4 text-left transition sm:px-5 lg:grid-cols-[5rem_9rem_7rem_minmax(0,1.6fr)_minmax(0,1fr)] lg:items-center lg:gap-4",
+                      selected ? "bg-surface" : "bg-transparent hoverable:hover:bg-surface/70",
+                    ].join(" ")}
+                  >
+                    <span className="font-mono text-micro tabular-nums text-muted">{event.time}</span>
+
+                    <span className="text-ui font-semibold text-ink">{event.domain[locale]}</span>
+
+                    <span className="inline-flex w-fit items-center gap-2 rounded-chip border border-hairline bg-surface px-2 py-1 text-micro text-muted">
+                      <span
+                        aria-hidden="true"
                         className={[
-                          "min-w-[9rem] rounded-control border p-3 text-left transition",
-                          selected ? "border-brand-text/40 bg-[color-mix(in_oklab,var(--color-text-brand)_7%,var(--color-bg-surface))]" : "border-hairline bg-raised",
+                          "size-1.5 rounded-full",
+                          event.status.tr === "Fırsat"
+                            ? "bg-positive"
+                            : event.status.tr === "Normal"
+                              ? "bg-info"
+                              : event.status.tr === "Risk"
+                                ? "bg-warning"
+                                : "bg-negative",
                         ].join(" ")}
-                      >
-                        <span className="flex items-center gap-2">
-                          <Icon aria-hidden="true" className="size-4 text-brand-text" />
-                          <span className="text-micro font-semibold text-ink">{event.domain[locale]}</span>
-                        </span>
-                        <span className="mt-2 block text-micro text-muted">{event.status[locale]}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+                      />
+                      {event.status[locale]}
+                    </span>
 
-              <div className="p-4 sm:p-5">
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-control bg-raised text-brand-text">
-                    <ScanLine aria-hidden="true" className="size-4" />
+                    <span className="text-ui font-medium leading-relaxed text-ink">{event.title[locale]}</span>
+                    <span className="text-ui leading-relaxed text-muted">{event.impact[locale]}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div key={active.id} className="dima-ledger-detail grid gap-5 p-5 sm:p-6 lg:grid-cols-[1fr_1fr_1fr] lg:p-7">
+            <LedgerDetail
+              icon={ScanLine}
+              label={c.monitor.detected[locale]}
+              body={active.detected[locale]}
+            />
+            <LedgerDetail
+              icon={Database}
+              label={c.monitor.inspected[locale]}
+              body={active.inspected[locale]}
+            />
+            <LedgerDetail
+              icon={Sparkles}
+              label={c.monitor.recommendation[locale]}
+              body={active.recommendation[locale]}
+            />
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-hairline px-5 py-4 sm:px-6">
+            <div className="flex items-center gap-2">
+              <CircleDollarSign aria-hidden="true" className="size-4 text-brand-text" />
+              <span className="text-micro font-medium text-muted">{c.monitor.impact[locale]}</span>
+              <span className="text-ui font-semibold text-ink">{active.impact[locale]}</span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-1.5">
+              {c.process[locale].map((item, index) => (
+                <React.Fragment key={item}>
+                  <span className={["text-micro", index <= activeIndex % c.process[locale].length ? "text-ink" : "text-muted"].join(" ")}>
+                    {item}
                   </span>
-                  <div>
-                    <p className="font-mono text-micro uppercase tracking-[0.12em] text-brand-text">{active.status[locale]}</p>
-                    <h3 className="mt-1 text-lg font-semibold tracking-tight text-ink">{active.title[locale]}</h3>
-                  </div>
-                </div>
-
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <Detail label={c.monitor.detected[locale]} body={active.detected[locale]} icon={Activity} />
-                  <Detail label={c.monitor.inspected[locale]} body={active.inspected[locale]} icon={Database} />
-                  <Detail label={c.monitor.recommendation[locale]} body={active.recommendation[locale]} icon={Sparkles} />
-                  <Detail label={c.monitor.impact[locale]} body={active.impact[locale]} icon={CircleDollarSign} />
-                </div>
-
-                <div className="mt-5 border-t border-hairline pt-4">
-                  <p className="text-micro font-medium text-muted">{c.processTitle[locale]}</p>
-                  <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                    {c.process[locale].map((item, index) => (
-                      <React.Fragment key={item}>
-                        <span className={[
-                          "rounded-chip border px-2.5 py-1 text-micro transition",
-                          index === activeIndex % c.process[locale].length
-                            ? "border-brand-text/40 bg-raised text-ink"
-                            : "border-hairline text-muted",
-                        ].join(" ")}>
-                          {item}
-                        </span>
-                        {index < c.process[locale].length - 1 && <span aria-hidden="true" className="text-muted">›</span>}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                  {index < c.process[locale].length - 1 ? <span aria-hidden="true" className="text-hairline">/</span> : null}
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
@@ -197,12 +177,20 @@ export function ContinuousIntelligence({ locale }: { locale: Locale }) {
   );
 }
 
-function Detail({ label, body, icon: Icon }: { label: string; body: string; icon: LucideIcon }) {
+function LedgerDetail({
+  icon: Icon,
+  label,
+  body,
+}: {
+  icon: LucideIcon;
+  label: string;
+  body: string;
+}) {
   return (
-    <article className="rounded-control border border-hairline bg-raised p-3">
-      <div className="flex items-center gap-2 text-micro font-medium text-muted">
-        <Icon aria-hidden="true" className="size-3.5 text-brand-text" />
-        {label}
+    <article className="border-t border-hairline pt-4">
+      <div className="flex items-center gap-2">
+        <Icon aria-hidden="true" className="size-4 text-brand-text" />
+        <p className="font-mono text-micro uppercase tracking-[0.12em] text-muted">{label}</p>
       </div>
       <p className="mt-2 text-ui leading-relaxed text-ink">{body}</p>
     </article>
