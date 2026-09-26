@@ -20,7 +20,8 @@ const CYAN = new THREE.Color(0x27d3ff);
 const VIOLET = new THREE.Color(0x8b5cf6);
 const IVORY = new THREE.Color(0xe8e6df);
 const GRAPHITE = new THREE.Color(0x172033);
-const HOVER_IVORY = new THREE.Color(0xfff6d9);\nconst FALLBACK_MODEL_URL = "https://cdn.jsdelivr.net/gh/Rickaym/brain-game@main/public/models/brain.glb";
+const HOVER_IVORY = new THREE.Color(0xfff6d9);
+const FALLBACK_MODEL_URL = "https://cdn.jsdelivr.net/gh/Rickaym/brain-game@main/public/models/brain.glb";
 
 export function mountBrainCandidate({
   host,
