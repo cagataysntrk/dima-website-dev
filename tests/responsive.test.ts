@@ -43,6 +43,24 @@ test("homepage uses product-first wide surfaces instead of decorative AI hero ef
   expect(capabilities).not.toContain("FEATURE_POSITIONS");
 });
 
+test("hero brain comparison is live 3D, lazy-loaded and touch-safe", async () => {
+  const home = await Bun.file(ROOT + "src/app/[locale]/page.tsx").text();
+  const gallery = await Bun.file(ROOT + "src/components/home/hero-brain-gallery.tsx").text();
+  const engine = await Bun.file(ROOT + "src/components/vendor/brain-hero/brain-scene-engine.ts").text();
+
+  expect(home).toContain("HeroBrainGallery");
+  expect(home).not.toContain("ProductHeroPreview");
+  expect(gallery).toContain("snap-x snap-mandatory");
+  expect(gallery).toContain("requestIdleCallback");
+  expect(gallery).toContain("onTouchStart");
+  expect(gallery).toContain("onTouchEnd");
+  expect(engine).toContain("OrbitControls");
+  expect(engine).toContain("UnrealBloomPass");
+  expect(engine).toContain('renderer.domElement.style.touchAction = coarse ? "pan-y" : "none"');
+  expect(engine).toContain("addFlowParticles");
+});
+
+
 test("homepage restores intentional motion and the live decision ledger", async () => {
   const home = await Bun.file(ROOT + "src/app/[locale]/page.tsx").text();
   expect(home).toContain("LoopBand");

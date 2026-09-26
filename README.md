@@ -88,7 +88,7 @@ decoration (three/gsap/cobe/maplibre) is never allowed to dominate the product s
 idle/in-view gated where it is still used. The homepage hero itself no longer loads Pixel Blast
 or animated headline effects. Product-state selection uses the locally vendored
 `motion-primitives/animated-background.tsx`, adapted from Motion-Primitives' MIT component.
-Current visual-system authority is `DECISIONS.md` D-071. Canonical paths:
+Current visual-system authority is `DECISIONS.md` D-071 through D-074. The hero brain is temporarily in a live comparison phase; see D-074 and `THIRD_PARTY_NOTICES.md`. Canonical paths:
 `upcytech/` is the app, `../design-system` the authority, `../upcytech_archive` read-only
 legacy — do not edit.
 
@@ -116,6 +116,7 @@ Copy is never written in a component. It lives in typed files under `src/content
 | `products.ts` | Active Dima registry: product identity, canonical domain and shared product copy |
 | `company-brain.ts` | Şirket Beyni state model, domains, signals, lenses, evidence and decision context |
 | `product-tour.ts` | Canonical visual story: setup, data connection, company model, product surface, contextual conversation and continuous monitoring |
+| `hero-brain-candidates.ts` | Temporary five-candidate live 3D hero comparison; final selection must collapse back to one locally vendored brain |
 | `capability-catalog.ts` | Seventy Dima capabilities across company intelligence, finance, manufacturing, textile and plastics, all mapped to the shared intelligence loop |
 | `business-value.ts` | Executive, finance, operations and team lenses over one cross-functional company event |
 | `continuous-intelligence.ts` | Detailed always-on monitoring content retained for deeper/reusable surfaces |

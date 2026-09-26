@@ -7,6 +7,48 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Live 3D hero brain comparison
+
+### D-074 · Hero brain candidates are a temporary live WebGL selection lab
+**Decided:** the homepage hero temporarily replaces the static product preview with a five-
+candidate live 3D brain comparison so the product owner can evaluate the interaction in the
+actual website before a single direction is frozen. The candidates are Atlas, Perfusion,
+Neon Cortex, Neural Wire and Neural Flow.
+
+This does not reverse D-071's ban on generic AI decoration. Every candidate is constrained to
+the explicit Company Brain metaphor and must provide real direct manipulation or meaningful
+signal motion. A generic particle field behind the page remains non-canonical. Neural Flow is
+allowed only because its particles are bound to the brain surface and express activity inside
+the Company Brain object.
+
+The comparison reuses and adapts open-source work with explicit licence boundaries:
+- Brain Project: Apache-2.0 viewer behavior; brain geometry CC BY-SA 4.0;
+- Brain Anatomy Game: MIT viewer behavior; BodyParts3D-derived brain geometry CC BY-SA 2.1 JP;
+- Neuronaut: MIT cyan/magenta lighting and region-pulse presentation only;
+- NeuroSphere: MIT wireframe and bloom presentation only;
+- r3f-flow-field-particles: MIT particle-flow visual language adapted to Dima's existing
+  Three.js stack.
+
+During evaluation, the GLB models are lazy-loaded from the source repositories through a CDN.
+The heavyweight Three.js scene engine is dynamically imported after first paint and only the
+active candidate is mounted. Desktop permits direct rotation and zoom. Coarse-pointer layouts
+preserve vertical page scrolling, auto-rotate the active brain and expose candidate selection
+through a horizontal snap rail and swipe gesture. Reduced-motion preferences stop automatic
+scene motion.
+
+After the product owner selects one candidate:
+1. remove the other four candidates and all comparison UI;
+2. vendor the chosen model locally with its required attribution/licence files;
+3. remove the temporary remote model dependency;
+4. tune material, signal behavior and camera specifically for Dima;
+5. rerun first-load JS, responsive, reduced-motion and accessibility gates.
+
+`THIRD_PARTY_NOTICES.md` records the temporary comparison's sources and licences.
+
+**Reason:** a 3D Company Brain is a high-impact identity choice. Comparing real, interactive
+implementations inside the real hero is more reliable than choosing from screenshots, while
+temporary lazy loading prevents the evaluation from becoming permanent architecture.
+
 ## 2026-09-26 — Responsive product compositions
 
 ### D-073 · Mobile gets purpose-built product compositions, not scaled desktop canvases

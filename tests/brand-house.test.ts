@@ -9,6 +9,7 @@ import { contextualChat } from "@/content/contextual-chat";
 import { productTour } from "@/content/product-tour";
 import { capabilities, capabilityGroups, homeCapabilityIds } from "@/content/capability-catalog";
 import { businessValue } from "@/content/business-value";
+import { heroBrainLab } from "@/content/hero-brain-candidates";
 import { industriesPage } from "@/content/pages/industries";
 import { homePage } from "@/content/pages/home";
 import { products } from "@/content/products";
@@ -30,6 +31,18 @@ test("Brand House V1.6 master-brand contract stays fixed", () => {
     ]),
   ].join(" ");
   expect(customerChrome).not.toContain("UpcyTech");
+});
+
+test("hero brain lab exposes five live comparison candidates before final selection", () => {
+  expect(heroBrainLab.candidates.map((candidate) => candidate.id)).toEqual([
+    "atlas",
+    "perfusion",
+    "neon",
+    "wireframe",
+    "flow",
+  ]);
+  expect(heroBrainLab.candidates).toHaveLength(5);
+  expect(heroBrainLab.candidates.every((candidate) => candidate.modelUrl.startsWith("https://"))).toBe(true);
 });
 
 test("Brand House hero and CTA hierarchy stay aligned", () => {

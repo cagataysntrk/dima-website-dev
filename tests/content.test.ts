@@ -29,6 +29,7 @@ import { contextualChat } from "@/content/contextual-chat";
 import { productTour } from "@/content/product-tour";
 import { capabilityCatalogCopy, capabilityGroups, capabilities } from "@/content/capability-catalog";
 import { businessValue } from "@/content/business-value";
+import { heroBrainLab } from "@/content/hero-brain-candidates";
 
 const CONTENT = {
   homePage, aboutPage, contactPage, careersPage, blogPage, categories, hiringSteps, roles, team,
@@ -36,7 +37,7 @@ const CONTENT = {
   services, clientNeeds, servicesPage, solutionsPage, chatDemoCopy, problemMatcherCopy, companyBrain,
   capabilityDepths, capabilityDepthsCopy, productExperience, continuousIntelligence, useCaseLab,
   technicalArchitecture, contextualChat, productTour, capabilityCatalogCopy, capabilityGroups, capabilities,
-  businessValue, site,
+  businessValue, heroBrainLab, site,
 } as const;
 
 const PUBLIC_LANGUAGE_CONTENT = {
@@ -62,6 +63,7 @@ const PUBLIC_LANGUAGE_CONTENT = {
   capabilityGroups,
   capabilities,
   businessValue,
+  heroBrainLab,
   chatDemoCopy,
   site,
   team,

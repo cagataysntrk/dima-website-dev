@@ -12,7 +12,8 @@ import { HomeHero } from "@/components/home/home-hero";
 import { LoopBand, ReferenceStrip, SectorsSection } from "@/components/sections/home";
 import { UseCaseLab } from "@/components/sections/use-case-lab";
 import { CapabilityShowcase } from "@/components/sections/capability-catalog";
-import { ProductHeroPreview, VisualProductTour } from "@/components/sections/visual-product-tour";
+import { VisualProductTour } from "@/components/sections/visual-product-tour";
+import { HeroBrainGallery } from "@/components/home/hero-brain-gallery";
 import { ContinuousIntelligence } from "@/components/sections/continuous-intelligence";
 import { TeamRow } from "@/components/sections/team-row";
 import { CtaBand } from "@/components/sections/cta-band";
@@ -53,7 +54,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             </Button>
           </>
         }
-        visual={<ProductHeroPreview locale={locale} />}
+        visual={<HeroBrainGallery locale={locale} />}
       />
 
       <VisualProductTour locale={locale} />
