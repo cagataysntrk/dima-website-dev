@@ -39,8 +39,7 @@ export function AnimatedBackground({
     if (defaultValue !== undefined) setActiveId(defaultValue);
   }, [defaultValue]);
 
-  return React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) return child;
+  return React.Children.map(children, (child: any, index) => {
     const id = child.props["data-id"];
     const interactionProps = enableHover
       ? { onMouseEnter: () => setActive(id), onMouseLeave: () => setActive(null) }

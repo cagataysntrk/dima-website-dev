@@ -13,7 +13,7 @@ const H1 =
  */
 export function HeroTitle({ text, accents }: { text: string; accents: readonly string[] }) {
   const words = text.split(" ");
-  const bare = (word: string) => word.replace(/[.,?!:;()[]{}"'”“‘’]/g, "");
+  const bare = (word: string) => word.replace(/[^\p{L}\p{N}-]/gu, "");
 
   return (
     <h1 className={H1}>
