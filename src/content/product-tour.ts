@@ -90,6 +90,7 @@ export const productTour = {
     },
   },
   dashboard: {
+    imageAlt: { tr: "Şirket Beyni ana ürün görünümü, örnek şirket verisi", en: "Company Brain main product view with sample company data" },
     ready: { tr: "Şirket Beyni hazır", en: "Company Brain ready" },
     summary: { tr: "Sinyaller · Fırsatlar · Kararlar", en: "Signals · Opportunities · Decisions" },
   },

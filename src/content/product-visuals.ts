@@ -15,7 +15,7 @@ export const productVisuals = {
   },
   items: [
     {
-      src: "/product-concepts/company-map.webp",
+      src: "/product-concepts/dima-command-center.webp",
       title: { tr: "Şirket haritası ve öncelikli sinyaller", en: "Company map and priority signals" },
       body: {
         tr: "İş alanları, ilişkiler ve öncelikli sinyaller aynı yaşayan şirket görünümünde.",
@@ -31,7 +31,7 @@ export const productVisuals = {
       },
     },
     {
-      src: "/product-concepts/live-system.webp",
+      src: "/product-concepts/dima-full-brain.webp",
       title: { tr: "Canlı şirket akışı ve çıktı yüzeyleri", en: "Live company flow and output surfaces" },
       body: {
         tr: "Veri akışı sinyal, öneri, görev ve karara dönüşürken sistem çalışmaya devam eder.",

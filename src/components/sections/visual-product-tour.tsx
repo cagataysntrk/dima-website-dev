@@ -13,7 +13,6 @@ import {
   Pause,
   Play,
   Radar,
-  Search,
   Sparkles,
   Waypoints,
   Zap,
@@ -211,13 +210,14 @@ function TourScene({ id, locale }: { id: ProductTourStageId; locale: Locale }) {
 
 function AuthScene({ locale }: { locale: Locale }) {
   const c = productTour.auth;
+  const product = products[0]!;
   return (
     <div className="grid min-h-[34rem] place-items-center p-5 sm:p-8">
       <div className="w-full max-w-xl rounded-[1.75rem] border border-outline bg-surface p-5 shadow-xl sm:p-7">
         <div className="flex items-center gap-3">
           <img src="/products/dima-mark.png" alt="" width={36} height={36} className="dima-logo-mark size-9" />
           <div>
-            <p className="text-lg font-semibold text-ink">Dima</p>
+            <p className="text-lg font-semibold text-ink">{product.name}</p>
             <p className="text-micro text-muted">{c.title[locale]}</p>
           </div>
         </div>
@@ -229,7 +229,7 @@ function AuthScene({ locale }: { locale: Locale }) {
 
         <div className="my-5 flex items-center gap-3">
           <span className="h-px flex-1 bg-hairline" />
-          <span className="text-micro text-muted">Dima</span>
+          <span className="text-micro text-muted">{product.name}</span>
           <span className="h-px flex-1 bg-hairline" />
         </div>
 
@@ -354,8 +354,8 @@ function DashboardScene({ locale }: { locale: Locale }) {
   return (
     <div className="relative min-h-[34rem] overflow-hidden bg-raised">
       <img
-        src="/product-concepts/company-map.webp"
-        alt={locale === "tr" ? "Dima Şirket Beyni ürün ekranı, örnek şirket verisi" : "Dima Company Brain product screen with sample company data"}
+        src="/product-concepts/dima-command-center.webp"
+        alt={productTour.dashboard.imageAlt[locale]}
         width={1536}
         height={1024}
         className="absolute inset-0 size-full object-cover object-top"
@@ -391,7 +391,7 @@ function WatchScene({ locale }: { locale: Locale }) {
   return (
     <div className="relative min-h-[34rem] overflow-hidden">
       <img
-        src="/product-concepts/live-system.webp"
+        src="/product-concepts/dima-full-brain.webp"
         alt=""
         width={1536}
         height={1024}
