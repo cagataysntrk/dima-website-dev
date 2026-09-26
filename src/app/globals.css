@@ -304,6 +304,33 @@ nav[aria-label="Main"]:has([aria-expanded="true"]) {
 /* D-068: visual-first product storytelling. The core product tour behaves like a compact
    product demo: scene transitions, progress, monitoring scans and data-flow pulses carry
    meaning. Every animation is compositor-friendly and disappears under reduced motion. */
+@keyframes dima-hero-product-float {
+  0%, 100% { transform: translateY(0) rotate(-0.35deg); }
+  50% { transform: translateY(-6px) rotate(0.2deg); }
+}
+.dima-hero-product {
+  animation: dima-hero-product-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes dima-watch-loop-step {
+  0%, 100% { opacity: 0.45; transform: translateY(0); }
+  12%, 25% { opacity: 1; transform: translateY(-2px); }
+}
+.dima-watch-loop-step {
+  animation: dima-watch-loop-step 4.32s ease-in-out infinite;
+}
+
+@keyframes dima-usecase-flow {
+  0% { transform: translateX(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(58vw); opacity: 0; }
+}
+.dima-usecase-flow {
+  animation: dima-usecase-flow 3.6s ease-in-out infinite;
+}
+
 @keyframes dima-tour-scene-in {
   from { opacity: 0.28; transform: translateY(8px) scale(0.996); filter: blur(3px); }
   to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
@@ -356,6 +383,9 @@ nav[aria-label="Main"]:has([aria-expanded="true"]) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .dima-hero-product,
+  .dima-watch-loop-step,
+  .dima-usecase-flow,
   .dima-tour-scene,
   .dima-tour-tab-progress,
   .dima-watch-scan,

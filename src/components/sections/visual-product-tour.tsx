@@ -58,6 +58,49 @@ function useReducedMotion() {
   return reduced;
 }
 
+export function ProductHeroPreview({ locale }: { locale: Locale }) {
+  const c = productTour.heroPreview;
+  return (
+    <div role="img" aria-label={c.imageAlt[locale]} className="relative mx-auto w-full max-w-[42rem] px-4 pb-8 pt-4 lg:px-0">
+      <div aria-hidden="true" className="absolute inset-x-[12%] top-[18%] h-[58%] rounded-full bg-brand/10 blur-3xl" />
+      <div className="dima-hero-product relative overflow-hidden rounded-[1.65rem] border border-outline bg-surface shadow-2xl">
+        <img
+          src="/product-concepts/dima-command-center.webp"
+          alt=""
+          width={1536}
+          height={1024}
+          fetchPriority="high"
+          className="aspect-[16/10] w-full object-cover object-top"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+        <span className="absolute left-3 top-3 rounded-button border border-white/30 bg-white/85 px-2.5 py-1 font-mono text-micro text-ink shadow-sm backdrop-blur-md">
+          {c.sample[locale]}
+        </span>
+      </div>
+
+      <div className="absolute right-0 top-0 inline-flex items-center gap-2 rounded-button border border-brand-text/25 bg-surface/95 px-3 py-2 text-micro font-semibold text-brand-text shadow-lg backdrop-blur-md sm:right-2">
+        <span aria-hidden="true" className="relative flex size-2">
+          <span className="absolute inline-flex size-full motion-safe:animate-ping rounded-full bg-brand opacity-35" />
+          <span className="relative inline-flex size-2 rounded-full bg-brand" />
+        </span>
+        {c.monitoring[locale]}
+      </div>
+
+      <div className="absolute bottom-0 left-0 max-w-[17rem] rounded-[1.1rem] border border-hairline bg-surface/95 p-3 shadow-xl backdrop-blur-md sm:left-2 sm:max-w-[19rem]">
+        <div className="flex items-start gap-2.5">
+          <span className="grid size-8 shrink-0 place-items-center rounded-control bg-[color-mix(in_oklab,var(--color-text-brand)_9%,var(--color-bg-raised))] text-brand-text">
+            <Radar aria-hidden="true" className="size-4" />
+          </span>
+          <div>
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.12em] text-brand-text">{c.signalMeta[locale]}</p>
+            <p className="mt-1 text-ui font-semibold leading-snug text-ink">{c.signal[locale]}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function VisualProductTour({ locale }: { locale: Locale }) {
   const c = productTour;
   const reduced = useReducedMotion();
@@ -417,6 +460,17 @@ function WatchScene({ locale }: { locale: Locale }) {
                 <span className="dima-watch-scan block h-full w-2/3 rounded-full bg-brand" />
               </span>
               <span className="font-mono text-micro text-muted">{c.monitoring[locale]}</span>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {c.loop[locale].map((item, index) => (
+                <span
+                  key={item}
+                  className="dima-watch-loop-step rounded-button border border-hairline bg-raised px-2.5 py-1 text-micro font-medium text-muted"
+                  style={{ animationDelay: `${index * 720}ms` }}
+                >
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
         </div>

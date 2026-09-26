@@ -9,6 +9,12 @@ export const useCaseLab = {
   },
   visualNote: { tr: "Aynı zekâ döngüsü, farklı iş bağlamları.", en: "The same intelligence loop, different business contexts." },
   ready: { tr: "Karara hazır", en: "Decision-ready" },
+  visualLabels: {
+    signal: { tr: "Sinyal", en: "Signal" },
+    reason: { tr: "Neden", en: "Why" },
+    decision: { tr: "Karar", en: "Decision" },
+    context: { tr: "Bağlam", en: "Context" },
+  },
   labels: {
     problem: { tr: "İş problemi", en: "Business problem" },
     detects: { tr: "Dima neyi fark eder?", en: "What does Dima detect?" },

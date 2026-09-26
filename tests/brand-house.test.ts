@@ -107,6 +107,15 @@ test("the public product story is one visual loop from setup to continuous monit
   ]);
   expect(productTour.stages.at(-1)?.tab.tr).toBe("Sürekli denetim");
   expect(productTour.watch.events).toHaveLength(4);
+  expect(productTour.heroPreview.monitoring.tr).toBe("7/24 denetim aktif");
+  expect(productTour.watch.loop.tr).toEqual([
+    "İzler",
+    "Fark eder",
+    "Araştırır",
+    "Optimize eder",
+    "Karara taşır",
+    "Hatırlar",
+  ]);
 });
 
 test("conversation remains a strong contextual surface without becoming the product center", () => {
@@ -118,6 +127,9 @@ test("conversation remains a strong contextual surface without becoming the prod
 test("business layers are represented as both product depths and concrete use cases", () => {
   expect(capabilityDepths.map((item) => item.id)).toEqual(["management", "finance", "manufacturing"]);
   expect(capabilityDepths.every((item) => item.items.length >= 6)).toBe(true);
+  expect(useCaseLab.visualLabels.signal.tr).toBe("Sinyal");
+  expect(useCaseLab.visualLabels.reason.tr).toBe("Neden");
+  expect(useCaseLab.visualLabels.decision.tr).toBe("Karar");
   expect(useCaseLab.cases.map((item) => item.id)).toEqual([
     "executive",
     "finance",

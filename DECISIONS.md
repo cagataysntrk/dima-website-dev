@@ -7,6 +7,40 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Decision-intelligence visual benchmark pass
+
+### D-069 · Borrow interaction patterns, not competitor copy or identity
+**Decided:** public decision-intelligence sites may be used as interaction and information-
+architecture references, but their wording, branded visual assets, screenshots and distinctive
+creative expression are not copied into Dima.
+
+The useful public patterns are translated into Dima's existing product law:
+- guided product-state tabs become Dima's first-run -> company model -> product surface ->
+  contextual conversation -> continuous-monitoring tour;
+- long capability prose is compressed into visible state changes and short business outcomes;
+- cross-functional examples render as **signal -> why -> decision**, with the data context
+  attached, rather than as feature-card paragraphs;
+- the always-on stage visibly cycles through Dima's own operating rhythm:
+  monitor -> detect -> investigate -> optimize -> prepare decision -> remember outcome.
+
+The homepage hero now uses the product owner's supplied Dima command-center concept directly as
+representative product proof. The hand-built marketing preview is no longer the first product
+image a visitor sees. A small monitoring state and sample finding sit over the screen so the
+visitor understands that this is a continuously running system rather than a static dashboard.
+
+The homepage also removes the separate rotating product-screen gallery because the same product
+screens already appear inside the guided tour. The deeper Product page retains the visual
+gallery for buyers who want to inspect the product concepts individually.
+
+Use-case proof is further compressed: the selected business context keeps only three visible
+stations, Signal, Why and Decision. Detailed problem/investigation copy remains in the typed
+content model and deeper use-case page, but the marketing surface communicates through the
+flow first.
+
+**Reason:** the strongest decision-intelligence websites make the product behavior visible
+before they ask the buyer to read architecture prose. Dima should achieve the same clarity
+without imitating another company's brand or making unverified product claims.
+
 ## 2026-09-26 — Visual-first product storytelling
 
 ### D-068 · One looping product tour replaces stacked explanatory product sections

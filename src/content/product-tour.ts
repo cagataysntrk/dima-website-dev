@@ -89,6 +89,13 @@ export const productTour = {
       en: ["Finance", "Sales", "Manufacturing", "Procurement", "Quality", "Customers", "Inventory", "Maintenance"],
     },
   },
+  heroPreview: {
+    imageAlt: { tr: "Dima ana ürün ekranı, örnek şirket verisi", en: "Dima main product screen with sample company data" },
+    sample: { tr: "Örnek şirket verisi", en: "Sample company data" },
+    monitoring: { tr: "7/24 denetim aktif", en: "Always-on monitoring active" },
+    signal: { tr: "Hat 3 performansı hedefin %11 altında", en: "Line 3 performance is 11% below target" },
+    signalMeta: { tr: "Dima fark etti · Üretim", en: "Detected by Dima · Manufacturing" },
+  },
   dashboard: {
     imageAlt: { tr: "Şirket Beyni ana ürün görünümü, örnek şirket verisi", en: "Company Brain main product view with sample company data" },
     ready: { tr: "Şirket Beyni hazır", en: "Company Brain ready" },
@@ -106,5 +113,9 @@ export const productTour = {
     signal: { tr: "Yeni kritik bulgu", en: "New critical finding" },
     signalTitle: { tr: "Hat 3 performansı hedefin %11 altında", en: "Line 3 performance is 11% below target" },
     impact: { tr: "2 sipariş · 184 bin TL tahmini etki", en: "2 orders · TRY 184k estimated impact" },
+    loop: {
+      tr: ["İzler", "Fark eder", "Araştırır", "Optimize eder", "Karara taşır", "Hatırlar"],
+      en: ["Monitors", "Detects", "Investigates", "Optimizes", "Prepares decisions", "Remembers"],
+    },
   },
 } as const;
