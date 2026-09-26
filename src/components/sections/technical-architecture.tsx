@@ -165,6 +165,24 @@ export function TechnicalArchitecture({ locale }: { locale: Locale }) {
             </div>
           </div>
         </div>
+
+        <div className="grid gap-4 border-t border-hairline pt-8 lg:grid-cols-[0.62fr_1.38fr]">
+          <Stack gap="tight" className="max-w-xl">
+            <Text variant="eyebrow">{c.assurances.eyebrow[locale]}</Text>
+            <h3 className="text-2xl font-semibold tracking-tight text-ink">{c.assurances.title[locale]}</h3>
+          </Stack>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {c.assurances.items.map((item) => (
+              <article key={item.title.en} className="rounded-card border border-hairline bg-surface p-4 shadow-sm">
+                <span className="grid size-8 place-items-center rounded-control bg-raised text-brand-text">
+                  <ShieldCheck aria-hidden="true" className="size-4" />
+                </span>
+                <h4 className="mt-3 text-ui font-semibold text-ink">{item.title[locale]}</h4>
+                <p className="mt-1.5 text-micro leading-relaxed text-muted">{item.body[locale]}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </Stack>
     </Section>
   );

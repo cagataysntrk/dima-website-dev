@@ -66,6 +66,17 @@ test("no hardcoded user-visible strings in site components", async () => {
   expect(hits, "Move the string into src/content with tr and en, and pass it as a prop.\n" + hits.join("\n")).toEqual([]);
 });
 
+test("public website never names the internal analytics substrate", async () => {
+  const files = await scan("src/{app,components,content}/**/*.{ts,tsx,css,mdx,json}");
+  const hits: string[] = [];
+  for (const { path, lines } of files) {
+    lines.forEach((line, i) => {
+      if (/metabase/i.test(line)) hits.push(`${path}:${i + 1}`);
+    });
+  }
+  expect(hits, "Internal vendor names must not appear in public website source.\n" + hits.join("\n")).toEqual([]);
+});
+
 /** The map renders controls, so every control label must exist in both locales. */
 test("map controls are localized", () => {
   const controls = contactPage.office.map.controls;

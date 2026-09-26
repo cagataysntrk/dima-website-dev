@@ -71,6 +71,28 @@ export const technicalArchitecture = {
       output: { tr: "Kurumsal karar hafızası", en: "Institutional decision memory" },
     },
   ] as const,
+  assurances: {
+    eyebrow: { tr: "Güven ve yönetişim", en: "Trust and governance" },
+    title: { tr: "Sonuç yalnız doğru görünmemeli, yeniden kontrol edilebilir olmalı.", en: "A result should not only look right. It should be checkable again." },
+    items: [
+      {
+        title: { tr: "Kaynak izi", en: "Source lineage" },
+        body: { tr: "Önemli sayı ve bulgu; kaynak, dönem, filtre, tazelik ve ilgili kayıt bağlamıyla birlikte tutulur.", en: "Important numbers and findings keep source, period, filter, freshness and related-record context attached." },
+      },
+      {
+        title: { tr: "Tanımlı sayısal otorite", en: "Defined numeric authority" },
+        body: { tr: "Marj, OEE, nakit veya maliyet gibi rakamlar dil modelinin tahmini değildir; tanımlı ölçü ve analitik hesaplardan gelir.", en: "Numbers such as margin, OEE, cash or cost are not language-model guesses; they come from defined measures and analytical calculations." },
+      },
+      {
+        title: { tr: "Yetki sınırı", en: "Permission boundary" },
+        body: { tr: "Kritik eylemler için taslak, doğrulama, önizleme, insan onayı ve işlem kaydı sınırı korunur.", en: "Critical actions preserve draft, validation, preview, human approval and execution-receipt boundaries." },
+      },
+      {
+        title: { tr: "Karar izi ve hafıza", en: "Decision trace and memory" },
+        body: { tr: "Bir kararın hangi kanıta ve varsayıma dayandığı, ne uygulandığı ve sonucun ne olduğu aynı olay üzerinde saklanır.", en: "The evidence and assumptions behind a decision, what was executed and what happened stay linked to the same case." },
+      },
+    ] as const,
+  },
   principles: [
     { title: { tr: "Rakamı model uydurmaz", en: "The model does not invent the number" }, body: { tr: "Sayısal sonuç tanımlı analitik katmandan gelir; dil modeli açıklama ve araştırmada kullanılır.", en: "Numeric results come from the defined analytical layer; the language model supports explanation and investigation." } },
     { title: { tr: "Kanıt bulgudan kopmaz", en: "Evidence stays with the finding" }, body: { tr: "Kaynak, dönem, hesap ve ilişkili kayıtlar sonucun yanında denetlenebilir kalır.", en: "Source, period, calculation and related records remain inspectable next to the result." } },

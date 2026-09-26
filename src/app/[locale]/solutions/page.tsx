@@ -6,6 +6,7 @@ import type { Locale } from "@/i18n/routing";
 import { solutionsPage as copy } from "@/content/pages/solutions";
 import { PageHero } from "@/components/sections/page-hero";
 import { UseCaseLab } from "@/components/sections/use-case-lab";
+import { BusinessValueMap } from "@/components/sections/business-value-map";
 import { VisualProductTour } from "@/components/sections/visual-product-tour";
 import { TechnicalArchitecture } from "@/components/sections/technical-architecture";
 import { ProductVisualGallery } from "@/components/sections/product-visual-gallery";
@@ -49,6 +50,7 @@ export default async function SolutionsPage({ params }: PageProps<"/[locale]/sol
       />
 
       <VisualProductTour locale={locale} />
+      <BusinessValueMap locale={locale} />
       <UseCaseLab locale={locale} />
       <TechnicalArchitecture locale={locale} />
       <ProductVisualGallery locale={locale} />

@@ -7,6 +7,42 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Capability catalog and public architecture boundary
+
+### D-070 · Seventy capabilities remain one Dima intelligence system
+**Decided:** the product-owner UX inventory is represented publicly as one Dima capability
+catalog, not as seventy products or seventy disconnected screens. The catalog contains five
+views over the same intelligence system: 20 company-intelligence capabilities, 20 accounting
+and finance capabilities, 10 manufacturing-core capabilities, 10 textile/dyeing capabilities
+and 10 plastics-processing capabilities.
+
+The homepage exposes only eight representative company-intelligence capabilities as a visual,
+stateful network around Dima. The Use Cases page exposes the full catalog with business-domain
+filters, search and a selected-capability detail surface. Each capability is described through
+a short behavior and a concrete business outcome. The shared Dima operating rhythm remains
+monitor -> detect -> investigate -> optimize -> prepare decision -> remember.
+
+This directory may borrow the general discovery pattern used by capability/skills libraries,
+but Dima copy, product hierarchy, examples, interaction grammar and visual identity remain
+original. Competitor wording, screenshots and distinctive branded expression are not imported.
+
+The Product page adds two trust layers without turning into architecture documentation:
+1. one company event shown through executive, finance, operations and team views, proving that
+   the same company context crosses organizational boundaries;
+2. source lineage, defined numeric authority, permission boundaries and decision/outcome
+   memory, proving how a result remains inspectable and governed.
+
+Public website source must not name internal analytics vendors or infrastructure products.
+Customer-facing architecture uses only Dima concepts: data sources -> company model -> defined
+analytics -> continuous monitoring -> evidence-backed investigation -> governed decision and
+action -> outcome/decision memory. tests/guards.test.ts enforces that abstraction boundary
+across public app, component and content source.
+
+**Reason:** buyers need enough breadth to recognize their own work while still understanding
+that Dima is one continuously operating company intelligence system. Technical buyers also
+need a credible trust model, but implementation-vendor vocabulary would weaken the Dima
+product boundary and leak internal architecture into marketing.
+
 ## 2026-09-26 — Decision-intelligence visual benchmark pass
 
 ### D-069 · Borrow interaction patterns, not competitor copy or identity

@@ -12,6 +12,7 @@ import { HomeHero } from "@/components/home/home-hero";
 import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
 import { LoopBand, ReferenceStrip, SectorsSection } from "@/components/sections/home";
 import { UseCaseLab } from "@/components/sections/use-case-lab";
+import { CapabilityShowcase } from "@/components/sections/capability-catalog";
 import { ProductHeroPreview, VisualProductTour } from "@/components/sections/visual-product-tour";
 import { TeamRow } from "@/components/sections/team-row";
 import { CtaBand } from "@/components/sections/cta-band";
@@ -54,6 +55,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       />
 
       <VisualProductTour locale={locale} />
+      <CapabilityShowcase locale={locale} />
       <UseCaseLab locale={locale} />
       <SectorsSection locale={locale} industries={industries} copy={copy.industries} />
       <ReferenceStrip label={copy.references.label[locale]} partners={copy.references.partners} />

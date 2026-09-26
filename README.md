@@ -114,12 +114,14 @@ Copy is never written in a component. It lives in typed files under `src/content
 |---|---|
 | `products.ts` | Active Dima registry: product identity, canonical domain and shared product copy |
 | `company-brain.ts` | Şirket Beyni state model, domains, signals, lenses, evidence and decision context |
-| `product-tour.ts` | Canonical visual story: setup, data connection, company model, dashboard, contextual chat and continuous monitoring |
+| `product-tour.ts` | Canonical visual story: setup, data connection, company model, product surface, contextual conversation and continuous monitoring |
+| `capability-catalog.ts` | Seventy Dima capabilities across company intelligence, finance, manufacturing, textile and plastics, all mapped to the shared intelligence loop |
+| `business-value.ts` | Executive, finance, operations and team lenses over one cross-functional company event |
 | `continuous-intelligence.ts` | Detailed always-on monitoring content retained for deeper/reusable surfaces |
 | `product-experience.ts` | End-to-end signal -> investigation -> evidence -> decision -> action sample case |
 | `capability-depths.ts` | Management, accounting/finance and manufacturing depths of the same product |
 | `use-case-lab.ts` | Concrete executive, finance, sales, manufacturing, procurement and quality scenarios |
-| `technical-architecture.ts` | Technical source/model/analytics/watch/investigation/decision/memory flow |
+| `technical-architecture.ts` | Public technical flow plus source-lineage, numeric-authority, permission and decision-memory trust contracts |
 | `contextual-chat.ts`, `dima-demo.ts` | Contextual conversation framing plus the interactive sample chat data and SQL |
 | `industries.ts` | Compact sector gallery data; detailed domain/sector contexts live in `pages/industries.ts` |
 | `team.ts`, `careers.ts` | The team, open roles and hiring steps |

@@ -1,8 +1,8 @@
 export const solutionsPage = {
   meta: {
     title: {
-      tr: "Dima nasıl çalışır? Şirket Beyni, araştırma ve karar akışı",
-      en: "How Dima works: Company Brain, investigation and decision flow",
+      tr: "Dima nasıl çalışır? Veri, denetim, araştırma, karar ve eylem",
+      en: "How Dima works: data, monitoring, investigation, decisions and action",
     },
     description: {
       tr: "Dima'nın şirket verisini nasıl bağladığını, Şirket Beyni ile nasıl izlediğini, bulguları nasıl kanıtlarıyla araştırıp karar ve eyleme taşıdığını görün.",
@@ -19,8 +19,8 @@ export const solutionsPage = {
       en: "How does Dima monitor a company and move work toward decisions?",
     },
     lede: {
-      tr: "Dima bir soru kutusu veya rapor ekranı olarak başlamaz. Şirketin finans, muhasebe, üretim ve diğer veri kaynaklarını ortak bir bağlamda anlamlandırır; güncel veri akışına göre izler, önemli değişimleri bulur, nedenini araştırır ve karar için gereken kanıtı aynı akışta tutar.",
-      en: "Dima does not begin as a question box or reporting screen. It connects finance, accounting, manufacturing and other company data into one context, monitors changes as data updates, surfaces what matters, investigates why it happened, and keeps the evidence needed for a decision in the same flow.",
+      tr: "Dima yalnız veri göstermez. ERP, muhasebe, banka, CRM, üretim ve dosya kaynaklarını ortak şirket modeline bağlar; tanımlı ölçülerle hesaplar, 7/24 izler, sapma ve fırsatı bulur, nedenini kanıtlarıyla araştırır, seçenek hazırlar ve yetki sınırları içinde eyleme taşır.",
+      en: "Dima does more than display data. It connects ERP, accounting, banking, CRM, manufacturing and file sources into one company model; calculates through defined measures, monitors continuously, detects deviations and opportunities, investigates causes with evidence, prepares options and moves work toward action within permission boundaries.",
     },
     trial: { tr: "Dima'yı deneyin", en: "Try Dima" },
     demo: { tr: "Canlı gösterim isteyin", en: "Request a live demo" },
@@ -157,7 +157,7 @@ export const solutionsPage = {
     },
     body: {
       tr: "Deneme çalışması için bütün şirketi bir günde bağlamak gerekmez. Finans, muhasebe veya üretimde bugün geç fark edilen, farklı ekranlardan takip edilen ya da nedenini bulmak zaman alan bir problemi seçin; gerekli veriyi bağlayıp Dima'nın aynı döngüyü gerçek şirket bağlamında nasıl çalıştırdığını gösterelim.",
-      en: "A deneme çalışması does not require connecting the whole company on day one. Choose one finance, accounting or manufacturing problem that is detected late, tracked across several screens or takes too long to explain; connect the data it needs and see the same Dima loop operate in your real company context.",
+      en: "A trial does not require connecting the whole company on day one. Choose one finance, accounting or manufacturing problem that is detected late, tracked across several screens or takes too long to explain; connect the data it needs and see the same Dima loop operate in your real company context.",
     },
     action: { tr: "Canlı gösterim isteyin", en: "Request a live demo" },
   },

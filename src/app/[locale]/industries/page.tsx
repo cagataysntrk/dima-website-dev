@@ -7,6 +7,7 @@ import type { Locale } from "@/i18n/routing";
 import { industriesPage as copy } from "@/content/pages/industries";
 import { PageHero } from "@/components/sections/page-hero";
 import { UseCaseLab } from "@/components/sections/use-case-lab";
+import { CapabilityDirectory } from "@/components/sections/capability-catalog";
 import { PointList } from "@/components/sections/parts";
 import { CtaBand } from "@/components/sections/cta-band";
 import { JsonLd } from "@/components/json-ld";
@@ -59,6 +60,7 @@ export default async function IndustriesPage({ params }: PageProps<"/[locale]/in
         </div>
       </Section>
 
+      <CapabilityDirectory locale={locale} />
       <UseCaseLab locale={locale} />
 
       {copy.domains.map((item) => (

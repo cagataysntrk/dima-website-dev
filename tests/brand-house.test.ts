@@ -7,6 +7,8 @@ import { useCaseLab } from "@/content/use-case-lab";
 import { technicalArchitecture } from "@/content/technical-architecture";
 import { contextualChat } from "@/content/contextual-chat";
 import { productTour } from "@/content/product-tour";
+import { capabilities, capabilityGroups, homeCapabilityIds } from "@/content/capability-catalog";
+import { businessValue } from "@/content/business-value";
 import { industriesPage } from "@/content/pages/industries";
 import { homePage } from "@/content/pages/home";
 import { products } from "@/content/products";
@@ -124,6 +126,34 @@ test("conversation remains a strong contextual surface without becoming the prod
   expect(contextualChat.context.tr).toContain("Hat 3");
 });
 
+test("Dima capabilities stay one catalog over shared intelligence rather than separate products", () => {
+  expect(capabilityGroups.map((group) => group.id)).toEqual([
+    "general",
+    "finance",
+    "manufacturing",
+    "textile",
+    "plastics",
+  ]);
+  expect(capabilities).toHaveLength(70);
+  expect(capabilities.filter((item) => item.group === "general")).toHaveLength(20);
+  expect(capabilities.filter((item) => item.group === "finance")).toHaveLength(20);
+  expect(capabilities.filter((item) => item.group === "manufacturing")).toHaveLength(10);
+  expect(capabilities.filter((item) => item.group === "textile")).toHaveLength(10);
+  expect(capabilities.filter((item) => item.group === "plastics")).toHaveLength(10);
+  expect(homeCapabilityIds).toHaveLength(8);
+});
+
+test("business value keeps one company context across management layers", () => {
+  expect(businessValue.roles.map((role) => role.id)).toEqual([
+    "executive",
+    "finance",
+    "operations",
+    "teams",
+  ]);
+  expect(businessValue.example.nodes).toHaveLength(4);
+  expect(businessValue.example.signal.tr).toContain("Hat 3");
+});
+
 test("business layers are represented as both product depths and concrete use cases", () => {
   expect(capabilityDepths.map((item) => item.id)).toEqual(["management", "finance", "manufacturing"]);
   expect(capabilityDepths.every((item) => item.items.length >= 6)).toBe(true);
@@ -151,6 +181,8 @@ test("technical architecture keeps deterministic analytics, monitoring, investig
     "memory",
   ]);
   expect(technicalArchitecture.principles[0]?.title.tr).toBe("Rakamı model uydurmaz");
+  expect(technicalArchitecture.assurances.items).toHaveLength(4);
+  expect(technicalArchitecture.assurances.items[0]?.title.tr).toBe("Kaynak izi");
 });
 
 test("sector contexts are broad enough for the first market story", () => {
