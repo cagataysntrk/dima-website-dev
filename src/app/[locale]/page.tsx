@@ -9,8 +9,7 @@ import { getPosts } from "@/lib/blog";
 import { PostList } from "@/components/sections/blog";
 import { homePage as copy } from "@/content/pages/home";
 import { HomeHero } from "@/components/home/home-hero";
-import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
-import { LoopBand, ReferenceStrip, SectorsSection } from "@/components/sections/home";
+import { ReferenceStrip, SectorsSection } from "@/components/sections/home";
 import { UseCaseLab } from "@/components/sections/use-case-lab";
 import { CapabilityShowcase } from "@/components/sections/capability-catalog";
 import { ProductHeroPreview, VisualProductTour } from "@/components/sections/visual-product-tour";
@@ -41,11 +40,13 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         lede={copy.hero.lede[locale]}
         actions={
           <>
-            {tryUrl ? (
-              <RainbowButton as="a" href={tryUrl}>{copy.hero.primary[locale]}</RainbowButton>
-            ) : (
-              <RainbowButton as={Link} href="/solutions">{copy.hero.primaryFallback[locale]}</RainbowButton>
-            )}
+            <Button variant="primary" asChild className="rounded-button!">
+              {tryUrl ? (
+                <a href={tryUrl}>{copy.hero.primary[locale]}</a>
+              ) : (
+                <Link href="/solutions">{copy.hero.primaryFallback[locale]}</Link>
+              )}
+            </Button>
             <Button variant="secondary" asChild className="rounded-button!">
               <Link href="/contact">{copy.hero.secondary[locale]}</Link>
             </Button>
@@ -59,7 +60,6 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <UseCaseLab locale={locale} />
       <SectorsSection locale={locale} industries={industries} copy={copy.industries} />
       <ReferenceStrip label={copy.references.label[locale]} partners={copy.references.partners} />
-      <LoopBand text={copy.loop[locale]} lang={locale} />
 
       {latest.length > 0 && (
         <PostList
@@ -82,7 +82,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         id="talk"
         title={copy.cta.title[locale]}
         body={copy.cta.body[locale]}
-        action={<RainbowButton as={Link} href="/contact">{copy.cta.action[locale]}</RainbowButton>}
+        action={<Button variant="primary" asChild><Link href="/contact">{copy.cta.action[locale]}</Link></Button>}
       />
     </>
   );

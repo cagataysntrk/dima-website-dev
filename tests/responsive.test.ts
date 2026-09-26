@@ -26,6 +26,23 @@ test("hero titles include word break and fluid responsive sizing", async () => {
   expect(pageHero).toContain("[overflow-wrap:anywhere]");
 });
 
+test("homepage uses product-first wide surfaces instead of decorative AI hero effects", async () => {
+  const hero = await Bun.file(ROOT + "src/components/home/home-hero.tsx").text();
+  expect(hero).toContain('width="wide"');
+  expect(hero).not.toContain("HeroField");
+
+  const home = await Bun.file(ROOT + "src/app/[locale]/page.tsx").text();
+  expect(home).not.toContain("RainbowButton");
+
+  const tour = await Bun.file(ROOT + "src/components/sections/visual-product-tour.tsx").text();
+  expect(tour).toContain('width="wide"');
+  expect(tour).toContain("AnimatedBackground");
+
+  const capabilities = await Bun.file(ROOT + "src/components/sections/capability-catalog.tsx").text();
+  expect(capabilities).toContain("dima-command-center.webp");
+  expect(capabilities).not.toContain("FEATURE_POSITIONS");
+});
+
 test("sector gallery maintains vertical accordion on tablets up to lg", async () => {
   const sectorGallery = await Bun.file(ROOT + "src/components/sections/sector-gallery.tsx").text();
   expect(sectorGallery).toContain("lg:flex-row");

@@ -34,8 +34,8 @@ export const homePage = {
       en: ["why", "next"],
     },
     lede: {
-      tr: "Dima şirketinizin veri kaynaklarını birbirine bağlar ve sürekli izler. Önemli bir sapma, risk veya fırsat oluştuğunda sizin sormanızı beklemeden fark eder, nedenini kanıtlarıyla araştırır ve ne yapılabileceğini karar vermeye hazır biçimde sunar.",
-      en: "Dima connects and continuously monitors your company's data sources. When an important deviation, risk or opportunity appears, it detects it without waiting for a prompt, investigates why with evidence, and presents what can be done in a decision-ready form.",
+      tr: "Dima ERP, muhasebe, banka, satış, üretim ve dosya verilerini tek şirket bağlamında birleştirir. Planı ve geçmiş davranışı sürekli izler; önemli bir sapma, risk veya fırsat oluştuğunda nedenini kanıtlarıyla araştırır, iş etkisini gösterir ve karar seçeneklerini hazırlar.",
+      en: "Dima connects ERP, accounting, banking, sales, manufacturing and file data into one company context. It continuously compares plans with historical behavior; when a meaningful deviation, risk or opportunity appears, it investigates why with evidence, shows the business impact and prepares decision options.",
     },
     primary: { tr: "Dima'yı deneyin", en: "Try Dima" },
     primaryFallback: { tr: "Dima nasıl çalışır?", en: "See how Dima works" },

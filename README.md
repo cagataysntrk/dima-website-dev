@@ -83,13 +83,14 @@ Production app variables (`NEXT_PUBLIC_SITE_URL`, PostHog, SMTP, etc.) are liste
 
 ## Performance budgets
 
-LCP <2.5s; per-route JS <250kB gzip (`e2e/budget.e2e.ts` measures first-load JS: /tr
-237 kB, /tr/cozumler 220 kB on 2026-09-24). Heavy decoration (three/gsap/cobe/maplibre,
-Pixel Blast, hero globe, map) is never in the page bundle: `dynamic ssr:false`,
-idle/in-view gated (`useDeferredDecoration`), DPR ≤1.5, map click-to-load. Site
-exceptions (capsule rainbow CTAs, Geist headline, vendor kit, fixed nav, chat demo) are
-recorded in `DECISIONS.md` (D-032…D-041). Canonical paths: `upcytech/` is the app,
-`../design-system` the authority, `../upcytech_archive` read-only legacy — do not edit.
+LCP <2.5s; per-route JS <250kB gzip (`e2e/budget.e2e.ts` measures first-load JS). Heavy
+decoration (three/gsap/cobe/maplibre) is never allowed to dominate the product story and remains
+idle/in-view gated where it is still used. The homepage hero itself no longer loads Pixel Blast
+or animated headline effects. Product-state selection uses the locally vendored
+`motion-primitives/animated-background.tsx`, adapted from Motion-Primitives' MIT component.
+Current visual-system authority is `DECISIONS.md` D-071. Canonical paths:
+`upcytech/` is the app, `../design-system` the authority, `../upcytech_archive` read-only
+legacy — do not edit.
 
 ## Environment
 

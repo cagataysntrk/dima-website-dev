@@ -25,6 +25,7 @@ import { productTour, type ProductTourStageId } from "@/content/product-tour";
 import { chatDemoFor } from "@/content/dima-demo";
 import { products } from "@/content/products";
 import { ChatDemo } from "@/components/sections/chat-demo/chat-demo";
+import { AnimatedBackground } from "@/components/vendor/motion-primitives/animated-background";
 
 const STAGE_ICON: Record<ProductTourStageId, LucideIcon> = {
   auth: Sparkles,
@@ -60,38 +61,31 @@ function useReducedMotion() {
 
 export function ProductHeroPreview({ locale }: { locale: Locale }) {
   const c = productTour.heroPreview;
+
   return (
-    <div role="img" aria-label={c.imageAlt[locale]} className="relative mx-auto w-full max-w-[42rem] px-4 pb-8 pt-4 lg:px-0">
-      <div aria-hidden="true" className="absolute inset-x-[12%] top-[18%] h-[58%] rounded-full bg-brand/10 blur-3xl" />
-      <div className="dima-hero-product relative overflow-hidden rounded-[1.65rem] border border-outline bg-surface shadow-2xl">
-        <img
-          src="/product-concepts/dima-command-center.webp"
-          alt=""
-          width={1536}
-          height={1024}
-          fetchPriority="high"
-          className="aspect-[16/10] w-full object-cover object-top"
-        />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
-        <span className="absolute left-3 top-3 rounded-button border border-white/30 bg-white/85 px-2.5 py-1 font-mono text-micro text-ink shadow-sm backdrop-blur-md">
-          {c.sample[locale]}
-        </span>
-      </div>
-
-      <div className="absolute right-0 top-0 inline-flex items-center gap-2 rounded-button border border-brand-text/25 bg-surface/95 px-3 py-2 text-micro font-semibold text-brand-text shadow-lg backdrop-blur-md sm:right-2">
-        <span aria-hidden="true" className="relative flex size-2">
-          <span className="absolute inline-flex size-full motion-safe:animate-ping rounded-full bg-brand opacity-35" />
-          <span className="relative inline-flex size-2 rounded-full bg-brand" />
-        </span>
-        {c.monitoring[locale]}
-      </div>
-
-      <div className="absolute bottom-0 left-0 max-w-[17rem] rounded-[1.1rem] border border-hairline bg-surface/95 p-3 shadow-xl backdrop-blur-md sm:left-2 sm:max-w-[19rem]">
-        <div className="flex items-start gap-2.5">
-          <span className="grid size-8 shrink-0 place-items-center rounded-control bg-[color-mix(in_oklab,var(--color-text-brand)_9%,var(--color-bg-raised))] text-brand-text">
-            <Radar aria-hidden="true" className="size-4" />
+    <div role="img" aria-label={c.imageAlt[locale]} className="relative w-full">
+      <div className="overflow-hidden rounded-[1.35rem] border border-outline bg-surface shadow-2xl">
+        <div className="flex min-h-11 items-center gap-2 border-b border-hairline bg-surface px-4">
+          <span aria-hidden="true" className="size-2 rounded-full bg-outline" />
+          <span aria-hidden="true" className="size-2 rounded-full bg-outline" />
+          <span aria-hidden="true" className="size-2 rounded-full bg-outline" />
+          <span className="ml-2 font-mono text-micro uppercase tracking-[0.12em] text-muted">{c.sample[locale]}</span>
+          <span className="ml-auto inline-flex items-center gap-2 text-micro font-medium text-muted">
+            <span aria-hidden="true" className="size-2 rounded-full bg-positive" />
+            {c.monitoring[locale]}
           </span>
-          <div>
+        </div>
+
+        <div className="relative">
+          <img
+            src="/product-concepts/dima-full-brain.webp"
+            alt=""
+            width={1536}
+            height={1024}
+            fetchPriority="high"
+            className="aspect-[16/10] w-full object-cover object-top"
+          />
+          <div className="absolute bottom-4 right-4 max-w-[18rem] rounded-[1rem] border border-hairline bg-surface/95 p-3 shadow-lg backdrop-blur-md sm:bottom-5 sm:right-5">
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.12em] text-brand-text">{c.signalMeta[locale]}</p>
             <p className="mt-1 text-ui font-semibold leading-snug text-ink">{c.signal[locale]}</p>
           </div>
@@ -116,7 +110,7 @@ export function VisualProductTour({ locale }: { locale: Locale }) {
         const index = c.stages.findIndex((stage) => stage.id === current);
         return c.stages[(index + 1) % c.stages.length]!.id;
       });
-    }, 5200);
+    }, 6200);
     return () => window.clearInterval(timer);
   }, [paused, reduced, c.stages]);
 
@@ -126,20 +120,20 @@ export function VisualProductTour({ locale }: { locale: Locale }) {
   };
 
   return (
-    <Section divided aria-labelledby="visual-product-tour-title">
+    <Section width="wide" responsive aria-labelledby="visual-product-tour-title" className="py-20! sm:py-24! lg:py-28!">
       <Stack gap="loose">
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-          <Stack gap="tight" className="max-w-4xl">
+        <div className="grid gap-5 lg:grid-cols-12 lg:items-end">
+          <Stack gap="tight" className="lg:col-span-8">
             <Text variant="eyebrow">{c.eyebrow[locale]}</Text>
             <Heading level={2} variant="title" id="visual-product-tour-title">{c.title[locale]}</Heading>
           </Stack>
-          <div className="flex items-center gap-2 lg:justify-self-end">
-            <span className="hidden font-mono text-micro uppercase tracking-[0.12em] text-muted sm:inline">{c.note[locale]}</span>
+          <div className="flex items-center gap-3 lg:col-span-4 lg:justify-self-end">
+            <span className="hidden max-w-52 text-right font-mono text-micro uppercase tracking-[0.12em] text-muted sm:block">{c.note[locale]}</span>
             <button
               type="button"
               onClick={() => setPaused((value) => !value)}
               aria-label={(paused ? c.auto.resume : c.auto.pause)[locale]}
-              className="inline-flex min-h-11 items-center gap-2 rounded-button border border-hairline bg-surface px-3 text-ui text-muted shadow-sm transition hoverable:hover:text-ink"
+              className="inline-flex min-h-11 items-center gap-2 rounded-button border border-hairline bg-surface px-3 text-ui font-medium text-muted transition hoverable:hover:text-ink"
             >
               {paused ? <Play aria-hidden="true" className="size-4" /> : <Pause aria-hidden="true" className="size-4" />}
               <span>{(paused ? c.auto.resume : c.auto.pause)[locale]}</span>
@@ -147,94 +141,82 @@ export function VisualProductTour({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[1.75rem] border border-outline bg-surface shadow-xl">
-          <div className="border-b border-hairline bg-canvas/70 p-2 sm:p-3">
-            <div role="tablist" aria-label={c.title[locale]} className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-6">
-              {c.stages.map((stage) => {
-                const Icon = STAGE_ICON[stage.id];
-                const selected = stage.id === active.id;
-                return (
+        <div className="grid gap-5 lg:grid-cols-[17rem_minmax(0,1fr)] xl:gap-7">
+          <div className="lg:pt-3">
+            <div role="tablist" aria-label={c.title[locale]} className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+              <AnimatedBackground
+                defaultValue={active.id}
+                onValueChange={(id) => {
+                  if (id) choose(id as ProductTourStageId);
+                }}
+                className="rounded-[0.9rem] bg-ink shadow-sm"
+                transition={{ type: "spring", stiffness: 360, damping: 34 }}
+              >
+                {c.stages.map((stage) => {
+                  const Icon = STAGE_ICON[stage.id];
+                  return (
+                    <button
+                      key={stage.id}
+                      data-id={stage.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={stage.id === active.id}
+                      className="min-w-[12.5rem] rounded-[0.9rem] px-3 py-3 text-left text-ink transition-colors data-[checked=true]:text-canvas lg:min-w-0"
+                    >
+                      <span className="flex items-start gap-3">
+                        <span className="grid size-8 shrink-0 place-items-center rounded-control border border-current/15">
+                          <Icon aria-hidden="true" className="size-4" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-ui font-semibold">{stage.tab[locale]}</span>
+                          <span className="mt-0.5 block truncate font-mono text-[0.62rem] uppercase tracking-[0.11em] opacity-60">
+                            {stage.step} · {stage.meta[locale]}
+                          </span>
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </AnimatedBackground>
+            </div>
+
+            <div className="mt-5 hidden border-t border-hairline pt-4 lg:block">
+              <p className="text-ui font-semibold text-ink">{active.title[locale]}</p>
+              <p className="mt-2 text-ui leading-relaxed text-muted">{active.caption[locale]}</p>
+              <div className="mt-5 flex gap-1.5">
+                {c.stages.map((stage, index) => (
                   <button
                     key={stage.id}
                     type="button"
-                    role="tab"
-                    aria-selected={selected}
+                    aria-label={stage.tab[locale]}
                     onClick={() => choose(stage.id)}
-                    className={[
-                      "relative min-h-14 overflow-hidden rounded-control border px-3 py-2.5 text-left transition",
-                      selected
-                        ? "border-ink/10 bg-ink text-canvas shadow-md"
-                        : "border-hairline bg-surface text-ink hoverable:hover:border-outline",
-                    ].join(" ")}
-                  >
-                    <span className="flex items-center gap-2">
-                      <span className={[
-                        "grid size-7 shrink-0 place-items-center rounded-full",
-                        selected ? "bg-white/10 text-white" : "bg-raised text-brand-text",
-                      ].join(" ")}>
-                        <Icon aria-hidden="true" className="size-3.5" />
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block truncate text-ui font-semibold">{stage.tab[locale]}</span>
-                        <span className={["mt-0.5 block truncate font-mono text-[0.625rem] uppercase tracking-[0.12em]", selected ? "text-white/60" : "text-muted"].join(" ")}>
-                          {stage.step} · {stage.meta[locale]}
-                        </span>
-                      </span>
-                    </span>
-                    {selected && !paused && !reduced && (
-                      <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 bg-white/15">
-                        <span key={active.id} className="dima-tour-tab-progress block h-full bg-white/70" />
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="border-b border-hairline px-4 py-3 sm:px-6">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-mono text-micro uppercase tracking-[0.12em] text-brand-text">{active.meta[locale]}</p>
-                <h3 className="mt-1 text-lg font-semibold tracking-tight text-ink sm:text-xl">{active.title[locale]}</h3>
-              </div>
-              <p className="max-w-xl text-ui leading-relaxed text-muted">{active.caption[locale]}</p>
-            </div>
-          </div>
-
-          <div className="relative min-h-[34rem] overflow-hidden bg-[radial-gradient(circle_at_50%_35%,color-mix(in_oklab,var(--color-text-brand)_7%,transparent),transparent_48%)]">
-            <div key={active.id} className="dima-tour-scene min-h-[34rem]">
-              <TourScene id={active.id} locale={locale} />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 border-t border-hairline px-4 py-3 sm:px-6">
-            <span className="font-mono text-micro text-muted">{String(activeIndex + 1).padStart(2, "0")}</span>
-            <div className="flex flex-1 gap-1.5">
-              {c.stages.map((stage, index) => (
-                <button
-                  key={stage.id}
-                  type="button"
-                  aria-label={stage.tab[locale]}
-                  onClick={() => choose(stage.id)}
-                  className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-raised"
-                >
-                  <span
-                    className={[
-                      "absolute inset-y-0 left-0 rounded-full bg-brand transition-[width] duration-300",
-                      index < activeIndex ? "w-full" : index === activeIndex ? "w-full" : "w-0",
-                    ].join(" ")}
+                    className={["h-1 flex-1 rounded-full transition-colors", index <= activeIndex ? "bg-brand" : "bg-hairline"].join(" ")}
                   />
-                </button>
-              ))}
+                ))}
+              </div>
             </div>
-            <span className="hidden items-center gap-1.5 text-micro text-muted sm:inline-flex">
-              <span aria-hidden="true" className="relative flex size-2">
-                <span className="absolute inline-flex size-full motion-safe:animate-ping rounded-full bg-brand opacity-35" />
-                <span className="relative inline-flex size-2 rounded-full bg-brand" />
-              </span>
-              {c.auto.running[locale]}
-            </span>
+          </div>
+
+          <div className="min-w-0 overflow-hidden rounded-[1.35rem] border border-outline bg-surface shadow-2xl">
+            <div className="flex min-h-12 items-center border-b border-hairline px-4 sm:px-5">
+              <span aria-hidden="true" className="size-2 rounded-full bg-outline" />
+              <span aria-hidden="true" className="ml-1.5 size-2 rounded-full bg-outline" />
+              <span aria-hidden="true" className="ml-1.5 size-2 rounded-full bg-outline" />
+              <div className="ml-4 min-w-0">
+                <p className="truncate text-ui font-semibold text-ink">{active.title[locale]}</p>
+              </div>
+              <span className="ml-auto hidden text-micro text-muted sm:inline">{c.auto.running[locale]}</span>
+            </div>
+
+            <div className="border-b border-hairline px-4 py-3 lg:hidden">
+              <p className="text-ui leading-relaxed text-muted">{active.caption[locale]}</p>
+            </div>
+
+            <div className="relative min-h-[36rem] overflow-hidden bg-canvas sm:min-h-[40rem] xl:min-h-[43rem]">
+              <div key={active.id} className="dima-tour-scene min-h-[36rem] sm:min-h-[40rem] xl:min-h-[43rem]">
+                <TourScene id={active.id} locale={locale} />
+              </div>
+            </div>
           </div>
         </div>
       </Stack>
@@ -307,7 +289,7 @@ function ConnectScene({ locale }: { locale: Locale }) {
           ))}
         </svg>
         <div className="absolute left-1/2 top-1/2 z-10 grid size-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-text/30 bg-surface shadow-xl">
-          <span aria-hidden="true" className="absolute inset-0 motion-safe:animate-ping rounded-full border border-brand-text/20" />
+          <span aria-hidden="true" className="absolute inset-0 rounded-full border border-brand-text/20" />
           <img src="/products/dima-mark.png" alt="" width={36} height={36} className="dima-logo-mark relative size-9" />
         </div>
         <div className="absolute inset-y-0 left-4 flex w-[42%] flex-col justify-center gap-2 sm:left-6">
@@ -317,7 +299,7 @@ function ConnectScene({ locale }: { locale: Locale }) {
               <div key={source} className="flex items-center gap-2 rounded-control border border-hairline bg-surface/95 px-3 py-2 shadow-sm backdrop-blur-sm">
                 <span className="grid size-7 place-items-center rounded-control bg-raised text-brand-text"><Icon aria-hidden="true" className="size-3.5" /></span>
                 <span className="text-micro font-medium text-ink">{source}</span>
-                <span className="ml-auto size-1.5 rounded-full bg-brand motion-safe:animate-pulse" style={{ animationDelay: `${index * 180}ms` }} />
+                <span className="ml-auto size-1.5 rounded-full bg-brand" style={{ animationDelay: `${index * 180}ms` }} />
               </div>
             );
           })}
@@ -344,7 +326,7 @@ function ConnectScene({ locale }: { locale: Locale }) {
                 "grid size-7 place-items-center rounded-full",
                 index < 3 ? "bg-[color-mix(in_oklab,var(--color-text-brand)_12%,transparent)] text-brand-text" : "bg-surface text-muted",
               ].join(" ")}>
-                {index < 3 ? <Check aria-hidden="true" className="size-4" /> : <span className="size-2 rounded-full bg-brand motion-safe:animate-ping" />}
+                {index < 3 ? <Check aria-hidden="true" className="size-4" /> : <span className="size-2 rounded-full bg-brand" />}
               </span>
               <span className="text-ui font-medium text-ink">{item}</span>
             </div>
@@ -368,7 +350,7 @@ function ModelScene({ locale }: { locale: Locale }) {
         ))}
       </svg>
       <div className="absolute left-1/2 top-1/2 z-10 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-text/35 bg-surface shadow-xl">
-        <span aria-hidden="true" className="absolute inset-2 rounded-full border border-brand-text/15 motion-safe:animate-pulse" />
+        <span aria-hidden="true" className="absolute inset-2 rounded-full border border-brand-text/15" />
         <div className="text-center">
           <img src="/products/dima-mark.png" alt="" width={34} height={34} className="dima-logo-mark mx-auto size-8" />
           <p className="mt-1 text-micro font-semibold text-ink">{c.company[locale]}</p>
@@ -383,7 +365,7 @@ function ModelScene({ locale }: { locale: Locale }) {
             style={{ left: x, top: y }}
           >
             <span className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-brand motion-safe:animate-pulse" style={{ animationDelay: `${index * 120}ms` }} />
+              <span className="size-2 rounded-full bg-brand" style={{ animationDelay: `${index * 120}ms` }} />
               <span className="text-micro font-semibold text-ink sm:text-ui">{domain}</span>
             </span>
           </div>

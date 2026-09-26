@@ -12,6 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Heading, Section, Stack, Text } from "@upcytech/ui";
+import { AnimatedBackground } from "@/components/vendor/motion-primitives/animated-background";
 
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -32,17 +33,6 @@ const GROUP_ICON: Record<CapabilityGroupId, LucideIcon> = {
   plastics: FlaskConical,
 };
 
-const FEATURE_POSITIONS = [
-  ["7%", "14%"],
-  ["38%", "2%"],
-  ["72%", "11%"],
-  ["82%", "42%"],
-  ["70%", "73%"],
-  ["38%", "82%"],
-  ["8%", "70%"],
-  ["0%", "40%"],
-] as const;
-
 export function CapabilityShowcase({ locale }: { locale: Locale }) {
   const featured = capabilities.filter((item) => homeCapabilityIds.includes(item.id));
   const [activeId, setActiveId] = React.useState<CapabilityId>(featured[0]!.id);
@@ -58,116 +48,100 @@ export function CapabilityShowcase({ locale }: { locale: Locale }) {
         const index = featured.findIndex((item) => item.id === current);
         return featured[(index + 1) % featured.length]!.id;
       });
-    }, 4200);
+    }, 5200);
     return () => window.clearInterval(timer);
   }, [manual, featured]);
 
+  const image =
+    active.id === "investigation" || active.id === "decision-desk" || active.id === "scenario-studio"
+      ? "/product-concepts/dima-full-brain.webp"
+      : "/product-concepts/dima-command-center.webp";
+
   return (
-    <Section divided aria-labelledby="capability-showcase-title">
+    <Section
+      width="wide"
+      responsive
+      aria-labelledby="capability-showcase-title"
+      className="bg-[var(--upcytech-neutral-1000)] py-20! text-white sm:py-24! lg:py-28!"
+    >
       <Stack gap="loose">
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-          <Stack gap="tight" className="max-w-4xl">
-            <Text variant="eyebrow">{copy.eyebrow[locale]}</Text>
-            <Heading level={2} variant="title" id="capability-showcase-title">{copy.title[locale]}</Heading>
-            <Text tone="muted" className="max-w-3xl">{copy.intro[locale]}</Text>
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+          <Stack gap="tight" className="lg:col-span-8">
+            <Text variant="eyebrow" className="text-white/55">{copy.eyebrow[locale]}</Text>
+            <Heading level={2} variant="title" id="capability-showcase-title" className="max-w-4xl text-white">
+              {copy.title[locale]}
+            </Heading>
+            <p className="max-w-3xl text-ui leading-relaxed text-white/60">{copy.intro[locale]}</p>
           </Stack>
           <Link
             href="/industries"
-            className="inline-flex min-h-11 w-fit items-center rounded-button border border-hairline bg-surface px-4 text-ui font-semibold text-ink transition hoverable:hover:border-outline lg:justify-self-end"
+            className="inline-flex min-h-11 w-fit items-center rounded-button border border-white/15 px-4 text-ui font-semibold text-white transition hoverable:hover:bg-white/5 lg:col-span-4 lg:justify-self-end"
           >
             {copy.viewAll[locale]}
           </Link>
         </div>
 
-        <div className="grid overflow-hidden rounded-[1.75rem] border border-outline bg-surface shadow-xl lg:grid-cols-[1.25fr_0.75fr]">
-          <div className="relative min-h-0 overflow-hidden border-b border-hairline bg-[radial-gradient(circle_at_50%_50%,color-mix(in_oklab,var(--color-text-brand)_10%,transparent),transparent_48%)] sm:min-h-[33rem] lg:border-b-0 lg:border-r">
-            <div className="grid grid-cols-2 gap-2 p-4 sm:hidden">
-              {featured.map((item) => {
-                const selected = item.id === active.id;
-                return (
+        <div className="grid gap-6 lg:grid-cols-[18rem_minmax(0,1fr)]">
+          <div className="min-w-0">
+            <div className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+              <AnimatedBackground
+                defaultValue={active.id}
+                onValueChange={(id) => {
+                  if (!id) return;
+                  setActiveId(id as CapabilityId);
+                  setManual(true);
+                }}
+                className="rounded-[0.9rem] bg-white/10"
+                transition={{ type: "spring", stiffness: 360, damping: 36 }}
+              >
+                {featured.map((item, index) => (
                   <button
                     key={item.id}
+                    data-id={item.id}
                     type="button"
-                    onClick={() => { setActiveId(item.id); setManual(true); }}
-                    aria-pressed={selected}
-                    className={[
-                      "min-h-24 rounded-card border p-3 text-left transition",
-                      selected ? "border-brand-text/35 bg-surface shadow-sm" : "border-hairline bg-surface/90",
-                    ].join(" ")}
+                    aria-pressed={item.id === active.id}
+                    className="min-w-[13rem] rounded-[0.9rem] px-3 py-3 text-left text-white/60 transition-colors data-[checked=true]:text-white lg:min-w-0"
                   >
-                    <span className="flex items-start gap-2">
-                      <span className={["mt-1 size-2 shrink-0 rounded-full", selected ? "bg-brand" : "bg-outline"].join(" ")} />
-                      <span className="text-micro font-semibold leading-snug text-ink">{item.title[locale]}</span>
+                    <span className="flex items-start gap-3">
+                      <span className="pt-0.5 font-mono text-[0.62rem] tabular-nums opacity-45">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="text-ui font-semibold leading-snug">{item.title[locale]}</span>
                     </span>
                   </button>
-                );
-              })}
+                ))}
+              </AnimatedBackground>
             </div>
-
-            <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 hidden size-full text-brand-text/20 sm:block">
-              {FEATURE_POSITIONS.map(([x, y], index) => {
-                const nx = Number.parseFloat(x) + 9;
-                const ny = Number.parseFloat(y) + 7;
-                return <path key={index} d={`M 50 50 C 50 50, ${nx} ${ny}, ${nx} ${ny}`} fill="none" stroke="currentColor" strokeWidth="0.35" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />;
-              })}
-              <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2 3" />
-            </svg>
-
-            <div className="absolute left-1/2 top-1/2 z-10 hidden size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-text/30 bg-surface shadow-xl sm:grid">
-              <span aria-hidden="true" className="absolute inset-2 rounded-full border border-brand-text/15 motion-safe:animate-pulse" />
-              <div className="text-center">
-                <img src="/products/dima-mark.png" alt="" width={34} height={34} className="dima-logo-mark mx-auto size-8" />
-                <p className="mt-1 font-mono text-micro uppercase tracking-[0.12em] text-muted">{copy.featured[locale]}</p>
-              </div>
-            </div>
-
-            {featured.map((item, index) => {
-              const [left, top] = FEATURE_POSITIONS[index]!;
-              const selected = item.id === active.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => { setActiveId(item.id); setManual(true); }}
-                  aria-pressed={selected}
-                  className={[
-                    "absolute z-20 hidden w-[10.5rem] rounded-card border p-3 text-left shadow-sm backdrop-blur-md transition sm:block sm:w-[12.5rem]",
-                    selected
-                      ? "border-brand-text/35 bg-surface text-ink shadow-lg"
-                      : "border-hairline bg-surface/90 text-ink hoverable:hover:border-outline",
-                  ].join(" ")}
-                  style={{ left, top }}
-                >
-                  <span className="flex items-center gap-2">
-                    <span className={[
-                      "size-2 shrink-0 rounded-full",
-                      selected ? "bg-brand motion-safe:animate-pulse" : "bg-outline",
-                    ].join(" ")} />
-                    <span className="text-micro font-semibold leading-snug">{item.title[locale]}</span>
-                  </span>
-                </button>
-              );
-            })}
           </div>
 
-          <div className="flex min-h-[24rem] flex-col justify-center p-5 sm:p-7">
-            <p className="font-mono text-micro uppercase tracking-[0.12em] text-brand-text">{copy.featured[locale]}</p>
-            <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{active.title[locale]}</h3>
-            <p className="mt-4 text-ui leading-relaxed text-muted">{active.summary[locale]}</p>
-
-            <div className="mt-6 rounded-card border border-hairline bg-raised p-4">
-              <p className="text-micro font-medium text-muted">{copy.labels.outcome[locale]}</p>
-              <p className="mt-2 text-base font-semibold leading-snug text-ink">{active.outcome[locale]}</p>
+          <div className="min-w-0 overflow-hidden rounded-[1.3rem] border border-white/12 bg-white/[0.035] shadow-2xl">
+            <div className="flex min-h-12 items-center gap-2 border-b border-white/10 px-4">
+              <span aria-hidden="true" className="size-2 rounded-full bg-white/25" />
+              <span aria-hidden="true" className="size-2 rounded-full bg-white/20" />
+              <span aria-hidden="true" className="size-2 rounded-full bg-white/15" />
+              <span className="ml-2 font-mono text-micro uppercase tracking-[0.12em] text-white/45">{copy.featured[locale]}</span>
             </div>
 
-            <p className="mt-6 font-mono text-micro uppercase tracking-[0.12em] text-muted">{copy.labels.loop[locale]}</p>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {copy.loop[locale].map((step, index) => (
-                <span key={step} className="inline-flex items-center gap-1.5 rounded-button border border-hairline bg-surface px-2.5 py-1.5 text-micro text-muted">
-                  <span className={["size-1.5 rounded-full", index < 3 ? "bg-brand" : "bg-outline"].join(" ")} />
-                  {step}
-                </span>
-              ))}
+            <div className="relative min-h-[28rem] overflow-hidden sm:min-h-[34rem]">
+              <img
+                key={image}
+                src={image}
+                alt=""
+                width={1536}
+                height={1024}
+                className="absolute inset-0 size-full object-cover object-top opacity-90"
+              />
+              <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,transparent_45%,color-mix(in_oklab,var(--upcytech-neutral-1000)_78%,transparent)_100%)]" />
+
+              <div className="absolute inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[24rem]">
+                <div className="rounded-[1.15rem] border border-white/15 bg-[color-mix(in_oklab,var(--upcytech-neutral-1000)_90%,transparent)] p-4 shadow-xl backdrop-blur-xl sm:p-5">
+                  <p className="font-mono text-micro uppercase tracking-[0.12em] text-white/45">{copy.featured[locale]}</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">{active.title[locale]}</h3>
+                  <p className="mt-3 text-ui leading-relaxed text-white/65">{active.summary[locale]}</p>
+                  <div className="mt-4 border-t border-white/10 pt-4">
+                    <p className="text-micro text-white/45">{copy.labels.outcome[locale]}</p>
+                    <p className="mt-1 text-ui font-semibold leading-snug text-white">{active.outcome[locale]}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

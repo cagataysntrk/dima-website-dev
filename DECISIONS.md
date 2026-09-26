@@ -7,6 +7,37 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Product-first editorial visual system
+
+### D-071 · Real product state replaces generic AI decoration
+**Decided:** the public site uses a product-first editorial system rather than a generic AI
+landing-page aesthetic. Product screenshots, app state and business evidence carry the visual
+story. Decorative particle fields, rainbow CTAs, animated gradient headline ink, radial
+logo-and-card diagrams and motion that does not communicate product state are not canonical
+marketing primitives.
+
+The main homepage proof surfaces use the design-system `wide` container. The hero is a calm
+editorial split with a large real Dima product surface, solid brand emphasis and standard
+design-system actions. The visual product tour uses a vertical/horizontal step navigator and
+one large application canvas rather than six equal wizard cards. Home capabilities use a dark
+product-theatre surface with real Dima screens and a restrained annotation layer. Business
+use cases render as one integrated product workspace with signal, investigation context and
+decision output rather than three equal presentation cards.
+
+Motion has one rule: it must communicate selection, progression, monitoring or a real product
+state. Shared-layout selection is adapted from the MIT-licensed Motion-Primitives
+`AnimatedBackground`; Dima styling and tokens remain authoritative. Auto-rotation stops after
+explicit user interaction and reduced-motion preferences remain respected.
+
+The visual hierarchy alternates editorial light sections with one deliberate dark product
+theatre rather than repeating white bordered cards. Large screenshots are shown sharply and
+at useful scale. Copy remains explanatory and mechanism-led; visual simplification must not
+reduce the amount of information required to understand what Dima actually does.
+
+**Reason:** the previous page communicated the right product model but looked like assembled
+AI-generated SaaS components. Dima should read as mature enterprise software: calm typography,
+large product proof, real data density, controlled contrast and stateful interaction.
+
 ## 2026-09-26 — Capability catalog and public architecture boundary
 
 ### D-070 · Seventy capabilities remain one Dima intelligence system

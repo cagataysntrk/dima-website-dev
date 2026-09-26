@@ -5,9 +5,8 @@ import { Button, Nav, ThemeToggle } from "@upcytech/ui";
 import { Link, getPathname, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { site } from "@/content/site";
-import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
 
-/** The floating glass capsule (D-032), links centred, with the contact action as the site's rainbow CTA — rim only, no glow (D-037). */
+/** Floating product navigation. The primary action uses the design-system button rather than decorative CTA effects. */
 export function SiteNav({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const params = useParams();
@@ -68,15 +67,13 @@ export function SiteNav({ locale }: { locale: Locale }) {
               <a href={loginUrl}>{site.chrome.login[locale]}</a>
             </Button>
           )}
-          {tryUrl ? (
-            <RainbowButton as="a" href={tryUrl} size="sm" glow={false} className="px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-ui">
-              {site.trialAction.label[locale]}
-            </RainbowButton>
-          ) : (
-            <RainbowButton as={Link} href={site.navAction.href} size="sm" glow={false} className="px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-ui">
-              {site.navAction.label[locale]}
-            </RainbowButton>
-          )}
+          <Button variant="primary" size="sm" asChild>
+            {tryUrl ? (
+              <a href={tryUrl}>{site.trialAction.label[locale]}</a>
+            ) : (
+              <Link href={site.navAction.href}>{site.navAction.label[locale]}</Link>
+            )}
+          </Button>
         </>
       }
     />

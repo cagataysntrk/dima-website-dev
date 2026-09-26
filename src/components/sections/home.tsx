@@ -202,7 +202,7 @@ export function SectorsSection({ locale, industries, copy }: {
 }) {
   const base = getPathname({ href: "/industries", locale });
   return (
-    <Section divided aria-labelledby="industries-title">
+    <Section width="wide" responsive divided aria-labelledby="industries-title">
       <div className="mb-10 grid gap-6 sm:mb-14 lg:grid-cols-12 lg:items-end">
         <Stack gap="tight" className="lg:col-span-8">
           <SectionTitle id="industries-title">{copy.title[locale]}</SectionTitle>
