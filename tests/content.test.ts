@@ -26,13 +26,14 @@ import { continuousIntelligence } from "@/content/continuous-intelligence";
 import { useCaseLab } from "@/content/use-case-lab";
 import { technicalArchitecture } from "@/content/technical-architecture";
 import { contextualChat } from "@/content/contextual-chat";
+import { productTour } from "@/content/product-tour";
 
 const CONTENT = {
   homePage, aboutPage, contactPage, careersPage, blogPage, categories, hiringSteps, roles, team,
   legalDocs, drafterFacts, legalChrome, consentCopy, products, productsPage, industries, industriesPage,
   services, clientNeeds, servicesPage, solutionsPage, chatDemoCopy, problemMatcherCopy, companyBrain,
   capabilityDepths, capabilityDepthsCopy, productExperience, continuousIntelligence, useCaseLab,
-  technicalArchitecture, contextualChat, site,
+  technicalArchitecture, contextualChat, productTour, site,
 } as const;
 
 const PUBLIC_LANGUAGE_CONTENT = {
@@ -53,6 +54,7 @@ const PUBLIC_LANGUAGE_CONTENT = {
   useCaseLab,
   technicalArchitecture,
   contextualChat,
+  productTour,
   chatDemoCopy,
   site,
   team,

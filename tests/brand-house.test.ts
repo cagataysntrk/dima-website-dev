@@ -6,6 +6,7 @@ import { continuousIntelligence } from "@/content/continuous-intelligence";
 import { useCaseLab } from "@/content/use-case-lab";
 import { technicalArchitecture } from "@/content/technical-architecture";
 import { contextualChat } from "@/content/contextual-chat";
+import { productTour } from "@/content/product-tour";
 import { industriesPage } from "@/content/pages/industries";
 import { homePage } from "@/content/pages/home";
 import { products } from "@/content/products";
@@ -93,6 +94,19 @@ test("the product proof covers the full signal-to-action flow", () => {
     "decision",
     "action",
   ]);
+});
+
+test("the public product story is one visual loop from setup to continuous monitoring", () => {
+  expect(productTour.stages.map((stage) => stage.id)).toEqual([
+    "auth",
+    "connect",
+    "model",
+    "dashboard",
+    "chat",
+    "watch",
+  ]);
+  expect(productTour.stages.at(-1)?.tab.tr).toBe("Sürekli denetim");
+  expect(productTour.watch.events).toHaveLength(4);
 });
 
 test("conversation remains a strong contextual surface without becoming the product center", () => {

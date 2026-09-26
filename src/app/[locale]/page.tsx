@@ -11,11 +11,9 @@ import { homePage as copy } from "@/content/pages/home";
 import { HomeHero } from "@/components/home/home-hero";
 import { RainbowButton } from "@/components/vendor/magicui/rainbow-button";
 import { LoopBand, ReferenceStrip, SectorsSection } from "@/components/sections/home";
-import { CompanyBrainExperience, CompanyBrainHero } from "@/components/sections/company-brain";
-import { ContinuousIntelligence } from "@/components/sections/continuous-intelligence";
-import { ProductExperienceSuite } from "@/components/sections/product-experience-suite";
+import { CompanyBrainHero } from "@/components/sections/company-brain";
 import { UseCaseLab } from "@/components/sections/use-case-lab";
-import { CapabilityDepths } from "@/components/sections/capability-depths";
+import { VisualProductTour } from "@/components/sections/visual-product-tour";
 import { ProductVisualGallery } from "@/components/sections/product-visual-gallery";
 import { TeamRow } from "@/components/sections/team-row";
 import { CtaBand } from "@/components/sections/cta-band";
@@ -57,11 +55,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         visual={<CompanyBrainHero locale={locale} />}
       />
 
-      <ContinuousIntelligence locale={locale} />
-      <ProductExperienceSuite locale={locale} />
-      <CompanyBrainExperience locale={locale} />
+      <VisualProductTour locale={locale} />
       <UseCaseLab locale={locale} />
-      <CapabilityDepths locale={locale} />
       <ProductVisualGallery locale={locale} />
       <SectorsSection locale={locale} industries={industries} copy={copy.industries} />
       <ReferenceStrip label={copy.references.label[locale]} partners={copy.references.partners} />

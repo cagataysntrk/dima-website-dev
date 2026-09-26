@@ -54,8 +54,8 @@ bun run capture:screens  # re-shoot the analytics product's screens from the rea
 ```
 
 The browser suite covers 320px route overflow, the fixed nav's footprint and sticky layers on
-every route in both languages, tablet navigation, touch controls, the two Şirket Beyni lenses,
-context preservation across view switches, the contextual chat experience and the first-load JS budget. It builds a production
+every route in both languages, tablet navigation, touch controls, the six-stage visual product
+tour, its embedded contextual chat experience and the first-load JS budget. It builds a production
 server on port 3010 unless `PLAYWRIGHT_BASE_URL` points at an already-running server.
 
 `FAIL_ON_COPY=1 bun test` fails on any `[COPY NEEDED]` slot (default: report only,
@@ -114,7 +114,8 @@ Copy is never written in a component. It lives in typed files under `src/content
 |---|---|
 | `products.ts` | Active Dima registry: product identity, canonical domain and shared product copy |
 | `company-brain.ts` | Şirket Beyni state model, domains, signals, lenses, evidence and decision context |
-| `continuous-intelligence.ts` | Always-on monitoring story and representative detection feed |
+| `product-tour.ts` | Canonical visual story: setup, data connection, company model, dashboard, contextual chat and continuous monitoring |
+| `continuous-intelligence.ts` | Detailed always-on monitoring content retained for deeper/reusable surfaces |
 | `product-experience.ts` | End-to-end signal -> investigation -> evidence -> decision -> action sample case |
 | `capability-depths.ts` | Management, accounting/finance and manufacturing depths of the same product |
 | `use-case-lab.ts` | Concrete executive, finance, sales, manufacturing, procurement and quality scenarios |

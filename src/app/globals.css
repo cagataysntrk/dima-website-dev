@@ -299,3 +299,69 @@ nav[aria-label="Main"]:has([aria-expanded="true"]) {
 @media (prefers-reduced-motion: reduce) {
   .dima-shimmer { animation: none; color: var(--color-text-muted); background: none; }
 }
+
+
+/* D-068: visual-first product storytelling. The core product tour behaves like a compact
+   product demo: scene transitions, progress, monitoring scans and data-flow pulses carry
+   meaning. Every animation is compositor-friendly and disappears under reduced motion. */
+@keyframes dima-tour-scene-in {
+  from { opacity: 0.28; transform: translateY(8px) scale(0.996); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.dima-tour-scene {
+  animation: dima-tour-scene-in 420ms var(--motion-ease-default) both;
+}
+
+@keyframes dima-tour-tab-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.dima-tour-tab-progress {
+  transform-origin: left;
+  animation: dima-tour-tab-progress 5.2s linear both;
+}
+
+@keyframes dima-watch-scan {
+  0%, 100% { transform: translateX(-25%); opacity: 0.55; }
+  50% { transform: translateX(48%); opacity: 1; }
+}
+.dima-watch-scan {
+  animation: dima-watch-scan 2.6s ease-in-out infinite;
+}
+
+@keyframes dima-watch-event {
+  from { opacity: 0.2; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.dima-watch-event {
+  animation: dima-watch-event 420ms var(--motion-ease-default) both;
+}
+
+@keyframes dima-usecase-scan {
+  0%, 100% { transform: translateX(-18%); }
+  50% { transform: translateX(26%); }
+}
+.dima-usecase-scan {
+  animation: dima-usecase-scan 2.4s ease-in-out infinite;
+}
+
+@keyframes dima-tech-pulse {
+  0% { transform: translate(-140px, -50%); opacity: 0; }
+  18% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { transform: translate(170px, -50%); opacity: 0; }
+}
+.dima-tech-pulse {
+  animation: dima-tech-pulse 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dima-tour-scene,
+  .dima-tour-tab-progress,
+  .dima-watch-scan,
+  .dima-watch-event,
+  .dima-usecase-scan,
+  .dima-tech-pulse {
+    animation: none;
+  }
+}

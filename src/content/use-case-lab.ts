@@ -7,6 +7,8 @@ export const useCaseLab = {
     tr: "Her senaryoda aynı ürün döngüsü çalışır: veri bağlamı korunur, önemli değişim bulunur, nedeni araştırılır, seçenekler hazırlanır ve sonuç aynı şirket hafızasına geri bağlanır. Değişen şey iş alanının varlıkları, kuralları ve karar ölçütleridir.",
     en: "The same product loop runs in every scenario: company context is preserved, important change is detected, causes are investigated, options are prepared and outcomes return to the same company memory. What changes are the entities, rules and decision criteria of the business domain.",
   },
+  visualNote: { tr: "Aynı zekâ döngüsü, farklı iş bağlamları.", en: "The same intelligence loop, different business contexts." },
+  ready: { tr: "Karara hazır", en: "Decision-ready" },
   labels: {
     problem: { tr: "İş problemi", en: "Business problem" },
     detects: { tr: "Dima neyi fark eder?", en: "What does Dima detect?" },

@@ -106,7 +106,7 @@ test.describe("responsive page contract", () => {
   test.describe("touch surfaces", () => {
     test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
 
-    test("touch fields and Company Brain controls meet the mobile contract", async ({ page }) => {
+    test("touch fields and product-tour controls meet the mobile contract", async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto("/en/contact", { waitUntil: "domcontentloaded" });
       const field = page.locator("input[name='name']");
@@ -115,18 +115,22 @@ test.describe("responsive page contract", () => {
       const fieldFont = await field.evaluate((element) => getComputedStyle(element).fontSize);
       expect(fieldFont).toBe("16px");
       await page.goto("/tr", { waitUntil: "domcontentloaded" });
-      await expect(page.locator("button[aria-pressed]").first()).toBeVisible();
-      const targetHeights = await page.locator("button[aria-pressed]").evaluateAll((buttons) => buttons.map((button) => button.getBoundingClientRect().height));
+      const tour = page.locator('section[aria-labelledby="visual-product-tour-title"]').first();
+      await tour.scrollIntoViewIfNeeded();
+      const tabs = tour.getByRole("tab");
+      await expect(tabs.first()).toBeVisible();
+      const targetHeights = await tabs.evaluateAll((buttons) => buttons.map((button) => button.getBoundingClientRect().height));
       expect(targetHeights.every((height) => height >= 44)).toBe(true);
     });
   });
 
-  test("desktop keeps Company Brain and full navigation", async ({ page }) => {
+  test("desktop keeps the full visual product tour and navigation", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/tr", { waitUntil: "domcontentloaded" });
-    const brain = page.locator('section[aria-labelledby="company-brain-title"]').first();
-    await expect(brain.getByRole("button", { name: "Tam Beyin Formu" })).toBeVisible();
-    await expect(brain.getByRole("button", { name: "Şirket Haritası" })).toBeVisible();
+    const tour = page.locator('section[aria-labelledby="visual-product-tour-title"]').first();
+    await expect(tour.getByRole("tab")).toHaveCount(6);
+    await expect(tour.getByRole("tab", { name: /Ana ekran/ })).toBeVisible();
+    await expect(tour.getByRole("tab", { name: /Dima'ya sor/ })).toBeVisible();
     await expect(page.getByRole("navigation", { name: "Ana menü" }).getByRole("link", { name: "Ürün", exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Menüyü aç" })).toBeHidden();
   });

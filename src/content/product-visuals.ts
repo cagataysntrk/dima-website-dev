@@ -1,37 +1,41 @@
 export const productVisuals = {
-  eyebrow: { tr: "Ürün görsel yönü", en: "Product visual direction" },
+  eyebrow: { tr: "Dima ekranda", en: "Dima on screen" },
   title: {
-    tr: "Dima yalnız anlatılmamalı, nasıl bir ürün olduğu da görülmeli.",
-    en: "Dima should not only be explained. The product should be visible.",
+    tr: "Şirketinizi farklı derinliklerde görün.",
+    en: "See your company at different levels of depth.",
   },
   intro: {
     tr: "Aşağıdaki ekranlar nihai ürün ekranı değildir. Şirket Beyni, canlı izleme ve karar yüzeylerinin görsel yönünü göstermek için kullanılan geçici ürün konseptleridir. Gerçek ürün ekranları geldikçe aynı alanlar birebir güncellenecektir.",
     en: "The screens below are not final product screenshots. They are temporary product concepts used to show the visual direction for the Company Brain, live monitoring and decision surfaces. These slots will be replaced with real product screens as they become available.",
   },
   badge: { tr: "Ürün konsepti, örnek şirket verisi", en: "Product concept, sample company data" },
+  controls: {
+    pause: { tr: "Görselleri duraklat", en: "Pause visuals" },
+    resume: { tr: "Görselleri sürdür", en: "Resume visuals" },
+  },
   items: [
     {
       src: "/product-concepts/company-map.webp",
       title: { tr: "Şirket haritası ve öncelikli sinyaller", en: "Company map and priority signals" },
       body: {
-        tr: "Şirketin iş alanlarını, ilişkilerini ve o anda dikkat gerektiren sinyalleri aynı yönetim yüzeyinde gösteren ürün yönü.",
-        en: "A product direction that shows business domains, relationships and current priority signals in one management surface.",
+        tr: "İş alanları, ilişkiler ve öncelikli sinyaller aynı yaşayan şirket görünümünde.",
+        en: "Business domains, relationships and priority signals in one living company view.",
       },
     },
     {
       src: "/product-concepts/company-layers.webp",
       title: { tr: "Veriden karara katmanlı görünüm", en: "Layered view from data to decision" },
       body: {
-        tr: "Veri kaynaklarından ilişkilere, analizden karara uzanan katmanların tek şirket modeli üzerinde nasıl birleşebileceğini gösteren ürün yönü.",
-        en: "A product direction showing how data sources, relationships, analysis and decisions can meet on one company model.",
+        tr: "Kaynaklardan ilişkilere, analizden karara uzanan teknik katmanlar tek akışta.",
+        en: "Technical layers from sources and relationships through analysis and decision in one flow.",
       },
     },
     {
       src: "/product-concepts/live-system.webp",
       title: { tr: "Canlı şirket akışı ve çıktı yüzeyleri", en: "Live company flow and output surfaces" },
       body: {
-        tr: "Veri akışının sinyal, rapor, öneri, görev ve karara nasıl dönüştüğünü yoğun ama okunabilir bir yönetim ekranında gösteren ürün yönü.",
-        en: "A product direction showing how data flow becomes signals, reports, recommendations, tasks and decisions in a dense but readable management surface.",
+        tr: "Veri akışı sinyal, öneri, görev ve karara dönüşürken sistem çalışmaya devam eder.",
+        en: "The system keeps working as data becomes signals, recommendations, tasks and decisions.",
       },
     },
   ],

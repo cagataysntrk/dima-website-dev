@@ -7,6 +7,45 @@ Format: **decision** · alternatives · reason · date.
 
 ---
 
+## 2026-09-26 — Visual-first product storytelling
+
+### D-068 · One looping product tour replaces stacked explanatory product sections
+**Decided:** the public site must explain Dima primarily by showing the product changing state,
+not by stacking prose-heavy feature sections. The homepage and Product page therefore use one
+large self-running product tour inspired by a guided in-product demo.
+
+The canonical visual sequence is:
+Google sign-in / start choice -> connect data -> form the company model -> show the live
+Company Brain/home surface -> open contextual conversation -> continue continuous monitoring.
+The tour loops automatically, can be paused, can be navigated directly, and respects reduced
+motion. Each state keeps only a short title and caption; the application surface carries the
+explanation.
+
+The sign-in scene is explicitly representative. It may show Google sign-in and the
+"own data / sample company" fork described by the product plan, but it is not a live auth CTA
+and must not imply that an unapproved OAuth flow is already available. Real self-serve entry
+remains gated by NEXT_PUBLIC_TRY_URL and NEXT_PUBLIC_LOGIN_URL.
+
+Chat remains visible and fully interactive inside the tour. It is not promoted back to the
+product center: it appears after the company model and home surface have already established
+that Dima works continuously without waiting for a prompt.
+
+The old homepage stack of Continuous Intelligence, Product Experience, full Company Brain,
+Capability Depths and a separate visual gallery is removed from the primary narrative. Their
+underlying concepts and reusable components may remain in code, but public storytelling must
+not repeat the same loop in long text.
+
+Use-case proof becomes a visual business-flow surface: select a business layer, then see
+detect -> investigate -> recommend -> decision output, with the relevant data context attached.
+Technical architecture becomes a moving source -> Dima layer -> output diagram rather than a
+wall of architecture prose. Product concepts are shown as a single large rotating screen, not
+three long figure/caption blocks.
+
+**Reason:** a visitor should understand the first-run experience, the dashboard, contextual
+conversation and the always-on behavior in seconds by watching the interface. Detailed copy
+remains available in content models and deeper pages, but the primary marketing experience
+must behave more like the product than a report.
+
 ## 2026-09-26 — Always-on product proof
 
 ### D-067 · Always-on product proof, actual Full Brain Form and contextual conversation

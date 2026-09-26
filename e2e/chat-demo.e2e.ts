@@ -1,84 +1,56 @@
 import { expect, test, type Page } from "@playwright/test";
 
-async function openBrain(page: Page, path = "/tr") {
+async function openTour(page: Page, path = "/tr") {
   await page.goto(path, { waitUntil: "domcontentloaded" });
-  const brain = page.locator('section[aria-labelledby="company-brain-title"]').first();
-  await brain.scrollIntoViewIfNeeded();
-  await expect(brain).toBeVisible();
-  return brain;
+  const tour = page.locator('section[aria-labelledby="visual-product-tour-title"]').first();
+  await tour.scrollIntoViewIfNeeded();
+  await expect(tour).toBeVisible();
+  return tour;
 }
 
 for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 800 }]) {
-  test.describe(`Şirket Beyni at ${viewport.width}px`, () => {
+  test.describe(`visual product tour at ${viewport.width}px`, () => {
     test.use({ viewport });
 
-    test("a selected domain survives switching between the full brain and company map", async ({ page }) => {
-      const brain = await openBrain(page);
-      await expect(brain).toContainText("Temsili şirket görünümü");
+    test("setup, dashboard and continuous-monitoring states are directly navigable", async ({ page }) => {
+      const tour = await openTour(page);
+      const setup = tour.getByRole("tab", { name: /Kurulum/ });
+      await expect(setup).toHaveAttribute("aria-selected", "true");
 
-      await brain.getByRole("button", { name: /Finans/ }).first().click();
-      await expect(brain).toContainText("Muhasebe ve Finans");
-      await expect(brain).toContainText("Tahsilat davranışındaki değişim nakit planını etkiliyor.");
-      await expect(brain).toContainText("Fatura vadeleri ve gerçekleşen ödeme tarihleri");
+      const dashboard = tour.getByRole("tab", { name: /Ana ekran/ });
+      await dashboard.click();
+      await expect(dashboard).toHaveAttribute("aria-selected", "true");
+      await expect(tour).toContainText("Şirket Beyni hazır");
 
-      const fullBrain = brain.getByRole("button", { name: "Tam Beyin Formu" });
-      await expect(fullBrain).toHaveAttribute("aria-pressed", "true");
-
-      const map = brain.getByRole("button", { name: "Şirket Haritası" });
-      await map.click();
-      await expect(map).toHaveAttribute("aria-pressed", "true");
-      await expect(brain.getByRole("button", { name: /Finans/ }).first()).toHaveAttribute("aria-pressed", "true");
-
-      await fullBrain.click();
-      await expect(fullBrain).toHaveAttribute("aria-pressed", "true");
-      await expect(brain.getByRole("button", { name: /Finans/ }).first()).toHaveAttribute("aria-pressed", "true");
+      const watch = tour.getByRole("tab", { name: /Sürekli denetim/ });
+      await watch.click();
+      await expect(watch).toHaveAttribute("aria-selected", "true");
+      await expect(tour).toContainText("7/24 denetim aktif");
+      await expect(tour).toContainText("Hat 3 performansı hedefin %11 altında");
 
       const sideways = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
       expect(sideways).toBeLessThanOrEqual(0);
     });
 
-    test("both brain views are keyboard-operable", async ({ page }) => {
-      const brain = await openBrain(page);
-      await brain.getByRole("button", { name: /Finans/ }).first().click();
+    test("the conversation is a real interactive stage, not the page center", async ({ page }) => {
+      const tour = await openTour(page, "/tr/cozumler");
+      const chatTab = tour.getByRole("tab", { name: /Dima'ya sor/ });
+      await chatTab.click();
+      await expect(chatTab).toHaveAttribute("aria-selected", "true");
 
-      const map = brain.getByRole("button", { name: "Şirket Haritası" });
-      await map.focus();
-      await page.keyboard.press("Enter");
-      await expect(map).toHaveAttribute("aria-pressed", "true");
-
-      const fullBrain = brain.getByRole("button", { name: "Tam Beyin Formu" });
-      await fullBrain.focus();
-      await page.keyboard.press("Enter");
-      await expect(fullBrain).toHaveAttribute("aria-pressed", "true");
-
-      const quality = brain.getByRole("button", { name: /Kalite/ }).first();
-      await quality.focus();
-      await page.keyboard.press("Enter");
-      await expect(quality).toHaveAttribute("aria-pressed", "true");
-      await expect(brain).toContainText("Kalite");
+      const demo = tour.locator("[data-chat-demo]");
+      await expect(demo).toBeVisible();
+      await demo.getByRole("button", { name: "Makine bazında ortalama OEE nedir?" }).click();
+      await expect.poll(async () => await demo.getAttribute("data-state"), { timeout: 10_000 }).not.toBe("idle");
+      await expect(demo).toContainText("Ram 2");
     });
   });
 }
 
-test("the product page carries the same Company Brain model in English", async ({ page }) => {
-  const brain = await openBrain(page, "/en/solutions");
-  await expect(brain).toContainText("Representative company view");
-  await brain.getByRole("button", { name: /Finance/ }).first().click();
-  await expect(brain).toContainText("Accounting & Finance");
-  await expect(brain).toContainText("A change in collection behavior is affecting the cash plan.");
-});
-
-test("contextual chat remains secondary but fully interactive on the Product page", async ({ page }) => {
-  await page.goto("/tr/cozumler", { waitUntil: "domcontentloaded" });
-  const section = page.locator('section[aria-labelledby="contextual-chat-title"]');
-  await section.scrollIntoViewIfNeeded();
-  await expect(section).toContainText("Sohbet var.");
-
-  const demo = section.locator("[data-chat-demo]");
-  await expect(demo).toBeVisible();
-  await expect(demo).toHaveAttribute("data-state", "idle");
-
-  await demo.getByRole("button", { name: "Makine bazında ortalama OEE nedir?" }).click();
-  await expect.poll(async () => await demo.getAttribute("data-state"), { timeout: 10_000 }).not.toBe("idle");
-  await expect(demo).toContainText("Ram 2");
+test("the English product route carries the same six-stage visual story", async ({ page }) => {
+  const tour = await openTour(page, "/en/solutions");
+  await expect(tour.getByRole("tab")).toHaveCount(6);
+  await tour.getByRole("tab", { name: /Continuous watch/ }).click();
+  await expect(tour).toContainText("Always-on monitoring active");
+  await expect(tour).toContainText("Line 3 performance is 11% below target");
 });
