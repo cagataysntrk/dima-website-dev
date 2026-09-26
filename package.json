@@ -13,7 +13,7 @@
     "build": "bun scripts/link-design-system.ts && next build --webpack",
     "start": "next start",
     "typecheck": "bun scripts/link-design-system.ts && next typegen && tsc --noEmit",
-    "test": "bun test tests/brand-house.test.ts tests/content.test.ts tests/guards.test.ts tests/responsive.test.ts tests/team-assets.test.ts tests/chat-demo.test.ts",
+    "test": "bun test tests/brand-house.test.ts tests/content.test.ts tests/guards.test.ts tests/responsive.test.ts tests/team-assets.test.ts tests/chat-demo.test.ts tests/brain-hero.test.ts",
     "check": "bun run test && bun run typecheck",
     "test:e2e": "playwright test",
     "capture:screens": "bun scripts/capture-product-screens.ts"

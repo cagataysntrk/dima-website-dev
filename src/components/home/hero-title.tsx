@@ -11,8 +11,8 @@ const H1 =
  * enterprise product statement, not an AI landing-page effect. Accent words keep one solid
  * brand role so the hierarchy survives both themes and reduced-motion preferences.
  */
-export function HeroTitle({ text, accents }: { text: string; accents: readonly string[] }) {
-  const words = text.split(" ");
+export function HeroTitle({ text, accents = [] }: { text?: string; accents?: readonly string[] }) {
+  const words = (typeof text === "string" ? text : "").trim().split(/\s+/).filter(Boolean);
   const bare = (word: string) => word.replace(/[^\p{L}\p{N}-]/gu, "");
 
   return (

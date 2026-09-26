@@ -20,7 +20,7 @@ const CYAN = new THREE.Color(0x27d3ff);
 const VIOLET = new THREE.Color(0x8b5cf6);
 const IVORY = new THREE.Color(0xe8e6df);
 const GRAPHITE = new THREE.Color(0x172033);
-const HOVER_IVORY = new THREE.Color(0xfff6d9);
+const HOVER_IVORY = new THREE.Color(0xfff6d9);\nconst FALLBACK_MODEL_URL = "https://cdn.jsdelivr.net/gh/Rickaym/brain-game@main/public/models/brain.glb";
 
 export function mountBrainCandidate({
   host,
@@ -104,22 +104,20 @@ export function mountBrainCandidate({
   }
 
   if (candidate.id === "wireframe" || candidate.id === "flow" || candidate.id === "neon") {
-    composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new UnrealBloomPass(
-      new THREE.Vector2(1, 1),
-      candidate.id === "flow" ? 1.0 : candidate.id === "wireframe" ? 0.8 : 0.55,
-      0.62,
-      candidate.id === "neon" ? 0.72 : 0.18,
-    ));
-  }
-
-  const loader = new GLTFLoader();
-  let draco: DRACOLoader | null = null;
-  if (candidate.dracoPath) {
-    draco = new DRACOLoader();
-    draco.setDecoderPath(candidate.dracoPath);
-    loader.setDRACOLoader(draco);
+    try {
+      composer = new EffectComposer(renderer);
+      composer.addPass(new RenderPass(scene, camera));
+      composer.addPass(new UnrealBloomPass(
+        new THREE.Vector2(1, 1),
+        candidate.id === "flow" ? 1.0 : candidate.id === "wireframe" ? 0.8 : 0.55,
+        0.62,
+        candidate.id === "neon" ? 0.72 : 0.18,
+      ));
+    } catch (error) {
+      console.warn(`[brain-hero] Bloom setup failed for "${candidate.id}". Rendering without post-processing.`, error);
+      composer?.dispose();
+      composer = null;
+    }
   }
 
   const raycaster = new THREE.Raycaster();
@@ -135,91 +133,150 @@ export function mountBrainCandidate({
   };
   renderer.domElement.addEventListener("pointermove", onPointerMove);
 
-  loader.load(
-    candidate.modelUrl,
-    (gltf) => {
-      if (disposed) return;
-      root = gltf.scene;
+  const loadModel = async (url: string, dracoPath?: string) => {
+    const loader = new GLTFLoader();
+    let decoder: DRACOLoader | null = null;
+    if (dracoPath) {
+      decoder = new DRACOLoader();
+      decoder.setDecoderPath(dracoPath);
+      loader.setDRACOLoader(decoder);
+    }
 
-      if (candidate.id === "perfusion" || candidate.id === "flow") {
-        root.rotation.set(-Math.PI / 2, 0, -0.08);
+    let timeoutId: number | undefined;
+    try {
+      const timeout = new Promise<never>((_, reject) => {
+        timeoutId = window.setTimeout(
+          () => reject(new Error(`Timed out while loading 3D brain asset: ${url}`)),
+          9000,
+        );
+      });
+      return await Promise.race([loader.loadAsync(url), timeout]);
+    } finally {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      decoder?.dispose();
+    }
+  };
+
+  const installModel = (gltf: Awaited<ReturnType<typeof loadModel>>) => {
+    if (disposed) return;
+    root = gltf.scene;
+
+    if (candidate.id === "perfusion" || candidate.id === "flow") {
+      root.rotation.set(-Math.PI / 2, 0, -0.08);
+    } else {
+      root.rotation.set(0.03, Math.PI, -0.03);
+    }
+
+    scene.add(root);
+    fitBrain(root, candidate.id === "flow" ? 1.72 : 1.82);
+    scene.updateMatrixWorld(true);
+
+    const whole = new THREE.Box3().setFromObject(root);
+    const minY = whole.min.y;
+    const spanY = Math.max(0.001, whole.max.y - whole.min.y);
+
+    let meshIndex = 0;
+    root.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      if (!mesh.isMesh || !mesh.geometry) return;
+      meshIndex += 1;
+      meshes.push(mesh);
+
+      mesh.geometry.computeVertexNormals();
+      const center = new THREE.Box3().setFromObject(mesh).getCenter(new THREE.Vector3());
+      mesh.userData.heroPulse = THREE.MathUtils.clamp((center.y - minY) / spanY, 0, 1);
+      mesh.userData.heroPhase = (meshIndex * 0.61803398875) % 1;
+
+      if (candidate.id === "atlas") {
+        const original = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
+        const base =
+          original && "color" in original && original.color instanceof THREE.Color
+            ? original.color.clone()
+            : new THREE.Color(0xd9dce4);
+        mesh.material = new THREE.MeshStandardMaterial({
+          color: base.lerp(new THREE.Color(0xdfe3ec), 0.38),
+          roughness: 0.73,
+          metalness: 0.02,
+          emissive: base.clone().multiplyScalar(0.09),
+          emissiveIntensity: 0.22,
+        });
+      } else if (candidate.id === "perfusion") {
+        mesh.material = new THREE.MeshStandardMaterial({
+          color: IVORY.clone(),
+          roughness: 0.78,
+          metalness: 0,
+          emissive: new THREE.Color(0xfff0c8),
+          emissiveIntensity: 0.08,
+        });
+      } else if (candidate.id === "neon") {
+        const tint = meshIndex % 3 === 0 ? CYAN : meshIndex % 3 === 1 ? VIOLET : new THREE.Color(0x5a7dff);
+        mesh.material = new THREE.MeshStandardMaterial({
+          color: GRAPHITE.clone().lerp(tint, 0.14),
+          roughness: 0.34,
+          metalness: 0.08,
+          emissive: tint.clone(),
+          emissiveIntensity: 0.2,
+          transparent: true,
+          opacity: 0.93,
+        });
       } else {
-        root.rotation.set(0.03, Math.PI, -0.03);
+        const tint = meshIndex % 3 === 0 ? CYAN : meshIndex % 3 === 1 ? VIOLET : new THREE.Color(0x6ea8ff);
+        mesh.material = new THREE.MeshBasicMaterial({
+          color: tint,
+          wireframe: true,
+          transparent: true,
+          opacity: candidate.id === "flow" ? 0.075 : 0.22,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending,
+        });
+      }
+    });
+
+    if (meshes.length === 0) throw new Error(`Brain candidate "${candidate.id}" loaded without renderable meshes.`);
+
+    if (candidate.id === "flow") {
+      try {
+        flowMaterial = addFlowParticles(scene, root);
+      } catch (error) {
+        console.warn("[brain-hero] Neural Flow particles failed; keeping the wireframe fallback.", error);
+        flowMaterial = null;
+      }
+    }
+
+    onState("ready");
+  };
+
+  const bootModel = async () => {
+    try {
+      let gltf;
+      try {
+        gltf = await loadModel(candidate.modelUrl, candidate.dracoPath);
+      } catch (primaryError) {
+        if (candidate.modelUrl === FALLBACK_MODEL_URL) throw primaryError;
+        console.warn(
+          `[brain-hero] Primary model failed for "${candidate.id}". Falling back to the proven secondary brain model.`,
+          primaryError,
+        );
+        gltf = await loadModel(FALLBACK_MODEL_URL);
       }
 
-      scene.add(root);
-      fitBrain(root, candidate.id === "flow" ? 1.72 : 1.82);
-      scene.updateMatrixWorld(true);
+      if (disposed) return;
 
-      const whole = new THREE.Box3().setFromObject(root);
-      const minY = whole.min.y;
-      const spanY = Math.max(0.001, whole.max.y - whole.min.y);
+      try {
+        installModel(gltf);
+      } catch (setupError) {
+        console.error(`[brain-hero] Scene setup failed for "${candidate.id}".`, setupError);
+        onState("error");
+      }
+    } catch (loadError) {
+      if (!disposed) {
+        console.error(`[brain-hero] Model load failed for "${candidate.id}".`, loadError);
+        onState("error");
+      }
+    }
+  };
 
-      let meshIndex = 0;
-      root.traverse((object) => {
-        const mesh = object as THREE.Mesh;
-        if (!mesh.isMesh || !mesh.geometry) return;
-        meshIndex += 1;
-        meshes.push(mesh);
-
-        mesh.geometry.computeVertexNormals();
-        const center = new THREE.Box3().setFromObject(mesh).getCenter(new THREE.Vector3());
-        mesh.userData.heroPulse = THREE.MathUtils.clamp((center.y - minY) / spanY, 0, 1);
-        mesh.userData.heroPhase = (meshIndex * 0.61803398875) % 1;
-
-        if (candidate.id === "atlas") {
-          const original = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
-          const base =
-            original && "color" in original && original.color instanceof THREE.Color
-              ? original.color.clone()
-              : new THREE.Color(0xd9dce4);
-          mesh.material = new THREE.MeshStandardMaterial({
-            color: base.lerp(new THREE.Color(0xdfe3ec), 0.38),
-            roughness: 0.73,
-            metalness: 0.02,
-            emissive: base.clone().multiplyScalar(0.09),
-            emissiveIntensity: 0.22,
-          });
-        } else if (candidate.id === "perfusion") {
-          mesh.material = new THREE.MeshStandardMaterial({
-            color: IVORY.clone(),
-            roughness: 0.78,
-            metalness: 0,
-            emissive: new THREE.Color(0xfff0c8),
-            emissiveIntensity: 0.08,
-          });
-        } else if (candidate.id === "neon") {
-          const tint = meshIndex % 3 === 0 ? CYAN : meshIndex % 3 === 1 ? VIOLET : new THREE.Color(0x5a7dff);
-          mesh.material = new THREE.MeshStandardMaterial({
-            color: GRAPHITE.clone().lerp(tint, 0.14),
-            roughness: 0.34,
-            metalness: 0.08,
-            emissive: tint.clone(),
-            emissiveIntensity: 0.2,
-            transparent: true,
-            opacity: 0.93,
-          });
-        } else {
-          const tint = meshIndex % 3 === 0 ? CYAN : meshIndex % 3 === 1 ? VIOLET : new THREE.Color(0x6ea8ff);
-          mesh.material = new THREE.MeshBasicMaterial({
-            color: tint,
-            wireframe: true,
-            transparent: true,
-            opacity: candidate.id === "flow" ? 0.075 : 0.22,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending,
-          });
-        }
-      });
-
-      if (candidate.id === "flow") flowMaterial = addFlowParticles(scene, root);
-      onState("ready");
-    },
-    undefined,
-    () => {
-      if (!disposed) onState("error");
-    },
-  );
+  void bootModel();
 
   const resize = () => {
     const width = Math.max(1, host.clientWidth);
@@ -233,11 +290,14 @@ export function mountBrainCandidate({
   observer.observe(host);
   resize();
 
-  const clock = new THREE.Clock();
-  const animate = () => {
+  const timer = new THREE.Timer();
+  timer.connect(document);
+  const animate = (timestamp: number) => {
     if (disposed) return;
-    const elapsed = clock.getElapsedTime();
-    controls.update();
+    timer.update(timestamp);
+    const elapsed = timer.getElapsed();
+    const delta = timer.getDelta();
+    controls.update(delta);
 
     if (root && coarse && !reduced) root.rotation.y += 0.0016;
 
@@ -274,7 +334,7 @@ export function mountBrainCandidate({
     observer.disconnect();
     renderer.domElement.removeEventListener("pointermove", onPointerMove);
     controls.dispose();
-    draco?.dispose();
+    timer.dispose();
     composer?.dispose();
     scene.traverse((object) => {
       const mesh = object as THREE.Mesh;

@@ -36,7 +36,7 @@ export function HomeHero({ descriptor, title, accents, lede, actions, visual }: 
                 >
                   {descriptor}
                 </p>
-                <HeroTitle text={title} accents={accents} />
+                <HeroTitle text={title || descriptor} accents={accents ?? []} />
                 <Text
                   variant="lede"
                   tone="muted"
